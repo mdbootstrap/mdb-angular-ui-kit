@@ -7,7 +7,7 @@ If you want to use npm you should add styles to your angular cli file and import
 
 2. add to your imports in app.module : MDBBootstrapModule.forRoot()
 
-3: add styles to angular-cli.json file : `"../node_modules/angular-bootstrap-md/scss/mdb.scss"`
+3. add styles to angular-cli.json file : `"../node_modules/angular-bootstrap-md/scss/mdb.scss"`
 
 ## Documentation:
 http://mdbootstrap.com/angular/
