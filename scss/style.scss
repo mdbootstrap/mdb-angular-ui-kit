@@ -1,0 +1,268 @@
+
+
+.navbar {
+    background: #293a48;
+}
+
+div[ngui-sticky]{
+  background-color: #f69696;
+}
+
+pre { 
+    max-height: 600px;
+    margin-top: 1rem;
+}
+
+//documentation section
+.overflowDocs {
+  overflow-x: hidden; 
+}
+
+//dodać tu formsy, lightbox, itp
+//stickycontent
+.stickyFooter{
+  height: 700px;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  background-color: red;
+}
+
+#stickyWrapper { 
+	width:960px;
+    height: 400px;
+	margin:0 auto;
+  #header {
+    border-bottom:1px solid #ccc;
+    padding:10px 20px;
+    width:920px;
+  }
+  #main {
+    overflow:hidden;
+    .sidebar {
+      float:left;
+      width:200px;
+      padding:0;
+    }
+    .sidebar .widget {
+      width:200px;
+      padding:10px 15px;
+      border-bottom:1px solid #ccc;
+    }
+    #article {
+      width:458px;
+      padding:0 20px;
+      border-left:1px solid #ccc;
+      border-right:1px solid #ccc;
+      float:left;
+    }
+    #sidebar-lt{
+      margin: 0 30px;  
+    }
+  }
+  .stickyFooter{
+    height: 700px;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    background-color: red;
+  }
+}
+
+h1 { margin:0; }
+h2 { margin:0 0 0.5em; }
+
+//timepicker
+.timepickerLabel{
+    width: 100%;
+}
+
+//grid
+.col-example2 {
+    padding: 1rem;
+    background-color: #a9b5b9;
+    border: 3px solid #fff;
+    color: #fff;
+    text-align: center;
+}
+.example-row {
+    min-height: 10rem;
+}
+
+.documentation .doc-title {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 2rem 0;
+  margin: 5rem 0 2rem;
+  text-transform: uppercase;
+  font-size: 2rem; }
+  .documentation .doc-title.doc-first {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 1.2rem; }
+  .documentation .doc-title.doc-subtitle {
+    text-transform: none;
+    border-top: none;
+    font-size: 1.7rem;
+    margin-top: 2rem; }
+  .documentation .doc-title .btn {
+    margin-top: -2px; }
+  @media (max-width: 776px) {
+    .documentation .doc-title .btn {
+      margin-top: 1rem;
+      display: block; } }
+
+.documentation .col-example {
+  padding: 1rem;
+  background-color: #33b5e5;
+  border: 2px solid #ffffff;
+  color: #fff;
+  text-align: center; }
+
+.documentation .example-td {
+  padding: 1rem;
+  background-color: #33b5e5 !important;
+  border: 2px solid #ffffff !important;
+  color: #fff; }
+
+.documentation .example-parent {
+  background-color: #eee !important; }
+
+.documentation li.circle-li {
+  list-style-type: disc; }
+
+.documentation ul.ul-flex {
+  padding-left: 3rem; }
+
+.documentation .is-visible {
+  background-color: #bbdefb; }
+
+.documentation .is-hidden {
+  color: #9e9e9e; }
+
+.documentation .scroll-box {
+  position: relative; }
+
+.documentation .scrollspy-example {
+  overflow-y: scroll;
+  position: relative;
+  height: 200px;
+  padding: 1rem; }
+
+.documentation .dzik:after {
+  content: "Wrrr. jestem wielkim strasznym dzikiem"; }
+
+.documentation footer {
+  padding-left: 0; }
+
+.color-block {
+  text-align: center;
+  height: 200px;
+  color: #fff;
+  padding: 40px; }
+
+.color-block-dark {
+  height: 130px;
+  text-align: center;
+  color: #fff;
+  padding: 15px; }
+
+  /*Parallax section*/
+  #section-1 {
+      z-index: 1;
+      color: #fff;
+      height: 100vh;
+  }
+  #section-1 .row {
+      position: fixed;
+  }
+
+  #section-1 .parallax-layer-back {
+      background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(2).jpg")no-repeat center center;
+      background-size: cover;
+  }
+  #section-2 {
+      z-index: 2;
+      position: relative;
+      background: #fff;
+      width: 100%;
+  }
+
+/* Colors section */
+.dynamic-color .col-md-4 div {
+  padding: 7px 20px;
+}
+
+//smoothscroll
+#smoothLinks, #smoothExample{
+  height: 700px;
+}
+
+//shadows
+.documentation .shadow-box-example {
+  height: 120px;
+  width: 100%;
+  background-color: #64b5f6;
+}
+
+//animations
+.documentation #animated-img {
+    max-width: 300px;
+}
+
+//masks 
+.view img {
+  width: 100%;
+}
+
+ng-select select-dropdown {
+  > div .options {
+    max-height: 100%;
+    overflow-y: auto;
+  }
+}
+
+//pagelayouts
+.introView{
+  background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20(5).jpg")no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.nfxView{
+  @extend .introView;
+  position: absolute;
+}
+
+.nfxtView{
+  background: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img%20(5).jpg")no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.introZindex{
+  z-index: 999;
+  @extend .transNav;
+}
+
+.transNav{
+  background-color: transparent !important;
+  color: white;
+  logo{
+    color: white;
+  }
+}
+
+.preview-margin {
+  margin-left: 10px;
+}
+
+.code-toolbar {
+  margin: 2.5em 0 !important;
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19);
+}
+
