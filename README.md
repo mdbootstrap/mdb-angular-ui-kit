@@ -3,31 +3,31 @@
 
 If you want to use npm you should add styles to your angular cli file and import module from npm. 
 
-step1: import { MDBBootstrapModule } from 'angular-bootstrap-md';
+1. `import { MDBBootstrapModule } from 'angular-bootstrap-md';`
 
-step2: add to your imports in app.module : MDBBootstrapModule.forRoot()
+2. add to your imports in app.module : MDBBootstrapModule.forRoot()
 
-step3: add styles to angular-cli.json file : "../node_modules/angular-bootstrap-md/scss/mdb.scss"
+3: add styles to angular-cli.json file : `"../node_modules/angular-bootstrap-md/scss/mdb.scss"`
 
-Documentation:
+## Documentation:
 http://mdbootstrap.com/angular/
 
-Getting started:
+## Getting started:
 http://mdbootstrap.com/angular/getting-started/
 
-FAQ
+## FAQ
 http://mdbootstrap.com/angular/faq/
 
-Support:
+## Support:
 http://mdbootstrap.com/forums/forum/support/
 
-License:
+## License:
 http://mdbootstrap.com/license/
 
-Facebook: https://facebook.com/mdbootstrap
-Twitter: https://twitter.com/MDBootstrap
-Google+: https://plus.google.com/u/0/+Mdbootstrap/posts
-Dribbble: https://dribbble.com/mdbootstrap
+- Facebook: https://facebook.com/mdbootstrap
+- Twitter: https://twitter.com/MDBootstrap
+- Google+: https://plus.google.com/u/0/+Mdbootstrap/posts
+- Dribbble: https://dribbble.com/mdbootstrap
 
-Contact:
+## Contact:
 office@mdbootstrap.com
