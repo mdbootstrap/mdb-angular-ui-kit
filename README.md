@@ -1,6 +1,6 @@
 [![Angular-Bootstrap-with-Material-Design](https://mdbootstrap.com/img/Mockups/MDB-post/angular-about.jpg)](https://mdbootstrap.com/angular/)
 
-# Angular-Bootstrap-with-Material-Design
+# Angular Bootstrap with Material Design
 
 Built with Angular 2, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
 
@@ -9,12 +9,6 @@ Built with Angular 2, Bootstrap 4 and TypeScript. CLI version available. Absolut
 All fully responsive. All compatible with different browsers.
 
 __________
-
-
-Every day we challenged ourselves to create a visual language for us and our users that combines the classic principles of genuine design with the innovation and possibility of technology and science. That's what Material Design is about. Today we combine it with Bootstrap - most popular HTML, SCSS, and TS framework for developing responsive, mobile first websites and apps. Bootstrap makes web development way faster and easier regardless of skill levels, devices and projects.    
-Angular Bootstrap with Material Design is a free, powerful Material Design UI KIT for Bootstrap 4. It is one of the most comprehensive material design frameworks that was created to date.  
-
-Our framework includes SCSS for handling Animations, Colors, Typography, Helpers, Hover effects, Shadows, Icons, Components, and JavaScript. Additionally, it offers Badges, Buttons, Social buttons, Cards, Footer, Forms, Material box, Nabbers, Pagination, Panels, Parallax, Progress bar, Tables, Galleries and JavaScript.
 
 # Demo:  
 **Main demo**: https://mdbootstrap.com/angular/components/
@@ -38,6 +32,9 @@ TO CREATE A NEW CLI PROJECT:
     `"easy-pie-chart": "^2.1.7"`,
     `"hammerjs": "^2.0.8"`
 11. install the rest of needed components (bootstrap, fontawesome, ...)
+12. add @imports to styles.scss: 
+    `@import  "../node_modules/bootstrap/scss/bootstrap.scss";
+     @import  "../node_modules/angular-bootstrap-md/scss/mdb.scss";`
 
 ## Getting started:
 
@@ -59,47 +56,47 @@ http://mdbootstrap.com/angular/getting-started/
 **Huge, detailed documentation avilable online on**: http://mdbootstrap.com/angular/
 
 # Highlights:  
-**Components**  
-Choose **among 400+  predefined components**. Each component is ready to use and fits perfectly with each other like LEGO bricks. Take, combine, enjoy!.  
+**Bootstrap 4**  
+Up-to-date with the latest standards of Bootstrap 4 and all the best it has to offer. 
 
-**Modularity**  
-Use TypeScript modules to compile package adjusted yo your needs.   
+**Angular CLI**  
+A command line interface handling all the tedious tasks for you out of the box.
 
-**42 thematic sections**  
-To save your time we have combined our components and prepared thematic sections like blog listings, contact forms, pricing table and much more. Choose, combine and enjoy your website in less than a minute.    ??
+**Detailed documentation**  
+Intuitive and user-friendly documentation, created with a copy-paste approach.
 
-**10 fresh ready to use templates**  
-We are going further and giving to you ready to use templates! Use them as you like, as an inspiration, prototype or final product for your customers. ?? 
+**No jQuery**  
+Writing you code with pure Angular is now quicker, easier, and cleaner. 
+
+**TypeScript**  
+Superset of JavaScript that compiles to clean JavaScript output.  
+
+**Angular 2, version 4.0.0**  
+Create smarter and faster Angular apps with the latest official Angular release.  
 
 **Cross-browser compatibility**  
-Chrome, Firefox, IE, Safari, Opera, Microsoft Edge - Angular Bootstrap with Material Design loves all browsers, all browsers love Angular Bootstrap with Material Design.  ?? 
+Works perfectly with Chrome, Firefox, IE, Safari, Opera and Microsoft Edge.  
 
 **Frequent updates**  
-Angular Bootstrap with Material Design becomes better every month. We love the project and enhance as much as possible.  
-
-**Technical support**  
-We really care about reliability. If you have any questions - do not hesitate to contact us.  
+Expect any bugs being fixed in a matter of days.   
 
 **Active community**  
-Our society grows day by day. Visit our forum and check how it is to be a part of our family.  
+MDB is broadly used by professionals on multiple levels, who are ready to aid you.
 
-**Flex box**  
-Angular Bootstrap with Material Design fully suppports Flex Box. You can forget about alignment issues.   
-
-**SASS files**  
-Arrenged and well documented .scss files can't wait until you compile them.  
+**Modularity**  
+Use TypeScript modules to compile package adjusted yo your needs. 
 
 **Useful helpers**  
-We are web developers, we really know which issues are the most annoying in our daily work. Helpers included in Angular Bootstrap with Material Design will solve lot of them and make your life easiers.  
+Reduce the frequency of highly repetitive declarations in your CSS.
 
-**Detailed documentation:**  
-We give you detailed documentation at your disposal. It will help you to implement your ideas easily.  
+**Technical support**  
+Every day we help our users with their issues and problems.  
 
-**Tutorials, tutorials, tutorials**  
-Step-by-step lessons that will guide you through all the Angular functionalities.
+**SASS files**  
+Thought-out .scss files come in a compile-ready form.
 
-**Free for personal and commercial use**  
-Our license is user friendly. Feel free to use MDB for both private as well as commercial projects.  
+**Flexbox**  
+Full support of Flexbox layout system lets you forget about alignment issues.  
 
 
 A big **thank you to all our users** who are working with us to improve the software. We wouldn't be where we are without you. 
