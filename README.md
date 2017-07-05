@@ -2,6 +2,8 @@
 
 # Angular Bootstrap with Material Design
 
+[![npm version](https://badge.fury.io/js/angular-bootstrap-md.svg)](https://badge.fury.io/js/angular-bootstrap-md)
+
 Built with Angular 2, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
 
 400+ material UI elements, 600+ material icons, 74 CSS animations, TypeScript modules, SASS files and many more.
