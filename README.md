@@ -16,35 +16,66 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # How to install:
-You can install Angular Bootstrap with Material Design using NPM:
+### You can install Angular Bootstrap with Material Design using NPM:
 - `npm i angular-bootstrap-md`
 - then to app.module.ts add
-`import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';`
-`schemas: [ NO_ERRORS_SCHEMA ]`
+```javascript
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
-TO CREATE A NEW CLI PROJECT:
-1. npm i -g @angular/cli
-2. npm i -g typescript
-3. ng new your-angular-project --style=scss
-4. cd your-angular-project
-5. npm i angular-bootstrap-md -save
-6. add `import { MDBBootstrapModule } from 'angular-bootstrap-md';` to your app.module.ts
-7. then add MDBBootstrapModule.forRoot() to imports in your app.module.ts
-8. add styles `"../node_modules/angular-bootstrap-md/scss/mdb.scss"` to angular-cli.json
-9. npm i -save chart.js": "^2.5.0 easy-pie-chart": "^2.1.7 hammerjs": "^2.0.8
-OR 
-to package.json add:
-    `"chart.js": "^2.5.0"`,
-    `"easy-pie-chart": "^2.1.7"`,
-    `"hammerjs": "^2.0.8"`
-    and then make npm i
-10. install the rest of needed components (bootstrap, fontawesome, ...)
-11. add @imports to styles.scss: 
-    `@import  "../node_modules/bootstrap/scss/bootstrap.scss";`
-12. remember to add to app.module.ts
-`import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';`
-`schemas: [ NO_ERRORS_SCHEMA ]`
-13. ng serve -open
+@NgModule({
+    imports: [
+        MDBBootstrapModule.forRoot()
+    ],
+    schemas: [ NO_ERRORS_SCHEMA ]
+});
+```
+
+### To create a new Angular-CLI project
+```bash
+# install angular-cli and typescritp globally
+npm i -g @angular/cli typescript
+
+# create new project with scss enable
+ng new your-angular-project --style=scss
+cd your-angular-projec
+
+# install angular-bootstrap-md 
+npm i angular-bootstrap-md -save
+```
+### open your project in text editor:
+- #### in angular-cli.json add: 
+
+```javascript
+"styles": [
+    "../scss/bootstrap/bootstrap.scss",
+    "../node_modules/font-awesome/scss/font-awesome.scss",
+    "../scss/mdb.scss",
+    "./styles.scss"
+],
+```
+
+- #### in app.module.ts add:
+
+```javascript
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+@NgModule({
+  declarations: [
+    ...
+  ],
+  imports: [
+   ...,
+    MDBBootstrapModule.forRoot()
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
+})
+```
+### Run server
+```bash
+ng serve -open
+```
 
 ## Getting started:
 
