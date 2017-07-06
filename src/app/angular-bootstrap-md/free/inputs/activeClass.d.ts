@@ -1,5 +1,5 @@
-import { ElementRef, Renderer } from '@angular/core';
-export declare class ActiveDirective {
+import { ElementRef, Renderer, AfterViewInit } from '@angular/core';
+export declare class ActiveDirective implements AfterViewInit {
     renderer: Renderer;
     el: ElementRef;
     elLabel: ElementRef;
@@ -7,4 +7,7 @@ export declare class ActiveDirective {
     constructor(el: ElementRef, renderer: Renderer);
     onClick(): void;
     onBlur(): void;
+    ngAfterViewInit(): void;
+    private initComponent();
+    private checkValue();
 }

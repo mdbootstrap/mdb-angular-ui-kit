@@ -35,4 +35,5 @@ export function computedStyle(element: string | HTMLElement, styleProp: string):
     }
     return value;
   }
+  return;
 }

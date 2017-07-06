@@ -8,6 +8,16 @@ var ActiveDirective = (function () {
         this.el = el;
     }
     ActiveDirective.prototype.onClick = function () {
+        this.initComponent();
+    };
+    ActiveDirective.prototype.onBlur = function () {
+        this.checkValue();
+    };
+    ActiveDirective.prototype.ngAfterViewInit = function () {
+        this.initComponent();
+        this.checkValue();
+    };
+    ActiveDirective.prototype.initComponent = function () {
         // this.el.nativeElement = event.target;
         var inputId;
         var inputP;
@@ -27,11 +37,11 @@ var ActiveDirective = (function () {
             this.renderer.setElementClass(this.elIcon, 'active', true);
         }
     };
-    ActiveDirective.prototype.onBlur = function () {
+    ActiveDirective.prototype.checkValue = function () {
         var value = '';
         if (this.elLabel != null) {
             value = this.el.nativeElement.value || '';
-            if (value == '') {
+            if (value === '') {
                 this.renderer.setElementClass(this.elLabel, 'active', false);
                 if (this.elIcon) {
                     this.renderer.setElementClass(this.elIcon, 'active', false);
@@ -44,7 +54,7 @@ var ActiveDirective = (function () {
 export { ActiveDirective };
 ActiveDirective.decorators = [
     { type: Directive, args: [{
-                selector: 'input[type="text"][mdbActive],input[type="email"][mdbActive],input[type="password"][mdbActive],textarea[mdbActive]'
+                selector: '[mdbActive]'
             },] },
 ];
 /** @nocollapse */

@@ -52,7 +52,7 @@ var TooltipDirective = (function () {
         /* tslint:disable */
         /** @deprecated - please use `tooltip` instead */
         set: function (value) {
-            // console.warn('tooltipHtml was deprecated, please use `tooltip` instead');
+            console.warn('tooltipHtml was deprecated, please use `tooltip` instead');
             this.tooltip = value;
         },
         enumerable: true,
@@ -61,7 +61,7 @@ var TooltipDirective = (function () {
     Object.defineProperty(TooltipDirective.prototype, "_placement", {
         /** @deprecated - please use `placement` instead */
         set: function (value) {
-            // console.warn('tooltipPlacement was deprecated, please use `placement` instead');
+            console.warn('tooltipPlacement was deprecated, please use `placement` instead');
             this.placement = value;
         },
         enumerable: true,
@@ -69,12 +69,12 @@ var TooltipDirective = (function () {
     });
     Object.defineProperty(TooltipDirective.prototype, "_isOpen", {
         get: function () {
-            // console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
+            console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
             return this.isOpen;
         },
         /** @deprecated - please use `isOpen` instead*/
         set: function (value) {
-            // console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
+            console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
             this.isOpen = value;
         },
         enumerable: true,
@@ -82,12 +82,12 @@ var TooltipDirective = (function () {
     });
     Object.defineProperty(TooltipDirective.prototype, "_enable", {
         get: function () {
-            // console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
+            console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
             return this.isDisabled === true;
         },
         /** @deprecated - please use `isDisabled` instead */
         set: function (value) {
-            // console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
+            console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
             this.isDisabled = value === true;
         },
         enumerable: true,
@@ -95,12 +95,12 @@ var TooltipDirective = (function () {
     });
     Object.defineProperty(TooltipDirective.prototype, "_appendToBody", {
         get: function () {
-            // console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
+            console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
             return this.container === 'body';
         },
         /** @deprecated - please use `container="body"` instead */
         set: function (value) {
-            // console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
+            console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
             this.container = value ? 'body' : this.container;
         },
         enumerable: true,
@@ -109,7 +109,7 @@ var TooltipDirective = (function () {
     Object.defineProperty(TooltipDirective.prototype, "_popupClass", {
         /** @deprecated - will replaced with customClass */
         set: function (value) {
-            // console.warn('tooltipClass deprecated');
+            console.warn('tooltipClass deprecated');
         },
         enumerable: true,
         configurable: true
@@ -117,7 +117,7 @@ var TooltipDirective = (function () {
     Object.defineProperty(TooltipDirective.prototype, "_tooltipContext", {
         /** @deprecated - removed */
         set: function (value) {
-            // console.warn('tooltipContext deprecated');
+            console.warn('tooltipContext deprecated');
         },
         enumerable: true,
         configurable: true
@@ -125,11 +125,11 @@ var TooltipDirective = (function () {
     Object.defineProperty(TooltipDirective.prototype, "_tooltipTrigger", {
         /** @deprecated -  please use `triggers` instead */
         get: function () {
-            // console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
+            console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
             return this.triggers;
         },
         set: function (value) {
-            // console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
+            console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
             this.triggers = (value || '').toString();
         },
         enumerable: true,

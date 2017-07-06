@@ -96,7 +96,7 @@ export class Navbars implements AfterViewInit{
 		// }
 	}
 
-	@HostListener('window:resize', ['$event']) onResize(event) {
+	@HostListener('window:resize', ['$event']) onResize(event: any) {
 		if(event.target.innerWidth < 992) {
 			if(!this.shown) {
 				this.collapse = false;

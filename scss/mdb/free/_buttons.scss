@@ -539,12 +539,6 @@ button:focus {
     }
 }
 
-
-.disabled {
-    cursor: not-allowed;
-    pointer-events: auto !important;
-}
-
 .btn-secondary {
     &.disabled,
     &:disabled {
@@ -557,4 +551,21 @@ button:focus {
 .btn-split {
     padding-left: 0.85rem;
     padding-right: 1.25rem;
+}
+
+.disabled {
+    cursor: not-allowed;
+    pointer-events: auto ;
+}
+
+//fixed floating button
+.fixed-action-btn {
+    .fixed_collapse{
+        left: 0;
+        right: 0;
+        text-align: center;
+        position: absolute;
+        bottom: 70px;
+        margin: 0;
+    }
 }

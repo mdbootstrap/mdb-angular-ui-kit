@@ -19,11 +19,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/bootstrap/scss/bootstrap.scss",
+        "../scss/bootstrap/bootstrap.scss",
         "../node_modules/font-awesome/scss/font-awesome.scss",
-        "styles.scss"
+        "../scss/mdb.scss",
+        "./styles.scss"
       ],
       "scripts": [
+        "../node_modules/web-animations-js/web-animations.min.js",
         "../node_modules/chart.js/dist/chart.js",
         "../node_modules/easy-pie-chart/dist/easypiechart.js",
         "../node_modules/screenfull/dist/screenfull.js"
@@ -58,7 +60,6 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {
-    }
+    "component": {}
   }
 }

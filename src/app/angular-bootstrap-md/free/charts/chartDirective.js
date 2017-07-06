@@ -1,5 +1,4 @@
 import { EventEmitter, ElementRef, Input, Output, NgModule, Directive } from '@angular/core';
-import { Chart } from 'chart.js';
 /* tslint:disable-next-line */
 var BaseChartDirective = (function () {
     function BaseChartDirective(element) {

@@ -11,7 +11,7 @@ $success-color: color("green", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 
 /*** Fonts ***/
-$roboto-font-path: "../font/roboto/" !default;
+$roboto-font-path: "/font/roboto/" !default;
 
 /*** Typography ***/
 $off-black: rgba(0, 0, 0, 0.87) !default;
@@ -104,7 +104,7 @@ $datepicker-selected-outfocus: desaturate(lighten($primary-color, 35%), 15%) !de
 
 //angular2
 //lightbox
-$lightbox-bg: url('/assets/lightbox/default-skin.png');
+$lightbox-bg: url('/node_modules/angular-bootstrap-md/img/lightbox/default-skin.png');
 
 //material select
 $option-color: #fff;

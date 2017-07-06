@@ -59,10 +59,10 @@
         height: 36px;
     }
     .carousel-control-prev-icon {
-        background-image: url(../img/svg/arrow_left.svg);
+        background-image: url(/node_modules/angular-bootstrap-md/img/svg/arrow_left.svg);
     }
     .carousel-control-next-icon {
-        background-image: url(../img/svg/arrow_right.svg);
+        background-image: url(/node_modules/angular-bootstrap-md/img/svg/arrow_right.svg);
     }
     .carousel-indicators {
         z-index: 2;
