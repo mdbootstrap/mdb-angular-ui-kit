@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/app/typescripts/free/collapse/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,MAAM,qBAAqB,CAAC;AACxD,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export { CollapseDirective } from './collapseDirective';\r\nexport { CollapseModule } from './collapseModule';"]}

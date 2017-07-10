@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/app/typescripts/free/ripple/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,2BAA2B,CAAC;AAC5D,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export { RippleDirective } from './ripple-effect.component';\r\nexport { rippleModule } from './rippleModule';"]}

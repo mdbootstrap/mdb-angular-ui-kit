@@ -19,9 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../scss/bootstrap/bootstrap.scss",
         "../node_modules/font-awesome/scss/font-awesome.scss",
-        "../scss/mdb.scss",
+        "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+        "../node_modules/angular-bootstrap-md/scss/mdb.scss",
         "./styles.scss"
       ],
       "scripts": [

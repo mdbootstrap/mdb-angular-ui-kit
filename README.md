@@ -16,9 +16,8 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # How to install:
-### You can install Angular Bootstrap with Material Design using NPM:
-- `npm i angular-bootstrap-md`
-- then to app.module.ts add
+- `npm i angular-bootstrap-md --save`
+- to app.module.ts add
 ```javascript
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -30,47 +29,20 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     schemas: [ NO_ERRORS_SCHEMA ]
 });
 ```
+- in angular-cli.json change:
 
-### To create a new Angular-CLI project
-```bash
-# install angular-cli and typescritp globally
-npm i -g @angular/cli typescript
+`"styleExt": "css"` to `"styleExt": "scss"`
 
-# create new project with scss enable
-ng new your-angular-project --style=scss
-cd your-angular-projec
+rename /src/styles.css to styles.scss
 
-# install angular-bootstrap-md 
-npm i angular-bootstrap-md -save
-```
-### open your project in text editor:
-- #### in angular-cli.json add: 
-
+- add below lines to angular-cli.json: 
 ```javascript
 "styles": [
-    "../scss/bootstrap/bootstrap.scss",
     "../node_modules/font-awesome/scss/font-awesome.scss",
-    "../scss/mdb.scss",
+    "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+    "../node_modules/angular-bootstrap-md/scss/mdb.scss",
     "./styles.scss"
 ],
-```
-
-- #### in app.module.ts add:
-
-```javascript
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-
-@NgModule({
-  declarations: [
-    ...
-  ],
-  imports: [
-   ...,
-    MDBBootstrapModule.forRoot()
-  ],
-  schemas: [NO_ERRORS_SCHEMA]
-})
 ```
 ### Run server
 ```bash

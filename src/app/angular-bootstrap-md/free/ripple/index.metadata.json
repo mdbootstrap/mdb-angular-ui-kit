@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":3,"metadata":{},"exports":[{"from":"./ripple-effect.component","export":["RippleDirective"]},{"from":"./rippleModule","export":["rippleModule"]}]},{"__symbolic":"module","version":1,"metadata":{},"exports":[{"from":"./ripple-effect.component","export":["RippleDirective"]},{"from":"./rippleModule","export":["rippleModule"]}]}]

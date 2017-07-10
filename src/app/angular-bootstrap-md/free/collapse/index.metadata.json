@@ -1,1 +1,0 @@
-[{"__symbolic":"module","version":3,"metadata":{},"exports":[{"from":"./collapseDirective","export":["CollapseDirective"]},{"from":"./collapseModule","export":["CollapseModule"]}]},{"__symbolic":"module","version":1,"metadata":{},"exports":[{"from":"./collapseDirective","export":["CollapseDirective"]},{"from":"./collapseModule","export":["CollapseModule"]}]}]
