@@ -32,7 +32,6 @@
     "@angular/core": "*",
     "@angular/forms": "*",
     "chart.js": "2.5.0",
-    "easy-pie-chart": "2.1.7",
     "hammerjs": "2.0.8",
     "font-awesome": "*"
   }
