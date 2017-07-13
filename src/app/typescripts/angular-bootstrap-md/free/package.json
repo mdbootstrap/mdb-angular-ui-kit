@@ -1,9 +1,13 @@
 {
   "name": "angular-bootstrap-md",
-  "version": "4.0.6",
+  "version": "4.0.9",
   "description": "Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS, and JS framework - Bootstrap.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.git"
   },
   "keywords": [
     "material",
@@ -14,7 +18,13 @@
     "framework",
     "css",
     "mobile-first",
-    "responsive"
+    "responsive",
+    "angular",
+    "ng",
+    "ng2",
+    "angular2",
+    "ng4",
+    "angular4"
   ],
   "author": "MDBootstrap",
   "license": "Custom license (read license.pdf)",
@@ -32,7 +42,8 @@
     "@angular/core": "*",
     "@angular/forms": "*",
     "chart.js": "2.5.0",
-    "hammerjs": "2.0.8",
-    "font-awesome": "*"
+    "hammerjs": "*",
+    "font-awesome": "*",
+    "@agm/core": "*"
   }
 }

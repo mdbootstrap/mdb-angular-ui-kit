@@ -1,6 +1,6 @@
 {
   "name": "quickstart-angular2",
-  "version": "1.0.0",
+  "version": "4.0.9",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.0",
     "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
@@ -21,7 +22,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "angular-bootstrap-md": "*",
-    "chart.js": "^2.5.0",
+    "chart.js": "2.5.0",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "easy-pie-chart": "^2.1.7",

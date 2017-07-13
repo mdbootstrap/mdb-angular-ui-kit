@@ -26,9 +26,7 @@
       ],
       "scripts": [
         "../node_modules/web-animations-js/web-animations.min.js",
-        "../node_modules/chart.js/dist/chart.js",
-        "../node_modules/easy-pie-chart/dist/easypiechart.js",
-        "../node_modules/screenfull/dist/screenfull.js"
+        "../node_modules/chart.js/dist/chart.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

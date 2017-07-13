@@ -4,7 +4,6 @@ import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ButtonsModule } from './buttons';
 import { rippleModule } from './ripple';
 import { activeModule } from './inputs';
-import { AgmCoreModule } from './angular2-google-maps/ts/core';
 import { NavbarModule } from './navbars';
 import { BsDropdownModule } from './dropdown';
 import { CarouselModule } from './carousel/';
@@ -25,11 +24,6 @@ export {
 export {
   activeModule, ActiveDirective
 } from './inputs/';
-
-export { 
-  SebmGoogleMapKmlLayer, SebmGoogleMap, SebmGoogleMapCircle, SebmGoogleMapInfoWindow, SebmGoogleMapMarker, SebmGoogleMapPolygon, SebmGoogleMapPolyline, SebmGoogleMapPolylinePoint, LazyMapsAPILoader, LAZY_MAPS_API_CONFIG, LazyMapsAPILoaderConfigLiteral, MapsAPILoader, BROWSER_GLOBALS_PROVIDERS
-} from './angular2-google-maps/ts/core/';
-
 
 export {
   NavbarModule, Navbars
@@ -93,10 +87,6 @@ const MODULES = [
     PopoverModule.forRoot(),
   ],
   exports: MODULES,
-  providers: [ 
-    // PaginationConfig
-    
-  ],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class MDBRootModule {

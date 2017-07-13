@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 import { MDBBootstrapModule } from './typescripts/angular-bootstrap-md/free';
-import { AgmCoreModule } from './typescripts/angular-bootstrap-md/free/angular2-google-maps/ts/core/';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { AgmCoreModule } from './typescripts/angular-bootstrap-md/free/angular2-
     FormsModule,
     HttpModule,
     MDBBootstrapModule.forRoot(),
+    // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en#key
     // AgmCoreModule.forRoot({
     //   apiKey: 'google_maps_api_key'
     // })

@@ -23,12 +23,6 @@ export class RippleDirective {
 				button.className += ' waves-effect';
 			}
 
-			if( button.classList.toString().indexOf("outline") == -1
-			 && button.classList.toString().indexOf("btn-flat") == -1
-			 && button.classList.toString().indexOf("page-link") == -1 ) {
-				button.classList.add("waves-light");
-			}
-
 			let xPos = event.clientX - button.getBoundingClientRect().left;
 			let yPos = event.clientY - button.getBoundingClientRect().top;
 			
