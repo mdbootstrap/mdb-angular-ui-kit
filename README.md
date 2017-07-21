@@ -46,11 +46,11 @@ rename /src/styles.css to styles.scss
 ```
 - install external libs
 ```bash
-npm install –save chart.js@2.5.0 font-awesome hammerjs
+npm install -–save chart.js@2.5.0 font-awesome hammerjs
 ```
 ### Run server
 ```bash
-ng serve -open
+ng serve --open
 ```
 
 ## Getting started:
