@@ -16,7 +16,7 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # How to install:
-- `npm i angular-bootstrap-md@4.0.9 --save`
+- `npm i angular-bootstrap-md --save`
 - to app.module.ts add
 ```javascript
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
