@@ -6,7 +6,7 @@ import { Renderer } from '@angular/core';
 import { Trigger } from './trigger.class';
 
 const DEFAULT_ALIASES = {
-  hover: ['mouseenter', 'mouseleave'],
+  hover: ['mouseover', 'mouseout'],
   focus: ['focusin', 'focusout']
 };
 
@@ -20,7 +20,7 @@ export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES):
   const parsedTriggers = trimmedTriggers.split(/\s+/)
     .map((trigger: string) => trigger.split(':'))
     .map((triggerPair: string[]) => {
-      let alias = aliases[triggerPair[0]] || triggerPair;
+      const alias = aliases[triggerPair[0]] || triggerPair;
       return new Trigger(alias[0], alias[1]);
     });
 
@@ -28,11 +28,11 @@ export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES):
     .filter((triggerPair: Trigger) => triggerPair.isManual());
 
   if (manualTriggers.length > 1) {
-    throw 'Triggers parse error: only one manual trigger is allowed';
+    throw new Error('Triggers parse error: only one manual trigger is allowed');
   }
 
   if (manualTriggers.length === 1 && parsedTriggers.length > 1) {
-    throw 'Triggers parse error: manual trigger can\'t be mixed with other triggers';
+    throw new Error('Triggers parse error: manual trigger can\'t be mixed with other triggers');
   }
 
   return parsedTriggers;

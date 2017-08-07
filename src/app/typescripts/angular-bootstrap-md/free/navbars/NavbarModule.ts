@@ -1,6 +1,6 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { Navbars } from "./navbarComponent";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { Navbars } from './navbarComponent';
 
 
 @NgModule({

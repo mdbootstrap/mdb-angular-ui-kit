@@ -1,10 +1,10 @@
-import { Directive, ElementRef, Host, HostListener, Input, Renderer, OnInit } from "@angular/core";
+import { Directive, ElementRef, Host, HostListener, Input, Renderer, OnInit } from '@angular/core';
 
-import { CompleterItem } from "../components/completerItemComponent";
-import { CtrDropdown, CtrRowElement, CtrRowItem } from "./dropdownDirective";
+import { CompleterItem } from '../components/completerItemComponent';
+import { CtrDropdown, CtrRowElement, CtrRowItem } from './dropdownDirective';
 
 @Directive({
-    selector: "[ctrRow]",
+    selector: '[ctrRow]',
 })
 export class CtrRow implements CtrRowElement, OnInit {
 
@@ -28,17 +28,17 @@ export class CtrRow implements CtrRowElement, OnInit {
         this._item = item;
     }
 
-    @HostListener("click", ["$event"]) public onClick(event: any) {
+    @HostListener('click', ['$event']) public onClick(event: any) {
         this.dropdown.onSelected(this._item);
     }
 
-    @HostListener("mouseenter", ["$event"]) public onMouseEnter(event: any) {
+    @HostListener('mouseenter', ['$event']) public onMouseEnter(event: any) {
         this.dropdown.highlightRow(this._rowIndex);
     }
 
     public setHighlighted(selected: boolean) {
         this.selected = selected;
-        this.renderer.setElementClass(this.el.nativeElement, "completer-selected-row", this.selected);
+        this.renderer.setElementClass(this.el.nativeElement, 'completer-selected-row', this.selected);
     }
 
     public getNativeElement() {

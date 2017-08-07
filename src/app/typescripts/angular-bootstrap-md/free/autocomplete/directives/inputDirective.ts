@@ -1,11 +1,11 @@
-import { Directive, ElementRef, EventEmitter, Host, HostListener, Input, Output } from "@angular/core";
-import { NgModel } from "@angular/forms";
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
+import { Directive, ElementRef, EventEmitter, Host, HostListener, Input, Output } from '@angular/core';
+import { NgModel } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
-import { CompleterItem } from "../components/completerItemComponent";
-import { CtrCompleter } from "./completerDirective";
-import { isNil } from "../globals";
+import { CompleterItem } from '../components/completerItemComponent';
+import { CtrCompleter } from './completerDirective';
+import { isNil } from '../globals';
 
 
 
@@ -19,19 +19,19 @@ const KEY_EN = 13;
 const KEY_TAB = 9;
 
 @Directive({
-    selector: "[ctrInput]",
+    selector: '[ctrInput]',
 })
 export class CtrInput {
-    @Input("clearSelected") public clearSelected = false;
-    @Input("clearUnselected") public clearUnselected = false;
-    @Input("overrideSuggested") public overrideSuggested = false;
-    @Input("fillHighlighted") public fillHighlighted = true;
-    @Input("openOnFocus") public openOnFocus = false;
+    @Input('clearSelected') public clearSelected = false;
+    @Input('clearUnselected') public clearUnselected = false;
+    @Input('overrideSuggested') public overrideSuggested = false;
+    @Input('fillHighlighted') public fillHighlighted = true;
+    @Input('openOnFocus') public openOnFocus = false;
 
     @Output() public ngModelChange: EventEmitter<any> = new EventEmitter();
 
-    private _searchStr = "";
-    private _displayStr = "";
+    private _searchStr = '';
+    private _displayStr = '';
     private blurTimer: Subscription = null;
 
     constructor( @Host() private completer: CtrCompleter, private ngModel: NgModel, private el: ElementRef) {
@@ -40,7 +40,7 @@ export class CtrInput {
                 return;
             }
             if (this.clearSelected) {
-                this.searchStr = "";
+                this.searchStr = '';
             } else {
                 this.searchStr = item.title;
             }
@@ -67,7 +67,7 @@ export class CtrInput {
         });
     }
 
-    @HostListener("keyup", ["$event"])
+    @HostListener('keyup', ['$event'])
     public keyupHandler(event: any) {
         if (event.keyCode === KEY_LF || event.keyCode === KEY_RT || event.keyCode === KEY_TAB) {
             // do nothing
@@ -93,7 +93,7 @@ export class CtrInput {
         }
     }
 
-    @HostListener("keydown", ["$event"])
+    @HostListener('keydown', ['$event'])
     public keydownHandler(event: any) {
         if (event.keyCode === KEY_EN) {
             if (this.completer.hasHighlighted()) {
@@ -116,7 +116,7 @@ export class CtrInput {
         }
     }
 
-    @HostListener("blur", ["$event"])
+    @HostListener('blur', ['$event'])
     public onBlur(event: any) {
         // Check if we need to cancel Blur for IE
         if (this.completer.isCancelBlur()) {
@@ -137,7 +137,7 @@ export class CtrInput {
                     this.completer.onSelected({ title: this.searchStr, originalObject: null });
                 } else {
                     if (this.clearUnselected && !this.completer.hasSelected) {
-                        this.searchStr = "";
+                        this.searchStr = '';
                     } else {
                         this.restoreSearchValue();
                     }
@@ -147,7 +147,7 @@ export class CtrInput {
         );
     }
 
-    @HostListener("focus", ["$event"])
+    @HostListener('focus', ['$event'])
     public onfocus() {
         if (this.blurTimer) {
             this.blurTimer.unsubscribe();
@@ -169,7 +169,7 @@ export class CtrInput {
 
     private handleSelection() {
         if (this.completer.hasHighlighted()) {
-            this._searchStr = "";
+            this._searchStr = '';
             this.completer.selectCurrent();
         } else if (this.overrideSuggested) {
             this.completer.onSelected({ title: this.searchStr, originalObject: null });

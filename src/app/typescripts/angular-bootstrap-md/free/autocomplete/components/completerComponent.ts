@@ -1,15 +1,15 @@
-"use strict";
-import { AfterViewChecked, Component, Input, Output, EventEmitter, OnInit, ViewChild, forwardRef, AfterViewInit, ElementRef } from "@angular/core";
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from "@angular/forms";
+'use strict';
+import { AfterViewChecked, Component, Input, Output, EventEmitter, OnInit, ViewChild, forwardRef, AfterViewInit, ElementRef } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { CtrCompleter } from "../directives/completerDirective";
-import { CompleterData } from "../services/completerDataService";
-import { CompleterService } from "../services/completerService";
-import { CompleterItem } from "./completerItemComponent";
-import { MAX_CHARS, MIN_SEARCH_LENGTH, PAUSE, TEXT_SEARCHING, TEXT_NO_RESULTS } from "../globals";
+import { CtrCompleter } from '../directives/completerDirective';
+import { CompleterData } from '../services/completerDataService';
+import { CompleterService } from '../services/completerService';
+import { CompleterItem } from './completerItemComponent';
+import { MAX_CHARS, MIN_SEARCH_LENGTH, PAUSE, TEXT_SEARCHING, TEXT_NO_RESULTS } from '../globals';
 
 
-import "rxjs/add/operator/catch";
+import 'rxjs/add/operator/catch';
 
 const noop = () => { };
 
@@ -21,7 +21,7 @@ const COMPLETER_CONTROL_VALUE_ACCESSOR = {
 
 
 @Component({
-    selector: "ng2-completer",
+    selector: 'ng2-completer',
     template: `
         <div class="completer-holder md-form" ctrCompleter>
             
@@ -69,8 +69,8 @@ const COMPLETER_CONTROL_VALUE_ACCESSOR = {
 })
 export class CompleterCmp implements OnInit, ControlValueAccessor, AfterViewChecked, AfterViewInit {
     @Input() public dataService: CompleterData;
-    @Input() public inputName = "";
-    @Input() public inputId: string = "";
+    @Input() public inputName = '';
+    @Input() public inputId = '';
     @Input() public pause = PAUSE;
     @Input() public minSearchLength = MIN_SEARCH_LENGTH;
     @Input() public maxChars = MAX_CHARS;
@@ -78,7 +78,7 @@ export class CompleterCmp implements OnInit, ControlValueAccessor, AfterViewChec
     @Input() public clearSelected = false;
     @Input() public clearUnselected = false;
     @Input() public fillHighlighted = true;
-    @Input() public placeholder = "";
+    @Input() public placeholder = '';
     @Input() public matchClass: string;
     @Input() public fieldTabindex: number;
     @Input() public autoMatch = false;
@@ -90,29 +90,29 @@ export class CompleterCmp implements OnInit, ControlValueAccessor, AfterViewChec
     @Input() public autoHighlight = false;
     @Input() public label: string;
 
-    public focused: boolean = false;
+    public focused = false;
 
 
     @Output() public selected = new EventEmitter<CompleterItem>();
     @Output() public highlighted = new EventEmitter<CompleterItem>();
     @Output() public blur = new EventEmitter<void>();
-    @Output("focus") public focusEvent = new EventEmitter<void>();
+    @Output('focus') public focusEvent = new EventEmitter<void>();
     @Output() public opened = new EventEmitter<boolean>();
     @Output() public keyup: EventEmitter<any> = new EventEmitter();
     @Output() public keydown: EventEmitter<any> = new EventEmitter();
 
     @ViewChild(CtrCompleter) public completer: CtrCompleter;
-    @ViewChild("ctrInput") public ctrInput: ElementRef;
+    @ViewChild('ctrInput') public ctrInput: ElementRef;
 
-    public searchStr = "";
-    public control = new FormControl("");
+    public searchStr = '';
+    public control = new FormControl('');
 
     private displaySearching = true;
     private displayNoResults = true;
     private _onTouchedCallback: () => void = noop;
     private _onChangeCallback: (_: any) => void = noop;
-    private _focus: boolean = false;
-    private _open: boolean = false;
+    private _focus = false;
+    private _open = false;
     private _textNoResults = TEXT_NO_RESULTS;
     private _textSearching = TEXT_SEARCHING;
 
@@ -162,7 +162,7 @@ export class CompleterCmp implements OnInit, ControlValueAccessor, AfterViewChec
         if (source) {
             if (source instanceof Array) {
                 this.dataService = this.completerService.local(source);
-            } else if (typeof (source) === "string") {
+            } else if (typeof (source) === 'string') {
                 this.dataService = this.completerService.remote(source);
             } else {
                 this.dataService = source;
@@ -174,7 +174,7 @@ export class CompleterCmp implements OnInit, ControlValueAccessor, AfterViewChec
     public set textNoResults(text: string) {
         if (this._textNoResults != text) {
             this._textNoResults = text;
-            this.displayNoResults = this._textNoResults && this._textNoResults !== "false";
+            this.displayNoResults = this._textNoResults && this._textNoResults !== 'false';
         }
     }
 
@@ -182,7 +182,7 @@ export class CompleterCmp implements OnInit, ControlValueAccessor, AfterViewChec
     public set textSearching(text: string) {
         if (this._textSearching != text) {
             this._textSearching = text;
-            this.displaySearching = this._textSearching && this._textSearching !== "false";
+            this.displaySearching = this._textSearching && this._textSearching !== 'false';
         }
     }
 
@@ -202,7 +202,7 @@ export class CompleterCmp implements OnInit, ControlValueAccessor, AfterViewChec
     public onBlur() {
         this.blur.emit();
         this.onTouched();
-        if(this.searchStr === undefined || this.searchStr === "") {
+        if (this.searchStr === undefined || this.searchStr === '') {
             this.focused = false;
         }
     }

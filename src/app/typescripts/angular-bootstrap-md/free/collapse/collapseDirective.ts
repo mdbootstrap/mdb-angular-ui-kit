@@ -25,21 +25,21 @@ export class CollapseDirective implements OnInit {
   // @HostBinding('class.in')
   // @HostBinding('class.show')
   // @HostBinding('attr.aria-expanded')
-  public isExpanded: boolean = true;
+  public isExpanded = true;
   // hidden
   // @HostBinding('attr.aria-hidden')
-  public isCollapsed: boolean = false;
+  public isCollapsed = false;
   // stale state
   // @HostBinding('class.collapse')
-  public isCollapse: boolean = true;
+  public isCollapse = true;
   // animation state
   // @HostBinding('class.collapsing')
-  public isCollapsing: boolean = false;
-  public collapsing: boolean = false;
+  public isCollapsing = false;
+  public collapsing = false;
 
 
-  @Input() public collapse:boolean;
-  @Input() public animationTime: number = 500;
+  @Input() public collapse: boolean;
+  @Input() public animationTime = 500;
 
   public maxHeight: number;
 
@@ -53,12 +53,12 @@ export class CollapseDirective implements OnInit {
   }
 
   ngOnInit() {
-    this._el.nativeElement.classList.add("show");
+    this._el.nativeElement.classList.add('show');
     this.maxHeight = this._el.nativeElement.scrollHeight;
-    this._el.nativeElement.style.transition = this.animationTime + "ms ease";
+    this._el.nativeElement.style.transition = this.animationTime + 'ms ease';
 
-    if(!this.collapse) {
-      this._el.nativeElement.classList.remove("show");
+    if (!this.collapse) {
+      this._el.nativeElement.classList.remove('show');
       this.hide();
     } else {
       this.show();
@@ -69,7 +69,7 @@ export class CollapseDirective implements OnInit {
 
   /** allows to manually toggle content visibility */
   public toggle(): void {
-    if(!this.collapsing) {
+    if (!this.collapsing) {
       if (this.isExpanded) {
         this.hide();
       } else {
@@ -88,26 +88,26 @@ export class CollapseDirective implements OnInit {
     this.isExpanded = false;
     this.isCollapsed = true;
 
-    let container = this._el.nativeElement;
+    const container = this._el.nativeElement;
 
-    container.classList.remove("collapse");
-    container.classList.remove("show");
-    container.classList.add("collapsing");
+    container.classList.remove('collapse');
+    container.classList.remove('show');
+    container.classList.add('collapsing');
 
-    this._renderer.setElementStyle(container, "height", "0px");
+    this._renderer.setElementStyle(container, 'height', '0px');
 
     setTimeout(() => {
-      container.classList.remove("collapsing");
-      container.classList.add("collapse");
+      container.classList.remove('collapsing');
+      container.classList.add('collapse');
       this.hiddenBsCollapse.emit();
       this.collapsing = false;
     }, this.animationTime);
-    this.collapsed.emit(this); 
+    this.collapsed.emit(this);
   }
 
   /** allows to manually show collapsed content */
   public show(): void {
-    if(!this.isExpanded) {
+    if (!this.isExpanded) {
       this.collapsing = true;
       this.showBsCollapse.emit();
       this.isCollapse = false;
@@ -116,20 +116,20 @@ export class CollapseDirective implements OnInit {
       this.isExpanded = true;
       this.isCollapsed = false;
 
-      let container = this._el.nativeElement;
+      const container = this._el.nativeElement;
 
 
-      container.classList.remove("collapse");
-      container.classList.add("collapsing");
-      
+      container.classList.remove('collapse');
+      container.classList.add('collapsing');
+
       setTimeout(() => {
-        this._renderer.setElementStyle(container, "height", this.maxHeight + "px");
+        this._renderer.setElementStyle(container, 'height', this.maxHeight + 'px');
       }, 10);
-      
+
       setTimeout(() => {
-          container.classList.remove("collapsing");
-          container.classList.add("collapse");
-          container.classList.add("show");
+          container.classList.remove('collapsing');
+          container.classList.add('collapse');
+          container.classList.add('show');
           this.shownBsCollapse.emit();
           this.collapsing = false;
       }, this.animationTime - (this.animationTime * 0.5));

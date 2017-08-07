@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
-import { CompleterBaseData } from "./baseDataService";
-import { CompleterItem } from "../components/completerItemComponent";
+import { CompleterBaseData } from './baseDataService';
+import { CompleterItem } from '../components/completerItemComponent';
 
 @Injectable()
 export class LocalData extends CompleterBaseData {
@@ -34,7 +34,7 @@ export class LocalData extends CompleterBaseData {
             this.savedTerm = term;
         } else {
             this.savedTerm = null;
-            let matches: any[] = this.extractMatches(this._data, term);
+            const matches: any[] = this.extractMatches(this._data, term);
             this.next(this.processResults(matches));
         }
     }

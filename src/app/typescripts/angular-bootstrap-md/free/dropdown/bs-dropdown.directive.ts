@@ -179,6 +179,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       return;
     }
 
+    //material and dropup dropdown animation
+    const parent = this._elementRef.nativeElement.classList;
+    const container = this._elementRef.nativeElement.lastElementChild;
+
+    setTimeout( () =>  { container.classList.add('fadeInDropdown'); } , 200 );
+
     if (this._showInline) {
       this._isInlineOpen = true;
       this.onShown.emit(true);
@@ -205,6 +211,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           });
 
         this._state.isOpenChange.emit(true);
+
       });
 
   }
@@ -218,14 +225,38 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       return;
     }
 
-    if (this._showInline) {
-      this._isInlineOpen = false;
-      this.onHidden.emit(true);
+    const parent = this._elementRef.nativeElement.classList;
+    const container = this._elementRef.nativeElement.lastElementChild;
+
+    if ( (parent.value !== 'dropdown open show') || (parent.value !== 'btn-group dropup open show') ) {
+      container.classList.remove('fadeInDropdown');
+
+      setTimeout( () => {
+
+        if (this._showInline) {
+          this._isInlineOpen = false;
+          this.onHidden.emit(true);
+        } else {
+          this._dropdown.hide();
+        }
+
+        this._state.isOpenChange.emit(false);
+
+      }, 560);
+
     } else {
-      this._dropdown.hide();
+
+      if (this._showInline) {
+        this._isInlineOpen = false;
+        this.onHidden.emit(true);
+      } else {
+        this._dropdown.hide();
+      }
+
+      this._state.isOpenChange.emit(false);
+
     }
 
-    this._state.isOpenChange.emit(false);
   }
 
   /**

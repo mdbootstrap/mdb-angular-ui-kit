@@ -1,0 +1,56 @@
+// Card Basic
+.card {
+    font-weight: 400;
+	border-radius: .3rem;
+	.fa {
+		padding-left: 6px;
+		padding-right: 6px;
+	}
+	&:not([class*="card-outline-"]) {
+		border:0;
+		@extend .z-depth-1;
+	}
+	.card-body {
+		position:relative;
+		h5 {
+			margin-bottom: 1rem;
+			font-size: 1rem;
+			font-weight: 400;
+		}
+		h3 {
+			margin-bottom: 1rem;
+			font-weight: 400;
+		}
+		h4 {
+			font-weight: 400;
+		}
+		p {
+			margin-bottom: 1rem;
+		}
+	}
+	.card-title {
+		a {
+			transition: 0.3s;
+			&:hover {
+				transition: 0.3s;
+			}
+		}
+	}
+    .card-text{
+        font-size: 0.9rem;
+		color: #747373; 
+		font-weight: 400;
+    }
+	// .card-footer {
+	// 	padding-bottom: 0;
+	// 	font-size:1.2rem;
+	// 	&:after {
+	// 	display:block;
+	// 		content: "";
+	// 		clear:both;
+	// 	}
+	// 	.card-link {
+	// 		color: inherit;
+	// 	}
+	// }
+}

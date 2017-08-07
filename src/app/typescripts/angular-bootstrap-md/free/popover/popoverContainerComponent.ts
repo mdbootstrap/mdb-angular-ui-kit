@@ -7,13 +7,13 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
   host: {
-    '[class]': '"popover in popover-" + placement + " " + placement',
+    '[class]': '"popover-fadeIn popover in popover-" + placement + " " + placement',
     '[class.show]': '!isBs3',
     role: 'tooltip'
   },
   template: `
 <div class="popover-arrow arrow"></div>
-<h3 class="popover-title" *ngIf="title">{{title}}</h3><div class="popover-content"><ng-content></ng-content></div>
+<h3 class="popover-header" *ngIf="title">{{title}}</h3><div class="popover-body"><ng-content></ng-content></div>
     `
 })
 export class PopoverContainerComponent {

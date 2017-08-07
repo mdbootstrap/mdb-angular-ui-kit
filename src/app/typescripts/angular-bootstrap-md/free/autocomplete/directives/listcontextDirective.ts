@@ -1,13 +1,13 @@
-import "rxjs/add/observable/timer";
-import { ChangeDetectorRef, Directive, Host, Input, OnInit, TemplateRef, ViewContainerRef } from "@angular/core";
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
+import 'rxjs/add/observable/timer';
+import { ChangeDetectorRef, Directive, Host, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 
-import { CtrCompleter, CompleterList } from "./completerDirective";
-import { CompleterData } from "../services/completerDataService";
-import { CompleterItem } from "../components/completerItemComponent";
-import { MIN_SEARCH_LENGTH, PAUSE, CLEAR_TIMEOUT, isNil } from "../globals";
+import { CtrCompleter, CompleterList } from './completerDirective';
+import { CompleterData } from '../services/completerDataService';
+import { CompleterItem } from '../components/completerItemComponent';
+import { MIN_SEARCH_LENGTH, PAUSE, CLEAR_TIMEOUT, isNil } from '../globals';
 
 
 export class CtrListContext {
@@ -20,7 +20,7 @@ export class CtrListContext {
 }
 
 @Directive({
-    selector: "[ctrList]",
+    selector: '[ctrList]',
 })
 export class CtrList implements OnInit, CompleterList {
     @Input() public ctrListMinSearchLength = MIN_SEARCH_LENGTH;
@@ -51,7 +51,7 @@ export class CtrList implements OnInit, CompleterList {
         );
     }
 
-    @Input("ctrList")
+    @Input('ctrList')
     public set dataService(newService: CompleterData) {
         this._dataService = newService;
         if (this._dataService) {
@@ -78,9 +78,9 @@ export class CtrList implements OnInit, CompleterList {
         }
     }
 
-    @Input("ctrListInitialValue")
+    @Input('ctrListInitialValue')
     public set initialValue(value: any) {
-        if (this._dataService && typeof this._dataService.convertToItem === "function") {
+        if (this._dataService && typeof this._dataService.convertToItem === 'function') {
             setTimeout(() => {
                 const initialItem = this._dataService.convertToItem(value);
                 if (initialItem) {
@@ -126,7 +126,7 @@ export class CtrList implements OnInit, CompleterList {
 
     public open() {
         if (!this.ctx.searchInitialized) {
-            this.search("");
+            this.search('');
         }
         this.refreshTemplate();
     }
@@ -159,10 +159,10 @@ export class CtrList implements OnInit, CompleterList {
 
     private handleError(error: any) {
         this.ctx.searching = false;
-        let errMsg: string = "search error";
+        let errMsg = 'search error';
         if (error) {
             errMsg = (error.message) ? error.message :
-                error.status ? `${error.status} - ${error.statusText}` : "Server error";
+                error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         }
 
         if (console && console.error) {

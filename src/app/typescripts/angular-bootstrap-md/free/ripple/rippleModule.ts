@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders  } from "@angular/core";
+import { NgModule, ModuleWithProviders  } from '@angular/core';
 import { RippleDirective } from './ripple-effect.component';
 
 @NgModule({

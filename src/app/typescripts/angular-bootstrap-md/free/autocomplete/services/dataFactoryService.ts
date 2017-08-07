@@ -1,7 +1,7 @@
-import {Http} from "@angular/http";
+import {Http} from '@angular/http';
 
-import {LocalData} from "./localDataService";
-import {RemoteData} from "./remoteDataService";
+import {LocalData} from './localDataService';
+import {RemoteData} from './remoteDataService';
 
 
 export function localDataFactory () {

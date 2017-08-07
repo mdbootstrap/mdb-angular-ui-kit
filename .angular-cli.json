@@ -26,7 +26,8 @@
       ],
       "scripts": [
         "../node_modules/web-animations-js/web-animations.min.js",
-        "../node_modules/chart.js/dist/chart.js"
+        "../node_modules/chart.js/dist/Chart.js",
+        "../node_modules/hammerjs/hammer.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

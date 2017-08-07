@@ -7,7 +7,7 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
   host: {
-    '[class]': '"tooltip in tooltip-" + placement + " " + placement',
+    '[class]': '"tooltip-fadeIn tooltip in tooltip-" + placement + " " + placement',
     '[class.show]': '!isBs3',
     role: 'tooltip'
   },

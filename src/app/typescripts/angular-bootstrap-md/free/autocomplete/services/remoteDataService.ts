@@ -1,10 +1,10 @@
-import { Http, Response, Headers, RequestOptions } from "@angular/http";
-import { Subscription } from "rxjs/Subscription";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
-import { CompleterBaseData } from "./baseDataService";
-import { CompleterItem } from "../components/completerItemComponent";
+import { CompleterBaseData } from './baseDataService';
+import { CompleterItem } from '../components/completerItemComponent';
 
 export class RemoteData extends CompleterBaseData {
     private _remoteUrl: string;
@@ -46,7 +46,7 @@ export class RemoteData extends CompleterBaseData {
     public search(term: string): void {
         this.cancel();
         // let params = {};
-        let url = "";
+        let url = '';
         if (this._urlFormater) {
             url = this._urlFormater(term);
         } else {
@@ -67,12 +67,12 @@ export class RemoteData extends CompleterBaseData {
         this.remoteSearch = this.http.get(url, this._requestOptions)
             .map((res: Response) => res.json())
             .map((data: any) => {
-                let matches = this.extractValue(data, this._dataField);
+                const matches = this.extractValue(data, this._dataField);
                 return this.extractMatches(matches, term);
             })
             .map(
             (matches: any[]) => {
-                let results = this.processResults(matches);
+                const results = this.processResults(matches);
                 this.next(results);
                 return results;
             })

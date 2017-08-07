@@ -1,8 +1,8 @@
-import {Injectable, Inject} from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import {Injectable, Inject} from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
-import {LocalData} from "./localDataService";
-import {RemoteData} from "./remoteDataService";
+import {LocalData} from './localDataService';
+import {RemoteData} from './remoteDataService';
 
 
 @Injectable()
@@ -12,18 +12,18 @@ export class CompleterService {
         @Inject(RemoteData) private remoteDataFactory: any // Using any instead of () => LocalData because on AoT errors
     ) { }
 
-    public local(data: any[] | Observable<any>, searchFields = "", titleField = ""): LocalData {
+    public local(data: any[] | Observable<any>, searchFields = '', titleField = ''): LocalData {
 
-        let localData = this.localDataFactory();
+        const localData = this.localDataFactory();
         return localData
             .data(data)
             .searchFields(searchFields)
             .titleField(titleField);
     }
 
-    public remote(url: string, searchFields = "", titleField = ""): RemoteData {
+    public remote(url: string, searchFields = '', titleField = ''): RemoteData {
 
-        let remoteData = this.remoteDataFactory();
+        const remoteData = this.remoteDataFactory();
         return remoteData
             .remoteUrl(url)
             .searchFields(searchFields)

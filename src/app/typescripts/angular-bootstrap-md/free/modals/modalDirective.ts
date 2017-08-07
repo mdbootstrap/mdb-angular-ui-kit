@@ -21,7 +21,7 @@ import { document } from  '../utils/facade/browser';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent } from './modalBackdropComponent';
-import { ClassName, modalConfigDefaults, ModalOptions, Selector } from './modalOptionsClass';
+import { ClassName, modalConfigDefaults, ModalOptions, Selector, DISMISS_REASONS } from './modalOptionsClass';
 
 import { window } from '../utils/facade/browser';
 import { ComponentLoader } from '../utils/component-loader/component-loader.class';
@@ -56,21 +56,23 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   @Output() public onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   // seems like an Options
-  public isAnimated: boolean = true;
+  public isAnimated = true;
+  /** This field contains last dismiss reason. Possible values: `backdrop-click`, `esc` and `null` (if modal was closed by direct call of `.hide()`). */
+  public dismissReason: string;
 
   public get isShown(): boolean {
     return this._isShown;
   }
 
   protected _config: ModalOptions;
-  protected _isShown: boolean = false;
+  protected _isShown = false;
 
-  protected isBodyOverflowing: boolean = false;
-  protected originalBodyPadding: number = 0;
-  protected scrollbarWidth: number = 0;
+  protected isBodyOverflowing = false;
+  protected originalBodyPadding = 0;
+  protected scrollbarWidth = 0;
 
-  protected timerHideModal: any;
-  protected timerRmBackDrop: any;
+  protected timerHideModal: any = 0;
+  protected timerRmBackDrop: any = 0;
 
   // constructor props
   protected _element: ElementRef;
@@ -82,12 +84,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // todo: implement _dialog
   private _dialog: any;
 
+  private isNested = false;
+
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
       return;
     }
-
+    this.dismissReason = DISMISS_REASONS.BACKRDOP;
     this.hide(event);
   }
 
@@ -95,6 +99,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   @HostListener('keydown.esc')
   public onEsc(): void {
     if (this.config.keyboard) {
+      this.dismissReason = DISMISS_REASONS.ESC;
       this.hide();
     }
   }
@@ -116,9 +121,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): any {
     this._config = this._config || this.getConfig();
-    if (this._config.show) {
-      this.show();
-    }
+    setTimeout(() => {
+      if (this._config.show) {
+        this.show();
+      }
+    }, 0);
   }
 
   /* Public methods */
@@ -130,6 +137,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   /** Allows to manually open modal */
   public show(): void {
+    this.dismissReason = null;
     this.onShow.emit(this);
     if (this._isShown) {
       return;
@@ -143,7 +151,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this.setScrollbar();
 
     if (document && document.body) {
-      this._renderer.setElementClass(document.body, ClassName.OPEN, true);
+      if (document.body.classList.contains(ClassName.OPEN)) {
+        this.isNested = true;
+      } else {
+        this._renderer.setElementClass(document.body, ClassName.OPEN, true);
+      }
     }
 
     this.showBackdrop(() => {
@@ -168,10 +180,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     clearTimeout(this.timerRmBackDrop);
 
     this._isShown = false;
-    this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, false);
-    if (!isBs3()) {
-      this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, false);
-    }
+    this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, false);
+    // this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, false);
+    // if (!isBs3()) {
+    //   this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, false);
+    // }
     // this._addClassIn = false;
 
     if (this.isAnimated) {
@@ -209,10 +222,12 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
 
     // this._addClassIn = true;
-    this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, true);
-    if (!isBs3()) {
-      this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, true);
-    }
+    // this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, true);
+    // if (!isBs3()) {
+    //   this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, true);
+    // }
+
+    this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, true);
 
     const transitionComplete = () => {
       if (this._config.focus) {
@@ -233,11 +248,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'true');
     this._renderer.setElementStyle(this._element.nativeElement, 'display', 'none');
     this.showBackdrop(() => {
-      if (document && document.body) {
-        this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+      if (!this.isNested) {
+        if (document && document.body) {
+          this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+        }
+        this.resetScrollbar();
       }
       this.resetAdjustments();
-      this.resetScrollbar();
+      this.focusOtherModal();
       this.onHidden.emit(this);
     });
   }
@@ -250,15 +268,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       this._backdrop
         .attach(ModalBackdropComponent)
         .to('body')
-        .show({isAnimated: false});
+        .show({isAnimated: this.isAnimated});
       this.backdrop = this._backdrop._componentRef;
 
-      if (this.isAnimated) {
-        this.backdrop.instance.isAnimated = this.isAnimated;
-        Utils.reflow(this.backdrop.instance.element.nativeElement);
-      }
-
-      this.backdrop.instance.isShown = true;
       if (!callback) {
         return;
       }
@@ -272,7 +284,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     } else if (!this._isShown && this.backdrop) {
       this.backdrop.instance.isShown = false;
 
-      let callbackRemove = () => {
+      const callbackRemove = () => {
         this.removeBackdrop();
         if (callback) {
           callback();
@@ -319,6 +331,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // }
   // }
 
+  protected focusOtherModal() {
+    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[bsModal]');
+    if (!otherOpenedModals.length) {
+      return;
+    }
+    this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
+  }
+
   /** @internal */
   protected resetAdjustments(): void {
     this._renderer.setElementStyle(this._element.nativeElement, 'paddingLeft', '');
@@ -337,17 +357,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       return;
     }
 
-    const fixedEl = document.querySelector(Selector.FIXED_CONTENT);
-
-    if (!fixedEl) {
-      return;
-    }
-
-    const bodyPadding = parseInt(Utils.getStyles(fixedEl).paddingRight || 0, 10);
-    this.originalBodyPadding = parseInt(document.body.style.paddingRight || 0, 10);
+    this.originalBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right') || 0, 10);
 
     if (this.isBodyOverflowing) {
-      document.body.style.paddingRight = `${bodyPadding + this.scrollbarWidth}px`;
+      document.body.style.paddingRight = `${this.originalBodyPadding + this.scrollbarWidth}px`;
     }
   }
 

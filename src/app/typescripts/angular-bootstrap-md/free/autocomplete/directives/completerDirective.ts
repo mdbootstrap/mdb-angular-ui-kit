@@ -1,6 +1,6 @@
-import { Directive, EventEmitter, Output } from "@angular/core";
+import { Directive, EventEmitter, Output } from '@angular/core';
 
-import { CompleterItem } from "../components/completerItemComponent";
+import { CompleterItem } from '../components/completerItemComponent';
 
 export interface CompleterList {
     search(term: string): void;
@@ -17,7 +17,7 @@ export interface CompleterDropdown {
 }
 
 @Directive({
-    selector: "[ctrCompleter]",
+    selector: '[ctrCompleter]',
 })
 export class CtrCompleter {
     @Output() public selected = new EventEmitter<CompleterItem>();

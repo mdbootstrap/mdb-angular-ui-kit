@@ -14,15 +14,15 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
 @Directive({ selector: '[btnRadio]', providers: [RADIO_CONTROL_VALUE_ACCESSOR] })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
 
-    public onChange:any = Function.prototype;
-    public onTouched:any = Function.prototype;
+    public onChange: any = Function.prototype;
+    public onTouched: any = Function.prototype;
 
     /** Radio button value, will be set to `ngModel` */
-    @Input() public btnRadio:any;
+    @Input() public btnRadio: any;
     /** If `true` — radio button can be unchecked */
-    @Input() public uncheckable:boolean;
+    @Input() public uncheckable: boolean;
     /** Current value of radio component or group */
-    @Input() public value:any;
+    @Input() public value: any;
 
     protected el: ElementRef;
 

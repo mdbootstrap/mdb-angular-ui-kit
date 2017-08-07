@@ -8,13 +8,13 @@ import { NavbarModule } from './navbars';
 import { BsDropdownModule } from './dropdown';
 import { CarouselModule } from './carousel/';
 import { ChartsModule } from './charts/';
-import { CollapseModule } from './collapse'
+import { CollapseModule } from './collapse';
 import { ModalModule } from './modals';
 import { TooltipModule } from './tooltip';
 import { PopoverModule } from './popover';
 
-export { 
-  ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective 
+export {
+  ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective
 } from './buttons/';
 
 export {
@@ -22,7 +22,7 @@ export {
 } from './ripple/';
 
 export {
-  activeModule, ActiveDirective
+  activeModule, ActiveDirective, InputValidateDirective
 } from './inputs/';
 
 export {
@@ -46,7 +46,7 @@ export {
 } from './collapse/';
 
 export {
-  ModalBackdropComponent, ModalBackdropOptions, ModalDirective, ModalModule, ModalOptions
+  ModalBackdropComponent, ModalBackdropOptions, ModalDirective, ModalModule, ModalOptions, BsModalService, ModalContainerComponent, BsModalRef
 } from './modals/';
 
 export {
@@ -56,6 +56,7 @@ export {
 export {
 PopoverConfig, PopoverContainerComponent, PopoverModule, PopoverDirective
 } from './popover/';
+
 
 
 const MODULES = [

@@ -1,7 +1,7 @@
-import { AfterViewInit, Directive, ElementRef, Host, HostListener, OnDestroy, OnInit } from "@angular/core";
+import { AfterViewInit, Directive, ElementRef, Host, HostListener, OnDestroy, OnInit } from '@angular/core';
 
-import { CompleterItem } from "../components/completerItemComponent";
-import { CtrCompleter, CompleterDropdown } from "./completerDirective";
+import { CompleterItem } from '../components/completerItemComponent';
+import { CtrCompleter, CompleterDropdown } from './completerDirective';
 
 
 export interface CtrRowElement {
@@ -15,7 +15,7 @@ export class CtrRowItem {
 }
 
 @Directive({
-    selector: "[ctrDropdown]",
+    selector: '[ctrDropdown]',
 })
 export class CtrDropdown implements CompleterDropdown, OnDestroy, OnInit, AfterViewInit {
 
@@ -28,8 +28,8 @@ export class CtrDropdown implements CompleterDropdown, OnDestroy, OnInit, AfterV
     }
 
     public ngOnInit() {
-        let css = getComputedStyle(this.el.nativeElement);
-        this.isScrollOn = css.maxHeight && css.overflowY === "auto";
+        const css = getComputedStyle(this.el.nativeElement);
+        this.isScrollOn = css.maxHeight && css.overflowY === 'auto';
     }
 
     public ngOnDestroy() {
@@ -48,7 +48,7 @@ export class CtrDropdown implements CompleterDropdown, OnDestroy, OnInit, AfterV
         }
     }
 
-    @HostListener("mousedown", ["$event"]) public onMouseDown(event: any) {
+    @HostListener('mousedown', ['$event']) public onMouseDown(event: any) {
         // Support for canceling blur on IE (issue #158)
         this.completer.cancelBlur(true);
         setTimeout(
@@ -153,7 +153,7 @@ export class CtrDropdown implements CompleterDropdown, OnDestroy, OnInit, AfterV
     }
 
     private dropdownRowOffsetHeight(row: any) {
-        let css = getComputedStyle(row);
+        const css = getComputedStyle(row);
         return row.offsetHeight +
             parseInt(css.marginTop, 10) + parseInt(css.marginBottom, 10);
     }

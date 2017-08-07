@@ -1,6 +1,6 @@
 export class LinkedList <T> {
 
-  public length: number = 0;
+  public length = 0;
   protected head: any;
   protected tail: any;
   protected current: any;
@@ -20,7 +20,7 @@ export class LinkedList <T> {
   }
 
   protected createInternalArrayRepresentation(): void {
-    let outArray: any[] = [];
+    const outArray: any[] = [];
     let current = this.head;
 
     while (current) {
@@ -48,7 +48,7 @@ export class LinkedList <T> {
       throw new Error('Position is out of the list');
     }
 
-    let node = {
+    const node = {
       value: value as any,
       next: undefined as any,
       previous: undefined as any
@@ -71,8 +71,8 @@ export class LinkedList <T> {
         this.tail = node;
       } else {
         // node in middle
-        let currentPreviousNode = this.getNode(position - 1);
-        let currentNextNode = currentPreviousNode.next;
+        const currentPreviousNode = this.getNode(position - 1);
+        const currentNextNode = currentPreviousNode.next;
 
         currentPreviousNode.next = node;
         currentNextNode.previous = node;
@@ -108,7 +108,7 @@ export class LinkedList <T> {
       this.tail.next = undefined;
     } else {
       // middle node
-      let removedNode = this.getNode(position);
+      const removedNode = this.getNode(position);
       removedNode.next.previous = removedNode.previous;
       removedNode.previous.next = removedNode.next;
     }
@@ -122,7 +122,7 @@ export class LinkedList <T> {
       throw new Error('Position is out of the list');
     }
 
-    let node = this.getNode(position);
+    const node = this.getNode(position);
     node.value = value;
     this.createInternalArrayRepresentation();
   }
@@ -133,7 +133,7 @@ export class LinkedList <T> {
 
   public findAll(fn: any): any[] {
     let current = this.head;
-    let result: any[] = [];
+    const result: any[] = [];
     for (let index = 0; index < this.length; index++) {
       if (fn(current.value, index)) {
         result.push({index, value: current.value});

@@ -1,18 +1,3 @@
-// todo: add animation
-
-/***
- * pause (not yet supported) (?string='hover') - event group name which pauses the cycling of the carousel, if hover pauses on mouseenter and resumes on mouseleave
- keyboard (not yet supported) (?boolean=true) - if false carousel will not react to keyboard events
- note: swiping not yet supported
- */
-/****
- * Problems:
- * 1) if we set an active slide via model changes, .active class remains on a current slide.
- * 2) if we have only one slide, we shouldn't show prev/next nav buttons
- * 3) if first or last slide is active and noWrap is true, there should be "disabled" class on the nav buttons.
- * 4) default interval should be equal 5000
- */
-
 import { Component, Input, OnDestroy, Output, EventEmitter, ElementRef, HostListener, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 
 import { isBs3, LinkedList } from '../utils';
@@ -27,10 +12,10 @@ export enum Direction {UNKNOWN, NEXT, PREV}
 @Component({
   selector: 'carousel',
   template: `
-    <div tabindex="0" (mouseenter)="pause()" (mouseleave)="play()" (mouseup)="play()" class="carousel slide {{ type }}">
+    <div tabindex="0" (mouseenter)="pause()" (mouseleave)="play()" (mouseup)="play()" class="carousel {{ class }} {{ type }}">
       <div class="controls-top" *ngIf="slides.length > 1 && !checkNavigation()">
-          <a class="btn-floating btn-small" [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()"><i class="fa fa-chevron-left"></i></a>
-          <a class="btn-floating btn-small" (click)="nextSlide()" [class.disabled]="isLast(activeSlide) && noWrap"><i class="fa fa-chevron-right"></i></a>
+          <a class="btn-floating" [class.disabled]="activeSlide===0&&noWrap" (click)="previousSlide()"><i class="fa fa-chevron-left"></i></a>
+          <a class="btn-floating" (click)="nextSlide()" [class.disabled]="isLast(activeSlide) && noWrap"><i class="fa fa-chevron-right"></i></a>
       </div>
       <ol class="carousel-indicators" *ngIf="slides.length > 1 && checkDots()">
          <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)"></li>
@@ -41,12 +26,12 @@ export enum Direction {UNKNOWN, NEXT, PREV}
          </li>
       </ol>
       <div class="carousel-inner"><ng-content></ng-content></div>
-      <a class="left carousel-control carousel-control-prev" [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()" *ngIf="slides.length > 1 && checkNavigation()">
-        <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
-        <span *ngIf="isBs4" class="sr-only">Previous</span>
+      <a class="carousel-control-prev" [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()" *ngIf="slides.length > 1 && checkNavigation()">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span  class="sr-only">Previous</span>
       </a>
-      <a class="right carousel-control carousel-control-next" (click)="nextSlide()" [class.disabled]="isLast(activeSlide) && noWrap" *ngIf="slides.length > 1 && checkNavigation()">
-        <span class="icon-next carousel-control-next-icon" aria-hidden="true"></span>
+      <a class="carousel-control-next" (click)="nextSlide()" [class.disabled]="isLast(activeSlide) && noWrap" *ngIf="slides.length > 1 && checkNavigation()">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
     </div>
@@ -64,7 +49,9 @@ export class CarouselComponent implements OnDestroy {
 
   @Input() public keyboard: boolean;
 
+  @Input('class') public class: String = '';
   @Input('type') public type: String = '';
+  @Input('animation') public animation: String = '';
 
   protected _currentActiveSlide: number;
 
@@ -81,21 +68,21 @@ export class CarouselComponent implements OnDestroy {
   public get activeSlide(): number {
     return this._currentActiveSlide;
   }
-  
+
   protected _interval: number;
 
   public checkNavigation() {
-    if(this.type == 'carousel-multi-item') {
+    if (this.type == 'carousel-multi-item') {
       return false;
     }
     return true;
-      
+
   }
 
   public checkDots() {
-     if(this.type == 'carousel-thumbnails') {
+     if (this.type == 'carousel-thumbnails') {
       return false;
-    } 
+    }
 
 
     return true;
@@ -124,10 +111,11 @@ export class CarouselComponent implements OnDestroy {
 
   protected currentInterval: any;
   protected isPlaying: boolean;
-  protected destroyed: boolean = false;
+  protected destroyed = false;
   protected el: ElementRef = null;
+  protected animationEnd = true;
 
-  public get isBs4():boolean {
+  public get isBs4(): boolean {
     return !isBs3();
   }
 
@@ -193,17 +181,17 @@ export class CarouselComponent implements OnDestroy {
    * @param force: {boolean} if true - will ignore noWrap flag
    */
   public nextSlide(force: boolean = false) {
-    let next = this.findNextSlideIndex(Direction.NEXT, force); 
-    this.classAdd(this._slides.get(this.activeSlide).el.nativeElement, 'carousel-item-left');   
-    this.classAdd(this._slides.get(next).el.nativeElement, 'carousel-item-next');
-    if(this.type == 'carousel-item') {
-      setTimeout(() => {
-        this.activeSlide = this.findNextSlideIndex(Direction.NEXT, force);
-      }, 500);
+    if (this.animation == 'slide') {
+      this.pause();
+      const direction = Direction.NEXT;
+      this.slideAnimation(this.findNextSlideIndex(direction, force), direction);
+    } else if (this.animation == 'fade') {
+      this.pause();
+      this.fadeAnimation(this.findNextSlideIndex(Direction.NEXT, force));
     } else {
       this.activeSlide = this.findNextSlideIndex(Direction.NEXT, force);
     }
-    this.restartTimer();
+
   }
 
   /**
@@ -211,25 +199,110 @@ export class CarouselComponent implements OnDestroy {
    * @param force: {boolean} if true - will ignore noWrap flag
    */
   public previousSlide(force: boolean = false): void {
-    let prev = this.findNextSlideIndex(Direction.PREV, force); 
-    this.classAdd(this._slides.get(this.activeSlide).el.nativeElement, 'carousel-item-right');   
-    this.classAdd(this._slides.get(prev).el.nativeElement, 'carousel-item-prev');
-    if(this.type == 'carousel-item') {
-      setTimeout(() => {
-        this.activeSlide = this.findNextSlideIndex(Direction.PREV, force);
-      }, 500);
+    if (this.animation == 'slide') {
+      this.pause();
+      const direction = Direction.PREV;
+      this.slideAnimation(this.findNextSlideIndex(direction, force), direction);
+    } else if (this.animation == 'fade') {
+      this.pause();
+      this.fadeAnimation(this.findNextSlideIndex(Direction.PREV, force));
     } else {
-       this.activeSlide = this.findNextSlideIndex(Direction.PREV, force);
+      this.activeSlide = this.findNextSlideIndex(Direction.PREV, force);
     }
-    this.restartTimer();
   }
+
+  protected fadeAnimation(goToIndex: number) {
+    const currentSlide = this._slides.get(this._currentActiveSlide);
+    const goToSlide = this._slides.get(goToIndex);
+
+    if (this.animationEnd) {
+      this.animationEnd = false;
+
+      goToSlide.directionNext = true;
+
+      setTimeout(() => {
+        goToSlide.directionNext = false;
+        this.animationEnd = true;
+
+        this.activeSlide = goToIndex;
+        this.play();
+      }, 100);
+    }
+  }
+
+  protected slideAnimation(goToIndex: number, direction: any) {
+
+    const currentSlide = this._slides.get(this._currentActiveSlide);
+    const goToSlide = this._slides.get(goToIndex);
+
+    if (this.animationEnd) {
+      if (direction == Direction.NEXT) {
+        this.animationEnd = false;
+        goToSlide.directionNext = true;
+        setTimeout(() => {
+          goToSlide.directionLeft = true;
+          currentSlide.directionLeft = true;
+        }, 100);
+      }
+
+      if (direction == Direction.PREV) {
+        this.animationEnd = false;
+
+        goToSlide.directionPrev = true;
+        setTimeout(() => {
+          goToSlide.directionRight = true;
+          currentSlide.directionRight = true;
+        }, 100);
+      }
+
+      setTimeout(() => {
+        goToSlide.directionLeft = false;
+        goToSlide.directionNext = false;
+        currentSlide.directionLeft = false;
+        currentSlide.directionNext = false;
+        goToSlide.directionRight = false;
+        goToSlide.directionPrev = false;
+        currentSlide.directionRight = false;
+        currentSlide.directionPrev = false;
+
+        this.animationEnd = true;
+
+        this.activeSlide = goToIndex;
+
+        let directionName;
+        if (direction == Direction.NEXT) {
+          directionName = 'Next';
+        } else if (direction == Direction.PREV) {
+          directionName = 'Prev';
+        }
+
+        this.activeSlideChange.emit({'direction': directionName, 'relatedTarget': this.activeSlide});
+        this.play();
+      }, 700);
+    }
+  }
+
+
 
   /**
    * Rolling to specified slide
    * @param index: {number} index of slide, which must be shown
    */
   public selectSlide(index: number): void {
-    this.activeSlide = index;
+    this.pause();
+    if (this.animation == 'slide') {
+
+      if (this.activeSlide < index) {
+        this.slideAnimation(index, Direction.NEXT);
+      } else if (this.activeSlide > index) {
+        this.slideAnimation(index, Direction.PREV);
+      }
+    } else if (this.animation == 'fade') {
+      if (index !== this.activeSlide) {
+        this.fadeAnimation(index);
+      }
+    }
+    this.play();
   }
 
   /**
@@ -275,8 +348,8 @@ export class CarouselComponent implements OnDestroy {
    * @param force: {boolean} if TRUE - will ignore noWrap flag, else will return undefined if next slide require wrapping
    * @returns {any}
    */
-  private findNextSlideIndex(direction: Direction, force: boolean): number {
-    let nextSlideIndex: number = this._currentActiveSlide;
+  private findNextSlideIndex(direction: Direction, force: boolean): any {
+    let nextSlideIndex = 0;
 
     if (!force && (this.isLast(this.activeSlide) && direction !== Direction.PREV && this.noWrap)) {
       return void 0;
@@ -285,46 +358,13 @@ export class CarouselComponent implements OnDestroy {
     switch (direction) {
       case Direction.NEXT:
         // if this is last slide, not force, looping is disabled and need to going forward - select current slide, as a next
-        // nextSlideIndex = (!this.isLast(this._currentActiveSlide)) ? this._currentActiveSlide + 1 :
-        //   (!force && this.noWrap ) ? this._currentActiveSlide : 0;
-
-        if(!this.isLast(this._currentActiveSlide)) {
-            nextSlideIndex = this._currentActiveSlide + 1;
-            this.removeClass(this._slides.get(nextSlideIndex-1).el.nativeElement, 'carousel-item-left');
-            this.removeClass(this._slides.get(nextSlideIndex).el.nativeElement, 'carousel-item-left');  
-            this.removeClass(this._slides.get(nextSlideIndex).el.nativeElement, 'carousel-item-next');  
-    
-             
-        } else {
-            if(!force && this.noWrap) {
-                nextSlideIndex = this._currentActiveSlide;
-            } else {
-                nextSlideIndex = 0;
-                this.removeClass(this._slides.get(this._slides.length-1).el.nativeElement, 'carousel-item-left');
-                this.removeClass(this._slides.get(nextSlideIndex).el.nativeElement, 'carousel-item-left');  
-                this.removeClass(this._slides.get(nextSlideIndex).el.nativeElement, 'carousel-item-next');
-            }
-        }
+        nextSlideIndex = (!this.isLast(this._currentActiveSlide)) ? this._currentActiveSlide + 1 :
+          (!force && this.noWrap ) ? this._currentActiveSlide : 0;
         break;
       case Direction.PREV:
         // if this is first slide, not force, looping is disabled and need to going backward - select current slide, as a next
-        // nextSlideIndex = (this._currentActiveSlide > 0) ? this._currentActiveSlide - 1 :
-        //   (!force && this.noWrap ) ? this._currentActiveSlide : this._slides.length - 1;
-
-          if(this._currentActiveSlide > 0) {
-            nextSlideIndex = this._currentActiveSlide - 1;
-            this.removeClass(this._slides.get(nextSlideIndex+1).el.nativeElement, 'carousel-item-right');
-            this.removeClass(this._slides.get(nextSlideIndex).el.nativeElement, 'carousel-item-prev'); 
-          } else {
-            if(!force && this.noWrap) {
-                nextSlideIndex = this._currentActiveSlide;
-            } else {
-                this.removeClass(this._slides.get(nextSlideIndex).el.nativeElement, 'carousel-item-right');
-                nextSlideIndex =  this._slides.length - 1;
-                this.removeClass(this._slides.get(nextSlideIndex).el.nativeElement, 'carousel-item-prev');
-            }
-          }
-
+        nextSlideIndex = (this._currentActiveSlide > 0) ? this._currentActiveSlide - 1 :
+          (!force && this.noWrap ) ? this._currentActiveSlide : this._slides.length - 1;
         break;
       default:
         throw new Error('Unknown direction');
@@ -342,16 +382,16 @@ export class CarouselComponent implements OnDestroy {
       this.pause();
       return;
     }
-    let currentSlide = this._slides.get(this._currentActiveSlide);
+    const currentSlide = this._slides.get(this._currentActiveSlide);
     if (currentSlide) {
       currentSlide.active = false;
     }
-    let nextSlide = this._slides.get(index);
+    const nextSlide = this._slides.get(index);
     if (nextSlide) {
       this._currentActiveSlide = index;
       nextSlide.active = true;
       this.activeSlide = index;
-      this.activeSlideChange.emit(index);
+      // this.activeSlideChange.emit(index);
     }
   }
 
@@ -360,11 +400,11 @@ export class CarouselComponent implements OnDestroy {
    */
   private restartTimer(): any {
     this.resetTimer();
-    let interval = +this.interval;
+    const interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {
       this.currentInterval = setInterval(
         () => {
-          let nInterval = +this.interval;
+          const nInterval = +this.interval;
           if (this.isPlaying && !isNaN(this.interval) && nInterval > 0 && this.slides.length) {
             this.nextSlide();
           } else {
@@ -395,29 +435,29 @@ export class CarouselComponent implements OnDestroy {
   protected classAdd(el: any, className: any) {
     if (el.classList)
       el.classList.add(className);
-    else if (!this.hasClass(el, className)) el.className += " " + className;
+    else if (!this.hasClass(el, className)) el.className += ' ' + className;
   }
 
   protected removeClass(el: any, className: any) {
     if (el.classList)
       el.classList.remove(className);
     else if (this.hasClass(el, className)) {
-      var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
-      el.className=el.className.replace(reg, ' ');
+      const reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+      el.className = el.className.replace(reg, ' ');
     }
   }
 
   @HostListener('keyup', ['$event']) keyboardControl(event: KeyboardEvent) {
-    if(this.keyboard) {
-      if(event.keyCode == 39) {
+    if (this.keyboard) {
+      if (event.keyCode == 39) {
         this.nextSlide();
-      } 
+      }
 
-      if(event.keyCode == 37) {
+      if (event.keyCode == 37) {
         this.previousSlide();
       }
     }
-      
+
   }
   @HostListener('click', ['$event']) focus() {
     this.el.nativeElement.focus();

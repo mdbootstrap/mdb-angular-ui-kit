@@ -1,6 +1,6 @@
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 
-import {CompleterItem} from "../components/completerItemComponent";
+import {CompleterItem} from '../components/completerItemComponent';
 
 export interface CompleterData extends Observable<CompleterItem[]> {
     search(term: string): void;

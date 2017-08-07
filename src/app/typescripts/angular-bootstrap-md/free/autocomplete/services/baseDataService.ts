@@ -1,8 +1,8 @@
-import { Subject } from "rxjs/Subject";
+import { Subject } from 'rxjs/Subject';
 
-import { CompleterItem } from "../components/completerItemComponent";
-import { CompleterData } from "./completerDataService";
-import { isNil } from "../globals";
+import { CompleterItem } from '../components/completerItemComponent';
+import { CompleterData } from './completerDataService';
+import { isNil } from '../globals';
 
 export abstract class CompleterBaseData extends Subject<CompleterItem[]> implements CompleterData {
 
@@ -74,8 +74,8 @@ export abstract class CompleterBaseData extends Subject<CompleterItem[]> impleme
 
     protected extractMatches(data: any[], term: string) {
         let matches: any[] = [];
-        const searchFields = this._searchFields ? this._searchFields.split(",") : null;
-        if (this._searchFields !== null && this._searchFields !== undefined && term != "") {
+        const searchFields = this._searchFields ? this._searchFields.split(',') : null;
+        if (this._searchFields !== null && this._searchFields !== undefined && term != '') {
             matches = data.filter(item => {
                 const values: any[] = searchFields ? searchFields.map(searchField => this.extractValue(item, searchField)).filter(value => !!value) : [item];
                 return values.some(value => value.toString().toLowerCase().indexOf(term.toString().toLowerCase()) >= 0);
@@ -90,7 +90,7 @@ export abstract class CompleterBaseData extends Subject<CompleterItem[]> impleme
 
     protected extractTitle(item: any) {
         // split title fields and run extractValue for each and join with ' '
-        return this._titleField.split(",")
+        return this._titleField.split(',')
             .map((field) => {
                 return this.extractValue(item, field);
             })
@@ -101,7 +101,7 @@ export abstract class CompleterBaseData extends Subject<CompleterItem[]> impleme
         let keys: string[];
         let result: any;
         if (key) {
-            keys = key.split(".");
+            keys = key.split('.');
             result = obj;
             for (let i = 0; i < keys.length; i++) {
                 if (result) {
@@ -117,7 +117,7 @@ export abstract class CompleterBaseData extends Subject<CompleterItem[]> impleme
 
     protected processResults(matches: string[]): CompleterItem[] {
         let i: number;
-        let results: CompleterItem[] = [];
+        const results: CompleterItem[] = [];
 
         if (matches && matches.length > 0) {
             for (i = 0; i < matches.length; i++) {
