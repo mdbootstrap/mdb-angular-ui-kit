@@ -15,6 +15,10 @@ __________
 # Demo:  
 **Main demo**: https://mdbootstrap.com/angular/components/
 
+# Version:
+- Angular CLI 1.2.6
+- Angular 4.3.x.
+
 # How to install:
 - `npm i angular-bootstrap-md --save`
 - to app.module.ts add
