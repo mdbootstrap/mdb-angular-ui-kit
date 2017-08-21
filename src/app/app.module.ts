@@ -6,8 +6,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
-import { MDBBootstrapModule } from './typescripts/angular-bootstrap-md/free';
-import { AgmCoreModule } from '@agm/core';
+import { MDBBootstrapModule } from './typescripts/free';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
