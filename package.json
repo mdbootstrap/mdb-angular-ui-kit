@@ -1,6 +1,6 @@
 {
   "name": "quickstart-angular2",
-  "version": "4.2.1",
+  "version": "4.3.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

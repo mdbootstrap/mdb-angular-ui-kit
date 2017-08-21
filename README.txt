@@ -1,6 +1,6 @@
 Material Design for Bootstrap - Angular
 
-Version: MDB - Angular Free 4.2.1
+Version: MDB - Angular Free 4.3.1
 
 Documentation:
 http://mdbootstrap.com/angular/
