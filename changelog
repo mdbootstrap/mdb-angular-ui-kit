@@ -1,0 +1,32 @@
+
+- .navbar-expand instead of .navbar-toggleable
+- removed unused variables and classes
+- changed spacing utilities
+- Removed nearly all .hidden-* classes in favor of our newer .d-* display utilities
+- updated colors (warning, danger, info, success)
+- customization made easier
+- renamed .btn-mdb to .btn-mdb-color for better naming scheme
+- new contact form
+- recreated parallax
+- introduced gradients
+- dropped jumbotron for cascading card
+- improved cascading cards
+- added gradient cards
+- added enhanced bootstrap modals
+- .btn-sm and .btn-lg instead of .btn-small and .btn-large for .btn-floating
+- updated overlay cards
+- improved pricings section
+- social list moved to deprecated
+- added border-radius to material dropdowns
+- improved design
+- updated accordion
+- added new versions of streaks
+- recreated intros
+- improved sidenav
+- fixed caret issue for material select
+- added animations to: tooltip, popover, alerts, dropdowns 
+- fixed rotating card animation (from left to right side)
+- fixed input active class with dynamically added values
+- updated alerts module plugin
+- added slide animation for carousel 
+- added mobile section

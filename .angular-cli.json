@@ -21,12 +21,13 @@
       "styles": [
         "../node_modules/font-awesome/scss/font-awesome.scss",
         "../scss/bootstrap/bootstrap.scss",
-        "../scss/mdb.scss",
+        "../scss/mdb-free.scss",
         "./styles.scss"
       ],
       "scripts": [
-        "../node_modules/web-animations-js/web-animations.min.js",
         "../node_modules/chart.js/dist/Chart.js",
+        "../node_modules/easy-pie-chart/dist/easypiechart.js",
+        "../node_modules/screenfull/dist/screenfull.js",
         "../node_modules/hammerjs/hammer.min.js"
       ],
       "environmentSource": "environments/environment.ts",
@@ -59,6 +60,7 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {
+    }
   }
 }
