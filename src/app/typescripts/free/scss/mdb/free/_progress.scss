@@ -1,0 +1,35 @@
+// Progress
+.progress {
+    box-shadow: none;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: $progress-bar-height;
+    overflow: hidden;
+    margin-bottom: $progress-bar-margin-y;
+    background-color: $progress-bar-bg-color;
+    .progress-bar {
+        border-radius: 0;
+        height: $progress-bar-height;
+        background-color: $primary-color-dark;
+    }
+    // dodałam ekstra klasy, ponieważ nasza domyślna wysokość 4px nadpisuje bootstrapową wysokość 1rem i w związku z tym inlinowe bootstrapowe style przy klasie .progress-bar nie działają
+    &.progress-default {
+        height: $progress-height;
+        .progress-bar {
+            height: $progress-height;
+        }
+    }
+    &.progress-wider {
+        height: $progress-bar-wider-height;
+        .progress-bar {
+            height: $progress-bar-wider-height;
+        }
+    }
+    &.progress-narrower {
+        height: $progress-bar-narrower-height;
+        .progress-bar {
+            height: $progress-bar-narrower-height;
+        }
+    }
+}
