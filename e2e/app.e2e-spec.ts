@@ -1,14 +1,14 @@
-import { QuickstartAngular2Page } from './app.po';
+import { MdbTestAngularPage } from './app.po';
 
-describe('quickstart-angular2 App', () => {
-  let page: QuickstartAngular2Page;
+describe('mdb-test-angular App', () => {
+  let page: MdbTestAngularPage;
 
   beforeEach(() => {
-    page = new QuickstartAngular2Page();
+    page = new MdbTestAngularPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });

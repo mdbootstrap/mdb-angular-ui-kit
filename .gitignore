@@ -1,24 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/paczki/npm
-/paczki/only-free
-/paczki/upgradePro
-
-/paczki/angular-bootstrap-md-free/font
-/paczki/angular-bootstrap-md-free/img
-/paczki/angular-bootstrap-md-free/scss
-/paczki/angular-bootstrap-md-free/node_modules
-/paczki/angular-bootstrap-md-free/src/app/typescripts
-/paczki/angular-bootstrap-md-free/src/app/angular-bootstrap-md
-
-
-/paczki/angular-bootstrap-md-pro/font
-/paczki/angular-bootstrap-md-pro/img
-/paczki/angular-bootstrap-md-pro/scss
-/paczki/angular-bootstrap-md-pro/node_modules
-/paczki/angular-bootstrap-md-pro/src/app/typescripts
-/paczki/angular-bootstrap-md-pro/src/app/angular-bootstrap-md
 /dist
 /tmp
 /out-tsc

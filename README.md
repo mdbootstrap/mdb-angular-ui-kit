@@ -44,7 +44,7 @@ rename /src/styles.css to styles.scss
 "styles": [
     "../node_modules/font-awesome/scss/font-awesome.scss",
     "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-    "../node_modules/angular-bootstrap-md/scss/mdb.scss",
+    "../node_modules/angular-bootstrap-md/scss/mdb-free.scss",
     "./styles.scss"
 ],
 ```
@@ -137,6 +137,7 @@ Freebies: https://mdbootstrap.com/freebies/
 
 Premium Templates: https://mdbootstrap.com/templates/  
 
+Changelog: https://mdbootstrap.com/angular/changelog/
 
 # Social Media:  
 
