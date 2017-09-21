@@ -50,6 +50,10 @@ rename /src/styles.css to styles.scss
     "../node_modules/angular-bootstrap-md/scss/mdb-free.scss",
     "./styles.scss"
 ],
+"scripts": [
+  "../node_modules/chart.js/dist/Chart.js",
+  "../node_modules/hammerjs/hammer.min.js"
+],
 ```
 - install external libs
 ```bash
