@@ -20,6 +20,7 @@ __________
 - Angular 4.3.x.
 
 # How to install:
+- create new project `ng new project_name --style=scss`
 - `npm i angular-bootstrap-md --save`
 - to app.module.ts add
 ```javascript
@@ -38,6 +39,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 `"styleExt": "css"` to `"styleExt": "scss"`
 
 rename /src/styles.css to styles.scss
+
+- if you want to change styles in exisiting project you can use `ng set defaults.styleExt scss`
 
 - add below lines to angular-cli.json: 
 ```javascript
