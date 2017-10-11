@@ -1,0 +1,15 @@
+<nav class="{{SideClass}}" #nav>
+  <ng-content></ng-content>
+  <div [ngClass]="{'container': containerInside}" [ngStyle]="{'display': displayStyle}" #container>
+    <ng-content select="logo"></ng-content>
+    <button class="navbar-toggler" type="button" 
+    (click)="toggle($event)" mdbRippleRadius
+    *ngIf="this.el.nativeElement.children.length !== 0">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div #navbar [style.height]="height" class="navbar-collapse collapse" 
+    [ngClass]="{'collapse': collapse, 'show': showClass, 'collapsing': collapsing}">
+      <ng-content select="links" ></ng-content>
+    </div>
+  </div>
+</nav>

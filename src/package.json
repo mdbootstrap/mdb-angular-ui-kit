@@ -1,0 +1,116 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "angular-bootstrap-md",
+        "scope": null,
+        "escapedName": "angular-bootstrap-md",
+        "name": "angular-bootstrap-md",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\DELL\\Desktop\\mdb-test-angular"
+    ]
+  ],
+  "_from": "angular-bootstrap-md@^4.3.4",
+  "_id": "angular-bootstrap-md@4.3.5",
+  "_inBundle": false,
+  "_inCache": true,
+  "_integrity": "sha1-exQzAZYzvF8xVsJCMVpN98EQa3U=",
+  "_location": "/angular-bootstrap-md",
+  "_nodeVersion": "6.10.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/angular-bootstrap-md-4.3.5.tgz_1505119759247_0.1850966711062938"
+  },
+  "_npmUser": {
+    "name": "mdbootstrap",
+    "email": "support@mdbootstrap.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "angular-bootstrap-md@^4.3.4",
+    "name": "angular-bootstrap-md",
+    "escapedName": "angular-bootstrap-md",
+    "rawSpec": "^4.3.4",
+    "saveSpec": null,
+    "fetchSpec": "^4.3.4"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-bootstrap-md/-/angular-bootstrap-md-4.3.5.tgz",
+  "_shasum": "7b1433019633bc5f3156c242315a4df7c1106b75",
+  "_shrinkwrap": null,
+  "_spec": "angular-bootstrap-md@^4.3.4",
+  "_where": "C:\\Users\\user\\Documents\\Angular-Bootstrap-with-Material-Design",
+  "author": {
+    "name": "MDBootstrap"
+  },
+  "bugs": {
+    "url": "https://github.com/mdbootstrap/bootstrap-material-design/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "moment": "2.18.x"
+  },
+  "deprecated": false,
+  "description": "Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS, and JS framework - Bootstrap.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "0c9741b94ee5cd549f77d21bb30c000348b8cb01",
+    "tarball": "https://registry.npmjs.org/angular-bootstrap-md/-/angular-bootstrap-md-4.3.5.tgz"
+  },
+  "homepage": "https://mdbootstrap.com",
+  "keywords": [
+    "material",
+    "design",
+    "bootstrap",
+    "mdbootstrap",
+    "mdb",
+    "framework",
+    "css",
+    "mobile-first",
+    "responsive",
+    "angular",
+    "ng",
+    "ng2",
+    "angular2",
+    "ng4",
+    "angular4"
+  ],
+  "license": "Custom license (read license.pdf)",
+  "maintainers": [
+    {
+      "name": "mdbootstrap",
+      "email": "support@mdbootstrap.com"
+    }
+  ],
+  "name": "angular-bootstrap-md",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "@angular/animations": "4.3.x ||^2.0.0",
+    "@angular/common": "4.3.x ||^2.0.0",
+    "@angular/compiler": "4.3.x ||^2.0.0",
+    "@angular/core": "4.3.x ||^2.0.0",
+    "@angular/forms": "4.3.x ||^2.0.0",
+    "chart.js": "2.5.x",
+    "hammerjs": "2.0.x",
+    "font-awesome": "4.7.x",
+    "@agm/core": "~1.0.0-beta.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "4.3.5"
+}

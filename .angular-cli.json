@@ -5,8 +5,8 @@
   },
   "apps": [
     {
-      "root": "src",
-      "outDir": "dist",
+      "root": "demo/src",
+      "outDir": "demo/dist",
       "assets": [
         "assets",
         "favicon.ico"
@@ -19,9 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-          "../node_modules/font-awesome/scss/font-awesome.scss",
-          "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-          "../node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+          "../../node_modules/font-awesome/scss/font-awesome.scss",
+          "../../src/scss/bootstrap/bootstrap.scss",
+          "../../src/scss/mdb-free.scss",
           "./styles.scss"
       ],
       "scripts": [],

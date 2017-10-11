@@ -1,0 +1,1 @@
+https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE
