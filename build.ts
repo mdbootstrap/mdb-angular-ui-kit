@@ -126,6 +126,9 @@ function copyFiles() {
     .forkJoin(
       copyAll(`${process.cwd()}/dist/es5/**/*.d.ts`, `${process.cwd()}/dist/packages-dist`),
       copyAll(`${process.cwd()}/dist/es5/**/*.metadata.json`, `${process.cwd()}/dist/packages-dist`),
+      copyAll(`${process.cwd()}/src/font/**/*`, `${process.cwd()}/dist/packages-dist/font`),
+      copyAll(`${process.cwd()}/src/img/**/*`, `${process.cwd()}/dist/packages-dist/img`),
+      copyAll(`${process.cwd()}/src/scss/**/*`, `${process.cwd()}/dist/packages-dist/scss`),
       Observable.from(copy(`${process.cwd()}/src/README.md`, `${process.cwd()}/dist/packages-dist/README.md`)),
       Observable.from(copy(`${process.cwd()}/src/package.json`, `${process.cwd()}/dist/packages-dist/package.json`)),
       Observable.from(copy(`${process.cwd()}/license.pdf`, `${process.cwd()}/dist/packages-dist/license.pdf`)),
