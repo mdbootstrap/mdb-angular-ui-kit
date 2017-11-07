@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "outDir": "../dist/es2015",
+    "rootDir": ".",
+    "target": "es2015",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "removeComments": false,
+    "inlineSources": true,
+    "noEmitHelpers": false,
+    "noImplicitAny": false,
+    "declaration": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "lib": [
+      "es2015",
+      "dom"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./index.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableSummariesForJit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "md-bootstrap"
+  }
+}

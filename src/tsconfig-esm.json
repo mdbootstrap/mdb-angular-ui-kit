@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig-build.json",
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "../dist/es5",
+    "declaration": true,
+    "removeComments": false
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./index.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "enableSummariesForJit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "md-bootstrap"
+  }
+}
