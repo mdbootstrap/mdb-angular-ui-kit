@@ -6,9 +6,6 @@
     "declaration": true,
     "removeComments": false
   },
-  "exclude": [
-    "node_modules"
-  ],
   "files": [
     "./index.ts"
   ],
@@ -18,6 +15,6 @@
     "strictMetadataEmit": true,
     "enableSummariesForJit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "md-bootstrap"
+    "flatModuleId": "angular-bootstrap-md"
   }
 }

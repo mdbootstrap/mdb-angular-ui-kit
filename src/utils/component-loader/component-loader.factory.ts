@@ -3,7 +3,7 @@ import {
   Renderer, ElementRef, ApplicationRef
 } from '@angular/core';
 import { ComponentLoader } from './component-loader.class';
-import { PositioningService } from '../positioning';
+import { PositioningService } from '../positioning/positioning.service';
 
 @Injectable()
 export class ComponentLoaderFactory {

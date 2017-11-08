@@ -1,93 +1,94 @@
 // free
 import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { ButtonsModule } from './buttons';
-import { RippleModule } from './ripple';
-import { ActiveModule } from './inputs';
-import { NavbarModule } from './navbars';
-import { BsDropdownModule } from './dropdown';
-import { CarouselModule } from './carousel';
-import { MDBChartsModule } from './charts';
-import { CollapseModule } from './collapse';
-import { ModalModule } from './modals';
-import { MDBTooltipModule } from './tooltip';
-import { PopoverModule } from './popover';
+import { ButtonsModule } from './buttons/buttons.module';
+import { RippleModule } from './ripple/ripple.module';
+import { ActiveModule } from './inputs/active.module';
+import { NavbarModule } from './navbars/navbar.module';
+import { BsDropdownModule } from './dropdown/dropdown.module';
+import { CarouselModule } from './carousel/carousel.module';
+import { MDBChartsModule } from './charts/chart.module';
+import { CollapseModule } from './collapse/collapse.module';
+import { ModalModule } from './modals/modal.module';
+import { MDBTooltipModule } from './tooltip/tooltip.module';
+import { PopoverModule } from './popover/popover.module';
+import { MDBCommonModule } from './utils/mdb-common.module';
 
 export {
   ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective
-} from './buttons';
+} from './buttons/index';
 
 export {
   RippleModule, RippleDirective
-} from './ripple';
+} from './ripple/index';
 
 export {
   ActiveModule, ActiveDirective, InputValidateDirective
-} from './inputs';
+} from './inputs/index';
 
 export {
-  NavbarModule
-} from './navbars';
+  NavbarModule, NavbarComponent
+} from './navbars/index';
 
 export {
-  BsDropdownConfig, BsDropdownContainerComponent, BsDropdownDirective, BsDropdownMenuDirective,
-  BsDropdownModule, BsDropdownState, BsDropdownToggleDirective
-} from './dropdown';
+  BsDropdownModule, BsDropdownConfig, BsDropdownContainerComponent, BsDropdownDirective,
+  BsDropdownMenuDirective, BsDropdownState, BsDropdownToggleDirective
+} from './dropdown/index';
 
 export {
-  CarouselComponent, CarouselConfig, CarouselModule
-} from './carousel';
+  CarouselModule, CarouselComponent, CarouselConfig
+} from './carousel/index';
 
 export {
   MDBChartsModule, BaseChartDirective
-} from './charts';
+} from './charts/index';
 
 export {
-  CollapseDirective, CollapseModule
-} from './collapse';
+  CollapseModule, CollapseDirective
+} from './collapse/index';
 
 export {
-  ModalBackdropComponent, ModalBackdropOptions, ModalDirective, ModalModule, ModalOptions, MDBModalService,
+  ModalModule, ModalBackdropComponent, ModalBackdropOptions, ModalDirective, ModalOptions, MDBModalService,
   ModalContainerComponent, MDBModalRef
-} from './modals';
+} from './modals/index';
 
 export {
-  TooltipConfig, TooltipContainerComponent, TooltipDirective, MDBTooltipModule
-} from './tooltip';
+  MDBTooltipModule, TooltipConfig, TooltipContainerComponent, TooltipDirective
+} from './tooltip/index';
 
 export {
-  PopoverConfig, PopoverContainerComponent, PopoverModule, PopoverDirective
-} from './popover';
-
-
+  PopoverModule, PopoverConfig, PopoverContainerComponent, PopoverDirective
+} from './popover/index';
 
 const MODULES = [
-ButtonsModule,
-RippleModule,
-ActiveModule,
-NavbarModule,
-BsDropdownModule,
-CarouselModule,
-MDBChartsModule,
-CollapseModule,
-ModalModule,
-MDBTooltipModule,
-PopoverModule,
+  ButtonsModule,
+  RippleModule,
+  ActiveModule,
+  NavbarModule,
+  BsDropdownModule,
+  CarouselModule,
+  MDBChartsModule,
+  CollapseModule,
+  ModalModule,
+  MDBTooltipModule,
+  PopoverModule,
 ];
 
 @NgModule({
   imports: [
-  ButtonsModule,
-  RippleModule.forRoot(),
-  ActiveModule.forRoot(),
-  NavbarModule,
-  BsDropdownModule.forRoot(),
-  CarouselModule.forRoot(),
-  MDBChartsModule,
-  CollapseModule.forRoot(),
-  ModalModule.forRoot(),
-  MDBTooltipModule.forRoot(),
-  PopoverModule.forRoot(),
+    CommonModule,
+    ButtonsModule.forRoot(),
+    RippleModule.forRoot(),
+    ActiveModule.forRoot(),
+    NavbarModule,
+    BsDropdownModule.forRoot(),
+    CarouselModule.forRoot(),
+    MDBChartsModule,
+    CollapseModule.forRoot(),
+    ModalModule.forRoot(),
+    MDBTooltipModule.forRoot(),
+    PopoverModule.forRoot(),
   ],
   exports: MODULES,
   schemas: [ NO_ERRORS_SCHEMA ]
