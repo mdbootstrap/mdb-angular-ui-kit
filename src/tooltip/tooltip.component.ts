@@ -20,7 +20,10 @@ export class TooltipContainerComponent implements AfterViewInit {
   public popupClass: string;
   public animation: boolean;
 
-  @HostBinding('class.show') private show = !this.isBs3;
+  @HostBinding('class.show')
+  private show() {
+    return !this.isBs3;
+  }
 
   public get isBs3(): boolean {
     return isBs3();

@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip.component';
 import { TooltipConfig } from './tooltip.service';
-import { ComponentLoaderFactory, ComponentLoader } from '../utils/component-loader';
+import { ComponentLoaderFactory, ComponentLoader } from '../utils/component-loader/index';
 import { OnChange } from '../utils/decorators';
 
 @Directive({

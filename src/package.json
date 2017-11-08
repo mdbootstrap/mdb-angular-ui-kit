@@ -13,10 +13,8 @@
   "description": "Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS, and JS framework - Bootstrap.",
   "devDependencies": {},
   "directories": {},
-  "dist": {
-    "shasum": "0c9741b94ee5cd549f77d21bb30c000348b8cb01",
-    "tarball": "https://registry.npmjs.org/angular-bootstrap-md/-/angular-bootstrap-md-4.3.7.tgz"
-  },
+  "main": "./index.js",
+  "typings": "./index.d.ts",
   "homepage": "https://mdbootstrap.com",
   "keywords": [
     "material",

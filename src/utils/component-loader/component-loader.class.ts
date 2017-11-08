@@ -17,7 +17,7 @@ import {
   Type,
   ViewContainerRef
 } from '@angular/core';
-import { PositioningOptions, PositioningService } from '../positioning';
+import { PositioningOptions, PositioningService } from '../positioning/positioning.service';
 import { listenToTriggers } from '../triggers';
 import { ContentRef } from './content-ref.class';
 

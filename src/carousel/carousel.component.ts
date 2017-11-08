@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, Output, EventEmitter, ElementRef, HostListener, trigger, state, style, transition, animate,
   keyframes } from '@angular/core';
 
-  import { isBs3, LinkedList } from '../utils';
+  import { isBs3, LinkedList } from '../utils/index';
   import { SlideComponent } from './slide.component';
   import { CarouselConfig } from './carousel.config';
 
@@ -27,12 +27,12 @@ import { Component, Input, OnDestroy, Output, EventEmitter, ElementRef, HostList
      </li>
     </ol>
     <div class="carousel-inner"><ng-content></ng-content></div>
-    <a class="carousel-control-prev" 
+    <a class="carousel-control-prev"
     [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()" *ngIf="slides.length > 1 && checkNavigation()">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span  class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" (click)="nextSlide()" 
+    <a class="carousel-control-next" (click)="nextSlide()"
     [class.disabled]="isLast(activeSlide) && noWrap" *ngIf="slides.length > 1 && checkNavigation()">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
