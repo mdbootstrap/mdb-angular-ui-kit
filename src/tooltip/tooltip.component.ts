@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ChangeDetectionStrategy, Inject, HostBinding  } from '@angular/core';
+import { AfterViewInit, Component, ChangeDetectionStrategy, HostBinding  } from '@angular/core';
 import { TooltipConfig } from './tooltip.service';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 
@@ -20,7 +20,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   public popupClass: string;
   public animation: boolean;
 
-  @HostBinding('class.show') private show = !this.isBs3;
+  @HostBinding('class.show') show = !this.isBs3;
 
   public get isBs3(): boolean {
     return isBs3();

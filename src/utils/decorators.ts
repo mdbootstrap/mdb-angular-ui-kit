@@ -1,5 +1,5 @@
 /*tslint:disable:no-invalid-this */
-export function OnChange(defaultValue?: any): any {
+export function OnChange(): any {
   const sufix = 'Change';
   return function OnChangeHandler(target: any, propertyKey: string): void {
     const _key = ` __${propertyKey}Value`;

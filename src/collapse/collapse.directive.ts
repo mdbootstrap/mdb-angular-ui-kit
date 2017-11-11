@@ -1,7 +1,7 @@
 // todo: add animations when https://github.com/angular/angular/issues/9947 solved
 import {
-  Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output,
-  Renderer, style
+  Directive, ElementRef, EventEmitter, Input, OnInit, Output,
+  Renderer
 } from '@angular/core';
 
 @Directive({

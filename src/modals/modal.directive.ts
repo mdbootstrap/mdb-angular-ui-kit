@@ -16,7 +16,7 @@ import { document } from '../utils/facade/browser';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent } from './modalBackdrop.component';
-import { ClassName, modalConfigDefaults, ModalOptions, Selector, DISMISS_REASONS } from './modal.options';
+import { ClassName, modalConfigDefaults, ModalOptions, DISMISS_REASONS } from './modal.options';
 
 import { window } from '../utils/facade/browser';
 import { ComponentLoader } from '../utils/component-loader/component-loader.class';
@@ -78,9 +78,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   protected backdrop: ComponentRef<ModalBackdropComponent>;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
   // todo: implement _dialog
-  private _dialog: any;
+   _dialog: any;
 
-  private isNested = false;
+   isNested = false;
 
   @HostListener('click', ['$event'])
   public onClick(event: any): void {

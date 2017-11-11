@@ -105,14 +105,14 @@ import { Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostBinding, Inpu
      return !isBs3();
    }
    // todo: move to component loader
-   private _isInlineOpen = false;
-   private _showInline: boolean;
-   private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
+    _isInlineOpen = false;
+    _showInline: boolean;
+    _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
 
-   private _isDisabled: boolean;
-   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
-   private _subscriptions: Subscription[] = [];
-   private _isInited = false;
+    _isDisabled: boolean;
+    _dropdown: ComponentLoader<BsDropdownContainerComponent>;
+    _subscriptions: Subscription[] = [];
+    _isInited = false;
 
    constructor(private _elementRef: ElementRef,
      private _renderer: Renderer,
@@ -156,7 +156,7 @@ import { Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostBinding, Inpu
      this._subscriptions.push(this._state
        .isDisabledChange
        .filter((value: boolean) => value === true)
-       .subscribe((value: boolean) => this.hide()));
+       .subscribe(() => this.hide()));
 
      // attach dropdown menu inside of dropdown
      if (this._showInline) {
@@ -177,7 +177,7 @@ import { Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostBinding, Inpu
      }
 
      // material and dropup dropdown animation
-     const parent = this._elementRef.nativeElement.classList;
+     //const parent = this._elementRef.nativeElement.classList;
      const container = this._elementRef.nativeElement.lastElementChild;
 
      setTimeout( () =>  { container.classList.add('fadeInDropdown'); } , 200 );

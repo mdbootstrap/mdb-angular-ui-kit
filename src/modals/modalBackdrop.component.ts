@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer, HostBinding } from '@angular/core';
 
 import { ClassName } from './modal.options';
 import { isBs3 } from '../utils/ng2-bootstrap-config';

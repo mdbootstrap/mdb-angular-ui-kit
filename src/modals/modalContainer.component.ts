@@ -1,8 +1,7 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer, HostBinding } from '@angular/core';
 import { ClassName, DISMISS_REASONS, ModalOptions, TransitionDurations } from './modal.options';
-import { MDBModalService } from './modal.service';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
-
+import { msConfig } from './modalService.config';
 
 @Component({
   selector: 'mdb-modal-container',
@@ -16,6 +15,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   @HostBinding('role') role = 'dialog';
   @HostBinding('class.modal') modla = true;
 
+  private mdbModalService: any;
 
   public config: ModalOptions;
   public isShown = false;
@@ -39,7 +39,9 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  public constructor(options: ModalOptions, _element: ElementRef, private mdbModalService: MDBModalService, private _renderer: Renderer) {
+  public constructor(options: ModalOptions, _element: ElementRef, private _renderer: Renderer) {
+    this.mdbModalService = msConfig.serviceInstance;
+
     this._element = _element;
     this.config = Object.assign({}, options);
   }

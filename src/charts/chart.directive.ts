@@ -6,7 +6,6 @@ import {
   ElementRef,
   Input,
   Output,
-  NgModule,
   SimpleChanges,
   Directive
 } from '@angular/core';
@@ -48,10 +47,10 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
 
   public ctx: any;
   public chart: any;
-  private cvs: any;
-  private initFlag = false;
+   cvs: any;
+   initFlag = false;
 
-  private element: ElementRef;
+   element: ElementRef;
 
   public constructor(element: ElementRef) {
     this.element = element;
