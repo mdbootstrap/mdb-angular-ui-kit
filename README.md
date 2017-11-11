@@ -16,8 +16,8 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # Version:
-- Angular CLI 1.2.6
-- Angular 4.3.x.
+- Angular CLI 1.5.0
+- Angular 5.0
 
 # How to install:
 - create new project `ng new project_name --style=scss`
