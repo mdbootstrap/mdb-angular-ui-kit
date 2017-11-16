@@ -1,6 +1,6 @@
 {
-  "name": "mdb-test-angular",
-  "version": "0.0.0",
+  "name": "MDB Angular",
+  "version": "5.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -45,6 +45,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
-    "typescript": "~2.5.0"
+    "typescript": "~2.5.0",
+    "webpack": "3.x"
   }
 }
