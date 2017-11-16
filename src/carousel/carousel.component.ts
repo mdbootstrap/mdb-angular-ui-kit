@@ -1,5 +1,4 @@
-import { Component, Input, OnDestroy, Output, EventEmitter, ElementRef, HostListener, trigger, state, style, transition, animate,
-  keyframes } from '@angular/core';
+import { Component, Input, OnDestroy, Output, EventEmitter, ElementRef, HostListener } from '@angular/core';
 
   import { isBs3, LinkedList } from '../utils';
   import { SlideComponent } from './slide.component';
@@ -12,32 +11,7 @@ import { Component, Input, OnDestroy, Output, EventEmitter, ElementRef, HostList
 */
 @Component({
   selector: 'mdb-carousel',
-  template: `
-  <div tabindex="0" (mouseenter)="pause()" (mouseleave)="play()" (mouseup)="play()" class="carousel {{ class }} {{ type }}">
-    <div class="controls-top" *ngIf="slides.length > 1 && !checkNavigation()">
-      <a class="btn-floating" [class.disabled]="activeSlide===0&&noWrap" (click)="previousSlide()"><i class="fa fa-chevron-left"></i></a>
-      <a class="btn-floating" (click)="nextSlide()" [class.disabled]="isLast(activeSlide) && noWrap"><i class="fa fa-chevron-right"></i></a>
-    </div>
-    <ol class="carousel-indicators" *ngIf="slides.length > 1 && checkDots()">
-     <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)"></li>
-    </ol>
-    <ol class="carousel-indicators" *ngIf="slides.length > 1 && !checkDots()">
-     <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)">
-      <img class="img-fluid" src="{{ getImg(slidez) }}">
-     </li>
-    </ol>
-    <div class="carousel-inner"><ng-content></ng-content></div>
-    <a class="carousel-control-prev" 
-    [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()" *ngIf="slides.length > 1 && checkNavigation()">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span  class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" (click)="nextSlide()" 
-    [class.disabled]="isLast(activeSlide) && noWrap" *ngIf="slides.length > 1 && checkNavigation()">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-    </a>
-  </div>`
+  templateUrl: './carousel.component.html',
 })
 
 export class CarouselComponent implements OnDestroy {
@@ -212,7 +186,7 @@ export class CarouselComponent implements OnDestroy {
    }
 
    protected fadeAnimation(goToIndex: number) {
-     const currentSlide = this._slides.get(this._currentActiveSlide);
+     //const currentSlide = this._slides.get(this._currentActiveSlide);
      const goToSlide = this._slides.get(goToIndex);
 
      if (this.animationEnd) {

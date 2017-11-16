@@ -6,6 +6,7 @@ import { RippleModule } from './ripple';
 import { ActiveModule } from './inputs';
 import { NavbarModule } from './navbars';
 import { BsDropdownModule } from './dropdown';
+import { CarouselModule } from './carousel/';
 import { MDBChartsModule } from './charts/';
 import { CollapseModule } from './collapse';
 import { ModalModule } from './modals';
@@ -32,6 +33,10 @@ export {
   BsDropdownConfig, BsDropdownContainerComponent, BsDropdownDirective, BsDropdownMenuDirective,
   BsDropdownModule, BsDropdownState, BsDropdownToggleDirective
 } from './dropdown/';
+
+export {
+  CarouselComponent, CarouselConfig, CarouselModule
+} from './carousel/';
 
 export {
   MDBChartsModule, BaseChartDirective
@@ -62,6 +67,7 @@ RippleModule,
 ActiveModule,
 NavbarModule,
 BsDropdownModule,
+CarouselModule,
 MDBChartsModule,
 CollapseModule,
 ModalModule,
@@ -76,6 +82,7 @@ PopoverModule,
   ActiveModule.forRoot(),
   NavbarModule,
   BsDropdownModule.forRoot(),
+  CarouselModule.forRoot(),
   MDBChartsModule,
   CollapseModule.forRoot(),
   ModalModule.forRoot(),
