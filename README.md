@@ -20,7 +20,11 @@ __________
 - Angular 5.0
 
 # Quick start
-- Clone following repo:  `git clone https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.git .` note "." at the end. It will clone files directly into current folder. 
+- Clone following repo:  
+```javascript
+git clone https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.git .
+``` 
+note "." at the end. It will clone files directly into current folder. 
 - Run `npm i`
 - Run `npm start`
 - Voilà! Open browser and visit http://localhost:4200 
@@ -68,10 +72,14 @@ rename /src/styles.css to styles.scss
 npm install -–save chart.js@2.5.0 font-awesome hammerjs
 ```
 - add following into tsconfig.json file located in *root* folder 
-`"include": ["node_modules/angular-bootstrap-md/**/*.ts",  "src/**/*.ts"],`  
+```javascript
+"include": ["node_modules/angular-bootstrap-md/**/*.ts",  "src/**/*.ts"],
+```  
 
 (note: there is also tsconfig.app.json file inside src folder, however if you want to use it, path should be different)
-`"include": [ "**/*.ts", "../node_modules/angular-bootstrap-md/index.ts" ]`
+```javascript
+"include": [ "**/*.ts", "../node_modules/angular-bootstrap-md/index.ts" ]
+```
 
 ### Run server
 ```bash
