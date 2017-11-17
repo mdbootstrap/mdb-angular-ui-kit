@@ -1,4 +1,4 @@
-import { Component, ElementRef , ViewChild, Input, OnInit, Renderer, AfterViewInit, HostListener } from '@angular/core';
+import { Component, ElementRef , ViewChild, Input,  Renderer, AfterViewInit, HostListener } from '@angular/core';
 
 @Component ({
   selector: 'mdb-navbar',
@@ -152,7 +152,7 @@ export class NavbarComponent implements AfterViewInit {
         }
       }
 
-      @HostListener('document:scroll', ['$event']) onScroll(event: any) {
+      @HostListener('document:scroll', ['$event']) onScroll() {
         if (this.navbar.nativeElement.classList.contains('scrolling-navbar')) {
           if (window.pageYOffset > 120) {
             this.renderer.setElementClass(this.navbar.nativeElement, 'top-nav-collapse', true);

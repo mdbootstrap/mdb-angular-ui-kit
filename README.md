@@ -4,7 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/angular-bootstrap-md.svg)](https://badge.fury.io/js/angular-bootstrap-md)
 
-Built with Angular 2, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
+Built with Angular 5, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
 
 400+ material UI elements, 600+ material icons, 74 CSS animations, TypeScript modules, SASS files and many more.
 
@@ -16,10 +16,22 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # Version:
-- Angular CLI 1.2.6
-- Angular 4.3.x.
+- Angular CLI 1.5.0
+- Angular 5.0
 
-# How to install:
+# Quick start
+- Clone following repo:  
+```javascript
+git clone https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.git .
+``` 
+note "." at the end. It will clone files directly into current folder. 
+- Run `npm i`
+- Run `npm start`
+- Voilà! Open browser and visit http://localhost:4200 
+
+Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.
+
+# How to install MDB via npm:
 - create new project `ng new project_name --style=scss`
 - `npm i angular-bootstrap-md --save`
 - to app.module.ts add
@@ -59,6 +71,16 @@ rename /src/styles.css to styles.scss
 ```bash
 npm install -–save chart.js@2.5.0 font-awesome hammerjs
 ```
+- add following into tsconfig.json file located in *root* folder 
+```javascript
+"include": ["node_modules/angular-bootstrap-md/**/*.ts",  "src/**/*.ts"],
+```  
+
+(note: there is also tsconfig.app.json file inside src folder, however if you want to use it, path should be different)
+```javascript
+"include": [ "**/*.ts", "../node_modules/angular-bootstrap-md/index.ts" ]
+```
+
 ### Run server
 ```bash
 ng serve --open

@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Output, Input, HostListener, Renderer, AfterViewInit} from '@angular/core';
+import {Directive, ElementRef,  Input, HostListener, Renderer, AfterViewInit} from '@angular/core';
 
 @Directive({
   selector: '[mdbActive]'

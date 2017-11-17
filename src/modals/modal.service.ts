@@ -5,6 +5,7 @@ import { ComponentLoaderFactory } from '../utils/component-loader';
 import { ModalBackdropComponent } from './modalBackdrop.component';
 import { ModalContainerComponent } from './modalContainer.component';
 import { MDBModalRef, ClassName, modalConfigDefaults, ModalOptions, TransitionDurations } from './modal.options';
+import { msConfig } from './modalService.config';
 
 @Injectable()
 export class MDBModalService {
@@ -30,6 +31,7 @@ export class MDBModalService {
 
   public constructor(private clf: ComponentLoaderFactory) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
+    msConfig.serviceInstance = this;
   }
 
   /** Shows a modal */

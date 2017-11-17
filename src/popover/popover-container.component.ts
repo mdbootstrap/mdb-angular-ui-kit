@@ -1,30 +1,36 @@
-import { ChangeDetectionStrategy, Input, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Input, Component, HostBinding, OnInit } from '@angular/core';
 import { PopoverConfig } from './popover.config';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 
 @Component({
-  selector: 'mdb-popover-container',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-  <div class="popover-arrow arrow"></div>
-  <h3 class="popover-header" *ngIf="title">{{title}}</h3>
-  <div class="popover-body">
-    <ng-content></ng-content>
-  </div>`
+ selector: 'mdb-popover-container',
+ changeDetection: ChangeDetectionStrategy.OnPush,
+ template: `
+ <h3 class="popover-header" *ngIf="title">{{title}}</h3>
+ <div class="popover-body">
+ <ng-content></ng-content>
+ </div>`
 })
-export class PopoverContainerComponent {
-  @HostBinding('class.show') show = '!isBs3';
-  @HostBinding('attr.role') role = 'tooltip';
-  @HostBinding('class') class = '"popover-fadeIn popover in popover-" + placement + " " + placement';
+export class PopoverContainerComponent implements OnInit {
 
-  @Input() public placement: string;
-  @Input() public title: string;
+@Input() public placement: string;
+ @Input() public title: string;
 
-  public get isBs3(): boolean {
-    return isBs3();
-  }
+@HostBinding('class.show') show = '!isBs3';
+ @HostBinding('attr.role') role = 'tooltip';
+ @HostBinding('class') class;
 
-  public constructor(config: PopoverConfig) {
-    Object.assign(this, config);
-  }
+
+
+public get isBs3(): boolean {
+ return isBs3();
+ }
+
+public constructor(config: PopoverConfig) {
+ Object.assign(this, config);
+ }
+
+ngOnInit() {
+ this.class = 'popover-fadeIn popover in popover-' + this.placement + ' ' + this.placement + ' bs-popover-' + this.placement;
+ }
 }

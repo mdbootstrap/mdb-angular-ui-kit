@@ -14,8 +14,8 @@
   "skipLibCheck": false,
   "stripInternal": true,
   "allowSyntheticDefaultImports": true,
-  "noUnusedLocals": false,
-  "noUnusedParameters": false,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,
   "lib": ["dom", "es6"]
   },
   "exclude": [
