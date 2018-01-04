@@ -34,7 +34,7 @@ export class InputValidateDirective implements OnInit {
   @HostListener('keyup', ['$event']) onKeyUp() {
 
 
-    const inputType = event.srcElement.attributes['type'].nodeValue;
+    const inputType = document.getElementsByTagName('input')[0].getAttribute('type');
 
 
     if ( inputType === 'email' ) {
