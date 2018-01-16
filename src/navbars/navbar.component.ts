@@ -1,5 +1,5 @@
 import { NavbarService } from './navbar.service';
-import { Component, ElementRef, ViewChild, Input, Renderer, AfterViewInit, HostListener } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input, Renderer, AfterViewInit, HostListener, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -7,20 +7,20 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: 'navbar.component.html',
 })
 
-export class NavbarComponent implements AfterViewInit {
+export class NavbarComponent implements AfterViewInit, OnInit {
   @Input() SideClass: string;
   @Input() containerInside = true;
   subscription: Subscription;
   navbarLinkClicks: any;
   shown = false;
 
+  public doubleNav: boolean;
   public height: number;
   public duration = 350; // ms
 
   public collapse = false;
   public showClass = false;
   public collapsing = false;
-
   @ViewChild('navbar') el: ElementRef;
   @ViewChild('mobile') mobile: ElementRef;
   @ViewChild('nav') navbar: ElementRef;
@@ -35,6 +35,15 @@ export class NavbarComponent implements AfterViewInit {
     this.navbarLinkClicks = navbarLinkClicks;
     if (this.showClass) {
       this.hide();
+    }
+  }
+
+  ngOnInit() {
+    const isDoubleNav = this.SideClass.split(' ');
+    if (isDoubleNav.indexOf('double-nav') !== -1) {
+      this.doubleNav = true;
+    }else {
+      this.doubleNav = false;
     }
   }
 
@@ -55,7 +64,6 @@ export class NavbarComponent implements AfterViewInit {
         });
 
       }
-
       if (this.el.nativeElement.children.length === 0) {
         this.el.nativeElement.remove();
       }

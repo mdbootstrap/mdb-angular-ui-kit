@@ -67,6 +67,13 @@ export class CollapseDirective implements OnInit {
     this.isExpanded = this.collapse;
   }
 
+  public resize(): void {
+    const container = this._el.nativeElement;
+    this.maxHeight = this._el.nativeElement.scrollHeight;
+    this._renderer.setElementStyle(container, 'height', this.maxHeight + 'px');
+    }
+    
+
   /** allows to manually toggle content visibility */
   public toggle(): void {
     if (!this.collapsing) {
