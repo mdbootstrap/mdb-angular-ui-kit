@@ -33,7 +33,7 @@ export class CarouselComponent implements OnDestroy {
 
   @Input() public keyboard: boolean;
 
-  @Input() public isControls: boolean;
+  @Input('isControls') public isControls: boolean;
   @Input('class') public class: String = '';
   @Input('type') public type: String = '';
   @Input('animation') public animation: String = '';
