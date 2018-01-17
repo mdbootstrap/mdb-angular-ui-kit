@@ -15,6 +15,8 @@ import { Component, Input, OnDestroy, Output, EventEmitter, ElementRef, HostList
 })
 
 export class CarouselComponent implements OnDestroy {
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+
   protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
   public get slides(): SlideComponent[] {
     return this._slides.toArray();
@@ -31,9 +33,9 @@ export class CarouselComponent implements OnDestroy {
   /**  If `true` — will disable pausing on carousel mouse hover */
   @Input() public noPause: boolean;
 
+  @Input('isControls') public isControls: boolean;
   @Input() public keyboard: boolean;
 
-  @Input('isControls') public isControls: boolean;
   @Input('class') public class: String = '';
   @Input('type') public type: String = '';
   @Input('animation') public animation: String = '';
@@ -150,6 +152,17 @@ export class CarouselComponent implements OnDestroy {
 
      }
    }
+   // Fixed problem while cannot swipe next / previous image while using HammerJS.
+   swipe(action = this.SWIPE_ACTION.RIGHT) {
+    if (action === this.SWIPE_ACTION.RIGHT) {
+      this.previousSlide();
+    }
+
+    if (action === this.SWIPE_ACTION.LEFT) {
+      this.nextSlide();
+    }
+  }
+
 
   /**
    * Rolling to next slide
