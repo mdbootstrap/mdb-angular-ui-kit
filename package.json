@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "peerDependencies": {
+  "dependencies": {
     "@angular/animations": "5.0.0 - 5.1.3",
     "@angular/common": "5.0.0 - 5.1.3",
     "@angular/compiler": "5.0.0 - 5.1.3",
