@@ -7,6 +7,8 @@ import { Directive, Input, ElementRef, Renderer, OnInit, HostListener } from '@a
 export class InputValidateDirective implements OnInit {
 
   @Input() public value = '';
+  @Input() public dataError = 'wrong';
+  @Input() public dataSuccess = 'right';
   public wrongTextContainer: any;
   public rightTextContainer: any;
 
@@ -19,15 +21,14 @@ export class InputValidateDirective implements OnInit {
     this.wrongTextContainer = this._renderer.createElement(this._elRef.nativeElement.parentElement, 'span');
     this._renderer.setElementClass(this.wrongTextContainer, 'inputVal', true);
     this._renderer.setElementClass(this.wrongTextContainer, 'text-danger', true);
-    this.wrongTextContainer.innerHTML = 'wrong';
+    this.wrongTextContainer.innerHTML = this.dataError;
     this._renderer.setElementStyle(this.wrongTextContainer, 'visibility', 'hidden');
 
     this.rightTextContainer = this._renderer.createElement(this._elRef.nativeElement.parentElement, 'span');
     this._renderer.setElementClass(this.rightTextContainer, 'inputVal', true);
     this._renderer.setElementClass(this.rightTextContainer, 'text-success', true);
-    this.rightTextContainer.innerHTML = 'right';
+    this.rightTextContainer.innerHTML = this.dataSuccess;
     this._renderer.setElementStyle(this.rightTextContainer, 'visibility', 'hidden');
-
   }
 
 
