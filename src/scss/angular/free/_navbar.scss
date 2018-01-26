@@ -1,6 +1,6 @@
 @media (min-width: 1200px) {
     .navbar.navbar-expand-xl {
-        links {
+        links, navlinks {
             display: flex;
             flex-direction: row;
             width: 100%;
@@ -10,7 +10,7 @@
 
 @media (min-width: 992px) {
     .navbar.navbar-expand-lg {
-        links {
+        links, navlinks {
             display: flex;
             flex-direction: row;
             width: 100%;
@@ -20,7 +20,7 @@
 
 @media (min-width: 768px) {
     .navbar.navbar-expand-md {
-        links {
+        links, navlinks {
             display: flex;
             flex-direction: row;
             width: 100%;
@@ -30,7 +30,7 @@
 
 @media (min-width: 576px) {
     .navbar.navbar-expand-sm {
-        links {
+        links, navlinks {
             display: flex;
             flex-direction: row;
             width: 100%;
