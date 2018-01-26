@@ -158,3 +158,24 @@
     }
   }
 }
+
+.navbar-container{
+  
+  order: -1;
+  width: 50px !important;
+  padding-left: 5px;
+  padding-right: 5px;
+  // margin-right: 2rem;
+  // margin-left: 1rem;
+}
+.breadcrumbs{
+  max-width: 250px;
+  display: flex;
+  padding-left: 5px;
+  padding-right: 5px;
+  order: 0;
+  // margin-left: 2rem;
+  @media (min-width: 1441px) {
+    margin-left: -0.6rem;
+  }
+}
