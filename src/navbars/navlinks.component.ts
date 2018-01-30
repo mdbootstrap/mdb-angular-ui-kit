@@ -3,12 +3,12 @@ import { AfterContentInit, Component, ContentChildren, ElementRef, QueryList, Ev
 import { RouterLinkWithHref } from '@angular/router';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 @Component({
-  selector: 'links',
+  selector: 'navlinks',
   template: `
         <ng-content></ng-content>
     `,
 })
-export class LinksComponent implements AfterViewInit, AfterContentInit {
+export class NavlinksComponent implements AfterViewInit, AfterContentInit {
   @ContentChildren(RouterLinkWithHref, { read: ElementRef, descendants: true })
   links: QueryList<ElementRef>;
 

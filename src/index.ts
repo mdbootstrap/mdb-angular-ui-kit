@@ -1,6 +1,7 @@
+import { DeepDirective } from 'ng-mdb-pro/free/inputs/deep.directive';
 // free
 import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-
+import { DeepModule } from './inputs/';
 import { ButtonsModule } from './buttons';
 import { RippleModule } from './ripple';
 import { ActiveModule } from './inputs';
@@ -20,6 +21,11 @@ export {
 export {
   RippleModule, RippleDirective
 } from './ripple/';
+
+export {
+  DeepModule, DeepDirective
+} from './inputs/';
+
 
 export {
   ActiveModule, ActiveDirective, InputValidateDirective
@@ -62,6 +68,7 @@ export {
 
 
 const MODULES = [
+DeepModule,
 ButtonsModule,
 RippleModule,
 ActiveModule,
@@ -78,6 +85,7 @@ PopoverModule,
 @NgModule({
   imports: [
   ButtonsModule,
+  DeepModule,
   RippleModule.forRoot(),
   ActiveModule.forRoot(),
   NavbarModule,
