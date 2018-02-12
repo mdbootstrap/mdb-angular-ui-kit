@@ -1,4 +1,3 @@
-import { DeepDirective } from 'ng-mdb-pro/free/inputs/deep.directive';
 // free
 import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { DeepModule } from './inputs/';
