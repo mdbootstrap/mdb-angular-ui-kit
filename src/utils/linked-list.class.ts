@@ -1,6 +1,7 @@
 export class LinkedList <T> {
 
-  public length = 0;
+  // public length: = 0;
+  public length: any = 0;
   protected head: any;
   protected tail: any;
   protected current: any;
@@ -30,7 +31,8 @@ export class LinkedList <T> {
     this.asArray = outArray;
   }
 
-  public get(position: number): T {
+  // public get(position: number): T {
+    public get(position: number): T | any {
     if (this.length === 0 || position < 0 || position >= this.length) {
       return void 0;
     }
@@ -150,7 +152,8 @@ export class LinkedList <T> {
     return this.length;
   }
 
-  public pop(): T {
+  // public pop(): T {
+    public pop(): T | any {
     if (this.length === 0) {
       return undefined;
     }
@@ -167,7 +170,8 @@ export class LinkedList <T> {
     return this.length;
   }
 
-  public shift(): T {
+  // public shift(): T {
+    public shift(): T | any {
     if (this.length === 0) {
       return undefined;
     }
@@ -228,9 +232,11 @@ export class LinkedList <T> {
     return '[Linked List]';
   }
 
-  public find(fn: any): T {
+  // public find(fn: any): T {
+    public find(fn: any): T | any {
     let current = this.head;
-    let result: T;
+    // let result: T;
+    let result: T | any;
     for (let index = 0; index < this.length; index++) {
       if (fn(current.value, index)) {
         result = current.value;
@@ -243,7 +249,8 @@ export class LinkedList <T> {
 
   public findIndex(fn: any): number {
     let current = this.head;
-    let result: number;
+    // let result: number;
+    let result: number | any;
     for (let index = 0; index < this.length; index++) {
       if (fn(current.value, index)) {
         result = index;

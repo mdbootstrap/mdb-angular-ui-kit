@@ -15,7 +15,8 @@ export interface PositioningOptions {
      * - vert-attachment can be any of 'top', 'middle', 'bottom'
      * - horiz-attachment can be any of 'left', 'center', 'right'
      */
-     attachment?: string;
+    //  attachment?: string;
+    attachment?: string | any;
 
     /** A string similar to `attachment`. The one difference is that, if it's not provided,
     `targetAttachment` will assume the mirror image of `attachment`. */
@@ -35,7 +36,8 @@ export interface PositioningOptions {
 
    @Injectable()
    export class PositioningService {
-     public position(options: PositioningOptions): void {
+    //  public position(options: PositioningOptions): void {
+      public position(options: PositioningOptions | any): void {
        const {element, target, attachment, appendToBody} = options;
        positionElements(
          this._getHtmlElement(target),

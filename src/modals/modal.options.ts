@@ -5,7 +5,8 @@ export class ModalOptions {
   /**
    *  Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn't close the modal on click.
    */
-   backdrop?: boolean | 'static';
+  //  backdrop?: boolean | 'static';
+  backdrop?: boolean | 'static' | any;
   /**
    * Closes the modal when escape key is pressed.
    */

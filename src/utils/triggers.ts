@@ -47,7 +47,8 @@
      return Function.prototype;
    }
 
-   parsedTriggers.forEach((trigger: Trigger) => {
+  //  parsedTriggers.forEach((trigger: Trigger) => {
+    parsedTriggers.forEach((trigger: Trigger | any) => {
      if (trigger.open === trigger.close) {
        listeners.push(renderer.listen(target, trigger.open, toggleFn));
        return;

@@ -11,7 +11,8 @@ export class BsDropdownToggleDirective implements OnDestroy {
   private _subscriptions: Subscription[] = [];
 
   @HostBinding('attr.aria-haspopup') ariaHaspopup = true;
-  @HostBinding('attr.disabled') isDisabled: boolean = null;
+  // @HostBinding('attr.disabled') isDisabled: boolean = null;
+  @HostBinding('attr.disabled') isDisabled: boolean | any = null;
 
   // @HostBinding('class.active')
   @HostBinding('attr.aria-expanded') isOpen: boolean;
@@ -47,7 +48,8 @@ constructor(private _state: BsDropdownState,
   // populate disabled state
   this._subscriptions.push(this._state
     .isDisabledChange
-    .subscribe((value: boolean) => this.isDisabled = value || null));
+    // .subscribe((value: boolean) => this.isDisabled = value || null));
+    .subscribe((value: boolean | any) => this.isDisabled = value || null));
 }
 
 ngOnDestroy(): void {

@@ -24,7 +24,8 @@ export class SlideComponent implements OnInit, OnDestroy {
 
   /** Link to Parent(container-collection) component */
   protected carousel: CarouselComponent;
-  public el: ElementRef = null;
+  // public el: ElementRef = null;
+  public el: ElementRef | any = null;
 
   public constructor(carousel: CarouselComponent, el: ElementRef) {
     this.carousel = carousel;
