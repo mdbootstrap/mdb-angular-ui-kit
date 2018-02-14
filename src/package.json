@@ -24,10 +24,12 @@
   "ng2",
   "angular2",
   "ng4",
-  "angular4"
+  "angular4",
+  "ng5",
+  "angular5"
   ],
   "author": "MDBootstrap",
-  "license": "Custom license (read license.pdf)",
+  "license": "MIT",
   "bugs": {
   "url": "https://github.com/mdbootstrap/bootstrap-material-design/issues"
   },
