@@ -95,11 +95,11 @@ export class InputValidateDirective implements OnInit {
           this._renderer.setElementClass(this._elRef.nativeElement, 'counter-danger', false);
           this._renderer.setElementClass(this._elRef.nativeElement, 'counter-success', false);
           // tslint:disable-next-line:max-line-length
-        } else if (this._elRef.nativeElement.value.match(/^[a-zA-Z0-9]+$/g) && this._elRef.nativeElement.value.length >= this.minLength && this._elRef.nativeElement.value.length <= this.maxLength) {
+        } else if (this._elRef.nativeElement.value.match(/^(?=(.*\d){1})(.*\S)(?=.*[a-zA-Z\S])[0-9a-zA-Z\S]/g) && this._elRef.nativeElement.value.length >= this.minLength && this._elRef.nativeElement.value.length <= this.maxLength) {
           this._renderer.setElementClass(this._elRef.nativeElement, 'counter-danger', false);
           this._renderer.setElementClass(this._elRef.nativeElement, 'counter-success', true);
           // tslint:disable-next-line:max-line-length
-        } else if (!this._elRef.nativeElement.value.match(/^[a-zA-Z0-9]+$/g) || this._elRef.nativeElement.value.length < this.minLength || this._elRef.nativeElement.value.length > this.maxLength) {
+        } else if (!this._elRef.nativeElement.value.match(/^(?=(.*\d){1})(.*\S)(?=.*[a-zA-Z\S])[0-9a-zA-Z\S]/g) || this._elRef.nativeElement.value.length < this.minLength || this._elRef.nativeElement.value.length > this.maxLength) {
           this._renderer.setElementClass(this._elRef.nativeElement, 'counter-danger', true);
           this._renderer.setElementClass(this._elRef.nativeElement, 'counter-success', false);
         }
