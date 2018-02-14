@@ -22,11 +22,13 @@ export class EqualValidatorDirective implements Validator {
   }
 
   validate(c: AbstractControl): { [key: string]: any } {
+    const setToNullValue: any = null;
     // self value (e.g. retype password)
     const v = c.value;
 
     // control value (e.g. password)
-    const e = c.root.get(this.validateEqual);
+    // const e: any = c.root.get(this.validateEqual);
+    const e: any = c.root.get(this.validateEqual);
 
     // value not equal
     if (e && v !== e.value) {
@@ -48,7 +50,8 @@ export class EqualValidatorDirective implements Validator {
       });
     }
 
-    return null;
+    // return null;
+    return setToNullValue;
   }
 }
 

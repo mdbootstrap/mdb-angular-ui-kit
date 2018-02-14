@@ -7,9 +7,12 @@ import {Directive, ElementRef,  Input, HostListener, Renderer, AfterViewInit} fr
 export class ActiveDirective implements AfterViewInit {
 
   @Input() public mdbActive: ActiveDirective;
-  public el: ElementRef = null;
-  public elLabel: ElementRef = null;
-  public elIcon: Element = null;
+  // public el: ElementRef = null;
+  public el: ElementRef | any = null;
+  // public elLabel: ElementRef = null;
+  public elLabel: ElementRef | any = null;
+  // public elIcon: Element = null;
+  public elIcon: Element | any = null;
 
   constructor(el: ElementRef, public renderer: Renderer) {
     this.el = el;

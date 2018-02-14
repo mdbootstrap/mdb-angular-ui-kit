@@ -1,4 +1,4 @@
-import { ComponentRef, Injectable, TemplateRef, EventEmitter } from '@angular/core';
+import { ComponentRef, Injectable, TemplateRef, EventEmitter, Renderer, ViewContainerRef, ElementRef } from '@angular/core';
 
 import { ComponentLoader } from '../utils/component-loader';
 import { ComponentLoaderFactory } from '../utils/component-loader';
@@ -6,6 +6,7 @@ import { ModalBackdropComponent } from './modalBackdrop.component';
 import { ModalContainerComponent } from './modalContainer.component';
 import { MDBModalRef, ClassName, modalConfigDefaults, ModalOptions, TransitionDurations } from './modal.options';
 import { msConfig } from './modalService.config';
+
 
 @Injectable()
 export class MDBModalService {
@@ -22,15 +23,18 @@ export class MDBModalService {
 
   protected scrollbarWidth = 0;
 
-  protected backdropRef: ComponentRef<ModalBackdropComponent>;
+  // protected backdropRef: ComponentRef<ModalBackdropComponent>;
+  protected backdropRef: ComponentRef<ModalBackdropComponent> | any;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
-  private lastDismissReason = '';
+  // private lastDismissReason = '';
+  private lastDismissReason: any = '';
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
-
-  public constructor(private clf: ComponentLoaderFactory) {
-    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
+  // public constructor(private clf: ComponentLoaderFactory) {
+    public constructor(private clf: ComponentLoaderFactory, private el: ElementRef, private v: ViewContainerRef, private r: Renderer) {
+  //   this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
+    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(this.el, this.v, this.r);
     msConfig.serviceInstance = this;
   }
 
@@ -155,7 +159,8 @@ export class MDBModalService {
   }
 
   private _createLoaders(): void {
-    const loader = this.clf.createLoader<ModalContainerComponent>(null, null, null);
+    // const loader = this.clf.createLoader<ModalContainerComponent>(null, null, null);
+    const loader = this.clf.createLoader<ModalContainerComponent>(this.el, this.v, this.r);
     this.copyEvent(loader.onBeforeShow, this.onShow);
     this.copyEvent(loader.onShown, this.onShown);
     this.copyEvent(loader.onBeforeHide, this.onHide);

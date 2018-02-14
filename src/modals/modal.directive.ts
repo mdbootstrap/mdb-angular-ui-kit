@@ -33,11 +33,13 @@ const BACKDROP_TRANSITION_DURATION = 150;
 export class ModalDirective implements AfterViewInit, OnDestroy {
   /** allows to set modal configuration via element property */
   @Input()
-  public set config(conf: ModalOptions) {
+  // public set config(conf: ModalOptions) {
+    public set config(conf: ModalOptions | any) {
     this._config = this.getConfig(conf);
   }
 
-  public get config(): ModalOptions {
+  // public get config(): ModalOptions {
+    public get config(): ModalOptions | any {
     return this._config;
   }
 
@@ -54,13 +56,13 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   public isAnimated = true;
   /** This field contains last dismiss reason.
   Possible values: `backdrop-click`, `esc` and `null` (if modal was closed by direct call of `.hide()`). */
-  public dismissReason: string;
+  public dismissReason: string | any;
 
   public get isShown(): boolean {
     return this._isShown;
   }
 
-  protected _config: ModalOptions;
+  protected _config: ModalOptions | any;
   protected _isShown = false;
 
   protected isBodyOverflowing = false;

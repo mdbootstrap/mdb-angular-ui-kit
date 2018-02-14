@@ -70,7 +70,7 @@ import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer, El
    * Opens an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
-   public show(): void {
+   public show(): void | any {
      if (this._popover.isShown) {
        return;
      }

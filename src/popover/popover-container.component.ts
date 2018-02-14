@@ -18,7 +18,8 @@ export class PopoverContainerComponent implements OnInit {
 
 @HostBinding('class.show') show = '!isBs3';
  @HostBinding('attr.role') role = 'tooltip';
- @HostBinding('class') class;
+//  @HostBinding('class') class;
+@HostBinding('class') class: any;
 
 
 
