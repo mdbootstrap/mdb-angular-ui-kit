@@ -16,8 +16,8 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # Version:
-- Angular CLI 1.5.0
-- Angular 5.0
+- Angular CLI 1.5.0 - 1.6.5
+- Angular 5.0.0 - 5.2.1
 
 # Quick start
 - Clone following repo:  
