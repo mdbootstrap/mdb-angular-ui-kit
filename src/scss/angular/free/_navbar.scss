@@ -37,3 +37,10 @@
         }
     }
 }
+// Fix for situation when in Chrome, dropdown button got default browser styling
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+ -webkit-appearance: none;
+}
