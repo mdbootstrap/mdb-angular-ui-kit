@@ -1,46 +1,53 @@
 @media (min-width: 1200px) {
     .navbar.navbar-expand-xl {
-        links, navlinks {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-        }
+      links,
+      navlinks {
+        display: flex;
+        flex-direction: row;
+        align-items: center !important;
+        align-self: center !important;
+        width: 100%;
+      }
     }
-}
-
-@media (min-width: 992px) {
+  }
+  
+  @media (min-width: 992px) {
+    .navbar>logo>div>a {
+      img {
+        margin-left: 20px;
+      }
+    }
     .navbar.navbar-expand-lg {
-        links, navlinks {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-        }
+      links,
+      navlinks {
+        display: flex;
+        flex-direction: row;
+        align-items: center !important;
+        align-self: center !important;
+        width: 100%;
+      }
     }
-}
-
-@media (min-width: 768px) {
+  }
+  
+  @media (min-width: 768px) {
     .navbar.navbar-expand-md {
-        links, navlinks {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-        }
+      links,
+      navlinks {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
     }
-}
-
-@media (min-width: 576px) {
+  }
+  
+  @media (min-width: 576px) {
     .navbar.navbar-expand-sm {
-        links, navlinks {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-        }
+      links,
+      navlinks {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
     }
-}
-// Fix for situation when in Chrome, dropdown button got default browser styling
-button,
-html [type="button"],
-[type="reset"],
-[type="submit"] {
- -webkit-appearance: none;
-}
+  }
+  
