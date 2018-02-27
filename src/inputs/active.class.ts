@@ -1,10 +1,10 @@
-import {Directive, ElementRef,  Input, HostListener, Renderer, AfterViewInit} from '@angular/core';
+import {Directive, ElementRef,  Input, HostListener, Renderer2, AfterViewInit, AfterViewChecked} from '@angular/core';
 
 @Directive({
   selector: '[mdbActive]'
 })
 
-export class ActiveDirective implements AfterViewInit {
+export class ActiveDirective implements AfterViewInit, AfterViewChecked {
 
   @Input() public mdbActive: ActiveDirective;
   isClicked: boolean = false;
