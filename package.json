@@ -1,6 +1,6 @@
 {
   "name": "ng-mdb",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "Bootstrap Material Design for Angular",
   "license": "MIT",
   "scripts": {
@@ -12,24 +12,24 @@
     "e2e": "ng e2e"
   },
   "dependencies": {
-    "@angular/animations": "5.0.0 - 5.2.1",
-    "@angular/common": "5.0.0 - 5.2.1",
-    "@angular/compiler": "5.0.0 - 5.2.1",
-    "@angular/core": "5.0.0 - 5.2.1",
-    "@angular/forms": "5.0.0 - 5.2.1",
-    "@angular/http": "5.0.0 - 5.2.1",
-    "@angular/platform-browser": "5.0.0 - 5.2.1",
-    "@angular/platform-browser-dynamic": "5.0.0 - 5.2.1",
-    "@angular/router": "5.0.0 - 5.2.1",
+    "@angular/animations": "5.0.0 - 5.2.6",
+    "@angular/common": "5.0.0 - 5.2.6",
+    "@angular/compiler": "5.0.0 - 5.2.6",
+    "@angular/core": "5.0.0 - 5.2.6",
+    "@angular/forms": "5.0.0 - 5.2.6",
+    "@angular/http": "5.0.0 - 5.2.6",
+    "@angular/platform-browser": "5.0.0 - 5.2.6",
+    "@angular/platform-browser-dynamic": "5.0.0 - 5.2.6",
+    "@angular/router": "5.0.0 - 5.2.6",
     "font-awesome": "4.7.x",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.5.0 - 1.6.5",
-    "@angular/compiler-cli": "5.0.0 - 5.2.1",
-    "@angular/language-service": "5.0.0 - 5.2.1",
+    "@angular/cli": "1.5.0 - 1.7.1",
+    "@angular/compiler-cli": "5.0.0 - 5.2.6",
+    "@angular/language-service": "5.0.0 - 5.2.6",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
@@ -45,7 +45,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
-    "typescript": "~2.5.0",
+    "typescript": "^2.6.0",
     "webpack": "3.x"
   },
   "repository": {
