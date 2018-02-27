@@ -19,6 +19,7 @@ export class ActiveDirective implements AfterViewInit {
     this.el = el; }
   @HostListener('focus', ['$event']) onClick() {
     this.initComponent();
+    this.isClicked = true;
   }
 
   @HostListener('click', ['$event']) Click() {
