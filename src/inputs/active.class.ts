@@ -76,7 +76,7 @@ ngAfterViewInit() {
         if (this.elIcon) {
           this.renderer.removeClass(this.elIcon, 'active');
         }
-      } if (value === '' && this.isClicked) {
+      } if (value === '' && this.isClicked || value === '' && this.el.nativeElement.placeholder) {
         this.renderer.addClass(this.elLabel, 'active');
       }
     }
