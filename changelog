@@ -1,0 +1,86 @@
+5.2.1
+Enhanced mdbActive directive - works with data prefilled by browser
+Sidenav issue fixed (skin is optional)
+Fixed with rounded buttons inside input group
+Fixed for dropdown not getting closed after click in other dropdown.
+Fix for line breaking label in checkboxes
+
+5.2.0
+Updated to Bootstrap 4 stable version
+Integration with .NET CORE - tutorial here
+Compatibility with Angular 5.2.1 and CLI 1.6.5
+noImplicitAny and strictNullChecks compatibility
+New validation added (number, tel, submit) + custom validation regex. Read tutorial.
+Configurable labels for DatePicker
+
+5.1.2
+Angular 5.2.1 and CLI 1.6.5 compatibility
+Extended docs for modals - auto focus on input
+Fixed validation for email and password
+Aria attributes added to datepicker
+Added filtering options to Material Select
+Support for IE+ and Edge for Double Navigation
+Extended DatePicker with new functionality:
+Important! 
+By default date picker will load now +- 7 years starting from current year. It can be overwritten using minYear and maxYear parameters:
+
+import { Component } from '@angular/core'; 
+import { IMyOptions } from 'your_path_to/date-picker/index'; 
+
+@Component({ 
+    selector: 'date-picker-component-example', 
+    templateUrl: 'toast.component.html' 
+}) 
+
+    export class DatePickerComponentExample { 
+    public myDatePickerOptions: IMyOptions = { 
+    minYear: 2015, 
+    maxYear: 2017
+    };
+}
+
+5.1.1
+Double navigation - support for collapsed sidenav and navbar
+Extended documentation for Autocomplete
+Auto resize function for collapse added
+Mobile gestures carousel support added
+Added option to hide next / prev buttons in carousel
+Fix for: Module has no exported member 'MDBSpinningPreloader'
+Automatically set date in DatePicker using ngModel
+Fixed docs for File Upload
+
+5.1.0
+Angular 5.1.3 and CLI 1.6.3. compatibility
+Fixed issue with exceeding text tabs component
+Auto-close navbar after click into link (check documentation for more information)
+Fixed problem with error/success message on Firefox
+Fixed problems with selecting hour on mobile devices in Timepicker
+Extended configuration options of easy pie charts (check documentation for more information)
+Fixed for relative path in _skins.scss
+Fixed issue with date picker for Firefox
+Enhanced support for small screen resolution in Datepicker (<575 px)
+Fix for issue while using multiple MDB Autocomplete components
+
+5.0.5
+Added compatibility with noUnusedLocals
+
+5.0.4
+Added compatibility with noUnusedParameters
+
+5.0.3
+Fixed missing arrow in popovers
+
+5.0.2
+Fixed circular dependencies error.
+
+5.0.1
+Fixed for imgPath in .scss
+
+5.0.0
+Version 5.0.0 brings brings compatibility with new Angular 5.0 and CLI 1.5. Except for that new update include Bootstrap 4 Beta 2 assets.
+
+What's new in Bootstrap 4 beta-2:
+
+Restored `.offset-*` classes
+Switched Breadcrumbs from `float` to Flexbox
+Dropped support for Bower
