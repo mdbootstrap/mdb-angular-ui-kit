@@ -11,7 +11,7 @@ export class RippleDirective {
 
   @HostListener('click', ['$event'])
   public click(event: any) {
-    event.stopPropagation();
+    // event.stopPropagation();
 
     if (!this.el.nativeElement.classList.contains('disabled')) {
 

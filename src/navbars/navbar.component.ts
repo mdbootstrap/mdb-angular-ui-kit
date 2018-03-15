@@ -1,5 +1,5 @@
 import { NavbarService } from './navbar.service';
-import { Component, ElementRef, ViewChild, Input, Renderer, AfterViewInit, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input, Renderer2, AfterViewInit, HostListener, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -26,7 +26,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   @ViewChild('nav') navbar: ElementRef;
   @ViewChild('container') container: ElementRef;
 
-  constructor(public renderer: Renderer, private _navbarService: NavbarService) {
+  constructor(public renderer: Renderer2, private _navbarService: NavbarService) {
     // tslint:disable-next-line:max-line-length
     this.subscription = this._navbarService.getNavbarLinkClicks().subscribe(navbarLinkClicks => { this.closeNavbarOnClick(navbarLinkClicks); });
   }
@@ -58,7 +58,8 @@ export class NavbarComponent implements AfterViewInit, OnInit {
       if (!this.containerInside) {
         const childrens = Array.from(this.container.nativeElement.children);
         childrens.forEach(child => {
-          this.navbar.nativeElement.append(child);
+          // this.navbar.nativeElement.append(child);
+          this.renderer.appendChild(this.navbar.nativeElement, child);
 
           this.container.nativeElement.remove();
         });
@@ -86,7 +87,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     this.collapse = false;
     this.collapsing = true;
     setTimeout(() => {
-      this.renderer.setElementStyle(this.el.nativeElement, 'height', this.height + 'px');
+      this.renderer.setStyle(this.el.nativeElement, 'height', this.height + 'px');
     }, 10);
 
 
@@ -103,7 +104,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     this.showClass = false;
     this.collapsing = true;
     setTimeout(() => {
-      this.renderer.setElementStyle(this.el.nativeElement, 'height', '0px');
+      this.renderer.setStyle(this.el.nativeElement, 'height', '0px');
     }, 10);
 
 
@@ -139,12 +140,12 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     if (event.target.innerWidth < breakpoit) {
       if (!this.shown) {
         this.collapse = false;
-        this.renderer.setElementStyle(this.el.nativeElement, 'height', '0px');
-        this.renderer.setElementStyle(this.el.nativeElement, 'opacity', '0');
+        this.renderer.setStyle(this.el.nativeElement, 'height', '0px');
+        this.renderer.setStyle(this.el.nativeElement, 'opacity', '0');
         setTimeout(() => {
           this.height = this.el.nativeElement.scrollHeight;
           this.collapse = true;
-          this.renderer.setElementStyle(this.el.nativeElement, 'opacity', '');
+          this.renderer.setStyle(this.el.nativeElement, 'opacity', '');
         }, 4);
       }
     } else {
@@ -152,16 +153,16 @@ export class NavbarComponent implements AfterViewInit, OnInit {
       this.shown = false;
       this.showClass = false;
       this.collapse = true;
-      this.renderer.setElementStyle(this.el.nativeElement, 'height', '');
+      this.renderer.setStyle(this.el.nativeElement, 'height', '');
     }
   }
 
   @HostListener('document:scroll', ['$event']) onScroll() {
     if (this.navbar.nativeElement.classList.contains('scrolling-navbar')) {
       if (window.pageYOffset > 120) {
-        this.renderer.setElementClass(this.navbar.nativeElement, 'top-nav-collapse', true);
+        this.renderer.addClass(this.navbar.nativeElement, 'top-nav-collapse');
       } else {
-        this.renderer.setElementClass(this.navbar.nativeElement, 'top-nav-collapse', false);
+        this.renderer.removeClass(this.navbar.nativeElement, 'top-nav-collapse');
       }
     }
   }
