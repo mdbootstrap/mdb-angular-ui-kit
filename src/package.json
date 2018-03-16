@@ -32,9 +32,6 @@
   "url": "https://github.com/mdbootstrap/bootstrap-material-design/issues"
   },
   "homepage": "https://mdbootstrap.com",
-  "dependencies": {
-  "moment": "2.18.x"
-  },
   "peerDependencies": {
   "@angular/animations": "5.0.0 - 5.2.6",
   "@angular/common": "5.0.0 - 5.2.6",
