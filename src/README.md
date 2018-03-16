@@ -16,13 +16,8 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # Version:
-<<<<<<< HEAD
-- Angular CLI 1.5.0 - 1.6.5
-- Angular 5.0.0 - 5.2.1
-=======
 - Angular CLI 1.5.0 - 1.7.1
 - Angular 5.0 - 5.2.6
->>>>>>> dev
 
 # Quick start
 - Clone following repo:  
@@ -126,7 +121,7 @@ Writing you code with pure Angular is now quicker, easier, and cleaner.
 **TypeScript**  
 Superset of JavaScript that compiles to clean JavaScript output.  
 
-**Angular 2, version 5.2.1**  
+**Angular 2, version 5.2.6**  
 Create smarter and faster Angular apps with the latest official Angular release.  
 
 **Cross-browser compatibility**  

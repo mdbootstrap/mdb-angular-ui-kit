@@ -1,6 +1,6 @@
 Material Design for Bootstrap - Angular
 
-Version: MDB - Angular 5.0.0
+Version: MDB - Angular 5.2.3
 
 Documentation:
 http://mdbootstrap.com/angular/
