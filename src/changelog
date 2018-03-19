@@ -1,3 +1,14 @@
+5.2.3 
+*** Compatibility with Angular Universal (Server-Side Rendering) ***. Read tutorial.
+Improved dropdown animation in Material Select,
+Fixed problem with dropdown transition in Material Select,
+"Not Found" message in Material Select will be visible only when filtering does not show results ,
+Fix for top / bottom arrow in Material Select,
+Added possibility to overwrite $image-path variable.
+
+5.2.2
+Hotfixes not included in 5.2.1 patch
+
 5.2.1
 Enhanced mdbActive directive - works with data prefilled by browser
 Sidenav issue fixed (skin is optional)
