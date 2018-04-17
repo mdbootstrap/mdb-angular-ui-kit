@@ -42,7 +42,7 @@
       margin-left: -$tooltip-arrow-width;
       content: "";
       border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
-      border-top-color: $tooltip-arrow-color;
+      // border-top-color: $tooltip-arrow-color;
     }
   }
   &.tooltip-right,
@@ -56,7 +56,7 @@
       margin-top: -$tooltip-arrow-width;
       content: "";
       border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
-      border-right-color: $tooltip-arrow-color;
+      // border-right-color: $tooltip-arrow-color;
     }
   }
   &.tooltip-bottom,
@@ -70,7 +70,7 @@
       margin-left: -$tooltip-arrow-width;
       content: "";
       border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
-      border-bottom-color: $tooltip-arrow-color;
+      // border-bottom-color: $tooltip-arrow-color;
     }
   }
   &.tooltip-left,
@@ -84,7 +84,7 @@
       margin-top: -$tooltip-arrow-width;
       content: "";
       border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
-      border-left-color: $tooltip-arrow-color;
+      // border-left-color: $tooltip-arrow-color;
     }
   }
 }
@@ -93,12 +93,12 @@
 .tooltip-inner {
   max-width: $tooltip-max-width;
   padding: $tooltip-padding-y $tooltip-padding-x;
-  color: $tooltip-color;
+  // color: $tooltip-color;
   text-align: center;
-  background-color: $tooltip-bg;
+  // background-color: $tooltip-bg;
   padding: 0.2rem 0.4rem;
   @extend .z-depth-1-half;
-  @include border-radius($border-radius);
+  border-radius: ($border-radius);
 
   &::before {
     position: absolute;

@@ -1,3 +1,64 @@
+6.0.0
+*** NOTE: Most of the components have been rebuilt. Please, check the ones you use in your project. ***
+
+*** General: ***
+
+    Compatible with MDB 4.5.1,
+    Compatible with Angular 6.0.0-rc.5, rxjs 6.0.0-uncanny-rc.7 and rxjs-compat 6.0.0-uncanny-rc.7,
+    Compatible with Angular CLI ^1.7.1.
+
+*** NOTE 2: For proper using Angular 6 with MDB Angular 6 please check, if you're using rxjs in version at least 6.0.0-uncanny-rc.7 and rxjs-compat in version at least 6.0.0-uncanny-rc.7. Using older versions may produce errors and problems. ***
+
+*** Marked as deprecated: *** 
+
+    mdbActive,
+    mdbInputValidate,
+    mdbDeepDirective,
+    mdbRippleRadius.
+
+mdbInputDirective has three of the above directives - mdbActive, mdbInputValidate and mdbDeepDirective.
+
+mdbActive is used by default and we do not anticipate that you will be able to disable it.
+
+mdbInputValidate is used by default, but the user can disable validation by using the [mdbValidate]="false" control on input which contains mdbInputDirective.
+
+mdbDeepDirective is used by default when used on a checkbox or radio. It is possible to disable it by using [focusCheckbox]="false" and [focusRadio]="false".
+
+mdbRippleRadius was changed to mdbWavesEffect. mdbRippleRadius will be deleted after next release.
+
+*** Fixes: ***
+
+    Fix for z-index in few scenarios (tabs & datePicker), navbar and other,
+    Fixed clearUnselected in Autocomplete,
+    Fix for mdbActive in Autocomplete.
+
+*** Features: ***
+
+    Added feature to close datePicker after selecting an date (closeAfterSelect: true) in datePicker options object.
+
+*** Docs: ***
+
+    New category Forms,
+    Autocomplete, Inputs, Input Validation, Forms moved from Components to Forms,
+    Material Select moved from Advanced to Forms,
+    Input Groups moved from Extended to Forms,
+    Added instructions how to update Angular projects: https://mdbootstrap.com/getting-started/update-instructions/
+    Added instructions how to create project with Angular Universal: https://mdbootstrap.com/getting-started/universal/
+
+*** Changed syntax: ***
+
+    Cards,
+    Flipping Cards,
+    Intros,
+    Sections,
+    Inputs,
+    Footers,
+    Preloaders,
+    Masks,
+    Hover Effects,
+    Accordion,
+    Modals,
+
 5.2.3 
 *** Compatibility with Angular Universal (Server-Side Rendering) ***. Read tutorial.
 Improved dropdown animation in Material Select,
