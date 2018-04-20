@@ -50,10 +50,10 @@
     }
   }
 }
+
 // .navbar {
 //   z-index: 91;
 // }
-
 .navbar-container {
   order: -1;
   width: 50px !important;
@@ -189,4 +189,12 @@
       right: 0;
     }
   }
+}
+
+// Fix for situation when in Chrome, dropdown button got default browser styling
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: none;
 }
