@@ -1,3 +1,10 @@
+6.0.1
+*** Fixes: ***
+    Fix for dropdowns, dropup variation,
+    Fix for fixed button when collapsing (need to pass $event in .toggle() method),
+    Few fixes in scss
+
+
 6.0.0
 *** NOTE: Most of the components have been rebuilt. Please, check the ones you use in your project. ***
 

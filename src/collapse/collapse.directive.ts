@@ -1,15 +1,16 @@
 // todo: add animations when https://github.com/angular/angular/issues/9947 solved
 import {
   Directive, ElementRef, EventEmitter, Input, OnInit, Output,
-  Renderer
+  Renderer, AfterViewInit
 } from '@angular/core';
+
 
 @Directive({
   selector: '[mdbCollapse]',
   exportAs: 'bs-collapse',
   /* tslint:disable-next-line */
 })
-export class CollapseDirective implements OnInit {
+export class CollapseDirective implements OnInit, AfterViewInit {
 
   @Output('showBsCollapse') public showBsCollapse: EventEmitter<any> = new EventEmitter();
   @Output('shownBsCollapse') public shownBsCollapse: EventEmitter<any> = new EventEmitter();
@@ -51,10 +52,10 @@ export class CollapseDirective implements OnInit {
     this._el = _el;
     this._renderer = _renderer;
   }
-
   ngOnInit() {
+
     this._el.nativeElement.classList.add('show');
-    this.maxHeight = this._el.nativeElement.scrollHeight;
+
     this._el.nativeElement.style.transition = this.animationTime + 'ms ease';
 
     if (!this.collapse) {
@@ -67,15 +68,19 @@ export class CollapseDirective implements OnInit {
     this.isExpanded = this.collapse;
   }
 
+  ngAfterViewInit() {
+    this.maxHeight = this._el.nativeElement.scrollHeight;
+  }
+
   public resize(): void {
     const container = this._el.nativeElement;
     this.maxHeight = this._el.nativeElement.scrollHeight;
     this._renderer.setElementStyle(container, 'height', this.maxHeight + 'px');
-    }
-    
+  }
 
   /** allows to manually toggle content visibility */
-  public toggle(): void {
+  public toggle(event?: any): void {
+
     if (!this.collapsing) {
       if (this.isExpanded) {
         this.hide();
@@ -83,6 +88,7 @@ export class CollapseDirective implements OnInit {
         this.show();
       }
     }
+    this.maxHeight = event.target.parentElement.nextElementSibling.scrollHeight;
   }
 
   /** allows to manually hide content */

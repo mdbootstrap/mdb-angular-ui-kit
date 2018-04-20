@@ -26,10 +26,10 @@ dropdown{
   // Different positioning for bottom up menu
     .dropdown-menu {
         display: none;
-        position: absolute;
-        transform: translate3d(117px, -165px, 0px);
-        top: 0px;
-        left: 0px;
+        // // position: absolute;
+        // transform: translate3d(117px, -165px, 0px);
+        // // top: 0px;
+        // // left: 0px;
         will-change: transform;
     }
 }
