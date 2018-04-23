@@ -42,7 +42,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     const isDoubleNav = this.SideClass.split(' ');
     if (isDoubleNav.indexOf('double-nav') !== -1) {
       this.doubleNav = true;
-    }else {
+    } else {
       this.doubleNav = false;
     }
   }

@@ -8,7 +8,7 @@ import {
   Input,
   OnDestroy,
   Output,
-  Renderer, ViewContainerRef
+  Renderer2, ViewContainerRef
 } from '@angular/core';
 
 import { document } from '../utils/facade/browser';
@@ -74,7 +74,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   // constructor props
   protected _element: ElementRef;
-  protected _renderer: Renderer;
+  protected _renderer: Renderer2;
 
   // reference to backdrop component
   protected backdrop: ComponentRef<ModalBackdropComponent>;
@@ -102,7 +102,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  public constructor(_element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer, clf: ComponentLoaderFactory) {
+  public constructor(_element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer2, clf: ComponentLoaderFactory) {
     this._element = _element;
     this._renderer = _renderer;
     this._backdrop = clf.createLoader<ModalBackdropComponent>(_element, _viewContainerRef, _renderer);
@@ -152,7 +152,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       if (document.body.classList.contains(ClassName.OPEN)) {
         this.isNested = true;
       } else {
-        this._renderer.setElementClass(document.body, ClassName.OPEN, true);
+        this._renderer.addClass(document.body, ClassName.OPEN);
       }
     }
 
@@ -178,9 +178,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     clearTimeout(this.timerRmBackDrop);
 
     this._isShown = false;
-    this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, false);
+    this._renderer.removeClass(this._element.nativeElement, ClassName.IN);
     if (!isBs3()) {
-      this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, false);
+      this._renderer.removeClass(this._element.nativeElement, ClassName.SHOW);
     }
 
     if (this.isAnimated) {
@@ -209,17 +209,17 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
      }
    }
 
-   this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'false');
-   this._renderer.setElementStyle(this._element.nativeElement, 'display', 'block');
-   this._renderer.setElementProperty(this._element.nativeElement, 'scrollTop', 0);
+   this._renderer.setAttribute(this._element.nativeElement, 'aria-hidden', 'false');
+   this._renderer.setStyle(this._element.nativeElement, 'display', 'block');
+   this._renderer.setProperty(this._element.nativeElement, 'scrollTop', 0);
 
    if (this.isAnimated) {
      Utils.reflow(this._element.nativeElement);
    }
 
-   this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, true);
+   this._renderer.addClass(this._element.nativeElement, ClassName.IN);
    if (!isBs3()) {
-     this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, true);
+     this._renderer.addClass(this._element.nativeElement, ClassName.SHOW);
    }
 
    const transitionComplete = () => {
@@ -238,12 +238,12 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
  /** @internal */
  protected hideModal(): void {
-   this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'true');
-   this._renderer.setElementStyle(this._element.nativeElement, 'display', 'none');
+   this._renderer.setAttribute(this._element.nativeElement, 'aria-hidden', 'true');
+   this._renderer.setStyle(this._element.nativeElement, 'display', 'none');
    this.showBackdrop(() => {
      if (!this.isNested) {
        if (document && document.body) {
-         this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+         this._renderer.removeClass(document.body, ClassName.OPEN);
        }
        this.resetScrollbar();
      }
@@ -305,13 +305,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
    if (!otherOpenedModals.length) {
      return;
    }
-   this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
+  //  this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
+  otherOpenedModals[otherOpenedModals.length - 1].nativeElement.focus();
  }
 
  /** @internal */
  protected resetAdjustments(): void {
-   this._renderer.setElementStyle(this._element.nativeElement, 'paddingLeft', '');
-   this._renderer.setElementStyle(this._element.nativeElement, 'paddingRight', '');
+   this._renderer.setStyle(this._element.nativeElement, 'paddingLeft', '');
+   this._renderer.setStyle(this._element.nativeElement, 'paddingRight', '');
  }
 
  /** Scroll bar tricks */
@@ -339,7 +340,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
  // thx d.walsh
  protected getScrollbarWidth(): number {
-   const scrollDiv = this._renderer.createElement(document.body, 'div', void 0);
+   const scrollDiv = this._renderer.createElement('div', void 0);
+   this._renderer.appendChild(document.body, scrollDiv);
    scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
    const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
    document.body.removeChild(scrollDiv);

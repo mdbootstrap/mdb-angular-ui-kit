@@ -1,4 +1,4 @@
-import { ComponentRef, Injectable, TemplateRef, EventEmitter, Renderer, ViewContainerRef, ElementRef } from '@angular/core';
+import { ComponentRef, Injectable, TemplateRef, EventEmitter, Renderer2, ViewContainerRef, ElementRef } from '@angular/core';
 
 import { ComponentLoader } from '../utils/component-loader';
 import { ComponentLoaderFactory } from '../utils/component-loader';
@@ -32,7 +32,7 @@ export class MDBModalService {
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
   // public constructor(private clf: ComponentLoaderFactory) {
-    public constructor(private clf: ComponentLoaderFactory, private el: ElementRef, private v: ViewContainerRef, private r: Renderer) {
+    public constructor(private clf: ComponentLoaderFactory, private el: ElementRef, private v: ViewContainerRef, private r: Renderer2) {
   //   this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(this.el, this.v, this.r);
     msConfig.serviceInstance = this;

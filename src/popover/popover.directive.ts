@@ -1,4 +1,4 @@
-import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer, ElementRef, TemplateRef,
+import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer2, ElementRef, TemplateRef,
   ViewContainerRef } from '@angular/core';
   import { PopoverConfig } from './popover.config';
   import { ComponentLoaderFactory, ComponentLoader } from '../utils/component-loader';
@@ -54,7 +54,7 @@ import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer, El
    private _popover: ComponentLoader<PopoverContainerComponent>;
 
    public constructor(_elementRef: ElementRef,
-     _renderer: Renderer,
+     _renderer: Renderer2,
      _viewContainerRef: ViewContainerRef,
      _config: PopoverConfig,
      cis: ComponentLoaderFactory) {

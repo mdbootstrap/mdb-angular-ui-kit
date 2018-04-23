@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output, Renderer,
+import { Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output, Renderer2,
   ViewContainerRef } from '@angular/core';
   import { Subscription } from 'rxjs/Subscription';
   import 'rxjs/add/operator/filter';
@@ -115,7 +115,7 @@ import { Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostBinding, Inpu
     _isInited = false;
 
    constructor(private _elementRef: ElementRef,
-     private _renderer: Renderer,
+     private _renderer: Renderer2,
      private _viewContainerRef: ViewContainerRef,
      private _cis: ComponentLoaderFactory,
      private _config: BsDropdownConfig,

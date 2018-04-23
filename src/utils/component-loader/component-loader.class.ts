@@ -12,7 +12,7 @@ import {
   NgZone,
   Provider,
   ReflectiveInjector,
-  Renderer,
+  Renderer2,
   TemplateRef,
   Type,
   ViewContainerRef
@@ -79,7 +79,7 @@ export class ComponentLoader<T> {
      */
      // tslint:disable-next-line
      public constructor(private _viewContainerRef: ViewContainerRef,
-       private _renderer: Renderer,
+       private _renderer: Renderer2,
        private _elementRef: ElementRef,
        private _injector: Injector,
        private _componentFactoryResolver: ComponentFactoryResolver,
@@ -285,6 +285,6 @@ export class ComponentLoader<T> {
            this._applicationRef.attachView(componentRef.hostView);
            return new ContentRef([[componentRef.location.nativeElement]], componentRef.hostView, componentRef);
          }
-         return new ContentRef([[this._renderer.createText(null, `${content}`)]]);
+         return new ContentRef([[this._renderer.createText(`${content}`)]]);
        }
      }
