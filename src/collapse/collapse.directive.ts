@@ -69,7 +69,7 @@ export class CollapseDirective implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.maxHeight = this._el.nativeElement.scrollHeight;
+    this.maxHeight = this._el.nativeElement.scrollHeight;
   }
 
   public resize(): void {
