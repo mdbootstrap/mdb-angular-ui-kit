@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "stripInternal": false,
+    "experimentalDecorators": true,
+    "noUnusedParameters": false,
+    "strictNullChecks": false,
+    "importHelpers": true,
+    "newLine": "lf",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "outDir": "../dist/packages/angular-bootstrap-md",
+    "rootDir": ".",
+    "sourceMap": true,
+    "inlineSources": true,
+    "target": "es2015",
+    "lib": ["es2015", "dom"],
+    "skipLibCheck": true,
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "angular-bootstrap-md": ["../dist/packages/angular-bootstrap-md"]
+    },
+    "typeRoots": [
+      "./node_modules/@types/"
+    ]
+  },
+  "files": [
+    "public_api.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "angular-bootstrap-md",
+    "skipTemplateCodegen": true
+  }
+}

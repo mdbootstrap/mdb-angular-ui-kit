@@ -29,8 +29,8 @@
             ],
             "styles": [
               {"input": "node_modules/font-awesome/scss/font-awesome.scss"},
-              {"input": "src/scss/bootstrap/bootstrap.scss"},
-              {"input": "src/scss/mdb-free.scss"},
+              {"input": "dist/scss/bootstrap/bootstrap.scss"},
+              {"input": "dist/scss/mdb-free.scss"},
               {"input": "demo/src/styles.scss"}
             ],
             "scripts": []
@@ -82,8 +82,8 @@
             "scripts": [],
             "styles": [
               "node_modules/font-awesome/scss/font-awesome.scss",
-              "src/scss/bootstrap/bootstrap.scss",
-              "src/scss/mdb-free.scss",
+              "dist/scss/bootstrap/bootstrap.scss",
+              "dist/scss/mdb-free.scss",
               "demo/src/styles.scss"
             ],
             "assets": [

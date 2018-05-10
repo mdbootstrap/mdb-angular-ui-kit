@@ -31,6 +31,27 @@ note "." at the end. It will clone files directly into current folder.
 
 Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.
 
+# Available commands
+
+* npm run build:lib - building library,
+* npm run pack - copying assets and packaging /dist directory into .tgz archive
+* npm run version - adjusting src/package.json version from main package.json file,
+* npm run compile - Executing above commands with correct sequence.
+
+# Modules list
+
+* ButtonsModule,
+* CarouselModule,
+* ChartsModule,
+* CollapseModule,
+* InputsModule,
+* ModalModule,
+* NavbarModule,
+* PopoverModule,
+* TooltipModule,
+* WavesModule,
+* MDBBootstrapModule - contains every MDB modules.
+
 # How to install MDB via npm:
 - create new project `ng new project_name --style=scss`
 - `npm i angular-bootstrap-md --save`
