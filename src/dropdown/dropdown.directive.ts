@@ -154,9 +154,13 @@ import { Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostBinding, Inpu
 
      // hide dropdown if set disabled while opened
      this._subscriptions.push(this._state
-       .isDisabledChange
-       .filter((value: boolean) => value === true)
-       .subscribe(() => this.hide()));
+      .isDisabledChange
+      //  .filter((value: boolean) => value === true)
+      .subscribe((element) => {
+        if (element === true) {
+          this.hide();
+        }
+      }));
 
      // attach dropdown menu inside of dropdown
      if (this._showInline) {
