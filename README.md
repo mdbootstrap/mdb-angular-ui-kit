@@ -1,4 +1,4 @@
-[![Angular-Bootstrap-with-Material-Design](https://mdbootstrap.com/img/Mockups/MDB-post/angular-about5.jpg)](https://mdbootstrap.com/angular/)
+[![Angular-Bootstrap-with-Material-Design](https://mdbootstrap.com/img/Marketing/products/social/angular/mdb-angular-free.jpg)](https://mdbootstrap.com/angular/)
 
 # Angular Bootstrap with Material Design
 
