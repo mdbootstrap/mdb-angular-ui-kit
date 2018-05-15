@@ -23,7 +23,7 @@ const packageName = 'angular-bootstrap-md';
 const releaseDirName = '_$releases';
 const releaseDir = path.join(distDir, releaseDirName, packageName);
 const outputDir = path.join(packagesDir, packageName);
-const srcFolder = 'angular-bootstrap-md';
+const srcFolder = '';
 
 const stylesGlob = path.join(buildDir, '**/*.+(scss|css)');
 const htmlGlob = path.join(buildDir, '**/*.html');
