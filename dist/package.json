@@ -1,0 +1,21 @@
+{
+  "name": "angular-bootstrap-md",
+  "version": "6.0.3",
+  "repository": {
+    "type": "git",
+    "url": "url"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "main": "./bundles/angular-bootstrap-md.umd.js",
+  "es2015": "./esm2015/angular-bootstrap-md.js",
+  "module": "./esm5/angular-bootstrap-md.es5.js",
+  "typings": "./angular-bootstrap-md.d.ts",
+  "peerDependencies": {
+    "@angular/core": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "@angular/http": "^5.0.0"
+  }
+}

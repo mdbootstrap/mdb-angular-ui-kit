@@ -3,6 +3,9 @@
   "version": "6.0.3",
   "description": "Bootstrap Material Design for Angular",
   "license": "MIT",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
