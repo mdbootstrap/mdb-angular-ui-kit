@@ -6,7 +6,7 @@
 
 #library packages
 dist/angular-bootstrap-md-6.*
-angular-bootstrap-md-6.*
+
 
 # IDEs and editors
 /.idea

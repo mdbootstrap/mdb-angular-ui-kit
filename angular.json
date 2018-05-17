@@ -30,16 +30,16 @@
                 "input": "node_modules/font-awesome/scss/font-awesome.scss"
               },
               {
-                "input": "dist/scss/bootstrap/bootstrap.scss"
+                "input": "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss"
               },
               {
-                "input": "dist/scss/mdb-free.scss"
+                "input": "node_modules/angular-bootstrap-md/scss/mdb-free.scss"
               },
               {
                 "input": "demo/src/styles.scss"
               }
             ],
-            "scripts": []
+            "scripts": ["node_modules/chart.js/dist/Chart.js"]
           },
           "configurations": {
             "production": {
@@ -86,8 +86,8 @@
             "scripts": [],
             "styles": [
               "node_modules/font-awesome/scss/font-awesome.scss",
-              "dist/scss/bootstrap/bootstrap.scss",
-              "dist/scss/mdb-free.scss",
+              "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "demo/src/styles.scss"
             ],
             "assets": [{

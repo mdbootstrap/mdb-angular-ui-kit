@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { MDBBootstrapModule } from '../../../dist';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [
     AppComponent,
