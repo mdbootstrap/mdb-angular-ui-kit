@@ -1,2 +1,2 @@
-export * from './navbar.module';
-export * from './navbar.component';
+export { NavbarComponent } from './navbar.component';
+export { NavbarModule } from './navbar.module';

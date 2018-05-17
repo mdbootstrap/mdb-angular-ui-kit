@@ -1,3 +1,45 @@
+6.1.0
+*** NOTE: ***
+You may need to rename the modules you are using in your application. The list of modified modules is presented below.
+
+In 6.1.0 we have made it possible to import only those modules that you actually use in your application.
+If only individual modules are used, import them but do not import the MDBBootstrapModulesPro main module as this may cause errors.
+
+*** What's new: ***
+    Source code delivered to customers is now compilated to .js instead of .ts,
+    There's now possibility to import only those modules, which you need in your project. Full module list: https://mdbootstrap.com/angular/modules-list
+    Changed names of few modules: 
+        * MDBChartsModule -> ChartsModule,
+        * BsDropdownModule -> DropdownModule,
+        * MDBTooltipModule -> TooltipModule,
+        * SqueezeBoxModule -> AccordionModule,
+        * Ng2CompleterModule -> AutocompleteModule,
+        * MDBDatePickerModule -> DatepickerModule,
+        * MDBUploaderModule -> FileInputModule,
+        * MDBPageScrollModule -> SmoothscrollModule,
+        * MdbStickyModule -> StickyContentModule,
+        * MaterialRootModule -> PreloadersModule.
+    
+*** Fixes: ***
+    Fixed missing space in mdb-angular.scss file,
+    Added close icon to Autocomplete,
+    Fixed problem with prefilling Char Counter value,
+    Fixed problem with overlapping label & error / success messages with mdbInputDirective,
+    Fixed problem with focusing inputs through TAB key.
+
+
+6.0.2
+*** General: ***
+    Changed Renderer to Renderer2.
+    
+*** Fixes: ***
+    Unnable to scroll in Sidenav,
+    Fixed problems with skins,
+    Fixed mobile view in DatePicker,
+    Fixed problem with scrolling page to the top edge in DatePicker,
+     Fixed problem with scrolling page to the top edge in TimePicker.
+
+
 6.0.1
 *** Fixes: ***
     Fix for dropdowns, dropup variation,

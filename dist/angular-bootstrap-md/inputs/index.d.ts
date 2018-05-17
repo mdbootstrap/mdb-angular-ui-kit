@@ -1,8 +1,8 @@
-export * from './active.module';
-export * from './active.class';
-export * from './equal-validator.directive';
-export * from './input-validate.directive';
-export * from './mdb-input.directive';
-export * from './deep.module';
-export * from './deep.directive';
-export * from './inputs.module';
+export { InputsModule } from './inputs.module';
+export { DeepModule } from './deep.module';
+export { DeepDirective } from './deep.directive';
+export { MdbInputDirective } from './mdb-input.directive';
+export { InputValidateDirective } from './input-validate.directive';
+export { EqualValidatorDirective } from './equal-validator.directive';
+export { ActiveDirective } from './active.class';
+export { ActiveModule } from './active.module';

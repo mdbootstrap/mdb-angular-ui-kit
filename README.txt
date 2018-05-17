@@ -1,6 +1,6 @@
 Material Design for Bootstrap - Angular
 
-Version: MDB - Angular 6.0.2
+Version: MDB - Angular 6.1.0
 
 # Available commands
 
