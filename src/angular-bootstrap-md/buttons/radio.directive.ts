@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, forwardRef, HostListener, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostBinding, forwardRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
@@ -13,10 +13,10 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
 */
 @Directive({ selector: '[mdbRadio]', providers: [RADIO_CONTROL_VALUE_ACCESSOR] })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
-
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;
 
+  radioElementsArray: Array<any> = [];
   /** Radio button value, will be set to `ngModel` */
   @Input() public mdbRadio: any;
   /** If `true` — radio button can be unchecked */
@@ -32,8 +32,19 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   }
 
   // @HostBinding('class.active')
-  @HostListener('click')
-  public onClick(): void {
+  @HostListener('click', ['$event'])
+  public onClick(event?: any): void {
+    try {
+      this.el.nativeElement.parentElement.childNodes.forEach(element => {
+        this.radioElementsArray.push(element);
+      });
+      this.radioElementsArray.forEach(element => {
+        this.renderer.removeClass(element, 'active');
+      });
+      this.renderer.addClass(event.target, 'active');
+    } catch (error) {
+
+    }
     if (this.el.nativeElement.attributes.disabled) {
       return;
     }
@@ -48,7 +59,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     this.onChange(this.value);
   }
 
-  public constructor(el: ElementRef) {
+  public constructor(el: ElementRef, private renderer: Renderer2) {
     this.el = el;
   }
 
