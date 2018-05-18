@@ -1,5 +1,5 @@
 {
-  "name": "angular-bootstrap-md",
+  "name": "angular-bootstrap-md-lib",
   "version": "6.1.0",
   "description": "Bootstrap Material Design for Angular",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "e2e": "ng e2e",
     "build:lib": "gulp --gulpfile gulpfile.lib.js",
     "pack": "cp -r src/angular-bootstrap-md/scss src/angular-bootstrap-md/font/ src/angular-bootstrap-md/img/ dist && cd dist && npm pack && cd ..",
-    "compile": "npm run build:lib && npm run pack",
+    "copy": "cp dist/angular-bootstrap-md-6.* ./",
+    "compile": "npm run build:lib && npm run pack && npm run copy",
     "version": "sync-json -v --property version --source package.json src/package.json"
   },
   "dependencies": {
@@ -28,6 +29,8 @@
     "@angular/platform-browser": "^6.0.0-rc.1",
     "@angular/platform-browser-dynamic": "^6.0.0-rc.1",
     "@angular/router": "^6.0.0-rc.1",
+    "angular-bootstrap-md": "file:angular-bootstrap-md-6.1.0.tgz",
+    "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "font-awesome": "4.7.x",
     "fs-extra": "^6.0.1",
