@@ -15,8 +15,7 @@
             "main": "demo/src/main.ts",
             "tsConfig": "demo/src/tsconfig.app.json",
             "polyfills": "demo/src/polyfills.ts",
-            "assets": [
-              {
+            "assets": [{
                 "glob": "**/*",
                 "input": "demo/src/assets",
                 "output": "/assets"
@@ -27,13 +26,20 @@
                 "output": "/"
               }
             ],
-            "styles": [
-              {"input": "node_modules/font-awesome/scss/font-awesome.scss"},
-              {"input": "src/scss/bootstrap/bootstrap.scss"},
-              {"input": "src/scss/mdb-free.scss"},
-              {"input": "demo/src/styles.scss"}
+            "styles": [{
+                "input": "node_modules/font-awesome/scss/font-awesome.scss"
+              },
+              {
+                "input": "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss"
+              },
+              {
+                "input": "node_modules/angular-bootstrap-md/scss/mdb-free.scss"
+              },
+              {
+                "input": "demo/src/styles.scss"
+              }
             ],
-            "scripts": []
+            "scripts": ["node_modules/chart.js/dist/Chart.js"]
           },
           "configurations": {
             "production": {
@@ -46,12 +52,10 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "demo/src/environments/environment.ts",
-                  "with": "demo/src/environments/environment.prod.ts"
-                }
-              ]
+              "fileReplacements": [{
+                "replace": "demo/src/environments/environment.ts",
+                "with": "demo/src/environments/environment.prod.ts"
+              }]
             }
           }
         },
@@ -82,12 +86,11 @@
             "scripts": [],
             "styles": [
               "node_modules/font-awesome/scss/font-awesome.scss",
-              "src/scss/bootstrap/bootstrap.scss",
-              "src/scss/mdb-free.scss",
+              "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "demo/src/styles.scss"
             ],
-            "assets": [
-              {
+            "assets": [{
                 "glob": "**/*",
                 "input": "demo/src/assets",
                 "output": "/assets"

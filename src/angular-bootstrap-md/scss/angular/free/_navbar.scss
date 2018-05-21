@@ -1,0 +1,206 @@
+@media (min-width: 1200px) {
+  .navbar.navbar-expand-xl {
+    links,
+    navlinks {
+      display: flex;
+      flex-direction: row;
+      align-items: center !important;
+      align-self: center !important;
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar>logo>div>a {
+    img {
+      margin-left: 20px;
+    }
+  }
+  .navbar.navbar-expand-lg {
+    links,
+    navlinks {
+      display: flex;
+      flex-direction: row;
+      align-items: center !important;
+      align-self: center !important;
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar.navbar-expand-md {
+    links,
+    navlinks {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .navbar.navbar-expand-sm {
+    links,
+    navlinks {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+  }
+}
+
+// .navbar {
+//   z-index: 91;
+// }
+.navbar-container {
+  order: -1;
+  width: 50px !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.navbar-nav {
+  .dropdown-menu-right.dropdown-menu {
+    left: unset;
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+  padding-left: 5px;
+  padding-right: 5px;
+  order: 0;
+  align-items: center;
+  @media (min-width: 1441px) {
+    margin-left: -0.6rem;
+  }
+} //EDGE
+@supports (-ms-ime-align: auto) {
+  .ie-nav {
+    @media all and (min-width: 992px) {
+      .navbar-nav.nav-flex-icons {
+        position: absolute;
+        top: 30%;
+        right: 0;
+      }
+      .navbar-nav {
+        position: absolute;
+        top: 30%;
+        margin-left: 88px;
+      }
+      .navbar-brand>img {
+        margin-top: -2px;
+        padding-right: 16px;
+      }
+    }
+    .navbar-toggler {
+      position: absolute;
+      margin-top: -40px;
+      right: 0;
+    }
+  }
+  .intro-non-fixed-nav>links {
+    @media all and (min-width: 992px) {
+      .navbar-collapse {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+      }
+    }
+  }
+  .intro-fixed-nav {
+    @media all and (min-width: 992px) {
+      .navbar-nav.nav-flex-icons {
+        position: absolute;
+        top: 30%;
+        right: 0;
+      }
+      .navbar-nav {
+        position: absolute;
+        top: 30%;
+        margin-left: 88px;
+      }
+      .navbar-brand {
+        img {
+          margin-top: -2px;
+          padding-right: 16px;
+        }
+      }
+    }
+    .navbar-toggler {
+      position: absolute;
+      margin-top: -40px;
+      right: 0;
+    }
+  }
+} //IE10+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+  .ie-nav {
+    @media all and (min-width: 992px) {
+      .navbar-nav.nav-flex-icons {
+        position: absolute;
+        top: 30%;
+        right: 0;
+      }
+      .navbar-nav {
+        position: absolute;
+        top: 30%;
+        margin-left: 88px;
+      }
+      .navbar-brand>img {
+        margin-top: -2px;
+        padding-right: 16px;
+      }
+    }
+    .navbar-toggler {
+      position: absolute;
+      margin-top: -40px;
+      right: 0;
+    }
+  }
+  .intro-non-fixed-nav>links {
+    @media all and (min-width: 992px) {
+      .navbar-collapse {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+      }
+    }
+  }
+  .intro-fixed-nav {
+    @media all and (min-width: 992px) {
+      .navbar-nav.nav-flex-icons {
+        position: absolute;
+        top: 30%;
+        right: 0;
+      }
+      .navbar-nav {
+        position: absolute;
+        top: 30%;
+        margin-left: 88px;
+      }
+      .navbar-brand {
+        img {
+          margin-top: -2px;
+          padding-right: 16px;
+        }
+      }
+    }
+    .navbar-toggler {
+      position: absolute;
+      margin-top: -40px;
+      right: 0;
+    }
+  }
+}
+
+// Fix for situation when in Chrome, dropdown button got default browser styling
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: none;
+}

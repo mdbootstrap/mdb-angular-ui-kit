@@ -16,8 +16,8 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # Version:
-- Angular CLI 1.5.0 - 6.0.0-rc.5
-- Angular 5.0.0 - 6.0.0-rc.5
+- Angular CLI 1.5.0 - 6.0.2
+- Angular 5.0.0 - 6.0.2
 
 # Quick start
 - Clone following repo:  
@@ -70,16 +70,7 @@ rename /src/styles.css to styles.scss
 - install external libs
 ```bash
 npm install -–save chart.js@2.5.0 font-awesome hammerjs
-```
-- add following into tsconfig.json file located in *root* folder 
-```javascript
-"include": ["node_modules/angular-bootstrap-md/**/*.ts",  "src/**/*.ts"],
-```  
-
-(note: there is also tsconfig.app.json file inside src folder, however if you want to use it, path should be different)
-```javascript
-"include": [ "**/*.ts", "../node_modules/angular-bootstrap-md/index.ts" ]
-```
+``` 
 
 ### Run server
 ```bash
@@ -121,7 +112,7 @@ Writing you code with pure Angular is now quicker, easier, and cleaner.
 **TypeScript**  
 Superset of JavaScript that compiles to clean JavaScript output.  
 
-**Angular 2, version 6.0.0-rc.5**  
+**Angular 6**  
 Create smarter and faster Angular apps with the latest official Angular release.  
 
 **Cross-browser compatibility**  

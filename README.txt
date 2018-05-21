@@ -1,6 +1,27 @@
 Material Design for Bootstrap - Angular
 
-Version: MDB - Angular 6.0.2
+Version: MDB - Angular 6.1.0
+
+# Available commands
+
+* npm run build:lib - building library,
+* npm run pack - copying assets and packaging /dist directory into .tgz archive
+* npm run version - adjusting src/package.json version from main package.json file,
+* npm run compile - Executing above commands with correct sequence.
+
+# Modules list
+
+* ButtonsModule,
+* CarouselModule,
+* ChartsModule,
+* CollapseModule,
+* InputsModule,
+* ModalModule,
+* NavbarModule,
+* PopoverModule,
+* TooltipModule,
+* WavesModule,
+* MDBBootstrapModule - contains every MDB modules.
 
 Documentation:
 http://mdbootstrap.com/angular/

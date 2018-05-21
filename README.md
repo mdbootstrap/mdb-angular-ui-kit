@@ -16,8 +16,8 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # Version:
-- Angular CLI 1.5.0 - 6.0.0-rc.5
-- Angular 5.0.0 - 6.0.0-rc.5
+- Angular CLI 1.5.0 - 6.0.2
+- Angular 5.0.0 - 6.0.2
 
 # Quick start
 - Clone following repo:  
@@ -30,6 +30,27 @@ note "." at the end. It will clone files directly into current folder.
 - Voilà! Open browser and visit http://localhost:4200 
 
 Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.
+
+# Available commands
+
+* npm run build:lib - building library,
+* npm run pack - copying assets and packaging /dist directory into .tgz archive
+* npm run version - adjusting src/package.json version from main package.json file,
+* npm run compile - Executing above commands with correct sequence.
+
+# Modules list
+
+* ButtonsModule,
+* CarouselModule,
+* ChartsModule,
+* CollapseModule,
+* InputsModule,
+* ModalModule,
+* NavbarModule,
+* PopoverModule,
+* TooltipModule,
+* WavesModule,
+* MDBBootstrapModule - contains every MDB modules.
 
 # How to install MDB via npm:
 - create new project `ng new project_name --style=scss`
@@ -70,15 +91,6 @@ rename /src/styles.css to styles.scss
 - install external libs
 ```bash
 npm install -–save chart.js@2.5.0 font-awesome hammerjs
-```
-- add following into tsconfig.json file located in *root* folder 
-```javascript
-"include": ["node_modules/angular-bootstrap-md/**/*.ts",  "src/**/*.ts"],
-```  
-
-(note: there is also tsconfig.app.json file inside src folder, however if you want to use it, path should be different)
-```javascript
-"include": [ "**/*.ts", "../node_modules/angular-bootstrap-md/index.ts" ]
 ```
 
 ### Run server
@@ -121,7 +133,7 @@ Writing you code with pure Angular is now quicker, easier, and cleaner.
 **TypeScript**  
 Superset of JavaScript that compiles to clean JavaScript output.  
 
-**Angular 2, version 6.0.0-rc.5**  
+**Angular 6**  
 Create smarter and faster Angular apps with the latest official Angular release.  
 
 **Cross-browser compatibility**  
