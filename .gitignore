@@ -4,6 +4,9 @@
 # dependencies
 /node_modules
 
+#dist
+/dist
+
 #library packages
 dist/angular-bootstrap-md-6.*
 
