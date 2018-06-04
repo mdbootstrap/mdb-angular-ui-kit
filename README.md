@@ -1,10 +1,10 @@
-[![Angular-Bootstrap-with-Material-Design](https://mdbootstrap.com/img/Marketing/products/social/angular/mdb-angular-free.jpg)](https://mdbootstrap.com/angular/)
+[![Angular-Bootstrap-with-Material-Design](https://mdbootstrap.com/img/Marketing/free/main/angular/mdb-angular-free.jpg)](https://mdbootstrap.com/angular/)
 
 # Angular Bootstrap with Material Design
 
 [![npm version](https://badge.fury.io/js/angular-bootstrap-md.svg)](https://badge.fury.io/js/angular-bootstrap-md)
 
-Built with Angular 5, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
+Built with Angular 6, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
 
 400+ material UI elements, 600+ material icons, 74 CSS animations, TypeScript modules, SASS files and many more.
 
@@ -16,8 +16,8 @@ __________
 **Main demo**: https://mdbootstrap.com/angular/components/
 
 # Version:
-- Angular CLI 1.5.0 - 6.0.2
-- Angular 5.0.0 - 6.0.2
+- Angular CLI 6
+- Angular 6
 
 # Quick start
 - Clone following repo:  
@@ -78,14 +78,14 @@ rename /src/styles.css to styles.scss
 - add below lines to angular-cli.json: 
 ```javascript
 "styles": [
-    "../node_modules/font-awesome/scss/font-awesome.scss",
-    "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-    "../node_modules/angular-bootstrap-md/scss/mdb-free.scss",
-    "./styles.scss"
+    "node_modules/font-awesome/scss/font-awesome.scss",
+    "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+    "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+    "src/styles.scss"
 ],
 "scripts": [
-  "../node_modules/chart.js/dist/Chart.js",
-  "../node_modules/hammerjs/hammer.min.js"
+  "node_modules/chart.js/dist/Chart.js",
+  "node_modules/hammerjs/hammer.min.js"
 ],
 ```
 - install external libs

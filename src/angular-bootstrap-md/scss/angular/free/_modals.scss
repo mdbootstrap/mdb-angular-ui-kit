@@ -41,7 +41,8 @@ body {
             &.modal-right {
                 right: 0;
             }
-            &.modal-bottom {
+            &.modal-bottom > .modal-content {
+                position: absolute;
                 bottom: 0;
             }
             &.modal-top-left {
@@ -166,7 +167,7 @@ body {
             bottom:auto;
         }
         &.modal-bottom {
-            top:auto;
+            bottom: 0;
         }
         .modal-content {
             width:100%;
