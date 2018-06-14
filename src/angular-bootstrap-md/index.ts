@@ -1,9 +1,7 @@
 // free
 import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { DeepModule } from './inputs/deep.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { RippleModule } from './ripple/ripple.module';
-import { ActiveModule } from './inputs/active.module';
 import { InputsModule} from './inputs/inputs.module';
 import { NavbarModule } from './navbars/navbar.module';
 import { DropdownModule } from './dropdown/dropdown.module';
@@ -14,6 +12,7 @@ import { ModalModule } from './modals/modal.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { PopoverModule } from './popover/popover.module';
 import { WavesModule } from './waves/waves.module';
+import { IconsModule } from './icons/icon.module';
 
 export {
   ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective
@@ -28,15 +27,7 @@ export {
 } from './waves/index';
 
 export {
-  DeepModule, DeepDirective
-} from './inputs/index';
-
-export {
   InputsModule, MdbInputDirective
-} from './inputs/index';
-
-export {
-  ActiveModule, ActiveDirective, InputValidateDirective
 } from './inputs/index';
 
 export {
@@ -73,15 +64,17 @@ export {
   PopoverConfig, PopoverContainerComponent, PopoverModule, PopoverDirective
 } from './popover/index';
 
+export {
+  IconsModule, MdbIconComponent
+} from './icons/index';
+
 
 
 const MODULES = [
-  DeepModule,
   ButtonsModule,
   RippleModule,
   WavesModule,
   InputsModule,
-  ActiveModule,
   NavbarModule,
   DropdownModule,
   CarouselModule,
@@ -90,16 +83,15 @@ const MODULES = [
   ModalModule,
   TooltipModule,
   PopoverModule,
+  IconsModule
 ];
 
 @NgModule({
   imports: [
     ButtonsModule,
-    DeepModule,
     RippleModule.forRoot(),
     WavesModule.forRoot(),
     InputsModule.forRoot(),
-    ActiveModule.forRoot(),
     NavbarModule,
     DropdownModule.forRoot(),
     CarouselModule.forRoot(),
@@ -108,6 +100,7 @@ const MODULES = [
     ModalModule.forRoot(),
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
+    IconsModule
   ],
   exports: MODULES,
   schemas: [NO_ERRORS_SCHEMA]

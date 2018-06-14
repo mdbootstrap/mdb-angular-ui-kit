@@ -1,4 +1,34 @@
-6.1.0
+6.1.3
+*** New Features: ***
+    * Icons are now component. <mdb-icon> supports only Font Awesome icons. Available field: icon (icon class), size (icon size), class (custom class for example color),
+    * Number input now listens for key events. Added functionality to increment / decrement it's value by 10 or 0.1 by using shift + up / down arrow or alt + up / down arrow keys. Available by using mdbInputDirective.
+
+
+*** Fixes: ***
+    * Fixed problems with Carousel when using Angular Universal,
+    * mdbInputDirective validation has ben rewritten. Now works with Angular Validators,
+    * Fixed problem with no backdrop in sidenav on mobile,
+    * Fixed problem with sidenavBreakpoint
+
+
+6.1.2
+*** Admin Templates: ***
+We have provided users with the option to make their own changes to the source code and compile the library into JavaScript.
+
+*** New Features: ***
+    * Added possibility to use .filled-in class in Multiple Select by using customClass=" 'filled-in' " field,
+    * Added possibility to set custom sidenav breakpoint by using sidenavBreakpoint="desired-value" control on mdb-sidenav element,
+    * Added option to define custom locale for datePicker without modifying datepickerLocale.service source file,
+    
+*** Fixes: ***
+    * Fixed problem with fluid modal-bottom,
+    * Fixed problem with modal height while using datepicker in modal,
+    * Fixed label lifting-up in Autocomplete,
+    * Fixed problem with Material Dropdowns and dropup, dropleft, dropright variations,
+    * Rewriten Material Select animation.
+
+
+6.1.1
 *** NOTE: ***
 You may need to rename the modules you are using in your application. The list of modified modules is presented below.
 
