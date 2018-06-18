@@ -1,4 +1,3 @@
-
 import { isPlatformBrowser } from '@angular/common';
 import {
     Directive,
@@ -10,224 +9,59 @@ import {
     PLATFORM_ID,
     Inject,
     AfterViewChecked,
-    OnInit
+    OnInit,
+    OnDestroy
 } from '@angular/core';
 
 @Directive({
     selector: '[mdbInputDirective]'
 })
-export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewInit {
-
-    @Input('mdbInputDirective') mdbInputDirective: MdbInputDirective;
-    @Input('placeholder') public placeholder: string;
-    @Input('minLength') public minLength: string = '0';
-    @Input('maxLength') public maxLength: string = '524288';
-    @Input('customRegex') customRegex: any;
-    @Input('mdbValidate') mdbValidate: boolean = true;
-    @Input('focusCheckbox') focusCheckbox: boolean = true;
-    @Input('focusRadio') focusRadio: boolean = true;
-
-    isBrowser: any = false;
-    isClicked: boolean = false;
-
+export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewInit, OnDestroy {
     public wrongTextContainer: any;
     public rightTextContainer: any;
     public el: ElementRef | any = null;
     public elLabel: ElementRef | any = null;
     public elIcon: Element | any = null;
+    private changes: MutationObserver;
+    @Input('mdbInputDirective') mdbInputDirective: MdbInputDirective;
+    @Input('placeholder') public placeholder: string;
+    @Input('customRegex') customRegex: any;
+    @Input('mdbValidate') mdbValidate = true;
+    @Input('focusCheckbox') focusCheckbox = true;
+    @Input('focusRadio') focusRadio = true;
 
+    isBrowser: any = false;
+    isClicked = false;
+
+    constructor(private _elRef: ElementRef, private _renderer: Renderer2, @Inject(PLATFORM_ID) platformId: string) {
+        this.el = _elRef;
+        this.isBrowser = isPlatformBrowser(platformId);
+    }
+    ngOnDestroy() {
+        this.changes.disconnect();
+    }
 
     @HostListener('focus') onfocus() {
+
         try {
-            this.renderer.addClass(this.elLabel, 'active');
+            this._renderer.addClass(this.elLabel, 'active');
             this.isClicked = true;
         } catch (error) {
 
         }
     }
 
-    @HostListener('blur') onBlur() {
+    @HostListener('blur') onblur() {
         try {
             if (this.el.nativeElement.value === '') {
-                this.renderer.removeClass(this.elLabel, 'active');
+                this._renderer.removeClass(this.elLabel, 'active');
             }
             this.isClicked = false;
         } catch (error) {
 
         }
 
-
-        try {
-            // Validation:
-            if (this.mdbValidate) {
-                const inputType = this.el.nativeElement.type;
-
-                if (inputType === 'email') {
-                    if (this.customRegex) {
-                        const re = new RegExp(this.el.nativeElement.getAttribute('customRegex'));
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                            /*tslint:disable:max-line-length*/
-                        } else if (re.test(this.el.nativeElement.value) && this.el.nativeElement.value.length >= this.minLength && this.el.nativeElement.value.length <= this.maxLength) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                        } else if (!re.test(this.el.nativeElement.value) || this.el.nativeElement.value.length < this.minLength || this.el.nativeElement.value.length > this.maxLength) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                        }
-
-                    } else if (!this.customRegex) {
-                        /*tslint:disable:max-line-length*/
-                        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        } else if (re.test(this.el.nativeElement.value) && this.el.nativeElement.value.length >= this.minLength && this.el.nativeElement.value.length <= this.maxLength) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                        } else if (!re.test(this.el.nativeElement.value) || this.el.nativeElement.value.length < this.minLength || this.el.nativeElement.value.length > this.maxLength) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                        }
-                    }
-
-
-                } else if (inputType === 'password') {
-                    if (this.customRegex) {
-                        const re = new RegExp(this.el.nativeElement.getAttribute('customRegex'));
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                            // tslint:disable-next-line:max-line-length
-                        } else if (this.el.nativeElement.value.match(re) && this.el.nativeElement.value.length >= this.minLength && this.el.nativeElement.value.length <= this.maxLength) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                            // tslint:disable-next-line:max-line-length
-                        } else if (!this.el.nativeElement.value.match(re) || this.el.nativeElement.value.length < this.minLength || this.el.nativeElement.value.length > this.maxLength) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    } else if (!this.customRegex) {
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                            // tslint:disable-next-line:max-line-length
-                        } else if (this.el.nativeElement.value.match(/^(?=(.*\d){1})(.*\S)(?=.*[a-zA-Z\S])[0-9a-zA-Z\S]/g) && this.el.nativeElement.value.length >= this.minLength && this.el.nativeElement.value.length <= this.maxLength) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                            // tslint:disable-next-line:max-line-length
-                        } else if (!this.el.nativeElement.value.match(/^(?=(.*\d){1})(.*\S)(?=.*[a-zA-Z\S])[0-9a-zA-Z\S]/g) || this.el.nativeElement.value.length < this.minLength || this.el.nativeElement.value.length > this.maxLength) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    }
-
-                } else if (inputType === 'text') {
-                    if (this.customRegex) {
-                        const re = new RegExp(this.el.nativeElement.getAttribute('customRegex'));
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                            // tslint:disable-next-line:max-line-length
-                        } else if (this.el.nativeElement.value.match(re) && this.el.nativeElement.value.length >= this.minLength && this.el.nativeElement.value.length <= this.maxLength) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                            // tslint:disable-next-line:max-line-length
-                        } else if (!this.el.nativeElement.value.match(re) || this.el.nativeElement.value.length < this.minLength || this.el.nativeElement.value.length > this.maxLength) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    } else if (!this.customRegex) {
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                            // tslint:disable-next-line:max-line-length
-                        } else if (this.el.nativeElement.value.match(/^[a-zA-Z0-9]+$/g) && this.el.nativeElement.value.length >= this.minLength && this.el.nativeElement.value.length <= this.maxLength) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                            // tslint:disable-next-line:max-line-length
-                        } else if (!this.el.nativeElement.value.match(/^[a-zA-Z0-9]+$/g) || this.el.nativeElement.value.length < this.minLength || this.el.nativeElement.value.length > this.maxLength) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    }
-
-                } else if (inputType === 'submit') {
-                    for (let i = 0; i < this.el.nativeElement.parentElement.length; i++) {
-                        if (this.el.nativeElement.parentElement[i].value == null || this.el.nativeElement.parentElement[i].value === '') {
-                            this.renderer.addClass(this.el.nativeElement.parentElement[i], 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement.parentElement[i], 'counter-success');
-
-                        } else if (!this.el.nativeElement.parentElement[i].value == null) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    }
-
-                } else if (inputType === 'tel') {
-                    if (this.customRegex) {
-                        const re = new RegExp(this.el.nativeElement.getAttribute('customRegex'));
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        } else if (re.test(this.el.nativeElement.value) && this.el.nativeElement.value.length >= 8 && this.el.nativeElement.value.length <= 20) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                        } else if (!re.test(this.el.nativeElement.value) || this.el.nativeElement.value.length > 20) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    } else if (!this.customRegex) {
-                        const re = /^(1[ \-\+]{0,3}|\+1[ -\+]{0,3}|\+1|\+)?((\(\+?1-[2-9][0-9]{1,2}\))|(\(\+?[2-8][0-9][0-9]\))|(\(\+?[1-9][0-9]\))|(\(\+?[17]\))|(\([2-9][2-9]\))|([ \-\.]{0,3}[0-9]{2,4}))?([ \-\.][0-9])?([ \-\.]{0,3}[0-9]{2,4}){2,3}$/;
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        } else if (re.test(this.el.nativeElement.value) && this.el.nativeElement.value.length >= 8 && this.el.nativeElement.value.length <= 20) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                        } else if (!re.test(this.el.nativeElement.value) || this.el.nativeElement.value.length > 20) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    }
-
-
-                } else if (inputType === 'number') {
-                    if (this.customRegex) {
-                        const re = new RegExp(this.el.nativeElement.getAttribute('customRegex'));
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        } else if (re.test(this.el.nativeElement.value) && this.el.nativeElement.value.length > 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                        } else if (!re.test(this.el.nativeElement.value) || this.el.nativeElement.value.length < 1) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    } else if (!this.customRegex) {
-                        const re = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:(\.|,)\d+)?$/;
-                        if (this.el.nativeElement.length === 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        } else if (re.test(this.el.nativeElement.value) && this.el.nativeElement.value.length > 0) {
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.addClass(this.el.nativeElement, 'counter-success');
-                        } else if (!re.test(this.el.nativeElement.value) || this.el.nativeElement.value.length < 1) {
-                            this.renderer.addClass(this.el.nativeElement, 'counter-danger');
-                            this.renderer.removeClass(this.el.nativeElement, 'counter-success');
-                        }
-                    }
-                }
-            }
-        } catch (error) {
-
-        }
-
-
     }
-
 
     @HostListener('change') onchange() {
         try {
@@ -237,44 +71,90 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
         }
     }
 
-
-    constructor(el: ElementRef, private renderer: Renderer2, @Inject(PLATFORM_ID) platformId: string) {
-        this.el = el;
-        this.isBrowser = isPlatformBrowser(platformId);
+    @HostListener('keydown', ['$event']) onkeydown(event: any) {
+        try {
+            if (event.target.type === 'number') {
+                if (event.shiftKey) {
+                    switch (event.keyCode) {
+                        case 38:
+                            event.target.value = +event.target.value + 10;
+                            break;
+                        case 40:
+                            event.target.value = +event.target.value - 10;
+                            break;
+                    }
+                }
+                if (event.altKey) {
+                    switch (event.keyCode) {
+                        case 38:
+                            event.target.value = +event.target.value + 0.1;
+                            break;
+                        case 40:
+                            event.target.value = +event.target.value - 0.1;
+                            break;
+                    }
+                }
+            }
+        } catch (error) { }
     }
 
     ngOnInit() {
         if (this.mdbValidate) {
             // Inititalise a new <span> wrong/right elements and render it below the host component.
-            // this.wrongTextContainer = this.renderer.createElement(this.el.nativeElement.parentElement, 'span');
-            this.wrongTextContainer = this.renderer.createElement('span');
-            this.renderer.addClass(this.wrongTextContainer, 'inputVal');
-            this.renderer.addClass(this.wrongTextContainer, 'text-danger');
-            this.renderer.appendChild(this.el.nativeElement.parentElement, this.wrongTextContainer);
-            const textWrong = this.el.nativeElement.getAttribute('data-error');
+            // this.wrongTextContainer = this._renderer.createElement(this.el.nativeElement.parentElement, 'span');
+            this.wrongTextContainer = this._renderer.createElement('span');
+            this._renderer.addClass(this.wrongTextContainer, 'inputVal');
+            this._renderer.addClass(this.wrongTextContainer, 'text-danger');
+            this._renderer.appendChild(this._elRef.nativeElement.parentElement, this.wrongTextContainer);
+            const textWrong = this._elRef.nativeElement.getAttribute('data-error');
             this.wrongTextContainer.innerHTML = (textWrong ? textWrong : 'wrong');
-            this.renderer.setStyle(this.wrongTextContainer, 'visibility', 'hidden');
+            this._renderer.setStyle(this.wrongTextContainer, 'visibility', 'hidden');
 
-            // this.rightTextContainer = this.renderer.createElement(this.el.nativeElement.parentElement, 'span');
-            this.rightTextContainer = this.renderer.createElement('span');
-            this.renderer.addClass(this.rightTextContainer, 'inputVal');
-            this.renderer.addClass(this.rightTextContainer, 'text-success');
-            this.renderer.appendChild(this.el.nativeElement.parentElement, this.rightTextContainer);
-            const textSuccess = this.el.nativeElement.getAttribute('data-success');
+            // this.rightTextContainer = this._renderer.createElement(this.el.nativeElement.parentElement, 'span');
+            this.rightTextContainer = this._renderer.createElement('span');
+            this._renderer.addClass(this.rightTextContainer, 'inputVal');
+            this._renderer.addClass(this.rightTextContainer, 'text-success');
+            this._renderer.appendChild(this._elRef.nativeElement.parentElement, this.rightTextContainer);
+            const textSuccess = this._elRef.nativeElement.getAttribute('data-success');
             this.rightTextContainer.innerHTML = (textSuccess ? textSuccess : 'success');
-            this.renderer.setStyle(this.rightTextContainer, 'visibility', 'hidden');
-        }
+            this._renderer.setStyle(this.rightTextContainer, 'visibility', 'hidden');
 
+            this.changes = new MutationObserver((mutations: MutationRecord[]) => {
+                mutations.forEach((mutation: MutationRecord | any) => {
+                    if (<DOMTokenList>mutation.target['classList'].contains('ng-touched') &&
+                        <DOMTokenList>mutation.target['classList'].contains('ng-invalid') &&
+                        !<DOMTokenList>mutation.target['classList'].contains('counter-danger')) {
+                        this._renderer.addClass(this._elRef.nativeElement, 'counter-danger');
+                        this._renderer.removeClass(this._elRef.nativeElement, 'counter-success');
+                        this._renderer.setStyle(this.rightTextContainer, 'visibility', 'hidden');
+                        this._renderer.setStyle(this.wrongTextContainer, 'visibility', 'visible');
+                        this._renderer.setStyle(this.rightTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
+                        this._renderer.setStyle(this.wrongTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
+                    } else if (<DOMTokenList>mutation.target['classList'].contains('ng-touched') &&
+                        <DOMTokenList>mutation.target['classList'].contains('ng-valid') &&
+                        !<DOMTokenList>mutation.target['classList'].contains('counter-success')) {
+                        this._renderer.removeClass(this._elRef.nativeElement, 'counter-danger');
+                        this._renderer.addClass(this._elRef.nativeElement, 'counter-success');
+                        this._renderer.setStyle(this.rightTextContainer, 'visibility', 'visible');
+                        this._renderer.setStyle(this.wrongTextContainer, 'visibility', 'hidden');
+                        this._renderer.setStyle(this.rightTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
+                        this._renderer.setStyle(this.wrongTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
+                    }
+                });
+            });
+            this.changes.observe(this._elRef.nativeElement, {
+                attributes: true,
+            });
+        }
     }
 
     ngAfterViewInit() {
         const type = this.el.nativeElement.type;
         if (this.focusCheckbox && type === 'checkbox') {
-            this.renderer.addClass(this.el.nativeElement, 'onFocusSelect');
+            this._renderer.addClass(this.el.nativeElement, 'onFocusSelect');
         }
-
         if (this.focusRadio && type === 'radio') {
-            this.renderer.addClass(this.el.nativeElement, 'onFocusSelect');
+            this._renderer.addClass(this.el.nativeElement, 'onFocusSelect');
         }
     }
 
@@ -283,7 +163,7 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
         this.checkValue();
         // tslint:disable-next-line:max-line-length
         if (this.el.nativeElement.tagName === 'MDB-COMPLETER' && this.el.nativeElement.getAttribute('ng-reflect-model') == null && !this.isClicked) {
-            this.renderer.removeClass(this.elLabel, 'active');
+            this._renderer.removeClass(this.elLabel, 'active');
         }
     }
 
@@ -301,38 +181,36 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
 
             this.elLabel = inputP.querySelector('label[for="' + inputId + '"]') || inputP.querySelector('label');
             if (this.elLabel && this.el.nativeElement.value !== '') {
-                this.renderer.addClass(this.elLabel, 'active');
+                this._renderer.addClass(this.elLabel, 'active');
             }
-
             this.elIcon = inputP.querySelector('i') || false;
 
             if (this.elIcon) {
-                this.renderer.addClass(this.elIcon, 'active');
+                this._renderer.addClass(this.elIcon, 'active');
             }
         }
     }
-
-
 
     private checkValue(): void {
         let value = '';
         if (this.elLabel != null) {
             value = this.el.nativeElement.value || '';
             if (value === '') {
-                this.renderer.removeClass(this.elLabel, 'active');
+                this._renderer.removeClass(this.elLabel, 'active');
                 if (this.elIcon) {
-                    this.renderer.removeClass(this.elIcon, 'active');
+                    this._renderer.removeClass(this.elIcon, 'active');
                 }
                 // tslint:disable-next-line:max-line-length
             } if (value === '' && this.isClicked ||
                 value === '' && this.el.nativeElement.placeholder ||
                 value === '' && this.el.nativeElement.attributes.placeholder
             ) {
-                this.renderer.addClass(this.elLabel, 'active');
+                this._renderer.addClass(this.elLabel, 'active');
             }
             if (this.el.nativeElement.getAttribute('ng-reflect-model') != null) {
+                // tslint:disable-next-line:max-line-length
                 if (this.el.nativeElement.tagName === 'MDB-COMPLETER' && this.el.nativeElement.getAttribute('ng-reflect-model').length !== 0) {
-                    this.renderer.addClass(this.elLabel, 'active');
+                    this._renderer.addClass(this.elLabel, 'active');
                 }
             }
         }
