@@ -118,21 +118,24 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
             const textSuccess = this._elRef.nativeElement.getAttribute('data-success');
             this.rightTextContainer.innerHTML = (textSuccess ? textSuccess : 'success');
             this._renderer.setStyle(this.rightTextContainer, 'visibility', 'hidden');
-
-            this.changes = new MutationObserver((mutations: MutationRecord[]) => {
-                mutations.forEach((mutation: MutationRecord | any) => {
-                    if (<DOMTokenList>mutation.target['classList'].contains('ng-touched') &&
-                        <DOMTokenList>mutation.target['classList'].contains('ng-invalid') &&
-                        !<DOMTokenList>mutation.target['classList'].contains('counter-danger')) {
+        }
+        this.changes = new MutationObserver((mutations: MutationRecord[]) => {
+            mutations.forEach((mutation: MutationRecord | any) => {
+                if (<DOMTokenList>mutation.target['classList'].contains('ng-touched') &&
+                    <DOMTokenList>mutation.target['classList'].contains('ng-invalid') &&
+                    !<DOMTokenList>mutation.target['classList'].contains('counter-danger')) {
+                    if (this.mdbValidate) {
                         this._renderer.addClass(this._elRef.nativeElement, 'counter-danger');
                         this._renderer.removeClass(this._elRef.nativeElement, 'counter-success');
                         this._renderer.setStyle(this.rightTextContainer, 'visibility', 'hidden');
                         this._renderer.setStyle(this.wrongTextContainer, 'visibility', 'visible');
                         this._renderer.setStyle(this.rightTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
                         this._renderer.setStyle(this.wrongTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
-                    } else if (<DOMTokenList>mutation.target['classList'].contains('ng-touched') &&
-                        <DOMTokenList>mutation.target['classList'].contains('ng-valid') &&
-                        !<DOMTokenList>mutation.target['classList'].contains('counter-success')) {
+                    }
+                } else if (<DOMTokenList>mutation.target['classList'].contains('ng-touched') &&
+                    <DOMTokenList>mutation.target['classList'].contains('ng-valid') &&
+                    !<DOMTokenList>mutation.target['classList'].contains('counter-success')) {
+                    if (this.mdbValidate) {
                         this._renderer.removeClass(this._elRef.nativeElement, 'counter-danger');
                         this._renderer.addClass(this._elRef.nativeElement, 'counter-success');
                         this._renderer.setStyle(this.rightTextContainer, 'visibility', 'visible');
@@ -140,12 +143,12 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
                         this._renderer.setStyle(this.rightTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
                         this._renderer.setStyle(this.wrongTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
                     }
-                });
+                }
             });
-            this.changes.observe(this._elRef.nativeElement, {
-                attributes: true,
-            });
-        }
+        });
+        this.changes.observe(this._elRef.nativeElement, {
+            attributes: true,
+        });
     }
 
     ngAfterViewInit() {
