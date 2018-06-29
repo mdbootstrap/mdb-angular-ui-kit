@@ -35,7 +35,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   @HostListener('click', ['$event'])
   public onClick(event?: any): void {
     try {
-      this.el.nativeElement.parentElement.childNodes.forEach(element => {
+      this.el.nativeElement.parentElement.childNodes.forEach((element: any) => {
         this.radioElementsArray.push(element);
       });
       this.radioElementsArray.forEach(element => {

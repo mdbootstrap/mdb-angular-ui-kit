@@ -1,5 +1,16 @@
 
-import { Component, Input, OnDestroy, Output, EventEmitter, ElementRef, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  ElementRef,
+  HostListener,
+  Inject,
+  PLATFORM_ID,
+  AfterViewInit
+} from '@angular/core';
 
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { LinkedList } from '../utils/linked-list.class';
@@ -17,7 +28,7 @@ export enum Direction { UNKNOWN, NEXT, PREV }
   templateUrl: './carousel.component.html',
 })
 
-export class CarouselComponent implements OnDestroy {
+export class CarouselComponent implements OnDestroy, AfterViewInit {
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
 
   protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
@@ -43,6 +54,7 @@ export class CarouselComponent implements OnDestroy {
   @Input('class') public class: String = '';
   @Input('type') public type: String = '';
   @Input('animation') public animation: String = '';
+  @Input() activeSlideIndex: number;
 
   // protected _currentActiveSlide: number;
   protected _currentActiveSlide: number | any;
@@ -57,9 +69,12 @@ export class CarouselComponent implements OnDestroy {
       this._select(index);
     }
   }
+
   public get activeSlide(): number {
     return this._currentActiveSlide;
   }
+
+
 
   protected _interval: number;
 
@@ -120,6 +135,16 @@ export class CarouselComponent implements OnDestroy {
       this._currentActiveSlide = void 0;
       this.activeSlide = 0;
       this.play();
+    }
+  }
+
+  ngAfterViewInit() {
+    // Setting first visible slide
+    if (this.activeSlideIndex) {
+      setTimeout(() => {
+        this._select(this.activeSlideIndex);
+        this.activeSlideChange.emit({'relatedTarget': this.activeSlide });
+      }, 0);
     }
   }
 
@@ -185,7 +210,9 @@ export class CarouselComponent implements OnDestroy {
     } else {
       this.activeSlide = this.findNextSlideIndex(Direction.NEXT, force);
     }
-
+    if (!this.animation) {
+      this.activeSlideChange.emit({ 'direction': 'Next', 'relatedTarget': this.activeSlide });
+    }
   }
 
   /**
@@ -203,6 +230,9 @@ export class CarouselComponent implements OnDestroy {
     } else {
       this.activeSlide = this.findNextSlideIndex(Direction.PREV, force);
     }
+    if (!this.animation) {
+      this.activeSlideChange.emit({ 'direction': 'Prev', 'relatedTarget': this.activeSlide });
+    }
   }
 
   protected fadeAnimation(goToIndex: number) {
@@ -219,7 +249,7 @@ export class CarouselComponent implements OnDestroy {
           this.animationEnd = true;
 
           this.activeSlide = goToIndex;
-
+          this.activeSlideChange.emit({ 'direction': 'Next', 'relatedTarget': this.activeSlide });
           this.play();
         }, 100);
       }
