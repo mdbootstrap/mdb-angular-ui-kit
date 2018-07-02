@@ -1,6 +1,23 @@
+6.1.5
+*** New Features: ***
+    * Added .md-textarea-auto class which allows textarea to auto resize when would not fit into it. This feature requires mdbInputDirective on textarea,
+    * Added functionality to set first active slide in Carousel.
+
+** Docs: ***
+    * Described Card Reveal Component: https://mdbootstrap.com/angular/components/flipping-cards/,
+    * Described changing opacity of alerts using toastClass option: https://mdbootstrap.com/angular/advanced/alerts/
+    
+*** Fixes: ***
+    * Solved problem in which backdrop in sidenav did not hide after scrolling the page on the mobile,
+    * Fixed problem with rotating Time Picker arrow on mobile,
+    * Fixed problem with (activeSlideChange) event in Carousel Component,
+    * Solved problem with resetting state of validation in forms,
+    * Fixed problem with scaling mdb-simple-chart, and centering text in chart,
+
 6.1.4
 *** Fixes: ***
     * Solved problem with this.changes.disconnect is undefined in mdbInputDirective.
+
 
 6.1.3
 *** New Features: ***
@@ -14,8 +31,9 @@
     * Fixed problem with no backdrop in sidenav on mobile,
     * Fixed problem with sidenavBreakpoint
 
-
 6.1.2
+
+
 *** Admin Templates: ***
 We have provided users with the option to make their own changes to the source code and compile the library into JavaScript.
 
@@ -36,7 +54,7 @@ We have provided users with the option to make their own changes to the source c
 *** NOTE: ***
 You may need to rename the modules you are using in your application. The list of modified modules is presented below.
 
-In 6.1.0 we have made it possible to import only those modules that you actually use in your application.
+In 6.1.1 we have made it possible to import only those modules that you actually use in your application.
 If only individual modules are used, import them but do not import the MDBBootstrapModulesPro main module as this may cause errors.
 
 *** What's new: ***
@@ -72,7 +90,6 @@ If only individual modules are used, import them but do not import the MDBBootst
     Fixed mobile view in DatePicker,
     Fixed problem with scrolling page to the top edge in DatePicker,
      Fixed problem with scrolling page to the top edge in TimePicker.
-
 
 6.0.1
 *** Fixes: ***
