@@ -169,19 +169,19 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
                             this._renderer.setStyle(this.wrongTextContainer, 'top', this._elRef.nativeElement.offsetHeight + 'px');
                         }
                     }
-                    if (<DOMTokenList>mutation.target['classList'].contains('ng-pristine') &&
-                        <DOMTokenList>mutation.target['classList'].contains('ng-invalid')) {
-                        mutation.target.offsetParent.childNodes.forEach((element: any) => {
-                            if (element.classList.contains('text-danger') || element.classList.contains('text-success')) {
-                                this._renderer.setStyle(element, 'visibility', 'hidden');
-                            }
-                        });
-                        if (<DOMTokenList>mutation.target['classList'].contains('counter-danger')) {
-                            this._renderer.removeClass(this._elRef.nativeElement, 'counter-danger')
-                        } else if (<DOMTokenList>mutation.target['classList'].contains('counter-success')) {
-                            this._renderer.removeClass(this._elRef.nativeElement, 'counter-success')
-                        }
-                    }
+                    // if (<DOMTokenList>mutation.target['classList'].contains('ng-pristine') &&
+                    //     <DOMTokenList>mutation.target['classList'].contains('ng-invalid')) {
+                    //     mutation.target.offsetParent.childNodes.forEach((element: any) => {
+                    //         if (element.classList.contains('text-danger') || element.classList.contains('text-success')) {
+                    //             this._renderer.setStyle(element, 'visibility', 'hidden');
+                    //         }
+                    //     });
+                    //     if (<DOMTokenList>mutation.target['classList'].contains('counter-danger')) {
+                    //         this._renderer.removeClass(this._elRef.nativeElement, 'counter-danger')
+                    //     } else if (<DOMTokenList>mutation.target['classList'].contains('counter-success')) {
+                    //         this._renderer.removeClass(this._elRef.nativeElement, 'counter-success')
+                    //     }
+                    // }
                 });
             });
             this.changes.observe(this._elRef.nativeElement, {
