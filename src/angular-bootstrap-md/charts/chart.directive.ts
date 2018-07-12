@@ -15,7 +15,7 @@ import { Colors } from './colors.service';
 
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Inject } from '@angular/core';
-declare var Chart: any;
+import Chart from 'chart.js';
 
 @Directive({ selector: 'canvas[mdbChart]', exportAs: 'mdb-base-chart' })
 export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors {
@@ -73,7 +73,7 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
   public ngOnChanges(changes: SimpleChanges): void {
     if (this.initFlag) {
       // Check if the changes are in the data or datasets
-      if (changes.hasOwnProperty('data') || changes.hasOwnProperty('datasets')) {
+      if ((changes.hasOwnProperty('data') || changes.hasOwnProperty('datasets')) && !changes.hasOwnProperty('labels')) {
         if (changes['data']) {
           this.updateChartData(changes['data'].currentValue);
         } else {

@@ -49,7 +49,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (typeof value === 'boolean') {
       this._state.autoClose = value;
     }
-  };
+  }
 
   get autoClose(): boolean {
     return this._state.autoClose;
@@ -183,7 +183,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     // material and dropup dropdown animation
-    //const parent = this._elementRef.nativeElement.classList;
+    // const parent = this._elementRef.nativeElement.classList;
     const container = this._elementRef.nativeElement.lastElementChild;
 
     setTimeout(() => { container.classList.add('fadeInDropdown'); }, 200);

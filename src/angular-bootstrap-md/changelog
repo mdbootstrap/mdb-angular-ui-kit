@@ -1,3 +1,34 @@
+6.2.0
+*** MDB Angular Admin Templates: *** 
+    * Resolved problem with not working hamburger menu in Admin Dashboard Free,
+    * Fixed problems with cards styling in Admin Dashboard Pro.
+
+*** Fixes: *** 
+
+    * Fixed a problem with the inability to update the charts labels together with the data,
+    * Resolved problem with only 1 image in Lightbox Component,
+    * Fixed problem with undefined calls after (ngModelChange) in Material Select component,
+    * Collapse directive won't throw undefined calls after emitting events,
+    * Datepicker date changed from string to javascript Date object,
+    * Fixed problem with unable to listen date changes in Datepicker Component,
+    * Resolved problem with fixed button sliding out from the bottom edge of the screen when it was at the top of the screen,
+    * Fixed simple warnings from ng lint,
+    * Resolved problem with tabs visible on Datepicker plate, 
+
+*** Docs: *** 
+
+    * Described how to close Fixed Button content after click on some of his childs,
+    * Improved documentation of adding translation into Datepicker Component,
+    * Rewrote whole Modals Documentation section,
+    * Described how to open collapse after view init,
+    * Integration with ASP.NET Core moved from 5min-quickstart page to separate ASP.NET page,
+    * On Multiselect page added description how to add initial value to it and how to get value changes,
+    * Described how to update charts appearance dynamically.
+
+6.1.6
+*** Fixes: ***
+    * Fixed problem with freezing browser while validating input
+    
 6.1.5
 *** New Features: ***
     * Added .md-textarea-auto class which allows textarea to auto resize when would not fit into it. This feature requires mdbInputDirective on textarea,

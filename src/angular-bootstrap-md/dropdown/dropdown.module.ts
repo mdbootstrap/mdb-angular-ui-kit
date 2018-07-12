@@ -34,5 +34,5 @@ export class DropdownModule {
       {provide: BsDropdownConfig, useValue: config ? config : {autoClose: true}}
       ]
     };
-  };
+  }
 }

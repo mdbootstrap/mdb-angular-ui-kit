@@ -95,6 +95,8 @@ const rollupGlobals = {
   '@ng-bootstrap/ng-bootstrap/tooltip/tooltip.module': 'ngb.tooltip',
   '@ng-bootstrap/ng-bootstrap/dropdown/dropdown.module': 'ngb.dropdown',
   '@ng-bootstrap/ng-bootstrap/popover/popover.module': 'ngb.popover',
+  'hammerjs': 'hammerjs',
+  'chart.js': 'Chart'
 };
 
 module.exports = rollupGlobals;

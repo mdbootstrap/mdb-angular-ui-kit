@@ -189,7 +189,6 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
             });
         }
     }
-
     ngAfterViewInit() {
         if (this.isBrowser) {
             try {
@@ -210,9 +209,9 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
         this.initComponent();
         this.checkValue();
         // tslint:disable-next-line:max-line-length
-        if (this.el.nativeElement.tagName === 'MDB-COMPLETER' && this.el.nativeElement.getAttribute('ng-reflect-model') == null && !this.isClicked) {
+        /* if (this.el.nativeElement.tagName === 'MDB-COMPLETER' && this.el.nativeElement.getAttribute('ng-reflect-model') == null && !this.isClicked) {
             this._renderer.removeClass(this.elLabel, 'active');
-        }
+        } */
     }
 
     resize() {
@@ -269,9 +268,9 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
             }
             if (this.el.nativeElement.getAttribute('ng-reflect-model') != null) {
                 // tslint:disable-next-line:max-line-length
-                if (this.el.nativeElement.tagName === 'MDB-COMPLETER' && this.el.nativeElement.getAttribute('ng-reflect-model').length !== 0) {
+                /* if (this.el.nativeElement.tagName === 'MDB-COMPLETER' && this.el.nativeElement.getAttribute('ng-reflect-model').length !== 0) {
                     this._renderer.addClass(this.elLabel, 'active');
-                }
+                } */
             }
         }
     }

@@ -3,7 +3,7 @@ import { Component, HostBinding, OnDestroy, Input, OnInit, ElementRef } from '@a
 import { CarouselComponent } from './carousel.component';
 
 @Component({
-  selector: 'mdb-slide',
+  selector: 'mdb-slide, mdb-carousel-item',
   template: `
   <ng-content></ng-content>
   `

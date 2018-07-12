@@ -28,18 +28,18 @@ const BACKDROP_TRANSITION_DURATION = 150;
 /** Mark any code with directive to show it's content in modal */
 @Directive({
   selector: '[mdbModal]',
-  exportAs: 'mdb-modal'
+  exportAs: 'mdb-modal, mdbModal'
 })
 export class ModalDirective implements AfterViewInit, OnDestroy {
   /** allows to set modal configuration via element property */
   @Input()
   // public set config(conf: ModalOptions) {
-    public set config(conf: ModalOptions | any) {
+  public set config(conf: ModalOptions | any) {
     this._config = this.getConfig(conf);
   }
 
   // public get config(): ModalOptions {
-    public get config(): ModalOptions | any {
+  public get config(): ModalOptions | any {
     return this._config;
   }
 
@@ -80,9 +80,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   protected backdrop: ComponentRef<ModalBackdropComponent>;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
   // todo: implement _dialog
-   _dialog: any;
+  _dialog: any;
 
-   isNested = false;
+  isNested = false;
 
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
@@ -199,152 +199,155 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
    *  Show dialog
    *  @internal
    */
-   protected showElement(): void {
-     // todo: replace this with component loader usage
-     if (!this._element.nativeElement.parentNode ||
-       (this._element.nativeElement.parentNode.nodeType !== Node.ELEMENT_NODE)) {
-       // don't move modals dom position
-     if (document && document.body) {
-       document.body.appendChild(this._element.nativeElement);
-     }
-   }
+  protected showElement(): void {
+    // todo: replace this with component loader usage
+    if (!this._element.nativeElement.parentNode ||
+      (this._element.nativeElement.parentNode.nodeType !== Node.ELEMENT_NODE)) {
+      // don't move modals dom position
+      if (document && document.body) {
+        document.body.appendChild(this._element.nativeElement);
+      }
+    }
 
-   this._renderer.setAttribute(this._element.nativeElement, 'aria-hidden', 'false');
-   this._renderer.setStyle(this._element.nativeElement, 'display', 'block');
-   this._renderer.setProperty(this._element.nativeElement, 'scrollTop', 0);
+    this._renderer.setAttribute(this._element.nativeElement, 'aria-hidden', 'false');
+    this._renderer.setStyle(this._element.nativeElement, 'display', 'block');
+    this._renderer.setProperty(this._element.nativeElement, 'scrollTop', 0);
 
-   if (this.isAnimated) {
-     Utils.reflow(this._element.nativeElement);
-   }
+    if (this.isAnimated) {
+      Utils.reflow(this._element.nativeElement);
+    }
 
-   this._renderer.addClass(this._element.nativeElement, ClassName.IN);
-   if (!isBs3()) {
-     this._renderer.addClass(this._element.nativeElement, ClassName.SHOW);
-   }
+    this._renderer.addClass(this._element.nativeElement, ClassName.IN);
+    if (!isBs3()) {
+      this._renderer.addClass(this._element.nativeElement, ClassName.SHOW);
+    }
 
-   const transitionComplete = () => {
-     if (this._config.focus) {
-       this._element.nativeElement.focus();
-     }
-     this.onShown.emit(this);
-   };
+    const transitionComplete = () => {
+      if (this._config.focus) {
+        this._element.nativeElement.focus();
+      }
+      this.onShown.emit(this);
+    };
 
-   if (this.isAnimated) {
-     setTimeout(transitionComplete, TRANSITION_DURATION);
-   } else {
-     transitionComplete();
-   }
- }
+    if (this.isAnimated) {
+      setTimeout(transitionComplete, TRANSITION_DURATION);
+    } else {
+      transitionComplete();
+    }
+  }
 
- /** @internal */
- protected hideModal(): void {
-   this._renderer.setAttribute(this._element.nativeElement, 'aria-hidden', 'true');
-   this._renderer.setStyle(this._element.nativeElement, 'display', 'none');
-   this.showBackdrop(() => {
-     if (!this.isNested) {
-       if (document && document.body) {
-         this._renderer.removeClass(document.body, ClassName.OPEN);
-       }
-       this.resetScrollbar();
-     }
-     this.resetAdjustments();
-     this.focusOtherModal();
-     this.onHidden.emit(this);
-   });
- }
+  /** @internal */
+  protected hideModal(): void {
+    this._renderer.setAttribute(this._element.nativeElement, 'aria-hidden', 'true');
+    this._renderer.setStyle(this._element.nativeElement, 'display', 'none');
+    this.showBackdrop(() => {
+      if (!this.isNested) {
+        if (document && document.body) {
+          this._renderer.removeClass(document.body, ClassName.OPEN);
+        }
+        this.resetScrollbar();
+      }
+      this.resetAdjustments();
+      this.focusOtherModal();
+      this.onHidden.emit(this);
+    });
+  }
 
- // todo: original show was calling a callback when done, but we can use promise
- /** @internal */
- protected showBackdrop(callback?: Function): void {
-   if (this._isShown && this.config.backdrop && (!this.backdrop || !this.backdrop.instance.isShown)) {
-     this.removeBackdrop();
-     this._backdrop
-     .attach(ModalBackdropComponent)
-     .to('body')
-     .show({isAnimated: this.isAnimated});
-     this.backdrop = this._backdrop._componentRef;
+  // todo: original show was calling a callback when done, but we can use promise
+  /** @internal */
+  protected showBackdrop(callback?: Function): void {
+    if (this._isShown && this.config.backdrop && (!this.backdrop || !this.backdrop.instance.isShown)) {
+      this.removeBackdrop();
+      this._backdrop
+        .attach(ModalBackdropComponent)
+        .to('body')
+        .show({ isAnimated: this.isAnimated });
+      this.backdrop = this._backdrop._componentRef;
 
-     if (!callback) {
-       return;
-     }
+      if (!callback) {
+        return;
+      }
 
-     if (!this.isAnimated) {
-       callback();
-       return;
-     }
+      if (!this.isAnimated) {
+        callback();
+        return;
+      }
 
-     setTimeout(callback, BACKDROP_TRANSITION_DURATION);
-   } else if (!this._isShown && this.backdrop) {
-     this.backdrop.instance.isShown = false;
+      setTimeout(callback, BACKDROP_TRANSITION_DURATION);
+    } else if (!this._isShown && this.backdrop) {
+      this.backdrop.instance.isShown = false;
 
-     const callbackRemove = () => {
-       this.removeBackdrop();
-       if (callback) {
-         callback();
-       }
-     };
+      const callbackRemove = () => {
+        this.removeBackdrop();
+        if (callback) {
+          callback();
+        }
+      };
 
-     if (this.backdrop.instance.isAnimated) {
-       this.timerRmBackDrop = setTimeout(callbackRemove, BACKDROP_TRANSITION_DURATION);
-     } else {
-       callbackRemove();
-     }
-   } else if (callback) {
-     callback();
-   }
- }
+      if (this.backdrop.instance.isAnimated) {
+        this.timerRmBackDrop = setTimeout(callbackRemove, BACKDROP_TRANSITION_DURATION);
+      } else {
+        callbackRemove();
+      }
+    } else if (callback) {
+      callback();
+    }
+  }
 
- /** @internal */
- protected removeBackdrop(): void {
-   this._backdrop.hide();
- }
+  /** @internal */
+  protected removeBackdrop(): void {
+    this._backdrop.hide();
+  }
 
 
- protected focusOtherModal() {
-   const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[mdbModal]');
-   if (!otherOpenedModals.length) {
-     return;
-   }
-  //  this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
-  otherOpenedModals[otherOpenedModals.length - 1].nativeElement.focus();
- }
+  protected focusOtherModal() {
+    try {
+      const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[mdbModal]');
+      if (!otherOpenedModals.length) {
+        return;
+      }
+      //  this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
+      otherOpenedModals[otherOpenedModals.length - 1].nativeElement.focus();
+    } catch (error) { }
 
- /** @internal */
- protected resetAdjustments(): void {
-   this._renderer.setStyle(this._element.nativeElement, 'paddingLeft', '');
-   this._renderer.setStyle(this._element.nativeElement, 'paddingRight', '');
- }
+  }
 
- /** Scroll bar tricks */
- /** @internal */
- protected checkScrollbar(): void {
-   this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;
-   this.scrollbarWidth = this.getScrollbarWidth();
- }
+  /** @internal */
+  protected resetAdjustments(): void {
+    this._renderer.setStyle(this._element.nativeElement, 'paddingLeft', '');
+    this._renderer.setStyle(this._element.nativeElement, 'paddingRight', '');
+  }
 
- protected setScrollbar(): void {
-   if (!document) {
-     return;
-   }
+  /** Scroll bar tricks */
+  /** @internal */
+  protected checkScrollbar(): void {
+    this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;
+    this.scrollbarWidth = this.getScrollbarWidth();
+  }
 
-   this.originalBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right') || 0, 10);
+  protected setScrollbar(): void {
+    if (!document) {
+      return;
+    }
 
-   if (this.isBodyOverflowing) {
-     document.body.style.paddingRight = `${this.originalBodyPadding + this.scrollbarWidth}px`;
-   }
- }
+    this.originalBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right') || 0, 10);
 
- protected resetScrollbar(): void {
-   document.body.style.paddingRight = this.originalBodyPadding;
- }
+    if (this.isBodyOverflowing) {
+      document.body.style.paddingRight = `${this.originalBodyPadding + this.scrollbarWidth}px`;
+    }
+  }
 
- // thx d.walsh
- protected getScrollbarWidth(): number {
-   const scrollDiv = this._renderer.createElement('div', void 0);
-   this._renderer.appendChild(document.body, scrollDiv);
-   scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
-   const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-   document.body.removeChild(scrollDiv);
-   return scrollbarWidth;
- }
+  protected resetScrollbar(): void {
+    document.body.style.paddingRight = this.originalBodyPadding;
+  }
+
+  // thx d.walsh
+  protected getScrollbarWidth(): number {
+    const scrollDiv = this._renderer.createElement('div', void 0);
+    this._renderer.appendChild(document.body, scrollDiv);
+    scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
+    const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+    document.body.removeChild(scrollDiv);
+    return scrollbarWidth;
+  }
 }
