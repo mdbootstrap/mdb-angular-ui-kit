@@ -15,7 +15,7 @@ import { Colors } from './colors.service';
 
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Inject } from '@angular/core';
-import Chart from 'chart.js';
+import * as Chart from 'chart.js';
 
 @Directive({ selector: 'canvas[mdbChart]', exportAs: 'mdb-base-chart' })
 export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors {

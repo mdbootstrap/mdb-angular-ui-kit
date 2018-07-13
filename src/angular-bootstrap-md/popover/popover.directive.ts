@@ -18,6 +18,7 @@ import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer2, E
    * Title of a popover.
    */
    @Input() public mdbPopoverHeader: string;
+   @Input() public popoverTitle: string;
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
@@ -83,7 +84,7 @@ import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer2, E
      .show({
        content: this.mdbPopover,
        placement: this.placement,
-       title: this.mdbPopoverHeader
+       title: this.mdbPopoverHeader || this.popoverTitle
      });
      this.isOpen = true;
    }
