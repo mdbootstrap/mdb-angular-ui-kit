@@ -4,7 +4,7 @@ import {
   Directive, ElementRef, EventEmitter, Input, OnInit, Output,
   Renderer2, AfterViewInit, Inject, PLATFORM_ID
 } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
@@ -119,7 +119,7 @@ export class CollapseDirective implements OnInit, AfterViewInit {
   /** allows to manually hide content */
   public hide(): void {
     this.collapsing = true;
-    this.hideBsCollapse.emit();
+    this.hideBsCollapse.emit(this);
     this.isCollapse = false;
     this.isCollapsing = true;
 
@@ -137,7 +137,7 @@ export class CollapseDirective implements OnInit, AfterViewInit {
     setTimeout(() => {
       container.classList.remove('collapsing');
       container.classList.add('collapse');
-      this.hiddenBsCollapse.emit();
+      this.hiddenBsCollapse.emit(this);
       this.collapsing = false;
     }, this.animationTime);
     this.collapsed.emit(this);
@@ -147,7 +147,7 @@ export class CollapseDirective implements OnInit, AfterViewInit {
   public show(): void {
     if (!this.isExpanded) {
       this.collapsing = true;
-      this.showBsCollapse.emit();
+      this.showBsCollapse.emit(this);
       this.isCollapse = false;
       this.isCollapsing = true;
 
@@ -167,7 +167,7 @@ export class CollapseDirective implements OnInit, AfterViewInit {
         container.classList.remove('collapsing');
         container.classList.add('collapse');
         container.classList.add('show');
-        this.shownBsCollapse.emit();
+        this.shownBsCollapse.emit(this);
         this.collapsing = false;
       }, this.animationTime - (this.animationTime * 0.5));
       this.expanded.emit(this);

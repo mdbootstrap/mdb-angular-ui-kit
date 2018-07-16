@@ -1,5 +1,6 @@
 <nav class="{{SideClass}}" #nav>
   <div [ngClass]="{'container': containerInside}" [ngStyle]="{'display': displayStyle}" #container>
+    <ng-content select="mdb-navbar-brand"></ng-content>
     <ng-content select="logo"></ng-content>
     <ng-content *ngIf="this.doubleNav == true" select="navlinks"></ng-content>
     <div *ngIf="this.doubleNav == false">

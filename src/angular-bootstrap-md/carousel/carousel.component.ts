@@ -48,7 +48,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   /**  If `true` — will disable pausing on carousel mouse hover */
   @Input() public noPause: boolean;
 
-  @Input('isControls') public isControls: boolean = true;
+  @Input('isControls') public isControls = true;
   @Input() public keyboard: boolean;
 
   @Input('class') public class: String = '';
@@ -236,7 +236,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   }
 
   protected fadeAnimation(goToIndex: number) {
-    //const currentSlide = this._slides.get(this._currentActiveSlide);
+    // const currentSlide = this._slides.get(this._currentActiveSlide);
     const goToSlide = this._slides.get(goToIndex);
 
     if (this.animationEnd) {

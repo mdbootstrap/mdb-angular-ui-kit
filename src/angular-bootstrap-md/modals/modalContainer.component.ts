@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer, HostBinding } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, HostBinding } from '@angular/core';
 import { ClassName, DISMISS_REASONS, ModalOptions, TransitionDurations } from './modal.options';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { msConfig } from './modalService.config';
@@ -39,7 +39,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  public constructor(options: ModalOptions, _element: ElementRef, private _renderer: Renderer) {
+  public constructor(options: ModalOptions, _element: ElementRef, private _renderer: Renderer2) {
     this.mdbModalService = msConfig.serviceInstance;
 
     this._element = _element;
@@ -48,19 +48,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.isAnimated) {
-      this._renderer.setElementClass(this._element.nativeElement, ClassName.FADE, true);
+      this._renderer.addClass(this._element.nativeElement, ClassName.FADE);
     }
-    this._renderer.setElementStyle(this._element.nativeElement, 'display', 'block');
+    this._renderer.setStyle(this._element.nativeElement, 'display', 'block');
     setTimeout(() => {
       this.isShown = true;
-      this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, true);
+      this._renderer.addClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW);
     }, this.isAnimated ? TransitionDurations.BACKDROP : 0);
     if (document && document.body) {
       if (this.mdbModalService.getModalsCount() === 1) {
         this.mdbModalService.checkScrollbar();
         this.mdbModalService.setScrollbar();
       }
-      this._renderer.setElementClass(document.body, ClassName.OPEN, true);
+      this._renderer.addClass(document.body, ClassName.OPEN);
     }
   }
 
@@ -75,12 +75,12 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
     this.isModalHiding = true;
-    this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, false);
+    this._renderer.removeClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW);
 
     setTimeout(() => {
       this.isShown = false;
       if (document && document.body && this.mdbModalService.getModalsCount() === 1) {
-        this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+        this._renderer.removeClass(document.body, ClassName.OPEN);
       }
       this.mdbModalService.hide(this.level);
       this.isModalHiding = false;

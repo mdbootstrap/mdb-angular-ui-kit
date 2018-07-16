@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'logo',
+  selector: 'logo, mdb-navbar-brand',
   template: `
   <ng-content></ng-content>
   `
