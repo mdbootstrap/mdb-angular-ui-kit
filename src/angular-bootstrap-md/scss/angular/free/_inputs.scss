@@ -49,11 +49,11 @@ textarea:focus~.chars {
 }
 
 input.counter-danger~span.text-danger {
-	visibility: visible !important;
+	visibility: visible;
 }
 
 input.counter-success~span.text-success {
-	visibility: visible !important;
+	visibility: visible;
 }
 
 .md-form textarea.md-textarea {

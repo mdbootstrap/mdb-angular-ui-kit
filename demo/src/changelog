@@ -1,3 +1,32 @@
+6.2.1
+*** Fixes: ***
+
+   * Resolved problem when validation status was visible even when input was disabled,
+   * Resolved problem with select focus event (clicking the space bar when the component is selected with tab key is no longer required),
+   * Resolved problem with display of date-picker opened in the modal.
+
+*** New Features: ***
+
+   * Added possibility to choose custom color in mdb-spinner,
+   * Added new functionality to use only desired validation status (disabling success or error validation) by using [ validationSuccess ] ="true" or [ validationError ] = "true",
+   * Added new [ errorMessage ] and [ successMessage ] inputs that allow to pass string or variable with custom validation message (only works when data-error and data-success are not available),
+   * Added mdbBtn directive to handle button styling,
+   * Added new mdb-card, mdb-card-body, mdb-card-img, mdb-card-header, mdb-card-footer, mdb-card-text, mdb-card-title components,
+   * Added 'actionButton' option to alerts.
+
+*** Docs: ***
+
+   * Fixed bug with wrong validation status in Success and Error messages section in Inputs docs,
+   * Added new section 'Navigation',
+   * Added new page 'Mega menu',
+   * Added new page 'Navs',
+   * Added new page 'Hamburger menu',
+   * Added new 'actionButton' option and new section 'Events' to Alerts docs.
+   * Added description and examples for new inputs ([ errorMessage ] , [ successMessage ], [ validationSuccess ] , [ validationError ] ) in Inputs docs,
+   * Removed duplicated elements from Autocomplete docs,
+   * Updated Autocomplete docs with example of 'textNoResults' usage,
+   * Updated pagination advanced examples (added variables that allow to change the number of elements displayed on a given page).
+   
 6.2.0
 *** MDB Angular Admin Templates: *** 
     * Resolved problem with not working hamburger menu in Admin Dashboard Free,

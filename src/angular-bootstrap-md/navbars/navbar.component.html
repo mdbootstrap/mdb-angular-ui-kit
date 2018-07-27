@@ -4,7 +4,7 @@
     <ng-content select="logo"></ng-content>
     <ng-content *ngIf="this.doubleNav == true" select="navlinks"></ng-content>
     <div *ngIf="this.doubleNav == false">
-      <button class="navbar-toggler" type="button" (click)="toggle($event)" mdbWavesEffect *ngIf="this.el.nativeElement.children.length !== 0">
+      <button #toggler class="navbar-toggler" type="button" (click)="toggle($event)" mdbWavesEffect *ngIf="this.el.nativeElement.children.length !== 0">
         <span class="navbar-toggler-icon">
         </span>
       </button>
