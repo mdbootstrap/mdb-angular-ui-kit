@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class NavbarComponent implements AfterViewInit, OnInit {
+  @Input() iconBackground: string | string[];
   @Input() SideClass: string;
   @Input() containerInside = true;
   subscription: Subscription;
@@ -25,6 +26,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   @ViewChild('mobile') mobile: ElementRef;
   @ViewChild('nav') navbar: ElementRef;
   @ViewChild('container') container: ElementRef;
+  @ViewChild('toggler') toggler: ElementRef;
 
   constructor(public renderer: Renderer2, private _navbarService: NavbarService) {
     // tslint:disable-next-line:max-line-length
@@ -35,6 +37,18 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     this.navbarLinkClicks = navbarLinkClicks;
     if (this.showClass) {
       this.hide();
+    }
+  }
+
+  addTogglerIconClasses() {
+    if (this.iconBackground) {
+      if (Array.isArray(this.iconBackground)) {
+        this.iconBackground.forEach((iconClass) => {
+          this.renderer.addClass(this.toggler.nativeElement, iconClass);
+        });
+      } else {
+        this.renderer.addClass(this.toggler.nativeElement, this.iconBackground);
+      }
     }
   }
 
@@ -69,6 +83,8 @@ export class NavbarComponent implements AfterViewInit, OnInit {
         this.el.nativeElement.remove();
       }
     });
+
+    this.addTogglerIconClasses();
   }
 
   toggle(event: any) {
@@ -115,11 +131,11 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   }
 
   get displayStyle() {
-    // if(!this.containerInside) {
-    //  return 'flex';
-    // } else {
+     if (!this.containerInside) {
+      return 'flex';
+     } else {
     return '';
-    // }
+     }
   }
 
   @HostListener('window:resize', ['$event']) onResize(event: any) {
@@ -157,7 +173,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     }
   }
 
-  @HostListener('document:scroll', ['$event']) onScroll() {
+  @HostListener('document:scroll') onScroll() {
     if (this.navbar.nativeElement.classList.contains('scrolling-navbar')) {
       if (window.pageYOffset > 120) {
         this.renderer.addClass(this.navbar.nativeElement, 'top-nav-collapse');

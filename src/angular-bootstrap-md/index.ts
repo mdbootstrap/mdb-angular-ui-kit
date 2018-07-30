@@ -1,8 +1,11 @@
+
 // free
 import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+
+import { CardsFreeModule } from './cards/cards.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { RippleModule } from './ripple/ripple.module';
-import { InputsModule} from './inputs/inputs.module';
+import { InputsModule } from './inputs/inputs.module';
 import { NavbarModule } from './navbars/navbar.module';
 import { DropdownModule } from './dropdown/dropdown.module';
 import { CarouselModule } from './carousel/carousel.module';
@@ -15,8 +18,19 @@ import { WavesModule } from './waves/waves.module';
 import { IconsModule } from './icons/icon.module';
 
 export {
-  ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective
+  ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective, MdbBtnDirective
 } from './buttons/index';
+
+export {
+  CardsFreeModule,
+  MdbCardComponent,
+  MdbCardBodyComponent,
+  MdbCardImageComponent,
+  MdbCardTextComponent,
+  MdbCardTitleComponent,
+  MdbCardFooterComponent,
+  MdbCardHeaderComponent
+} from './cards/index';
 
 export {
   RippleModule, RippleDirective
@@ -72,6 +86,7 @@ export {
 
 const MODULES = [
   ButtonsModule,
+  CardsFreeModule,
   RippleModule,
   WavesModule,
   InputsModule,
@@ -100,7 +115,8 @@ const MODULES = [
     ModalModule.forRoot(),
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
-    IconsModule
+    IconsModule,
+    CardsFreeModule.forRoot()
   ],
   exports: MODULES,
   schemas: [NO_ERRORS_SCHEMA]

@@ -495,7 +495,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
 
   }
-  @HostListener('click', ['$event']) focus() {
+  @HostListener('click') focus() {
     this.el.nativeElement.focus();
   }
 
