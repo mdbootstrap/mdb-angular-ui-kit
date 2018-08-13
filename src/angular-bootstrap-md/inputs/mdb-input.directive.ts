@@ -10,13 +10,15 @@ import {
   Inject,
   AfterViewChecked,
   OnInit,
-  DoCheck
+  DoCheck,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 
 @Directive({
   selector: '[mdbInputDirective]'
 })
-export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewInit, DoCheck {
+export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewInit, DoCheck, OnChanges {
   public wrongTextContainer: any;
   public rightTextContainer: any;
   public el: ElementRef | any = null;
@@ -125,6 +127,18 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
     } catch (error) { }
   }
 
+  updateErrorMsg(value: string) {
+    if (this.wrongTextContainer) {
+      this.wrongTextContainer.innerHTML = value;
+    }
+  }
+
+  updateSuccessMsg(value: string) {
+    if (this.rightTextContainer) {
+      this.rightTextContainer.innerHTML = value;
+    }
+  }
+
   ngOnInit() {
     // Inititalise a new <span> wrong/right elements and render it below the host component.
     if (this.mdbValidate) {
@@ -149,6 +163,18 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
         this.rightTextContainer.innerHTML = (this.successMessage ? this.successMessage : 'success');
       }
       this._renderer.setStyle(this.rightTextContainer, 'visibility', 'hidden');
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.hasOwnProperty('errorMessage')) {
+      const newErrorMsg =  changes.errorMessage.currentValue;
+      this.updateErrorMsg(newErrorMsg);
+    }
+
+    if (changes.hasOwnProperty('successMessage')) {
+      const newSuccessMsg = changes.successMessage.currentValue;
+      this.updateSuccessMsg(newSuccessMsg);
     }
   }
 
@@ -255,8 +281,8 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
 
   resize() {
     try {
-      this._renderer.setStyle(this.element, 'height', 'auto');
-      this._renderer.setStyle(this.element, 'height', this.element.scrollHeight + 'px');
+      this._renderer.setStyle(this.el.nativeElement, 'height', 'auto');
+      this._renderer.setStyle(this.el.nativeElement, 'height', this.el.nativeElement.scrollHeight + 'px');
     } catch (error) { }
 
   }
