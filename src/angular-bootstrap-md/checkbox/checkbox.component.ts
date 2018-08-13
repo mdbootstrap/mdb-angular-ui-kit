@@ -20,7 +20,7 @@ export class MdbCheckboxChange {
   providers: [CHECKBOX_VALUE_ACCESSOR]
 })
 export class CheckboxComponent implements OnInit, OnChanges {
-  @ViewChild('input') inputEl;
+  @ViewChild('input') inputEl: any;
 
   private defaultId = `mdb-checkbox-${++defaultIdNumber}`;
 
@@ -85,7 +85,7 @@ export class CheckboxComponent implements OnInit, OnChanges {
   }
 
   // Control Value Accessor Methods
-  onChange = (value: any) => { };
+  onChange = (_: any) => { };
   onTouched = () => { };
 
   writeValue(value: any) {

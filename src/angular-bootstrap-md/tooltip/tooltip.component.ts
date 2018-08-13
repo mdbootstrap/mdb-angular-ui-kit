@@ -1,4 +1,3 @@
-import { style } from '@angular/animations';
 import { AfterViewInit, Component, ChangeDetectionStrategy, HostBinding, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { TooltipConfig } from './tooltip.service';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
@@ -28,7 +27,7 @@ export class TooltipContainerComponent implements AfterViewInit {
     return isBs3();
   }
 
-  public constructor(config: TooltipConfig, private r?: Renderer2) {
+  public constructor(config: TooltipConfig, private r: Renderer2) {
     Object.assign(this, config);
   }
 
