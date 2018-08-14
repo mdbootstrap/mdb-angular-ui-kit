@@ -17,6 +17,12 @@ import { PopoverModule } from './popover/popover.module';
 import { InputsModule } from './inputs/inputs.module';
 import { WavesModule } from './waves/waves.module';
 import { IconsModule } from './icons/icon.module';
+import { CheckboxModule } from './checkbox/checkbox.module';
+
+export {
+  CHECKBOX_VALUE_ACCESSOR, CheckboxComponent, CheckboxModule 
+} from './checkbox/index';
+
 export {
   ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective, MdbBtnDirective
 } from './buttons/index';
@@ -98,7 +104,8 @@ const MODULES = [
   ModalModule,
   TooltipModule,
   PopoverModule,
-  IconsModule
+  IconsModule,
+  CheckboxModule
 ];
 
 @NgModule({
@@ -116,7 +123,8 @@ const MODULES = [
     TooltipModule.forRoot(),
     PopoverModule.forRoot(),
     IconsModule,
-    CardsFreeModule.forRoot()
+    CardsFreeModule.forRoot(),
+    CheckboxModule
   ],
   exports: MODULES,
   schemas: [NO_ERRORS_SCHEMA]

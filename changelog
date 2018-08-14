@@ -1,3 +1,30 @@
+6.2.2
+*** Fixes: ***
+
+    * Resolved problem with select filter. It should now display only values that match the word you type,
+    * Resolved problem with select values and options that were updated dynamically. It should now work correctly both in template-driven and reactive forms,
+    * Resolved problem with dateFormat and startDate options in DatePicker component. It is now possible to set default start date which will be formatted as it was specified in format option,
+    * Resolved problem with auto resize textarea height,
+    * Resolved problem with errorMessage and successMessage inputs - it is now possible to update messages dynamically,
+    * Resolved file input problem with file upload,
+    * Resolved problem with gesture support for lightbox,
+    * Resolved problem with protected parameters in carousel component,
+    * Resolved problem with 'mdb-card is not a known element'.
+
+*** New features: ***
+
+    * Added possibility to disable accordion item. To do that, add [ isDisabled ]="true" input to <mdb-accordion-item-head>,
+    * Added new checkbox component.
+
+*** Docs: ***
+
+    * Updated live examples in pagination advanced examples section,
+    * Updated file input example code,
+    * Updated code in carousel examples (there a was problem with display of carousel with mask),
+    * Updated checkbox docs,
+    * Added legacy docs for versions 6.0.0 and 6.1.0,
+    * Added update instructions for MDB Admin Templates (free and pro).
+
 6.2.1
 *** Fixes: ***
 

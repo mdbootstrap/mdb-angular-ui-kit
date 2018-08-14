@@ -190,7 +190,7 @@ body {
         right: $modal-distance;
         bottom: $modal-distance;
         margin: 0;
-        width: 400px;
+        min-width: 100px;
     }
 }
 

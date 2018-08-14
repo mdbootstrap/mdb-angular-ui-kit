@@ -143,3 +143,28 @@ a[tooltip] {
   margin-left: 0 !important;
   padding: 0 .5rem;
 }
+
+.tooltip-arrow {
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-right-width: 7px;
+  border-left-width: 7px;
+  border-bottom: 7px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  &.left {
+    position: relative;
+    margin-right: -0.6rem;
+    transform: rotate(90deg);
+  }
+  &.right {
+    position: relative;
+    margin-left: -0.6rem;
+    transform: rotate(-90deg);
+  }
+  &.top {
+    position: relative;
+    transform: rotate(-180deg);
+  }
+}
