@@ -1,3 +1,41 @@
+6.2.3
+*** Fixes: ***
+
+    * Resolved problem with unemitted tooltipChange event in Tooltips,
+    * Resolved problem with select component with updateOn: 'blur' option,
+    * Resolved problem with display of select clear button when input [ allowClear ] is set to true,
+    * Resolved problem with fixed buttons where one button overlapped another. Use of many fixed buttons in the same view should be now possible,
+    * Resolved problem with label in date picker. It should no longer overlap on the displayed date,
+    * Fixed problem with overlapped label in Autocomplete when there was some value after view init,
+    * Sidenav will now remove fixed-sn or hidden-sn class from body element in ngOnDestroy lifecycle,
+    * Fixed problem with wrong margin in input validation message in Cascading Modal form,
+    * Resolved problem with autoresizing textarea without .md-textarea-auto class
+    * Resolved problem with visibility of content placed below header in intro sections,
+    * Resolved problem with dynamic updates of big data in date-picker component,
+    * Removed unnecessary console.log from Tabs Component,
+    * .dropdown-menu-right class will now align dropdown menu to the right side,
+    * Modal without backdrop will now allow to interact with elements on the background,
+    * Changing date in datepicker with reactive forms will now affect the big date in datepicker modal,
+
+*** Docs: ***
+
+    * Added legacy docs for version 6.2.1,
+    * Dropdown alignment section - updated example code responsible for menu position, 
+    * Advanced modals - updated example code for modal advanced examples. Modal cookies, modal coupon, modal discount, modal related content and modal abandoned cart should no longer block interaction with other elements. In order to achieve this behaviour you need to add modal-scrolling class to the div with mdbModal directive,
+    * Modals - added new section with instructions on how to open a modal from another component,
+    * Intros - updated example codes to resolve problem with visibility of content placed below header,
+    * Tabs & pills - improved documentation
+    * Slider - improved documentation
+    * Switch - improved documentation
+    * Autocomplete - added example how to use [ textSearching ] input
+    * Datepicker - Added methods, inputs and outputs description
+    * Social Buttons - added examples how to get page share and like counters from Facebook API, and how to share a page on Facebook
+
+*** New documentation: ***
+
+    * File input
+    * Accordion
+    
 6.2.2
 *** Fixes: ***
 

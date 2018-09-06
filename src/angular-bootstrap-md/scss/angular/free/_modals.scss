@@ -34,6 +34,8 @@ body {
         @media (min-width: 768px) {
             &.modal-top {
                 top: 0;
+                left: 0;
+                right: 0;
             }
             &.modal-left {
                 left: 0;
@@ -240,7 +242,7 @@ body {
         }
         // Cascading tabs nav
         .modal-c-tabs {
-            .nav-tabs {
+            .md-tabs {
                 margin: -1.5rem 1rem 0 1rem;
                 // @extend .z-depth-1;
             }
@@ -417,7 +419,8 @@ body {
 
 @media (min-width: 768px){
   .modal-sm{
-    max-width: 100%;
+    // max-width: 100%;
+    max-width: 300px;
   }
 }
 

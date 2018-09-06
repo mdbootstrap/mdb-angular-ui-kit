@@ -168,7 +168,7 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.hasOwnProperty('errorMessage')) {
-      const newErrorMsg =  changes.errorMessage.currentValue;
+      const newErrorMsg = changes.errorMessage.currentValue;
       this.updateErrorMsg(newErrorMsg);
     }
 
@@ -280,10 +280,10 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
   }
 
   resize() {
-    try {
-      this._renderer.setStyle(this.el.nativeElement, 'height', 'auto');
-      this._renderer.setStyle(this.el.nativeElement, 'height', this.el.nativeElement.scrollHeight + 'px');
-    } catch (error) { }
+      if (this.el.nativeElement.classList.contains('md-textarea-auto')) {
+        this._renderer.setStyle(this.el.nativeElement, 'height', 'auto');
+        this._renderer.setStyle(this.el.nativeElement, 'height', this.el.nativeElement.scrollHeight + 'px');
+      }
 
   }
 

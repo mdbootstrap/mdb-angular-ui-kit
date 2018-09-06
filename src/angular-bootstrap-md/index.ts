@@ -67,7 +67,7 @@ export {
 } from './charts/index';
 
 export {
-  CollapseDirective, CollapseModule
+  CollapseComponent, CollapseModule
 } from './collapse/index';
 
 export {

@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CollapseDirective } from './collapse.directive';
+import { CollapseComponent } from './collapse.component';
 
 @NgModule({
-  declarations: [CollapseDirective],
-  exports: [CollapseDirective]
+  declarations: [CollapseComponent],
+  exports: [CollapseComponent]
 })
 export class CollapseModule {
   public static forRoot(): ModuleWithProviders {
