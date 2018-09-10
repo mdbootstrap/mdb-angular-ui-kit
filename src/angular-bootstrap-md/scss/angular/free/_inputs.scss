@@ -45,7 +45,11 @@ textarea:focus~.chars {
 }
 
 .modal-content .md-form .prefix~.inputVal {
-	left: 2.0rem !important;
+	// left: 2.0rem !important;
+}
+
+mdb-tab .md-form .prefix~.inputVal {
+	left: 2.0rem;
 }
 
 input.counter-danger~span.text-danger {
