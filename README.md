@@ -15,6 +15,15 @@ __________
 # Demo:  
 **Main demo**: https://mdbootstrap.com/angular/components/
 
+# Live Preview
+
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2888%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2876%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2873%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2874%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2881%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2875%29.jpg)](https://mdbootstrap.com/angular/)
+
 # Version:
 - Angular CLI 6
 - Angular 6
@@ -164,7 +173,13 @@ Full support of Flexbox layout system lets you forget about alignment issues.
 A big **thank you to all our users** who are working with us to improve the software. We wouldn't be where we are without you. 
 
 
-# Useful Links:  
+# Useful Links:
+
+**jQuery version: https://github.com/mdbootstrap/bootstrap-material-design
+
+**React version: https://github.com/mdbootstrap/React-Bootstrap-with-Material-Design
+
+**Vue version: https://github.com/mdbootstrap/Vue-Bootstrap-with-Material-Design
 
 Getting started: https://mdbootstrap.com/angular-bootstrap-getting-started/  
 
