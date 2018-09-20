@@ -15,7 +15,7 @@ import { state, style, trigger, transition, animate } from '@angular/animations'
   ],
 })
 export class CollapseComponent implements OnInit {
-  @Input() isCollapsed = false;
+  @Input() isCollapsed = true;
 
   @Output() showBsCollapse: EventEmitter<any> = new EventEmitter();
   @Output() shownBsCollapse: EventEmitter<any> = new EventEmitter();

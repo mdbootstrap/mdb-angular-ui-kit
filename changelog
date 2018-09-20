@@ -1,3 +1,44 @@
+6.2.4
+*** Fixes: ***
+
+    * Resolved problem with event (noOptionsFound) in mdb-select. It should no longer be emitted on every input in the select filter,
+    * Resolved problem with display of vertical images in Lightbox component,
+    * Resolved problem with mdb-collapse default collapsed state.
+
+*** New features: ***
+
+    * Added new scrollspy component
+
+*** Changed syntax: ***
+
+    * Collapse - you no longer need to use [ mdbCollapse ]="isCollapsed" syntax, instead just add mdbCollapse directive to the element and use [ isCollapsed ]="false" input if you want collapsible element to be open by default.
+
+*** New documentation: ***
+
+    * Contact Form,
+    * Breadcrumbs,
+    * Table scroll,
+    * Css demonstration page,
+    * Gradient,
+    * Background Image,
+    * Components demonstration page,
+    * Button group,
+    * Loader,
+    * Sections demonstration page,
+    * Advanced demonstration page,
+    * Chat,
+    * Timeline,
+    * Edge Header,
+    * Streak,
+    * Video,
+    * Notifications,
+    * E-commerce components,
+    * Gallery
+
+*** Tutorial: ***
+
+    * MDB Angular PWA tutorial
+
 6.2.3
 *** Fixes: ***
 
@@ -35,7 +76,7 @@
 
     * File input
     * Accordion
-    
+
 6.2.2
 *** Fixes: ***
 
@@ -91,7 +132,7 @@
    * Removed duplicated elements from Autocomplete docs,
    * Updated Autocomplete docs with example of 'textNoResults' usage,
    * Updated pagination advanced examples (added variables that allow to change the number of elements displayed on a given page).
-   
+
 6.2.0
 *** MDB Angular Admin Templates: *** 
     * Resolved problem with not working hamburger menu in Admin Dashboard Free,
