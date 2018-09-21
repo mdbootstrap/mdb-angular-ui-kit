@@ -42,10 +42,10 @@ export class CollapseComponent implements OnInit {
   }
 
   toggle() {
-    this.isCollapsed ? this.open() : this.hide();
+    this.isCollapsed ? this.show() : this.hide();
   }
 
-  open() {
+  show() {
     this.expandAnimationState = 'expanded';
     this.isCollapsed = false;
 
@@ -60,7 +60,7 @@ export class CollapseComponent implements OnInit {
   }
 
   initializeCollapseState() {
-    this.isCollapsed ? this.hide() : this.open();
+    this.isCollapsed ? this.hide() : this.show();
   }
 
   ngOnInit() {
