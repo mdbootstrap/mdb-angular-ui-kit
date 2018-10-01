@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Table Sort</h2>
+    </div>
+  </div>
+
+  <!-- Basic example -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center my-5">
+      <h4 class="text-center">Basic examplee</h4>
+      <table class="table table-striped table-bordered table-responsive-md" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>Name
+              <mdb-icon icon="sort" (click)="sortBy('name')"></mdb-icon>
+            </th>
+            <th>Position
+              <mdb-icon icon="sort" (click)="sortBy('position')"></mdb-icon>
+            </th>
+            <th>Office
+              <mdb-icon icon="sort" (click)="sortBy('office')"></mdb-icon>
+            </th>
+            <th>Age
+              <mdb-icon icon="sort" (click)="sortBy('age')"></mdb-icon>
+            </th>
+            <th>Start date
+              <mdb-icon icon="sort" (click)="sortBy('startDate')"></mdb-icon>
+            </th>
+            <th>Salary
+              <mdb-icon icon="sort" (click)="sortBy('salary')"></mdb-icon>
+            </th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr *ngFor="let person of personArray">
+            <td>{{person.name}}</td>
+            <td>{{person.position}}</td>
+            <td>{{person.office}}</td>
+            <td>{{person.age}}</td>
+            <td>{{person.startDate}}</td>
+            <td>{{person.salary}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Basic example -->
+</div>

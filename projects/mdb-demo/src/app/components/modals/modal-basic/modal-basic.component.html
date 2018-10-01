@@ -1,0 +1,667 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Modals</h2>
+    </div>
+  </div>
+
+  <!-- Basic Example -->
+  <div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <h4 class="text-center">Basic Example</h4>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="basicModal.show()"
+          mdbWavesEffect>Basic Example</button>
+      </div>
+
+      <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Basic Example -->
+
+  <hr class="my-5">
+
+  <!-- Modal Size -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Modal Size</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="small.show()" mdbWavesEffect>Small
+          Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="medium.show()"
+          mdbWavesEffect>Medium Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="large.show()" mdbWavesEffect>Large
+          Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="fluid.show()" mdbWavesEffect>Fluid
+          Modal</button>
+      </div>
+
+      <div mdbModal #small="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="small.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="small.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #medium="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="medium.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="medium.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #large="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="large.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="large.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #fluid="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-fluid" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="fluid.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="fluid.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal Size -->
+
+  <hr class="my-5">
+
+  <!-- Modal Position -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Modal Position</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="topleft.show()"
+          mdbWavesEffect>Top Left Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="topright.show()"
+          mdbWavesEffect>Top Right Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="bottomleft.show()"
+          mdbWavesEffect>Bottom Left Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="bottomright.show()"
+          mdbWavesEffect>Bottom Right Modal</button>
+      </div>
+
+      <div mdbModal #topleft="mdbModal" class="modal fade left" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-side modal-top-left" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="topleft.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="topleft.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #topright="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-side modal-top-right" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="topright.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="topright.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #bottomleft="mdbModal" class="modal fade left" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-side modal-bottom-left" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="bottomleft.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="bottomleft.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #bottomright="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-side modal-bottom-right" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="bottomright.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="bottomright.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal Position -->
+
+  <hr class="my-5">
+
+  <!-- Fluid Side Modal -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Fluid Side Modal</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="fluidleft.show()"
+          mdbWavesEffect>Fluid Left Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="fluidright.show()"
+          mdbWavesEffect>Fluid Right Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="fluidtop.show()"
+          mdbWavesEffect>Fluid Top Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="fluidbottom.show()"
+          mdbWavesEffect>Fluid Bottom Modal</button>
+      </div>
+
+      <div mdbModal #fluidleft="mdbModal" class="modal fade left" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-left" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="fluidleft.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="fluidleft.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #fluidright="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-right" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="fluidright.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="fluidright.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #fluidbottom="mdbModal" class="modal fade bottom" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-bottom" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="fluidbottom.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="fluidbottom.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #fluidtop="mdbModal" class="modal fade top" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-top" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="fluidtop.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="fluidtop.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Fluid Side Modal -->
+
+  <hr class="my-5">
+
+  <!-- Frame Modal -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Frame Modal</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="frametop.show()"
+          mdbWavesEffect>Frame Top Modal</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="framebottom.show()"
+          mdbWavesEffect>Frame Bottom Modal</button>
+      </div>
+
+      <div mdbModal #frametop="mdbModal" class="modal fade top" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-top" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="frametop.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="frametop.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div mdbModal #framebottom="mdbModal" class="modal fade bottom" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-bottom" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="framebottom.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="framebottom.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Frame Modal -->
+
+  <hr class="my-5">
+
+  <!-- Remove backdrop -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Remove backdrop</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="removebackdrop.show()"
+          mdbWavesEffect>Remove Backdrop Modal</button>
+      </div>
+
+      <div mdbModal #removebackdrop="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="removebackdrop.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="removebackdrop.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Remove backdrop -->
+
+  <hr class="my-5">
+
+  <!-- Scrolling long content -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Scrolling long content</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="longcontent.show()"
+          mdbWavesEffect>Scrolling long content Modal</button>
+      </div>
+
+      <div mdbModal style="overflow-y: auto" #longcontent="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="longcontent.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium aspernatur commodi culpa
+                veritatis neque incidunt deleniti non numquam impedit est perspiciatis blanditiis, asperiores provident
+                a dolore dolor quas dignissimos at?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="longcontent.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Scrolling long content -->
+
+  <hr class="my-5">
+
+  <!-- Varying modal content -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Varying modal content</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="show('mdo')" mdbWavesEffect>Varying
+          modal content - mdo</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="show('fat')" mdbWavesEffect>Varying
+          modal content - fat</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="show('getbootstrap')"
+          mdbWavesEffect>Varying modal content - getbootstrap</button>
+      </div>
+
+      <div mdbModal #content="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="content.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">New message to {{ name }}</h4>
+            </div>
+            <div class="modal-body">
+              <h4>Dynamic content: {{ name }}</h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="content.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Varying modal content -->
+
+  <hr class="my-5">
+
+  <!-- Remove animation -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Remove animation</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="noanimation.show()"
+          mdbWavesEffect>Remove animation</button>
+      </div>
+
+      <div mdbModal #noanimation="mdbModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="noanimation.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal Title</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="noanimation.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Remove animation -->
+
+  <hr class="my-5">
+
+  <!-- Embedding YouTube videos -->
+  <div class="row">
+    <div class="col-md-12 mx-auto mb-5">
+      <h4 class="text-center">Embedding YouTube videos</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="video.show()" mdbWavesEffect>Embedding
+          YouTube videos</button>
+      </div>
+
+      <div mdbModal #video="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myvideoLabel"
+        aria-hidden="true" (onHide)="stopVideoPlayer()">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close pull-right" aria-label="Close" (click)="video.hide()">
+                <span aria-hidden="true">×</span>
+              </button>
+              <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              <div class="embed-responsive embed-responsive-16by9 wow fadeInRight">
+                <iframe class="embed-responsive-item" #videoPlayer src="https://www.youtube.com/embed/IQyauRAxvjI"
+                  allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary waves-light" aria-label="Close" (click)="video.hide()"
+                mdbWavesEffect>Close</button>
+              <button type="button" class="btn btn-primary waves-light" mdbWavesEffect>Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Embedding YouTube videos -->
+</div>

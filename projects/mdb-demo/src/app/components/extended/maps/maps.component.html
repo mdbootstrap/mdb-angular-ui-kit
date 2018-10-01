@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Maps</h2>
+    </div>
+  </div>
+
+  <!-- Basic examples -->
+  <div class="row">
+    <div class="col-md-12 mx-auto my-5">
+      <h4 class="text-center">Basic examples</h4>
+
+      <mdb-card>
+        <agm-map [latitude]="map.lat" [longitude]="map.lng" style="height: 300px">
+          <agm-marker [latitude]="map.lat" [longitude]="map.lng"></agm-marker>
+        </agm-map>
+      </mdb-card>
+
+    </div>
+  </div>
+  <!-- Basic examples -->
+</div>

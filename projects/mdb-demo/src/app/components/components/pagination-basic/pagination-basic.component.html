@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Pagination</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Basic Example -->
+    <div class="col-md-6 mx-auto mt-5">
+      <h4 class="text-center">Basic Example</h4>
+      <!--Pagination -->
+      <nav>
+        <ul class="d-flex justify-content-center pagination pagination-circle pg-blue mb-0">
+          <!--First-->
+          <li class="page-item" [ngClass]="{'disabled': activePage == 1}">
+            <a class="page-link" mdbWavesEffect (click)="firstPage()">First</a>
+          </li>
+          <!--Numbers-->
+          <li #pages *ngFor="let page of pageCount" class="page-item">
+            <a class="page-link" mdbWavesEffect>{{page}}</a>
+          </li>
+          <!--Last-->
+          <li class="page-item" [ngClass]="{'disabled': activePage == 3}">
+            <a class="page-link" mdbWavesEffect (click)="lastPage()">Last</a>
+          </li>
+        </ul>
+      </nav>
+      <!--/Pagination -->
+      <div class="row">
+        <div class="col-md-6 mx-auto my-5">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="col-1">ID</th>
+                <th class="col-11">Title</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let post of allPosts">
+                <th *ngIf="post.id >= first && post.id <= last" scope="row">{{post.id}}</th>
+                <td *ngIf="post.id >= first && post.id <= last">{{post.title}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Basic Example -->
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { MdbTestAngularPage } from './app.po';
 
-describe('mdb-test-angular App', () => {
+describe('mdb-angular App', () => {
   let page: MdbTestAngularPage;
 
   beforeEach(() => {

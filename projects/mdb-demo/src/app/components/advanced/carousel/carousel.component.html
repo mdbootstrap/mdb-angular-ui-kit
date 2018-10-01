@@ -1,0 +1,198 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Carousel</h2>
+    </div>
+  </div>
+
+  <!-- Basic Example -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Basic Example</h4>
+      <!--Carousel Wrapper-->
+      <mdb-carousel [isControls]="true" [animation]="'slide'">
+        <!--First slide-->
+        <mdb-carousel-item>
+          <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(130).jpg" alt="First slide">
+        </mdb-carousel-item>
+        <!--/First slide-->
+        <!--Second slide-->
+        <mdb-carousel-item>
+          <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(129).jpg" alt="Second slide">
+        </mdb-carousel-item>
+        <!--/Second slide-->
+        <!--Third slide-->
+        <mdb-carousel-item>
+          <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Third slide">
+        </mdb-carousel-item>
+        <!--/Third slide-->
+      </mdb-carousel>
+      <!--/.Carousel Wrapper-->
+    </div>
+  </div>
+  <!-- Basic Example -->
+
+  <hr class="my-5">
+
+  <!-- Optional captions -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Optional captions</h4>
+      <!--Carousel Wrapper-->
+      <mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
+        <!--First slide-->
+        <mdb-carousel-item>
+          <div class="view w-100">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide">
+            <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+          </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Light mask</h3>
+            <p>First text</p>
+          </div>
+        </mdb-carousel-item>
+        <!--/First slide-->
+        <!--Second slide-->
+        <mdb-carousel-item>
+          <div class="view w-100">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+            <div class="mask rgba-black-strong waves-light" mdbWavesEffect></div>
+          </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Strong mask</h3>
+            <p>Secondary text</p>
+          </div>
+        </mdb-carousel-item>
+        <!--/Second slide-->
+        <!--Third slide-->
+        <mdb-carousel-item>
+          <div class="view w-100">
+            <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+            <div class="mask rgba-black-slight waves-light" mdbWavesEffect></div>
+          </div>
+          <div class="carousel-caption">
+            <h3 class="h3-responsive">Slight mask</h3>
+            <p>Third text</p>
+          </div>
+        </mdb-carousel-item>
+        <!--/Third slide-->
+      </mdb-carousel>
+      <!--/.Carousel Wrapper-->
+    </div>
+  </div>
+  <!-- Optional captions -->
+
+  <hr class="my-5">
+
+  <!-- Thumbnails carousel -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Video Carousel</h4>
+      <!--Carousel Wrapper-->
+      <mdb-carousel [isControls]="true" class="carousel slide carousel-fade" [animation]="'fade'">
+        <!--First slide-->
+        <mdb-carousel-item>
+          <video class="video-fluid" autoplay loop muted>
+            <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
+          </video>
+        </mdb-carousel-item>
+        <!--/First slide-->
+        <!--Second slide-->
+        <mdb-carousel-item>
+          <video class="video-fluid" autoplay loop muted>
+            <source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
+          </video>
+        </mdb-carousel-item>
+        <!--/Second slide-->
+        <!--Third slide-->
+        <mdb-carousel-item>
+          <video class="video-fluid" autoplay loop muted>
+            <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
+          </video>
+        </mdb-carousel-item>
+        <!--/Third slide-->
+      </mdb-carousel>
+      <!--Carousel Wrapper-->
+    </div>
+  </div>
+  <!-- Video Carousel -->
+
+  <hr class="my-5">
+
+  <!-- TCaption and mask -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Caption and mask</h4>
+      <!--Carousel Wrapper-->
+      <mdb-carousel [isControls]="true" class="carousel slide" [animation]="'slide'">
+        <!--First slide-->
+        <mdb-carousel-item>
+          <!--Mask color-->
+          <div class="view">
+            <!--Video source-->
+            <video class="video-fluid" autoplay loop muted>
+              <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4" />
+            </video>
+            <div class="mask rgba-indigo-light waves-light" mdbWavesEffect></div>
+          </div>
+
+          <!--Caption-->
+          <div class="carousel-caption">
+            <div class="animated fadeInDown">
+              <h3 class="h3-responsive">Light mask</h3>
+              <p>First text</p>
+            </div>
+          </div>
+          <!--Caption-->
+        </mdb-carousel-item>
+        <!--/First slide-->
+        <!--Second slide-->
+        <mdb-carousel-item>
+          <!--Mask color-->
+          <div class="view">
+            <!--Video source-->
+            <video class="video-fluid" autoplay loop muted>
+              <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4" />
+            </video>
+            <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
+          </div>
+
+          <!--Caption-->
+          <div class="carousel-caption">
+            <div class="animated fadeInDown">
+              <h3 class="h3-responsive">Super light mask</h3>
+              <p>Secondary text</p>
+            </div>
+          </div>
+          <!--Caption-->
+        </mdb-carousel-item>
+        <!--/Second slide-->
+        <!--Third slide-->
+        <mdb-carousel-item>
+          <!--Mask color-->
+          <div class="view">
+            <!--Video source-->
+            <video class="video-fluid" autoplay loop muted>
+              <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
+            </video>
+            <div class="mask rgba-black-strong waves-light" mdbWavesEffect></div>
+          </div>
+
+          <!--Caption-->
+          <div class="carousel-caption">
+            <div class="animated fadeInDown">
+              <h3 class="h3-responsive">Strong mask</h3>
+              <p>Third text</p>
+            </div>
+          </div>
+          <!--Caption-->
+        </mdb-carousel-item>
+        <!--/Third slide-->
+      </mdb-carousel>
+      <!--Carousel Wrapper-->
+    </div>
+  </div>
+  <!-- Caption and mask -->
+
+  <hr class="my-5">
+</div>

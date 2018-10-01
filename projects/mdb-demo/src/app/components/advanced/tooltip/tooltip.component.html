@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Popovers</h2>
+    </div>
+  </div>
+
+  <!-- Basic Examples -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Basic Examples</h4>
+      <button type="button" mdbBtn color="primary" class="bwaves-light" mdbTooltip="Tooltip on top" placement="top" mdbWavesEffect>
+        Tooltip on top
+      </button>
+
+      <button type="button" mdbBtn color="primary" class="waves-light" mdbTooltip="Tooltip on right" placement="right" mdbWavesEffect>
+        Tooltip on right
+      </button>
+
+      <button type="button" mdbBtn color="primary" class="waves-light" mdbTooltip="Tooltip on bottom" placement="bottom" mdbWavesEffect>
+        Tooltip on bottom
+      </button>
+
+      <button type="button" mdbBtn color="primary" class="waves-light" mdbTooltip="Tooltip on left" placement="left" mdbWavesEffect>
+        Tooltip on left
+      </button>
+    </div>
+  </div>
+  <!-- Basic Examples -->
+
+  <hr class="my-5">
+
+  <!-- Dismiss on next click -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Dismiss on next click</h4>
+      <button type="button" mdbBtn color="success" class="waves-light" mdbTooltip="Some tooltip text!" triggers="focus" mdbWavesEffect>
+        Tooltip on top
+      </button>
+    </div>
+  </div>
+  <!-- Dismiss on next click -->
+
+  <hr class="my-5">
+
+  <!-- Usage -->
+  <div class="row mb-5">
+    <div class="col-md-3 mx-auto text-center">
+      <h4 class="text-center">Simple binding</h4>
+      <button type="button" class="btn btn-info waves-light" [mdbTooltip]="content" mdbWavesEffect>
+        Simple binding
+      </button>
+    </div>
+    <div class="col-md-3 mx-auto text-center">
+      <h4 class="text-center">dynamic HTML</h4>
+      <ng-template #popTemplate>Here we go:
+        <div [innerHtml]="html"></div>
+      </ng-template>
+      <button type="button" class="btn btn-success waves-light" [mdbTooltip]="popTemplate" mdbWavesEffect>
+        Tooltip with HTML
+      </button>
+    </div>
+    <div class="col-md-3 mx-auto text-center">
+      <h4 class="text-center">Preconfigured</h4>
+      <button type="button" mdbBtn color="primary" class="waves-light" mdbTooltip="Some tooltip text!" mdbWavesEffect>
+        Preconfigured tooltip
+      </button>
+    </div>
+    <div class="col-md-3 mx-auto text-center">
+      <h4 class="text-center">Simple hover</h4>
+      <button type="button" mdbBtn color="info" class="waves-light" mdbTooltip="I will hide on click" triggers="mouseenter:click"
+        mdbWavesEffect>
+        Hover over me!
+      </button>
+    </div>
+  </div>
+  <!-- Usage -->
+
+</div>

@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Popovers</h2>
+    </div>
+  </div>
+
+  <!-- Basic Examples -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Basic Examples</h4>
+      <button type="button" mdbBtn color="default" class="waves-light" mdbPopover="And here some amazing content. It's very engaging. Right?"
+        placement="right" mdbPopoverHeader="Popover on right" mdbWavesEffect>
+        Popover on right
+      </button>
+
+      <button type="button" mdbBtn color="default" class="waves-light" mdbPopover="And here some amazing content. It's very engaging. Right?"
+        placement="bottom" mdbPopoverHeader="Popover on bottom" mdbWavesEffect>
+        Popover on bottom
+      </button>
+
+      <button type="button" mdbBtn color="default" class="waves-light" mdbPopover="And here some amazing content. It's very engaging. Right?"
+        placement="left" mdbPopoverHeader="Popover on left" mdbWavesEffect>
+        Popover on left
+      </button>
+
+      <button type="button" mdbBtn color="default" class="waves-light" mdbPopover="And here some amazing content. It's very engaging. Right?"
+        placement="top" mdbPopoverHeader="Popover on top" mdbWavesEffect>
+        Popover on top
+      </button>
+    </div>
+  </div>
+  <!-- Basic Examples -->
+
+  <hr class="my-5">
+
+  <!-- Dismiss on next click -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Dismiss on next click</h4>
+      <button type="button" mdbBtn color="danger" class="waves-light" mdbPopover="And here some amazing content. It's very engaging. Right?"
+        placement="right" mdbPopoverHeader="Dismissible popover" triggers="focus" mdbWavesEffect>
+        Dismissible popover
+      </button>
+    </div>
+  </div>
+  <!-- Dismiss on next click -->
+
+  <hr class="my-5">
+
+  <!-- Usage -->
+  <div class="row mb-5">
+    <div class="col-md-3 mx-auto text-center">
+      <h4 class="text-center">Simple binding</h4>
+      <button type="button" class="btn btn-info waves-light" [mdbPopover]="content" mdbPopoverHeader="title" mdbWavesEffect>
+        Simple binding
+      </button>
+    </div>
+    <div class="col-md-3 mx-auto text-center">
+      <h4 class="text-center">dynamic HTML</h4>
+      <ng-template #popTemplate>Here we go:
+        <div [innerHtml]="html"></div>
+      </ng-template>
+      <button id="popTemplate" type="button" class="btn btn-success waves-light" mdbPopoverHeader="Dynamic html inside" [mdbPopover]="popTemplate"
+        mdbWavesEffect>
+        Popover with html
+      </button>
+    </div>
+    <div class="col-md-3 mx-auto text-center">
+    <h4 class="text-center">Preconfigured</h4>
+    <button type="button" mdbBtn color="primary" class="waves-light" mdbPopoverHeader="title" mdbPopover="And here some amazing content. It's very engaging. Right?"
+      mdbWavesEffect>
+      Preconfigured popover
+    </button>
+  </div>
+  <div class="col-md-3 mx-auto text-center">
+  <h4 class="text-center">Simple hover</h4>
+  <button type="button" mdbBtn color="info" class="waves-light" mdbPopover="I will hide on blur" triggers="mouseenter:mouseleave" mdbWavesEffect>
+    Hover over me!
+  </button>
+</div>
+</div>
+<!-- Usage -->
+
+</div>

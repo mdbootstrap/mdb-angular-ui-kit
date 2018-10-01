@@ -26,7 +26,7 @@ git clone https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.
 ``` 
 note "." at the end. It will clone files directly into current folder. 
 - Run `npm i`
-- Run `npm start`
+- Run `npm start mdb-angular`
 - Voilà! Open browser and visit http://localhost:4200 
 
 Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.

@@ -1,0 +1,179 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Navbar</h2>
+    </div>
+  </div>
+
+  <!-- Basic example -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Basic example</h4>
+
+      <!--Navbar-->
+      <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+
+        <!-- Navbar brand -->
+        <mdb-navbar-brand>
+          <a class="navbar-brand" href="#">Navbar</a>
+        </mdb-navbar-brand>
+
+        <!-- Collapsible content -->
+        <links>
+
+          <!-- Links -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link waves-light" mdbWavesEffect>Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect>Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-light" mdbWavesEffect>Pricing</a>
+            </li>
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" dropdown>
+              <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                Basic dropdown
+                <span class="caret"></span>
+              </a>
+              <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Action</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Another action</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
+                <div class="divider dropdown-divider"></div>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+              </div>
+            </li>
+
+          </ul>
+          <!-- Links -->
+
+          <!-- Search form -->
+          <form class="form-inline waves-light" mdbWavesEffect>
+            <div class="md-form mt-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            </div>
+          </form>
+        </links>
+        <!-- Collapsible content -->
+
+      </mdb-navbar>
+      <!--/.Navbar-->
+
+
+    </div>
+  </div>
+  <!-- Basic example -->
+
+  <hr class="my-5">
+
+  <!-- Brand -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Brand</h4>
+
+      <!-- As a link -->
+      <mdb-navbar SideClass="navbar navbar-dark indigo">
+        <mdb-navbar-brand>
+          <a class="navbar-brand" href="#">Link</a>
+        </mdb-navbar-brand>
+      </mdb-navbar>
+
+
+    </div>
+  </div>
+  <!-- Brand -->
+
+  <hr class="my-5">
+
+  <!-- Images -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Images</h4>
+
+      <!-- Just an image -->
+      <mdb-navbar SideClass="navbar navbar-dark indigo">
+        <mdb-navbar-brand>
+          <a class="navbar-brand" href="#">
+            <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
+          </a>
+        </mdb-navbar-brand>
+      </mdb-navbar>
+
+
+    </div>
+  </div>
+  <!-- Images -->
+
+  <hr class="my-5">
+
+  <!-- Forms -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Forms</h4>
+
+      <mdb-navbar SideClass="navbar navbar-dark indigo">
+        <mdb-navbar-brand>
+          <form class="form-inline waves-light" mdbWavesEffect>
+            <div class="md-form mt-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+              <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit" mdbWavesEffect>Search</button>
+            </div>
+          </form>
+        </mdb-navbar-brand>
+      </mdb-navbar>
+
+
+    </div>
+  </div>
+  <!-- Forms -->
+
+  <hr class="my-5">
+
+  <!-- Heading -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Heading</h4>
+
+      <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo justify-content-between">
+        <mdb-navbar-brand>
+          <a class="navbar-brand" href="">Navbar</a>
+        </mdb-navbar-brand>
+        <links>
+          <form class="form-inline waves-light waves-light ml-auto" mdbWavesEffect>
+            <div class="md-form mt-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+              <button mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" type="submit" mdbWavesEffect>Search</button>
+            </div>
+          </form>
+        </links>
+      </mdb-navbar>
+
+    </div>
+  </div>
+  <!-- Heading -->
+
+  <hr class="my-5">
+
+  <!-- Text -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mb-5">
+      <h4 class="text-center">Text</h4>
+
+      <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+        <links>
+          <span class="navbar-text white-text">
+            Navbar text with an inline element
+          </span>
+        </links>
+      </mdb-navbar>
+
+    </div>
+  </div>
+  <!-- Text -->
+</div>

@@ -1,0 +1,338 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Modal Forms</h2>
+    </div>
+  </div>
+
+  <!-- Simple modal login -->
+  <div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <h4 class="text-center">Simple modal login</h4>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
+          (click)="modallogin.show()" mdbWavesEffect>
+          Simple modal login
+        </button>
+      </div>
+
+      <div mdbModal #modallogin="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modallogin.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+              <div class="md-form mb-5">
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input type="email" id="defaultForm-email" [formControl]="loginFormModalEmail" class="form-control validate"
+                  mdbInputDirective>
+                <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+              </div>
+
+              <div class="md-form mb-4">
+                <i class="fa fa-lock prefix grey-text"></i>
+                <input type="password" id="defaultForm-pass" [formControl]="loginFormModalPassword" class="form-control validate"
+                  mdbInputDirective>
+                <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+              </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="default" class="waves-light" mdbWavesEffect>Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Simple modal login -->
+
+  <hr class="my-5">
+
+  <!-- Simple modal register -->
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h4 class="text-center">Simple modal register</h4>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
+          (click)="modalregister.show()" mdbWavesEffect>
+          Simple modal register
+        </button>
+      </div>
+
+      <div mdbModal #modalregister="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalregister.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+              <div class="md-form mb-5">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="orangeForm-name" class="form-control validate" [formControl]="signupFormModalName"
+                  mdbInputDirective>
+                <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+              </div>
+              <div class="md-form mb-5">
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input type="email" id="orangeForm-email" class="form-control validate" [formControl]="signupFormModalEmail"
+                  mdbInputDirective>
+                <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+              </div>
+
+              <div class="md-form mb-4">
+                <i class="fa fa-lock prefix grey-text"></i>
+                <input type="password" id="orangeForm-pass" class="form-control validate" [formControl]="signupFormModalPassword"
+                  mdbInputDirective>
+                <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+              </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect>Sign up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Simple modal register -->
+
+  <hr class="my-5">
+
+  <!-- Simple modal subscription -->
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h4 class="text-center">Simple modal subscription</h4>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
+          (click)="modalsubscription.show()" mdbWavesEffect>
+          Simple modal subscription
+        </button>
+      </div>
+
+      <div mdbModal #modalsubscription="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Subscribe</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalsubscription.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+              <div class="md-form mb-5">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="form4" class="form-control validate" [formControl]="subscriptionFormModalName"
+                  mdbInputDirective>
+                <label data-error="wrong" data-success="right" for="form4">Your name</label>
+              </div>
+
+              <div class="md-form mb-4">
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input type="email" id="form5" class="form-control validate" [formControl]="subscriptionFormModalEmail"
+                  mdbInputDirective>
+                <label data-error="wrong" data-success="right" for="form5">Your email</label>
+              </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="indigo" class="waves-light" mdbWavesEffect>Send
+                <i class="fa fa-paper-plane-o ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Simple modal subscription -->
+
+  <hr class="my-5">
+
+  <!-- Simple modal contact -->
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h4 class="text-center">Simple modal contact</h4>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
+          (click)="modalsubscription.show()" mdbWavesEffect>
+          Simple modal contact
+        </button>
+      </div>
+
+      <div mdbModal #modalsubscription="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalsubscription.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+              <div class="md-form mb-5">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="form34" class="form-control validate" mdbInputDirective [formControl]="contactFormModalName">
+                <label data-error="wrong" data-success="right" for="form34">Your name</label>
+              </div>
+
+              <div class="md-form mb-5">
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input type="email" id="form35" class="form-control validate" mdbInputDirective [formControl]="contactFormModalEmail">
+                <label data-error="wrong" data-success="right" for="form35">Your email</label>
+              </div>
+
+              <div class="md-form mb-5">
+                <i class="fa fa-tag prefix grey-text"></i>
+                <input type="text" id="form32" class="form-control validate" mdbInputDirective [formControl]="contactFormModalSubject">
+                <label data-error="wrong" data-success="right" for="form32">Subject</label>
+              </div>
+
+              <div class="md-form">
+                <i class="fa fa-pencil prefix grey-text"></i>
+                <textarea type="text" id="form8" class="md-textarea form-control" rows="1" mdbInputDirective
+                  [formControl]="contactFormModalMessage"></textarea>
+                <label data-error="wrong" data-success="right" for="form8">Your message</label>
+              </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="unique" class="waves-light" mdbWavesEffect>Send
+                <i class="fa fa-paper-plane-o ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Simple modal contact -->
+
+  <hr class="my-5">
+
+  <!-- Modal with avatar -->
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h4 class="text-center">Modal with avatar</h4>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
+          (click)="modalavatar.show()" mdbWavesEffect>
+          Modal with avatar
+        </button>
+      </div>
+
+      <div mdbModal #modalavatar="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+          <!--Content-->
+          <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header">
+              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar" class="rounded-circle img-responsive">
+            </div>
+            <!--Body-->
+            <div class="modal-body text-center mb-1">
+
+              <h5 class="mt-1 mb-2">Maria Doe</h5>
+
+              <div class="md-form ml-0 mr-0">
+                <input type="password" type="text" id="form29" class="form-control form-control-sm validate ml-0"
+                  mdbInputDirective [formControl]="modalFormAvatarPassword">
+                <label data-error="wrong" data-success="right" for="form29" class="ml-0">Enter password</label>
+              </div>
+
+              <div class="text-center mt-4">
+                <button mdbBtn color="cyan" rounded="true" class="mt-1 waves-light" mdbWavesEffect>Login
+                  <i class="fa fa-sign-in ml-1"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal with avatar -->
+
+  <hr class="my-5">
+
+  <!-- Subscription modal with orange header -->
+  <div class="row mb-5">
+    <div class="col-md-6 mx-auto">
+      <h4 class="text-center">Subscription modal with orange header</h4>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
+          (click)="modalorange.show()" mdbWavesEffect>
+          Subscription modal with orange header
+        </button>
+      </div>
+
+      <div mdbModal #modalorange="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-warning" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header text-center">
+              <h4 class="modal-title white-text w-100 font-weight-bold py-2">Subscribe</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalorange.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="md-form mb-5">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="form3" class="form-control" mdbInputDirective [formControl]="modalFormSubscriptionName">
+                <label data-error="wrong" data-success="right" for="form3">Your name</label>
+              </div>
+
+              <div class="md-form">
+                <i class="fa fa-envelope prefix grey-text"></i>
+                <input type="email" id="form2" class="form-control" mdbInputDirective [formControl]="modalFormSubscriptionEmail">
+                <label data-error="wrong" data-success="right" for="form2">Your email</label>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect>Send
+                <i class="fa fa-paper-plane-o ml-1"></i>
+              </a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Subscription modal with orange header -->
+</div>
