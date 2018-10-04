@@ -1,3 +1,56 @@
+6.2.5
+Added two demo applications to ready-to-use archives containing MDB Angular Free and MDB Angular Pro, and to the Angular Bootstrap with Material Design repository on Github.
+
+*** Fixes: ***
+
+    * Resolved problem with mdb-select animation. Option list will appear above the component if there is not enough space below,
+    * Fixed bug which caused problems with opening mdb-select dropdown,
+    * Resolved problem with mdb-autocomplete events (keyup, keydown) which were emitted twice on each entry in the input element,
+    * Resolved problem with mdb-side-nav on Firefox,
+    * Resolved problem with hidden and fixed double navigation on IE11,
+    * Resolved problem with double navbar in Admin Dashboard Pro.
+
+*** New features: ***
+
+    * Added new directives which can be used to format credit card number, cvv number and date automatically.
+    * Tables - added TableModule containing following elements:
+        MdbTableDirective - responsible for different table types, for example: striped, responsive, hover, bordered, borderless
+        MdbTableRowDirective - can be used to emit events after creating/removing table row
+        MdbTableScrollDirective - responsible for table scroll along the x/y axis
+        MdbTableSortDirective - responsible for sorting items in the table
+        MdbTablePagination - component responsible for table pagination
+        MdbTableService - service responsible for creating new rows, table search and table data source
+    * Time picker - added [ disabled ] input which allow to specify disabled state for the component input,
+    * Select - added new visibleOptions and tabindex inputs. Those inputs can be used to change number of options visible in the options list and tabindex of the component,
+    * Added new BadgeModule module containing the MDBBadgeComponent.
+
+*** Documentation: ***
+
+    * Editable table - resolved problem with moving cursor in edit mode
+    * Added new example how to use Info Window in Google Maps
+
+*** Syntax changes: ***
+
+    * Color - replaced .default-text, .primary-text, .secondary-text, .success-text, .danger-text, .warning-text, .info-text classes with Bootstrap ones: .text-default, .text-primary, .text-secondary, .text-success, .text-danger, .text-warning, .text-info
+
+*** Deprecated: ***
+
+    This settings will be stored only by one version yet:
+    * .default-text, .primary-text, .secondary-text, .success-text, .danger-text, .warning-text, .info-text
+
+    We removed these classes from the package:
+    * .full-bg-img
+    * .full-height
+    * .side-nav .double-navbar .bc-min
+    * .no-padding
+    * .ql-modal, .product-panel
+    * .no-radius
+    * .section-blog-fw
+    * .personal-sm
+    * .classic-tabs (previous syntax not classic tabs at all)
+    * .naked-card
+    * .pricing-card .heading .card-overlay
+
 6.2.4
 *** Fixes: ***
 
@@ -61,7 +114,7 @@
 *** Docs: ***
 
     * Added legacy docs for version 6.2.1,
-    * Dropdown alignment section - updated example code responsible for menu position, 
+    * Dropdown alignment section - updated example code responsible for menu position,
     * Advanced modals - updated example code for modal advanced examples. Modal cookies, modal coupon, modal discount, modal related content and modal abandoned cart should no longer block interaction with other elements. In order to achieve this behaviour you need to add modal-scrolling class to the div with mdbModal directive,
     * Modals - added new section with instructions on how to open a modal from another component,
     * Intros - updated example codes to resolve problem with visibility of content placed below header,
@@ -76,7 +129,7 @@
 
     * File input
     * Accordion
-    
+
 6.2.2
 *** Fixes: ***
 
@@ -132,13 +185,13 @@
    * Removed duplicated elements from Autocomplete docs,
    * Updated Autocomplete docs with example of 'textNoResults' usage,
    * Updated pagination advanced examples (added variables that allow to change the number of elements displayed on a given page).
-   
+
 6.2.0
-*** MDB Angular Admin Templates: *** 
+*** MDB Angular Admin Templates: ***
     * Resolved problem with not working hamburger menu in Admin Dashboard Free,
     * Fixed problems with cards styling in Admin Dashboard Pro.
 
-*** Fixes: *** 
+*** Fixes: ***
 
     * Fixed a problem with the inability to update the charts labels together with the data,
     * Resolved problem with only 1 image in Lightbox Component,
@@ -148,9 +201,9 @@
     * Fixed problem with unable to listen date changes in Datepicker Component,
     * Resolved problem with fixed button sliding out from the bottom edge of the screen when it was at the top of the screen,
     * Fixed simple warnings from ng lint,
-    * Resolved problem with tabs visible on Datepicker plate, 
+    * Resolved problem with tabs visible on Datepicker plate,
 
-*** Docs: *** 
+*** Docs: ***
 
     * Described how to close Fixed Button content after click on some of his childs,
     * Improved documentation of adding translation into Datepicker Component,
@@ -163,7 +216,7 @@
 6.1.6
 *** Fixes: ***
     * Fixed problem with freezing browser while validating input
-    
+
 6.1.5
 *** New Features: ***
     * Added .md-textarea-auto class which allows textarea to auto resize when would not fit into it. This feature requires mdbInputDirective on textarea,
@@ -172,7 +225,7 @@
 ** Docs: ***
     * Described Card Reveal Component: https://mdbootstrap.com/angular/components/flipping-cards/,
     * Described changing opacity of alerts using toastClass option: https://mdbootstrap.com/angular/advanced/alerts/
-    
+
 *** Fixes: ***
     * Solved problem in which backdrop in sidenav did not hide after scrolling the page on the mobile,
     * Fixed problem with rotating Time Picker arrow on mobile,
@@ -207,7 +260,7 @@ We have provided users with the option to make their own changes to the source c
     * Added possibility to use .filled-in class in Multiple Select by using customClass=" 'filled-in' " field,
     * Added possibility to set custom sidenav breakpoint by using sidenavBreakpoint="desired-value" control on mdb-sidenav element,
     * Added option to define custom locale for datePicker without modifying datepickerLocale.service source file,
-    
+
 *** Fixes: ***
     * Fixed problem with fluid modal-bottom,
     * Fixed problem with modal height while using datepicker in modal,
@@ -226,7 +279,7 @@ If only individual modules are used, import them but do not import the MDBBootst
 *** What's new: ***
     Source code delivered to customers is now compilated to .js instead of .ts,
     There's now possibility to import only those modules, which you need in your project. Full module list: https://mdbootstrap.com/angular/modules-list
-    Changed names of few modules: 
+    Changed names of few modules:
         * MDBChartsModule -> ChartsModule,
         * BsDropdownModule -> DropdownModule,
         * MDBTooltipModule -> TooltipModule,
@@ -237,7 +290,7 @@ If only individual modules are used, import them but do not import the MDBBootst
         * MDBPageScrollModule -> SmoothscrollModule,
         * MdbStickyModule -> StickyContentModule,
         * MaterialRootModule -> PreloadersModule.
-    
+
 *** Fixes: ***
     Fixed missing space in mdb-angular.scss file,
     Added close icon to Autocomplete,
@@ -249,7 +302,7 @@ If only individual modules are used, import them but do not import the MDBBootst
 6.0.2
 *** General: ***
     Changed Renderer to Renderer2.
-    
+
 *** Fixes: ***
     Unnable to scroll in Sidenav,
     Fixed problems with skins,
@@ -275,7 +328,7 @@ If only individual modules are used, import them but do not import the MDBBootst
 
 *** NOTE 2: For proper using Angular 6 with MDB Angular 6 please check, if you're using rxjs in version at least 6.0.0-uncanny-rc.7 and rxjs-compat in version at least 6.0.0-uncanny-rc.7. Using older versions may produce errors and problems. ***
 
-*** Marked as deprecated: *** 
+*** Marked as deprecated: ***
 
     mdbActive,
     mdbInputValidate,
@@ -325,7 +378,7 @@ mdbRippleRadius was changed to mdbWavesEffect. mdbRippleRadius will be deleted a
     Accordion,
     Modals,
 
-5.2.3 
+5.2.3
 *** Compatibility with Angular Universal (Server-Side Rendering) ***. Read tutorial.
 Improved dropdown animation in Material Select,
 Fixed problem with dropdown transition in Material Select,
@@ -359,20 +412,20 @@ Aria attributes added to datepicker
 Added filtering options to Material Select
 Support for IE+ and Edge for Double Navigation
 Extended DatePicker with new functionality:
-Important! 
+Important!
 By default date picker will load now +- 7 years starting from current year. It can be overwritten using minYear and maxYear parameters:
 
-import { Component } from '@angular/core'; 
-import { IMyOptions } from 'your_path_to/date-picker/index'; 
+import { Component } from '@angular/core';
+import { IMyOptions } from 'your_path_to/date-picker/index';
 
-@Component({ 
-    selector: 'date-picker-component-example', 
-    templateUrl: 'toast.component.html' 
-}) 
+@Component({
+    selector: 'date-picker-component-example',
+    templateUrl: 'toast.component.html'
+})
 
-    export class DatePickerComponentExample { 
-    public myDatePickerOptions: IMyOptions = { 
-    minYear: 2015, 
+    export class DatePickerComponentExample {
+    public myDatePickerOptions: IMyOptions = {
+    minYear: 2015,
     maxYear: 2017
     };
 }
