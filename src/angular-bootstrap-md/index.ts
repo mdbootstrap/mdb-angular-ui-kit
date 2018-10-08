@@ -1,4 +1,3 @@
-
 // free
 import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
@@ -17,6 +16,17 @@ import { PopoverModule } from './popover/popover.module';
 import { WavesModule } from './waves/waves.module';
 import { IconsModule } from './icons/icon.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
+import { TableModule } from './tables/tables.module';
+import { BadgeModule } from './badge/badge.module';
+
+export {
+  MDBBadgeComponent, BadgeModule
+} from './badge/index';
+
+export {
+  MdbTablePaginationComponent, MdbTableRowDirective, MdbTableScrollDirective,
+  MdbTableSortDirective, MdbTableDirective, MdbTableService
+} from './tables/index';
 
 export {
   ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective, MdbBtnDirective
@@ -104,7 +114,9 @@ const MODULES = [
   TooltipModule,
   PopoverModule,
   IconsModule,
-  CheckboxModule
+  CheckboxModule,
+  TableModule,
+  BadgeModule
 
 ];
 
@@ -124,7 +136,9 @@ const MODULES = [
     PopoverModule.forRoot(),
     IconsModule,
     CardsFreeModule.forRoot(),
-    CheckboxModule
+    CheckboxModule,
+    TableModule,
+    BadgeModule
   ],
   exports: MODULES,
   schemas: [NO_ERRORS_SCHEMA]

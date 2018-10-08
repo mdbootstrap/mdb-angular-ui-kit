@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Hover Effects</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mx-auto my-5">
+      <h4 class="text-center">Light Overlay</h4>
+      <div class="view overlay">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class="img-fluid " alt="">
+        <div class="mask flex-center rgba-red-light">
+          <p class="white-text">Light overlay</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mx-auto my-5">
+      <h4 class="text-center">Strong Overlay</h4>
+      <div class="view overlay">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class="img-fluid " alt="">
+        <div class="mask flex-center rgba-red-strong">
+          <p class="white-text">Strong overlay</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mx-auto my-5">
+      <h4 class="text-center">Super Light Overlay</h4>
+      <div class="view overlay">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class="img-fluid " alt="">
+        <div class="mask flex-center rgba-red-slight">
+          <p class="white-text">Super light overlay</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mx-auto my-5">
+      <h4 class="text-center">Zoom Effect</h4>
+      <div class="view zoom" (mouseenter)="zoom = true" (mouseleave)="zoom = false">
+        <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class="img-fluid " alt="">
+        <div class="mask flex-center">
+          <p class="white-text" [ngClass]="{'d-none': !zoom, 'd-block': zoom}">Zoom effect</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mx-auto my-5">
+      <h4 class="text-center">Shadow Effect</h4>
+      <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class="img-fluid hoverable" alt="">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,228 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Table Styles</h2>
+    </div>
+  </div>
+
+  <!-- Table with buttons -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Table with buttons</h4>
+      <table class="table table-striped table-responsive-md btn-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>
+              <button mdbBtn color="indigo" size="sm" mdbWavesEffect type="button" class="m-0">Button</button>
+            </td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>
+              <button mdbBtn color="indigo" size="sm" mdbWavesEffect type="button" class="m-0">Button</button>
+            </td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>
+              <button mdbBtn color="indigo" size="sm" mdbWavesEffect type="button" class="m-0">Button</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Table with buttons -->
+
+  <hr class="my-5">
+
+  <!-- Outline buttons -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Outline buttons</h4>
+      <table class="table table-striped table-responsive-md btn-table">
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>
+              <button mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0">Button</button>
+            </td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>
+              <button mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0">Button</button>
+            </td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>
+              <button mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0">Button</button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+  <!-- Outline buttons -->
+
+  <hr class="my-5">
+
+  <!-- Table with checkboxes -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Table with checkboxes</h4>
+      <!-- Table  -->
+      <table class="table table-bordered">
+        <!-- Table head -->
+        <thead>
+          <tr>
+            <th>
+              <!-- Default unchecked -->
+              <div class="custom-control custom-checkbox">
+                <mdb-checkbox default="true">Check 1</mdb-checkbox>
+              </div>
+            </th>
+            <th>Lorem</th>
+            <th>Ipsum</th>
+            <th>Dolor</th>
+          </tr>
+        </thead>
+        <!-- Table head -->
+
+        <!-- Table body -->
+        <tbody>
+          <tr>
+            <th scope="row">
+              <!-- Default unchecked -->
+              <div class="custom-control custom-checkbox">
+                <mdb-checkbox default="true">Check 2</mdb-checkbox>
+              </div>
+            </th>
+            <td>Cell 1</td>
+            <td>Cell 2</td>
+            <td>Cell 3</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <!-- Default unchecked -->
+              <div class="custom-control custom-checkbox">
+                <mdb-checkbox default="true">Check 3</mdb-checkbox>
+              </div>
+            </th>
+            <td>Cell 4</td>
+            <td>Cell 5</td>
+            <td>Cell 6</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <!-- Default unchecked -->
+              <div class="custom-control custom-checkbox">
+                <mdb-checkbox default="true">Check 4</mdb-checkbox>
+              </div>
+            </th>
+            <td>Cell 7</td>
+            <td>Cell 8</td>
+            <td>Cell 9</td>
+          </tr>
+        </tbody>
+        <!-- Table body -->
+      </table>
+      <!-- Table  -->
+    </div>
+  </div>
+  <!-- Table with checkboxes -->
+
+  <hr class="my-5">
+
+  <!-- Table with icons -->
+  <div class="row mb-5">
+    <div class="col-md-12 mx-auto text-center">
+      <h4 class="text-center">Table with icons</h4>
+      <!-- Table  -->
+      <table class="table">
+        <!-- Table head -->
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>
+              <mdb-icon icon="leaf" class="mr-2 blue-text" aria-hidden="true">Lorem</mdb-icon>
+            </th>
+            <th>
+              <mdb-icon icon="leaf" class="mr-2 teal-text" aria-hidden="true"></mdb-icon>Ipsum</th>
+            <th>
+              <mdb-icon icon="leaf" class="indigo-text" aria-hidden="true"></mdb-icon>Dolor</th>
+          </tr>
+        </thead>
+        <!-- Table head -->
+
+        <!-- Table body -->
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>
+              <mdb-icon icon="diamond" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 1</td>
+            <td>
+              <mdb-icon icon="download" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 2</td>
+            <td>
+              <mdb-icon icon="book" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 3</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>
+              <mdb-icon icon="graduation-cap" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 4</td>
+            <td>
+              <mdb-icon icon="gift" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 5</td>
+            <td>
+              <mdb-icon icon="image" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 6</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>
+              <mdb-icon icon="magic" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 7</td>
+            <td>
+              <mdb-icon icon="table" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 8</td>
+            <td>
+              <mdb-icon icon="edit" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>Cell 9</td>
+          </tr>
+        </tbody>
+        <!-- Table body -->
+      </table>
+      <!-- Table  -->
+    </div>
+  </div>
+  <!-- Table with icons -->
+</div>

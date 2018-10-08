@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-md-lib",
-  "version": "6.2.4",
+  "version": "6.2.5",
   "description": "Bootstrap Material Design for Angular",
   "license": "MIT",
   "scripts": {
@@ -14,7 +14,9 @@
     "pack": "cp -r src/angular-bootstrap-md/scss src/angular-bootstrap-md/font/ src/angular-bootstrap-md/img/ dist && cd dist && npm pack && cd ..",
     "copy": "cp dist/angular-bootstrap-md-6.* ./ && cp README.md ./dist",
     "compile": "npm run build:lib && npm run pack && npm run copy",
-    "version": "sync-json -v --property version --source package.json src/package.json"
+    "version": "sync-json -v --property version --source package.json src/package.json",
+    "remove-demo-unix": "rm -rf projects && rm angular.json && mv angular-clean.json angular.json",
+    "remove-demo-windows": "rmdir /s /q projects && del angular.json && ren angular-clean.json angular.json"
   },
   "dependencies": {
     "@angular-devkit/build-optimizer": "^0.6.8",
@@ -23,11 +25,13 @@
     "@angular/compiler": "^6.0.0-rc.1",
     "@angular/core": "^6.0.0-rc.1",
     "@angular/forms": "^6.0.0-rc.1",
+    "@angular/platform-server": "^6.0.0-rc.1",
     "@angular/http": "^6.0.0-rc.1",
     "@angular/platform-browser": "^6.0.0-rc.1",
     "@angular/platform-browser-dynamic": "^6.0.0-rc.1",
     "@angular/router": "^6.0.0-rc.1",
-    "angular-bootstrap-md": "file:angular-bootstrap-md-6.2.4.tgz",
+    "angular-bootstrap-md": "file:angular-bootstrap-md-6.2.5.tgz",
+    "@agm/core": "1.0.0-beta.5",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
     "font-awesome": "4.7.x",

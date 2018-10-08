@@ -18,9 +18,20 @@ import { InputsModule } from './inputs/inputs.module';
 import { WavesModule } from './waves/waves.module';
 import { IconsModule } from './icons/icon.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
+import { TableModule } from './tables/tables.module';
+import { BadgeModule } from './badge/badge.module';
 
 export {
-  CHECKBOX_VALUE_ACCESSOR, CheckboxComponent, CheckboxModule 
+  MDBBadgeComponent, BadgeModule
+} from './badge/index';
+
+export {
+  MdbTablePaginationComponent, MdbTableRowDirective, MdbTableScrollDirective,
+  MdbTableSortDirective, MdbTableDirective, MdbTableService
+} from './tables/index';
+
+export {
+  CHECKBOX_VALUE_ACCESSOR, CheckboxComponent, CheckboxModule
 } from './checkbox/index';
 
 export {
@@ -105,7 +116,9 @@ const MODULES = [
   TooltipModule,
   PopoverModule,
   IconsModule,
-  CheckboxModule
+  CheckboxModule,
+  TableModule,
+  BadgeModule
 ];
 
 @NgModule({
@@ -124,7 +137,9 @@ const MODULES = [
     PopoverModule.forRoot(),
     IconsModule,
     CardsFreeModule.forRoot(),
-    CheckboxModule
+    CheckboxModule,
+    TableModule,
+    BadgeModule
   ],
   exports: MODULES,
   schemas: [NO_ERRORS_SCHEMA]

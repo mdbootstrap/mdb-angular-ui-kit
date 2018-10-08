@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Pagination</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Basic Example -->
+    <div class="col-md-10 mx-auto my-5">
+      <h4 class="text-center">Advanced Example</h4>
+      <div class="card card-cascade narrower mt-5">
+
+        <!--Card image-->
+        <div class="view view-cascade gradient-card-header purple-gradient narrower py-4 mx-4 mb-3 d-flex justify-content-center align-items-center">
+
+          <h4 class="white-text font-weight-bold text-uppercase mb-0">Table with pagination</h4>
+
+        </div>
+        <!--/Card image-->
+
+        <div class="px-4">
+
+          <!--Table-->
+          <table class="table table-hover table-responsive-md mb-0">
+
+            <!--Table head-->
+            <thead>
+              <tr>
+                <th scope="row">Id</th>
+                <th class="th-lg">Title</th>
+              </tr>
+            </thead>
+            <!--Table head-->
+
+            <!--Table body-->
+            <tbody>
+              <tr *ngFor="let data of tableData; let i = index">
+                <th px-3 *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex" scope="row">{{data.id}}</th>
+                <td *ngIf="data.id >= firstVisibleIndex && data.id <= lastVisibleIndex">{{data.title}}</td>
+              </tr>
+            </tbody>
+            <!--Table body-->
+          </table>
+
+        </div>
+
+        <hr class="my-0">
+
+        <!--Bottom Table UI-->
+        <div class="d-flex justify-content-center">
+
+          <!--Pagination -->
+          <nav class="my-4 pt-2">
+            <ul class="pagination pagination-circle pg-purple mb-0 flex-wrap">
+
+              <!--First-->
+              <li class="page-item clearfix d-none d-md-block" (click)="firstPage()" [ngClass]="{disabled: activePage == 1}">
+                <a class="page-link">First</a>
+              </li>
+
+              <!--Arrow left-->
+              <li class="page-item" (click)="previousPage()" [ngClass]="{disabled: activePage == 1}">
+                <a class="page-link" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+
+
+              <!--Numbers-->
+              <li #pages *ngFor="let page of paginators | slice:firstVisiblePaginator:lastVisiblePaginator; let i = index" class="page-item"
+                [ngClass]="{active: i + firstVisiblePaginator + 1 == activePage}">
+                <a class="page-link waves-light" (click)="changePage($event)" mdbWavesEffect>{{page}}</a>
+              </li>
+
+              <!--Arrow right-->
+              <li class="page-item" (click)="nextPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
+                <a class="page-link" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+
+              <!--First-->
+              <li class="page-item clearfix d-none d-md-block" (click)="lastPage()" [ngClass]="{disabled: activePage == numberOfPaginators}">
+                <a class="page-link">Last</a>
+              </li>
+
+            </ul>
+          </nav>
+          <!--/Pagination -->
+
+        </div>
+        <!--Bottom Table UI-->
+
+      </div>
+    </div>
+  </div>
+</div>

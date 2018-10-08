@@ -1,0 +1,74 @@
+<main class="container-fluid">
+  <div class="row" *ngIf="!isChildRouteLoaded">
+    <div class="col-md-8 mx-auto my-5">
+      <mdb-card>
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4>MDB Angular - Navigation category</h4>
+          </mdb-card-title>
+          <mdb-card-text class="py-3">Navbars, Mega Menu, Sidenav and many more! Get to know all our ready to use navigation components in one place.</mdb-card-text>
+          <mdb-card-body>
+            <!--Section: -->
+            <section id="advanced-table-options">
+              <!-- List group -->
+              <div class="list-group">
+
+                <!-- Item -->
+                <a *ngFor="let item of itemsArray" routerLink="{{item.link}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="h5 mb-3">{{item.name}}</h5>
+                    </div>
+                    <p class="mb-1">{{item.description}}</p>
+                  </div>
+
+                  <i class="fa fa-chevron-right" style="font-size: 1.3rem;"></i>
+                </a>
+                <!-- Item -->
+              </div>
+            </section>
+            <!--/Section: -->
+          </mdb-card-body>
+          <div class="d-flex flex-row justify-content-center">
+            <a class="card-link" href="https://mdbootstrap.com/angular" alt="official documentation">Official documentation</a>
+            <a class="card-link" href="https://mdbootstrap.com/angular/angular-bootstrap-getting-started/" alt="getting started">Getting Started</a>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+
+    <div class="col-md-8 mx-auto my-5">
+      <mdb-card>
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4>MDB Angular - Navigation Layouts</h4>
+          </mdb-card-title>
+          <mdb-card-text class="py-3">Ready to use Navigation & Double Navigation Layouts for your Application</mdb-card-text>
+          <mdb-card-body>
+            <!--Section: -->
+            <section id="advanced-table-options">
+              <!-- List group -->
+              <div class="list-group">
+
+                <!-- Item -->
+                <a *ngFor="let item of introsArray" routerLink="{{item.link}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="h5 mb-3">{{item.name}}</h5>
+                    </div>
+                    <p class="mb-1">{{item.description}}</p>
+                  </div>
+
+                  <i class="fa fa-chevron-right" style="font-size: 1.3rem;"></i>
+                </a>
+                <!-- Item -->
+              </div>
+            </section>
+            <!--/Section: -->
+          </mdb-card-body>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+  <router-outlet *ngIf="isChildRouteLoaded"></router-outlet>
+</main>

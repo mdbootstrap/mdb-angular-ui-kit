@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mdb-test-angular": {
+    "mdb-angular": {
       "root": "",
       "projectType": "application",
       "architect": {
@@ -15,7 +15,8 @@
             "main": "demo/src/main.ts",
             "tsConfig": "demo/src/tsconfig.app.json",
             "polyfills": "demo/src/polyfills.ts",
-            "assets": [{
+            "assets": [
+              {
                 "glob": "**/*",
                 "input": "demo/src/assets",
                 "output": "/assets"
@@ -26,7 +27,8 @@
                 "output": "/"
               }
             ],
-            "styles": [{
+            "styles": [
+              {
                 "input": "node_modules/font-awesome/scss/font-awesome.scss"
               },
               {
@@ -39,7 +41,9 @@
                 "input": "demo/src/styles.scss"
               }
             ],
-            "scripts": ["node_modules/chart.js/dist/Chart.js"]
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -52,28 +56,30 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "fileReplacements": [{
-                "replace": "demo/src/environments/environment.ts",
-                "with": "demo/src/environments/environment.prod.ts"
-              }]
+              "fileReplacements": [
+                {
+                  "replace": "demo/src/environments/environment.ts",
+                  "with": "demo/src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mdb-test-angular:build"
+            "browserTarget": "mdb-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mdb-test-angular:build:production"
+              "browserTarget": "mdb-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mdb-test-angular:build"
+            "browserTarget": "mdb-angular:build"
           }
         },
         "test": {
@@ -90,7 +96,8 @@
               "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
               "demo/src/styles.scss"
             ],
-            "assets": [{
+            "assets": [
+              {
                 "glob": "**/*",
                 "input": "demo/src/assets",
                 "output": "/assets"
@@ -117,7 +124,7 @@
         }
       }
     },
-    "mdb-test-angular-e2e": {
+    "mdb-angular-e2e": {
       "root": "",
       "projectType": "application",
       "cli": {},
@@ -127,7 +134,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "mdb-test-angular:serve"
+            "devServerTarget": "mdb-angular:serve"
           }
         },
         "lint": {
@@ -136,6 +143,138 @@
             "tsConfig": [
               "e2e/tsconfig.e2e.json"
             ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "mdb-demo": {
+      "root": "projects/mdb-demo/",
+      "sourceRoot": "projects/mdb-demo/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/mdb-demo",
+            "index": "projects/mdb-demo/src/index.html",
+            "main": "projects/mdb-demo/src/main.ts",
+            "polyfills": "projects/mdb-demo/src/polyfills.ts",
+            "tsConfig": "projects/mdb-demo/tsconfig.app.json",
+            "assets": [
+              "projects/mdb-demo/src/favicon.ico",
+              "projects/mdb-demo/src/assets"
+            ],
+            "styles": [
+              {
+                "input": "node_modules/font-awesome/scss/font-awesome.scss"
+              },
+              {
+                "input": "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss"
+              },
+              {
+                "input": "node_modules/angular-bootstrap-md/scss/mdb-free.scss"
+              },
+              {
+                "input": "demo/src/styles.scss"
+              }
+            ],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/mdb-demo/src/environments/environment.ts",
+                  "with": "projects/mdb-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mdb-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mdb-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mdb-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mdb-demo/src/test.ts",
+            "polyfills": "projects/mdb-demo/src/polyfills.ts",
+            "tsConfig": "projects/mdb-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/mdb-demo/karma.conf.js",
+            "styles": [
+              "projects/mdb-demo/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/mdb-demo/src/favicon.ico",
+              "projects/mdb-demo/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mdb-demo/tsconfig.app.json",
+              "projects/mdb-demo/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "mdb-demo-e2e": {
+      "root": "projects/mdb-demo-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/mdb-demo-e2e/protractor.conf.js",
+            "devServerTarget": "mdb-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mdb-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/mdb-demo-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]

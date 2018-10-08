@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+.img-fluid {
+    max-width: unset !important;
+    width: 100% !important;
+}
+.opacity {
+  opacity: 1.0 !important;
+}
+/* Required height of parents of the Full Page Carousel for proper displaying carousel itself */
+ 
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}

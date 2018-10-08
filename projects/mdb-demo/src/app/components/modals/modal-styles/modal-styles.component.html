@@ -1,0 +1,641 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Modal Styles</h2>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h4 class="text-center">Success Modal</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="successcentral.show()" mdbWavesEffect>Success
+          Central Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="successside.show()" mdbWavesEffect>Success
+          Side Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="successfluid.show()" mdbWavesEffect>Success
+          Fluid Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="successframe.show()" mdbWavesEffect>Success
+          Frame Modal</button>
+      </div>
+
+      <div mdbModal #successcentral="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-success" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Success</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="successcentral.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="successcentral.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #successside="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-success" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Success</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="successside.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="successside.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #successfluid="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-right modal-notify modal-success" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Success</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="successfluid.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="success" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect (click)="successfluid.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #successframe="mdbModal" class="modal fade bottom" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-bottom modal-notify modal-success" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Success</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="successframe.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur</p>
+              </div>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Success Modal -->
+
+  <hr class="my-5">
+
+  <!-- Info Modal -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Info Modal</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="infocentral.show()" mdbWavesEffect>Info
+          Central Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="infoside.show()" mdbWavesEffect>Info
+          Side Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="infofluid.show()" mdbWavesEffect>Info
+          Fluid Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="infoframe.show()" mdbWavesEffect>Info
+          Frame Modal</button>
+      </div>
+
+      <div mdbModal #infocentral="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-info" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Info</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="infocentral.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect (click)="infocentral.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #infoside="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Info</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="infoside.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect (click)="infoside.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #infofluid="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Info</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="infofluid.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="info" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="info" outline="true" class="waves-effect" mdbWavesEffect (click)="infofluid.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #infoframe="mdbModal" class="modal fade bottom" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-bottom modal-notify modal-info" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Info</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="infoframe.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur</p>
+              </div>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Info Modal -->
+
+  <hr class="my-5">
+
+  <!-- Danger Modal -->
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h4 class="text-center">Danger Modal</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="dangercentral.show()" mdbWavesEffect>Danger
+          Central Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="dangerside.show()" mdbWavesEffect>Danger
+          Side Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="dangerfluid.show()" mdbWavesEffect>Danger
+          Fluid Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="dangerframe.show()" mdbWavesEffect>Danger
+          Frame Modal</button>
+      </div>
+
+      <div mdbModal #dangercentral="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-danger" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Danger</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dangercentral.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="danger" outline="true" class="waves-effect" mdbWavesEffect (click)="dangercentral.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #dangerside="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-danger" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Danger</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dangerside.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="danger" outline="true" class="waves-effect" mdbWavesEffect (click)="dangerside.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #dangerfluid="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-right modal-notify modal-danger" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Danger</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dangerfluid.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="danger" outline="true" class="waves-effect" mdbWavesEffect (click)="dangerfluid.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #dangerframe="mdbModal" class="modal fade bottom" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-bottom modal-notify modal-danger" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Danger</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dangerframe.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur</p>
+              </div>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Danger Modal -->
+
+  <hr class="my-5">
+
+  <!-- Warning Modal -->
+  <div class="row">
+    <div class="col-md-12 mx-auto mb-5">
+      <h4 class="text-center">Warning Modal</h4>
+
+      <div class="d-flex justify-content-center flex-wrap">
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="warningcentral.show()" mdbWavesEffect>Warning
+          Central Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="warningside.show()" mdbWavesEffect>Warning
+          Side Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="warningfluid.show()" mdbWavesEffect>Warning
+          Fluid Modal</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" (click)="warningframe.show()" mdbWavesEffect>Warning
+          Frame Modal</button>
+      </div>
+
+      <div mdbModal #warningcentral="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-warning" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Warning</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="warningcentral.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="warning" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect (click)="warningcentral.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #warningside="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-warning" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Warning</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="warningside.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="warning" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect (click)="warningside.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #warningfluid="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-full-height modal-right modal-notify modal-warning" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Warning</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="warningfluid.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur
+                  in dolores culpa, dignissimos, eius non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.</p>
+              </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a type="button" mdbBtn color="warning" class="waves-effect" mdbWavesEffect>Get it now
+                <i class="fa fa-diamond ml-1"></i>
+              </a>
+              <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect (click)="warningfluid.hide()">No,
+                thanks</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+      <div mdbModal #warningframe="mdbModal" class="modal fade bottom" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-frame modal-bottom modal-notify modal-warning" role="document">
+          <!--Content-->
+          <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+              <p class="heading lead">Modal Warning</p>
+
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="warningframe.hide()">
+                <span aria-hidden="true" class="white-text">&times;</span>
+              </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <div class="text-center">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam blanditiis ad
+                  consequatur</p>
+              </div>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Warning Modal -->
+</div>

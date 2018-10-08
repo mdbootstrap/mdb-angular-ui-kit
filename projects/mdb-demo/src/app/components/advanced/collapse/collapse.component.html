@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Collapse</h2>
+    </div>
+  </div>
+
+  <!-- Basic Example -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Basic Example</h4>
+      <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>
+        Toggle collapse
+      </button>
+
+      <div class="" mdbCollapse #test="bs-collapse">
+        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Basic Example -->
+
+  <hr class="my-5">
+
+  <!-- Collapse visible after view init -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Collapse visible after view init</h4>
+      <button class="btn btn-primary waves-light" type="button" (click)="testt.toggle()" mdbWavesEffect>
+        Toggle collapse
+      </button>
+
+      <div class="" mdbCollapse #testt="bs-collapse">
+        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica,
+          craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Collapse visible after view init -->
+
+  <hr class="my-5">
+
+  <!-- Collapse events -->
+  <div class="row mb-5">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Collapse events</h4>
+      <button class="btn btn-primary waves-light" type="button" (click)="coll.toggle()" mdbWavesEffect>
+        Toggle collapse
+      </button>
+
+      <div class="" mdbCollapse #coll="bs-collapse" (showBsCollapse)="showBsCollapse($event)" (shownBsCollapse)="shownBsCollapse($event)" (hideBsCollapse)="hideBsCollapse($event)" (hiddenBsCollapse)="hiddenBsCollapse($event)">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Collapse events -->
+</div>

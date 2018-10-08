@@ -1,0 +1,25 @@
+<!--Pagination -->
+<nav>
+  <ul class="pagination pagination-circle pg-blue d-flex flex-center" [ngClass]="{
+      'justify-content-end': paginationAlign =='end',
+      'justify-content-start': paginationAlign =='start'
+    }">
+
+    <p *ngIf="!hideDescription">{{firstItemIndex}} - {{lastVisibleItemIndex}} of {{allItemsLength}}</p>
+    <!--Arrow left-->
+    <li class="page-item" [ngClass]="{'disabled': checkIfPreviousShouldBeDisabled()}">
+      <a class="page-link" mdbWavesEffect aria-label="Previous" (click)="previousPage()">
+        <span aria-hidden="true">«</span>
+      </a>
+    </li>
+
+    <!--Arrow right-->
+    <li class="page-item" [ngClass]="{'disabled': checkIfNextShouldBeDisabled()}">
+      <a class="page-link" mdbWavesEffect aria-label="Next" (click)="nextPage()">
+        <span aria-hidden="true">»</span>
+      </a>
+    </li>
+
+  </ul>
+</nav>
+<!--/Pagination -->

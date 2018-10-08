@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto mt-5">
+      <h2 class="text-center">Angular Bootstrap Editable</h2>
+    </div>
+  </div>
+
+  <!-- Basic example -->
+  <div class="row">
+    <div class="col-md-12 mx-auto text-center mt-5">
+      <h4 class="text-center">Basic example</h4>
+      <!-- Editable table -->
+      <div class="card">
+        <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+        <div class="card-body">
+          <div id="table" class="table-editable">
+            <span class="table-add float-right mb-3 mr-2">
+              <a class="text-success" (click)="add()">
+                <mdb-icon icon="plus" size="2x"></mdb-icon>
+              </a>
+            </span>
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+              <tr>
+                <th class="text-center">Person Name</th>
+                <th class="text-center">Age</th>
+                <th class="text-center">Company Name</th>
+                <th class="text-center">Country</th>
+                <th class="text-center">City</th>
+                <th class="text-center">Sort</th>
+                <th class="text-center">Remove</th>
+              </tr>
+              <tr *ngFor="let person of personList; let id = index">
+                <td contenteditable="true" (keyup)="changeValue(id, 'name', $event)">{{person.name}}</td>
+                <td contenteditable="true" (keyup)="changeValue(id, 'age', $event)">{{person.age}}</td>
+                <td contenteditable="true" (keyup)="changeValue(id, 'companyName', $event)">{{person.companyName}}</td>
+                <td contenteditable="true" (keyup)="changeValue(id, 'country', $event)">{{person.country}}</td>
+                <td contenteditable="true" (keyup)="changeValue(id, 'city', $event)">{{person.city}}</td>
+                <td>
+                  <span class="table-up">
+                    <a class="indigo-text">
+                      <mdb-icon icon="long-arrow-up"></mdb-icon>
+                    </a>
+                  </span>
+                  <span class="table-down">
+                    <a class="indigo-text">
+                      <mdb-icon icon="long-arrow-down"></mdb-icon>
+                    </a>
+                  </span>
+                </td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Editable table -->
+    </div>
+  </div>
+  <!-- Basic example -->
+
+  <hr class="my-5">
+</div>
