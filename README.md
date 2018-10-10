@@ -67,7 +67,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     schemas: [ NO_ERRORS_SCHEMA ]
 });
 ```
-- in angular-cli.json change:
+- in angular.json change:
 
 `"styleExt": "css"` to `"styleExt": "scss"`
 
