@@ -26,10 +26,18 @@ git clone https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.
 ``` 
 note "." at the end. It will clone files directly into current folder. 
 - Run `npm i`
-- Run `npm start mdb-angular`
+- Run `npm start`
 - Voilà! Open browser and visit http://localhost:4200 
 
 Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.
+
+## Demo application
+
+Feel free to check our live example components: Just type `ng serve mdb-demo` in terminal!
+
+Type one of the below commands to remove demo application from this project:
+* npm `run remove-demo-unix` to remove demo application on UNIX based systems,
+* npm `run remove-demo-windows` to remove demo application on Windows systems.
 
 # Available commands
 
