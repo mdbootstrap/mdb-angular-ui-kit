@@ -92,7 +92,7 @@ rename /src/styles.css to styles.scss
 
 - if you want to change styles in exisiting project you can use `ng set defaults.styleExt scss`
 
-- add below lines to angular-cli.json: 
+- add below lines to angular.json: 
 ```javascript
 "styles": [
     "node_modules/font-awesome/scss/font-awesome.scss",
@@ -112,7 +112,7 @@ npm install -–save chart.js@2.5.0 font-awesome hammerjs
 
 ### Run server
 ```bash
-ng serve --open
+ng serve mdb-angular --open
 ```
 
 ## Getting started:
