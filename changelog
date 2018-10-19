@@ -1,3 +1,59 @@
+6.2.6
+*** Fixes: ***
+
+    * Resolved problem with ngIf directive used on mdb-tab,
+    * Resolved problem with active state on disabled mdb-tab,
+    * Resolved problem with display of slider range cloud in Safari browser,
+    * Resolved problem with usage of routerLinkActive in mdb-sidenav. Sidenav should now highlight active item and toggle accordion item depending on      active route,
+    * Resolved problem with display of mega menu when it is used together with mdb-sidenav component,
+    * Resolved problem with mdb-sidenav mask,
+    * Resolved problem with 'Attempt to use a destroyed view' in scroll-spy,
+    * Resolved problem with 'ExpressionChangedAfterItHasBeenCheckedError' in mdb-select filter input
+    * Removed unnecessary padding from mdb-select component
+
+*** New features: ***
+
+    * Added possibility to use icons in option list of mdb-autocomplete component,
+    * Added focus animation to mdb-autocomplete clear button and new [ clearButtonTabIndex ] input which allow to change tabindex attribute of this        button
+
+*** Documentation: ***
+
+    * Date picker - updated options object in example code,
+    * Tabs - added new instructions on how to set active tab programatically
+    * Gradients - added examples for additional gradients
+    * Skins - added instructions on how to add custom skin
+    * Select - resolved problems with overlapped label with select element
+    * Timeline - scss code is now in MDB Angular Pro package
+    * FAQ - removed old and unnecessary questions and added new one
+
+*** Syntax changes: ***
+
+Following outputs names has been changed:
+
+    Modal:
+
+    * (onShow) is now (open)
+    * (onShown) is now (opened)
+    * (onHide) is now (close)
+    * (onHidden) is now (closed)
+
+    Dropdown:
+
+    * (onShown) is now (shown)
+    * (onHidden) is now (hidden)
+
+    Popover:
+
+    * (onShown) is now (shown)
+    * (onHidden) is now (hidden)
+
+    Tooltip:
+
+    * (onShown) is now (shown)
+    * (onHidden) is now (hidden)
+
+These syntax changes are backward compatible, which means that your project will work with both the old and the new syntax. We recommend that you update the syntax as soon as possible. The changes will be backward compatible for several more versions.
+
 6.2.5
 Added two demo applications to ready-to-use archives containing MDB Angular Free and MDB Angular Pro, and to the Angular Bootstrap with Material Design repository on Github.
 

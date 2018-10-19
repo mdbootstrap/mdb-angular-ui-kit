@@ -1,0 +1,343 @@
+
+/* Materializecss Stepper - By Kinark 2016
+// https://github.com/Kinark/Materialize-stepper
+// CSS v2.1.3
+*/
+
+/*Validate.js FIX*/
+
+label.invalid {
+  font-size: 12.8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: red !important;
+  top: 50px !important;
+
+  &.active {
+    transform: translateY(0%) !important;
+  }
+}
+
+/*Validate.js FIX*/
+
+ul.stepper {
+  .wait-feedback {
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .step {
+    position: relative;
+    list-style: none;
+
+    &.feedbacking .step-new-content>*:not(.wait-feedback) {
+      opacity: 0.1;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    }
+
+    &:not(:last-of-type).active {
+      margin-bottom: 2.25rem;
+    }
+
+    &:before {
+      position: absolute;
+      top: 0.75rem;
+      counter-increment: section;
+      content: counter(section);
+      height: 1.75rem;
+      width: 1.75rem;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 100%;
+      text-align: center;
+      line-height: 1.75rem;
+      font-weight: 400;
+    }
+
+    &.active:before {
+      @extend .primary-color;
+    }
+
+    &.done:before {
+      content: '\f00c';
+      font-family: FontAwesome;
+      font-size: 1rem;
+      @extend .success-color;
+    }
+
+    &.wrong:before {
+      content: '\f071';
+      font-family: FontAwesome;
+      font-size: 1.1rem;
+      @extend .danger-color;
+    }
+  }
+
+  >li:not(:last-of-type) {
+    margin-bottom: 0.625rem;
+    transition: margin-bottom 0.4s;
+  }
+
+  .step-title {
+    margin: 0 -1.3rem;
+    cursor: pointer;
+    padding: 0.9688rem 2.75rem 1.5rem 4rem;
+    display: block;
+
+    &:after {
+      content: attr(data-step-label);
+      display: block;
+      position: absolute;
+      font-size: 0.8rem;
+      color: #424242;
+      font-weight: 400;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  .step.active .step-title {
+    font-weight: 500;
+  }
+
+  .step-new-content {
+    position: relative;
+    display: none;
+    height: calc(100% - 132px);
+    width: inherit;
+    overflow: visible;
+    margin-left: 41px;
+    margin-right: 24px;
+  }
+
+  >.step {
+    &:not(:last-of-type):after {
+      content: '';
+      position: absolute;
+      top: 3.125rem;
+      left: 0.8438rem;
+      width: 0.0625rem;
+      height: 40%;
+      height: calc(100% - 38px);
+      background-color: rgba(0, 0, 0, 0.1);
+      transition: all 0.4s;
+    }
+
+    &.active:not(:last-child):after {
+      height: 93%;
+      height: calc(100% - 12px);
+    }
+
+    &[data-last="true"] {
+      &:after {
+        height: 0;
+        width: 0;
+      }
+
+      margin-bottom: 0;
+    }
+  }
+
+  .step-actions {
+    display: -webkit-box;
+
+    -webkit-box-pack: start;
+
+    .btn:not(:last-child),
+    .btn-flat:not(:last-child),
+    .btn-large:not(:last-child) {
+      margin-right: 0.3125rem;
+    }
+  }
+
+  .step-new-content .row {
+    margin-bottom: 0.4375rem;
+  }
+
+  .md-form {
+    label {
+      left: 0.875rem;
+    }
+
+    .validate {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  .card-body {
+    ul.stepper.horizontal {
+      position: relative;
+      display: flex;
+      -ms-flex-pack: justify;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      min-height: 20rem;
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      overflow: hidden;
+
+      &:before {
+        content: '';
+        background-color: transparent;
+        width: 100%;
+        min-height: 5.25rem;
+        position: absolute;
+        left: -3px;
+        border-top-left-radius: 2px;
+      }
+
+      &:first-child {
+        margin-top: -2.7rem;
+      }
+
+      .step {
+        position: static;
+        margin: 0;
+        width: 100%;
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        align-items: center;
+        height: 5.25rem !important;
+
+        &:not(:last-of-type):after {
+          content: '';
+          position: static;
+          display: inline-block;
+          width: 100%;
+          height: 0.0625rem;
+        }
+      }
+
+      >.step {
+
+        &:last-of-type,
+        &[data-last="true"] {
+          width: auto !important;
+        }
+      }
+
+      >.step.active:not(:last-of-type):after {
+        content: '';
+        position: static;
+        display: inline-block;
+        width: 100%;
+        height: 0.0625rem;
+      }
+
+      .step {
+        &.active .step-title:before {
+          background-color: #4285f4;
+        }
+
+        &.done .step-title:before {
+          content: '\f00c';
+          font-family: FontAwesome;
+          font-size: 1rem;
+          background: #00c851;
+        }
+
+        &.wrong .step-title:before {
+          content: '\f071';
+          font-family: FontAwesome;
+          font-size: 1.1rem;
+          background-color: #ff3547;
+        }
+      }
+
+      .step-title {
+        line-height: 5.25rem;
+        height: 5.25rem;
+        margin: 0;
+        padding: 0 1.5625rem 0 4.0625rem;
+        display: inline-block;
+        max-width: 13.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+      }
+
+      .step {
+        &:before {
+          content: none;
+        }
+
+        .step-title:before {
+          position: absolute;
+          top: 1.7813rem;
+          left: 1.1875rem;
+          counter-increment: section;
+          content: counter(section);
+          height: 1.75rem;
+          width: 1.75rem;
+          color: white;
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 100%;
+          text-align: center;
+          line-height: 1.75rem;
+          font-weight: 400;
+        }
+      }
+
+      & .step-title:after {
+        top: 0.9375rem;
+      }
+
+      & .step-new-content {
+        position: absolute;
+        height: calc(100% - 84px);
+        top: 6rem;
+        left: 0;
+        width: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 1.25rem 1.25rem 4.75rem 1.25rem;
+      }
+
+
+      & .step-actions {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        flex-direction: row-reverse;
+
+        .btn:not(:last-child),
+        .btn-flat:not(:last-child),
+        .btn-large:not(:last-child) {
+          margin-left: 0.3125rem;
+          margin-right: 0;
+        }
+      }
+    }
+
+    & ul.stepper.horizontal .step-new-content,
+    & ul.stepper.horizontal .step-actions {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+}

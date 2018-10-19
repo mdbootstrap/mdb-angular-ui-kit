@@ -20,6 +20,11 @@ import { IconsModule } from './icons/icon.module';
 import { CheckboxModule } from './checkbox/checkbox.module';
 import { TableModule } from './tables/tables.module';
 import { BadgeModule } from './badge/badge.module';
+import { BreadcrumbModule } from './breadcrumbs/breadcrumb.module';
+
+export {
+  MdbBreadcrumbComponent, MdbBreadcrumbItemComponent, BreadcrumbModule
+} from './breadcrumbs/index';
 
 export {
   MDBBadgeComponent, BadgeModule
@@ -118,7 +123,8 @@ const MODULES = [
   IconsModule,
   CheckboxModule,
   TableModule,
-  BadgeModule
+  BadgeModule,
+  BreadcrumbModule
 ];
 
 @NgModule({
@@ -139,7 +145,8 @@ const MODULES = [
     CardsFreeModule.forRoot(),
     CheckboxModule,
     TableModule,
-    BadgeModule
+    BadgeModule,
+    BreadcrumbModule
   ],
   exports: MODULES,
   schemas: [NO_ERRORS_SCHEMA]

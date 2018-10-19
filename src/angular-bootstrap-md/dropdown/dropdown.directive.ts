@@ -97,11 +97,13 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * Emits an event when the popover is shown
    */
   @Output() onShown: EventEmitter<any>;
+  @Output() shown: EventEmitter<any>;
 
   /**
    * Emits an event when the popover is hidden
    */
   @Output() onHidden: EventEmitter<any>;
+  @Output() hidden: EventEmitter<any>;
 
   get isBs4(): boolean {
     return !isBs3();
@@ -128,7 +130,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       .provide({ provide: BsDropdownState, useValue: this._state });
 
     this.onShown = this._dropdown.onShown;
+    this.shown = this._dropdown.shown;
     this.onHidden = this._dropdown.onHidden;
+    this.hidden = this._dropdown.hidden;
     this.isOpenChange = this._state.isOpenChange;
 
     // set initial dropdown state from config
@@ -191,6 +195,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._showInline) {
       this._isInlineOpen = true;
       this.onShown.emit(true);
+      this.shown.emit(true);
       this._state.isOpenChange.emit(true);
       return;
     }
@@ -240,6 +245,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         if (this._showInline) {
           this._isInlineOpen = false;
           this.onHidden.emit(true);
+          this.hidden.emit(true);
         } else {
           this._dropdown.hide();
         }
@@ -253,6 +259,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       if (this._showInline) {
         this._isInlineOpen = false;
         this.onHidden.emit(true);
+        this.hidden.emit(true);
       } else {
         this._dropdown.hide();
       }

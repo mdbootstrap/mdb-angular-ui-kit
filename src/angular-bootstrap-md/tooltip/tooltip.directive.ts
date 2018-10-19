@@ -55,10 +55,12 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
    * Emits an event when the tooltip is shown
    */
   @Output() public onShown: EventEmitter<any>;
+  @Output() public shown: EventEmitter<any>;
   /**
    * Emits an event when the tooltip is hidden
    */
   @Output() public onHidden: EventEmitter<any>;
+  @Output() public hidden: EventEmitter<any>;
 
   @Input() public delay = 0;
 
@@ -79,7 +81,9 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
 
     Object.assign(this, config);
     this.onShown = this._tooltip.onShown;
+    this.shown = this._tooltip.onShown;
     this.onHidden = this._tooltip.onHidden;
+    this.hidden = this._tooltip.onHidden;
   }
 
   public ngOnInit(): void {

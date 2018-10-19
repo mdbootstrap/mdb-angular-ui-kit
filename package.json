@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-md-lib",
-  "version": "6.2.5",
+  "version": "6.2.6",
   "description": "Bootstrap Material Design for Angular",
   "license": "MIT",
   "scripts": {
@@ -30,7 +30,7 @@
     "@angular/platform-browser": "^6.0.0-rc.1",
     "@angular/platform-browser-dynamic": "^6.0.0-rc.1",
     "@angular/router": "^6.0.0-rc.1",
-    "angular-bootstrap-md": "file:angular-bootstrap-md-6.2.5.tgz",
+    "angular-bootstrap-md": "file:angular-bootstrap-md-6.2.6.tgz",
     "@agm/core": "1.0.0-beta.5",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",

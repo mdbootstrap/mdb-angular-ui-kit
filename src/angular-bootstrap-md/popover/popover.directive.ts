@@ -48,10 +48,12 @@ import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer2, E
    * Emits an event when the popover is shown
    */
    @Output() public onShown: EventEmitter<any>;
+   @Output() public shown: EventEmitter<any>;
   /**
    * Emits an event when the popover is hidden
    */
    @Output() public onHidden: EventEmitter<any>;
+   @Output() public hidden: EventEmitter<any>;
 
    private _popover: ComponentLoader<PopoverContainerComponent>;
 
@@ -65,7 +67,9 @@ import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer2, E
      .provide({provide: PopoverConfig, useValue: _config});
      Object.assign(this, _config);
      this.onShown = this._popover.onShown;
+     this.shown = this._popover.onShown;
      this.onHidden = this._popover.onHidden;
+     this.hidden = this._popover.onHidden;
    }
 
   /**

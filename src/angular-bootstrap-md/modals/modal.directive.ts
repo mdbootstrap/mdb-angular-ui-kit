@@ -45,12 +45,16 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   /** This event fires immediately when the `show` instance method is called. */
   @Output() public onShow: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public open: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   /** This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete) */
   @Output() public onShown: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public opened: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   /** This event is fired immediately when the hide instance method has been called. */
   @Output() public onHide: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public close: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   /** This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). */
   @Output() public onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public closed: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   // seems like an Options
   public isAnimated = true;
@@ -137,6 +141,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   public show(): void {
     this.dismissReason = null;
     this.onShow.emit(this);
+    this.open.emit(this);
     if (this._isShown) {
       return;
     }
@@ -168,6 +173,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
 
     this.onHide.emit(this);
+    this.close.emit(this);
 
     // todo: add an option to prevent hiding
     if (!this._isShown) {
@@ -227,6 +233,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
         this._element.nativeElement.focus();
       }
       this.onShown.emit(this);
+      this.opened.emit(this);
     };
 
     if (this.isAnimated) {
@@ -250,6 +257,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       this.resetAdjustments();
       this.focusOtherModal();
       this.onHidden.emit(this);
+      this.closed.emit(this);
     });
   }
 

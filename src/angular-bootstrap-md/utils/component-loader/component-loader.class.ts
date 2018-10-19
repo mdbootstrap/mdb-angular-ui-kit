@@ -34,8 +34,10 @@ export interface ListenOptions {
 export class ComponentLoader<T> {
   public onBeforeShow: EventEmitter<any> = new EventEmitter();
   public onShown: EventEmitter<any> = new EventEmitter();
+  public shown: EventEmitter<any> = new EventEmitter();
   public onBeforeHide: EventEmitter<any> = new EventEmitter();
   public onHidden: EventEmitter<any> = new EventEmitter();
+  public hidden: EventEmitter<any> = new EventEmitter();
 
   public instance: T;
   // public _componentRef: ComponentRef<T>;
