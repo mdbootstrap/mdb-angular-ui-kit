@@ -54,17 +54,17 @@ function addModuleToImports(options: Schema): Rule {
 
 function updateModuleWithForRootMethod(): Rule {
   return (host: Tree, context: SchematicContext) => {
-    const appModule = 'app.module.ts';
-    const buffer = host.read(appModule);
-
-    if (!buffer) {
-      return host;
+    try {
+      const appModule = host.read('./src/app/app.module.ts');
+      if (appModule) {
+        const content = appModule.toString('utf-8');
+        const newContent: any = content.replace(/(\n\s+)(MDBBootstrapModule)(\n)/g, '$1$2.forRoot()$3');
+        context.logger.log('info', '.forRoot() method should be added for MDBBootrapModule. If not, please add it!');
+        host.overwrite('./src/app/app.module.ts', newContent);
+      }
+    } catch (error) {
+      context.logger.error(`.forRoot() method wasn't added: ${error}`);
     }
-    context.logger.log('info', '.forRoot() method should be added for MDBBootrapModule. If not, please add it!');
-    const content: any = buffer.toString('utf-8');
-    const newContent: any = content.replace(/(\n\s+)(MDBBootstrapModule)(\n)/g, '$1$2.forRoot()$3');
-    host.overwrite(appModule, newContent);
-
     return host;
   };
 }
@@ -115,7 +115,7 @@ export function ngAdd(options: any): Rule {
     options && options.skipPackageJson ? noop() : addPackageJsonDependencies(),
     options && options.skipPackageJson ? noop() : installPackageJsonDependencies(),
     options && options.skipModuleImport ? noop() : addModuleToImports(options),
-    options && options.skipModuleImport ? noop() : updateModuleWithForRootMethod(),
+    updateModuleWithForRootMethod(),
     addStylesAndScriptsToAngularJson(options)
   ]);
 }
