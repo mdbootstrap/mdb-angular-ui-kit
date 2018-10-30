@@ -1,0 +1,170 @@
+@mixin reset-text {
+  font-family: $font-family-base;
+  // We deliberately do NOT reset font-size or word-wrap.
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: $line-height-base;
+  text-align: left; // Fallback for where `start` is not supported
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+// Base class
+.tooltip {
+  position: absolute;
+  z-index: $zindex-tooltip;
+  display: block;
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  @include reset-text();
+  font-size: $font-size-sm;
+  // Allow breaking very long words so they don't overflow the tooltip's bounds
+  word-wrap: break-word;
+  opacity: 0;
+
+  &.show { opacity: $tooltip-opacity; }
+
+  &.tooltip-top,
+  &.bs-tether-element-attached-bottom {
+    padding: $tooltip-arrow-width 0;
+    margin-top: -$tooltip-margin;
+
+    .tooltip-inner::before {
+      bottom: 0;
+      left: 50%;
+      margin-left: -$tooltip-arrow-width;
+      content: "";
+      border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+      // border-top-color: $tooltip-arrow-color;
+    }
+  }
+  &.tooltip-right,
+  &.bs-tether-element-attached-left {
+    padding: 0 $tooltip-arrow-width;
+    margin-left: $tooltip-margin;
+
+    .tooltip-inner::before {
+      top: 50%;
+      left: 0;
+      margin-top: -$tooltip-arrow-width;
+      content: "";
+      border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
+      // border-right-color: $tooltip-arrow-color;
+    }
+  }
+  &.tooltip-bottom,
+  &.bs-tether-element-attached-top {
+    padding: $tooltip-arrow-width 0;
+    margin-top: $tooltip-margin;
+
+    .tooltip-inner::before {
+      top: 0;
+      left: 50%;
+      margin-left: -$tooltip-arrow-width;
+      content: "";
+      border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+      // border-bottom-color: $tooltip-arrow-color;
+    }
+  }
+  &.tooltip-left,
+  &.bs-tether-element-attached-right {
+    padding: 0 $tooltip-arrow-width;
+    margin-left: -$tooltip-margin;
+
+    .tooltip-inner::before {
+      top: 50%;
+      right: 0;
+      margin-top: -$tooltip-arrow-width;
+      content: "";
+      border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
+      // border-left-color: $tooltip-arrow-color;
+    }
+  }
+}
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding-y $tooltip-padding-x;
+  // color: $tooltip-color;
+  text-align: center;
+  // background-color: $tooltip-bg;
+  padding: 0.2rem 0.4rem;
+  @extend .z-depth-1-half;
+  border-radius: ($border-radius);
+
+  &::before {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+  }
+}
+
+// Tooltip animations
+@-webkit-keyframes fadeInTooltip {
+  from { opacity: 0;  }
+   to { opacity: 1; }
+}
+@keyframes fadeInTooltip {
+  from { opacity: 0; }
+ to { opacity: 1; }
+}
+
+.tooltip-fadeIn { 
+  -webkit-animation-name: fadeInTooltip;
+  animation-name: fadeInTooltip;
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;   
+  animation-delay: 0.2s;
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;    
+  animation-fill-mode: both;
+}
+
+//sebfix for tooltips
+.single-tooltip {
+  padding: .75rem 0 0 0;
+  a {
+    padding: 0 !important;
+  }
+}
+
+a[tooltip] {
+  margin-left: 0 !important;
+  padding: 0 .5rem;
+}
+
+.tooltip-arrow {
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-right-width: 7px;
+  border-left-width: 7px;
+  border-bottom: 7px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  &.left {
+    position: relative;
+    margin-right: -0.6rem;
+    transform: rotate(90deg);
+  }
+  &.right {
+    position: relative;
+    margin-left: -0.6rem;
+    transform: rotate(-90deg);
+  }
+  &.top {
+    position: relative;
+    transform: rotate(-180deg);
+  }
+}

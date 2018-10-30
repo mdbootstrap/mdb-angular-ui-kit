@@ -1,0 +1,28 @@
+{
+  "name": "ng-add",
+  "version": "0.0.0",
+  "description": "A ng-add schematics for angular-bootstrap-md library",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^7.0.3",
+    "@angular-devkit/schematics": "^7.0.3",
+    "@types/chart.js": "^2.7.40",
+    "@types/jasmine": "^2.6.0",
+    "@types/node": "^8.0.31",
+    "angular-bootstrap-md": "^6.2.6",
+    "chart.js": "^2.7.2",
+    "font-awesome": "~4.7.x",
+    "hammerjs": "~2.0.8",
+    "jasmine": "^2.8.0",
+    "typescript": "^2.5.2"
+  }
+}

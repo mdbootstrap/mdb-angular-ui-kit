@@ -15,6 +15,15 @@ __________
 # Demo:  
 **Main demo**: https://mdbootstrap.com/angular/components/
 
+# Live Preview
+
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2888%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2876%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2873%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2874%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2881%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2875%29.jpg)](https://mdbootstrap.com/angular/)
+
 # Version:
 - Angular CLI 6
 - Angular 6
@@ -30,6 +39,14 @@ note "." at the end. It will clone files directly into current folder.
 - Voilà! Open browser and visit http://localhost:4200 
 
 Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.
+
+## Demo application
+
+Feel free to check our live example components: Just type `ng serve mdb-demo` in terminal!
+
+Type one of the below commands to remove demo application from this project:
+* npm `run remove-demo-unix` to remove demo application on UNIX based systems,
+* npm `run remove-demo-windows` to remove demo application on Windows systems.
 
 # Available commands
 
@@ -67,7 +84,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     schemas: [ NO_ERRORS_SCHEMA ]
 });
 ```
-- in angular-cli.json change:
+- in angular.json change:
 
 `"styleExt": "css"` to `"styleExt": "scss"`
 
@@ -75,7 +92,7 @@ rename /src/styles.css to styles.scss
 
 - if you want to change styles in exisiting project you can use `ng set defaults.styleExt scss`
 
-- add below lines to angular-cli.json: 
+- add below lines to angular.json: 
 ```javascript
 "styles": [
     "node_modules/font-awesome/scss/font-awesome.scss",
@@ -112,7 +129,7 @@ http://mdbootstrap.com/angular/getting-started/
 
 # PRO version:
 
-**Angular Bootstrap with Material Design PRO (from $79)**: https://mdbootstrap.com/product/angular-bootstrap-pro/  
+**Angular Bootstrap with Material Design PRO (from $79)**: https://mdbootstrap.com/products/angular-ui-kit/  
 
 ## Documentation:
 **Huge, detailed documentation avilable online on**: http://mdbootstrap.com/angular/
@@ -164,7 +181,13 @@ Full support of Flexbox layout system lets you forget about alignment issues.
 A big **thank you to all our users** who are working with us to improve the software. We wouldn't be where we are without you. 
 
 
-# Useful Links:  
+# Useful Links:
+
+**jQuery version: https://github.com/mdbootstrap/bootstrap-material-design
+
+**React version: https://github.com/mdbootstrap/React-Bootstrap-with-Material-Design
+
+**Vue version: https://github.com/mdbootstrap/Vue-Bootstrap-with-Material-Design
 
 Getting started: https://mdbootstrap.com/angular-bootstrap-getting-started/  
 

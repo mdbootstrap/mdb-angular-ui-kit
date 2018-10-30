@@ -1,0 +1,26 @@
+.breadcrumb-item {
+    &.active {
+        color: #6c757d !important;
+    }
+}
+.light-font {
+    .breadcrumb-item {
+        &:before {
+            color: #fff;
+        }
+        &.active {
+            color: #cfd8dc !important;
+        }
+    }
+}
+
+.dark-font {
+    .breadcrumb-item {
+        &:before {
+            color: #000;
+        }
+        &.active {
+            color: #455a64 !important;
+        }
+    }
+}

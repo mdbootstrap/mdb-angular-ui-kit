@@ -1,0 +1,65 @@
+//input disabled
+.disabled {
+	cursor: not-allowed !important;
+}
+
+//input counter
+.counter-danger {
+	border-bottom: 1px solid #F44336 !important;
+	box-shadow: 0 1px 0 0 #F44336 !important;
+}
+
+input:focus~.chars {
+	float: right;
+	clear: both;
+	display: block;
+}
+
+textarea:focus~.chars {
+	float: right;
+	clear: both;
+	display: block;
+}
+
+//active styles for input label
+.md-form label.active {
+	color: #757575;
+	transform: translateY(-120%);
+	-webkit-transform: translateY(-120%);
+}
+
+//inputs validation
+.counter-success {
+	border-bottom: 1px solid $input-success-color !important;
+	box-shadow: 0 1px 0 0 $input-success-color !important;
+}
+
+.inputVal {
+	font-size: .8rem;
+	position: absolute;
+}
+
+
+.md-form .prefix~.inputVal {
+	left: 2.5rem;
+}
+
+.modal-content .md-form .prefix~.inputVal {
+	// left: 2.0rem !important;
+}
+
+mdb-tab .md-form .prefix~.inputVal {
+	left: 2.0rem;
+}
+
+input.counter-danger~span.text-danger {
+	visibility: visible;
+}
+
+input.counter-success~span.text-success {
+	visibility: visible;
+}
+
+.md-form textarea.md-textarea {
+	overflow-y: auto !important;
+}

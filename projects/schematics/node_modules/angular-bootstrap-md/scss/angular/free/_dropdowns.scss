@@ -1,0 +1,71 @@
+.show {
+  // Show the menu
+  > .dropdown-menu {
+    display: block;
+  }
+
+  // Remove the outline when :focus is triggered
+  > a {
+    outline: 0;
+  }
+}
+
+dropdown{
+    .dropdown-menu { 
+        display: none;
+        position: absolute;
+        transform: translate3d(0px, 47px, 0px);
+        top: 0px;
+        left: 0px;
+        will-change: transform;
+    }
+}
+
+//dropup
+.dropup {
+  // Different positioning for bottom up menu
+    .dropdown-menu {
+        display: none;
+        // // position: absolute;
+        // transform: translate3d(117px, -165px, 0px);
+        // // top: 0px;
+        // // left: 0px;
+        will-change: transform;
+    }
+}
+//dropup animation
+.dropup.show {
+    .dropdown-menu {
+        display: block;
+        opacity: 0;
+        transition: 0.55s;
+    }
+
+    .fadeInDropdown { 
+        opacity: 1;
+    }
+}
+
+//material dropdown
+.dropdown {
+    .dropdown-menu { 
+        display: none;
+        position: absolute;
+        transform: translate3d(6px, 49px, 0px);
+        top: 0px;
+        left: 0px;
+        will-change: transform;
+    }
+}
+//material dropdown animation
+.dropdown.show {
+    .dropdown-menu {
+        display: block;
+        opacity: 0;
+        transition: 0.55s;
+    }
+
+    .fadeInDropdown { 
+        opacity: 1;
+    }
+}
