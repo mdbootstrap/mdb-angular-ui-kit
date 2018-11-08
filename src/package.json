@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-md",
-  "version": "6.2.7",
+  "version": "6.3.0",
   "schematics": "./schematics/collection.json",
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 
-import { Component, Input, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2, OnInit, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'mdb-card',
@@ -10,6 +10,8 @@ export class MdbCardComponent implements OnInit {
     @Input() class: string;
     @Input() cascade: boolean;
     @Input() wider: boolean;
+
+    @ViewChild('card') card: ElementRef;
 
 
     @Input() set narrower(narrower: boolean) {
@@ -30,6 +32,18 @@ export class MdbCardComponent implements OnInit {
         }
     }
 
+    @Input() set bgColor(color: string) {
+        if (color) {
+            this._r.addClass(this.card.nativeElement, color);
+        }
+    }
+
+    @Input() set borderColor(color: string) {
+        if (color) {
+            this._r.addClass(this.card.nativeElement, color);
+        }
+    }
+
     constructor(private _el: ElementRef, private _r: Renderer2) { }
 
     ngOnInit() {
@@ -47,6 +61,10 @@ export class MdbCardComponent implements OnInit {
             this.class.split(' ').forEach((element: any) => {
                 this._r.addClass(this._el.nativeElement, element);
             });
+        }
+        if (this._el.nativeElement.parentElement.classList.contains('card-deck')) {
+            this._r.addClass(this.card.nativeElement, 'w-100');
+            this._r.addClass(this.card.nativeElement, 'mx-0');
         }
     }
 }

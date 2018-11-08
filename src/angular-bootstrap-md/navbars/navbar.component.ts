@@ -87,8 +87,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     this.addTogglerIconClasses();
   }
 
-  toggle(event: any) {
-    event.preventDefault();
+  toggle() {
     if (!this.collapsing) {
       if (this.shown) {
         this.hide();

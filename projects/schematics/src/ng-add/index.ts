@@ -17,8 +17,7 @@ function addPackageJsonDependencies(): Rule {
       { type: NodeDependencyType.Default, version: '^2.7.2', name: 'chart.js' },
       { type: NodeDependencyType.Default, version: '^2.7.40', name: '@types/chart.js' },
       { type: NodeDependencyType.Default, version: '~4.7.x', name: 'font-awesome' },
-      { type: NodeDependencyType.Default, version: '~2.0.8', name: 'hammerjs' },
-      { type: NodeDependencyType.Default, version: '^6.2.6', name: 'angular-bootstrap-md' },
+      { type: NodeDependencyType.Default, version: '~2.0.8', name: 'hammerjs' }
     ];
 
     dependencies.forEach(dependency => {

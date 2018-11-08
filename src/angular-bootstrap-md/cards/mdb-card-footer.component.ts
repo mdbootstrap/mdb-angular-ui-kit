@@ -10,7 +10,7 @@ export class MdbCardFooterComponent implements OnInit {
     constructor(private _el: ElementRef, private _r: Renderer2) { }
 
     ngOnInit() {
-        // this._r.addClass(this._el.nativeElement, 'card-footer');
+        this._r.addClass(this._el.nativeElement, 'card-footer');
         if (this.class) {
             this.class.split(' ').forEach((element: any) => {
                 this._r.addClass(this._el.nativeElement, element);

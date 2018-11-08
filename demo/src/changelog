@@ -1,3 +1,41 @@
+6.3.0
+The key "defaultProject" has been added to angular.json files of all packages containing the demo application. Thanks to that you can restart the application using the ng serve command.
+
+In this update, support for the ng add function has been added to the MDB Angular Free product in the npmjs repository - angular-bootstrap-md. Thanks to that it is possible to install MDB Angular Free with one command ng add angular-bootstrap-md.
+
+*** Fixes: ***
+
+    * Select - resolved problem with placeholder when value is null,
+    * Select - resolved problems with label styling. For the label to work correctly, we encourage you to add it via [ label ] input instead of HTML <label> tag.
+    * Select - resolved problem with opening dropdown inside mdb-collapse component,
+    * Multiselect - added new styles to resolve problem with broken layout when many options are selected,
+    * Autocomplete - resolved problem with label position on input blur,
+    * Date Picker - resolved problems with component performance,
+    * Cards - resolved problem with adding shadow classes,
+    * Card Reveal - resolved problem with card height,
+    * Resolved problems with dependency vulnerabilities in MDB Free and MDB Pro
+
+*** New features: ***
+
+    * Added possibility to create vertical tabs and pills,
+    * Added clear button functionality to mdb-time-picker
+
+*** Documentation: ***
+
+    * File input - added instructions on how to upload file to server
+    * Sidenav - added instructions on how to use RouterLinkActive on mdb-side-nav links
+
+*** Improved documentation: ***
+
+Added a new documentation format for all pages in following sections:
+
+    * Layout
+    * Utilities
+    * Content
+    * CSS
+    * Components
+    * Forms
+
 6.2.6
 *** Fixes: ***
 

@@ -32,7 +32,7 @@ export {
 
 export {
   MdbTablePaginationComponent, MdbTableRowDirective, MdbTableScrollDirective,
-  MdbTableSortDirective, MdbTableDirective, MdbTableService
+  MdbTableSortDirective, MdbTableDirective, MdbTableService, TableModule
 } from './tables/index';
 
 export {
