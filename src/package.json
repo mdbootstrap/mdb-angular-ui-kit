@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-md",
-  "version": "6.3.0",
+  "version": "7.0.0",
   "schematics": "./schematics/collection.json",
   "repository": {
     "type": "git",
@@ -15,8 +15,8 @@
   "module": "./esm5/angular-bootstrap-md.es5.js",
   "typings": "./angular-bootstrap-md.d.ts",
   "peerDependencies": {
-    "@angular/core": "^6.0.0",
-    "@angular/common": "^6.0.0",
-    "@angular/http": "^6.0.0"
+    "@angular/core": "^7.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/http": "^7.0.0"
   }
 }

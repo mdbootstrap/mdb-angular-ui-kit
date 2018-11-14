@@ -1,4 +1,4 @@
-import { Component, EventEmitter, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

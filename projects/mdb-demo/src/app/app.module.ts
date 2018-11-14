@@ -79,7 +79,6 @@ import { ModalFormsComponent } from './components/modals/modal-forms/modal-forms
 import { ModalStylesComponent } from './components/modals/modal-styles/modal-styles.component';
 import { MapsComponent } from './components/extended/maps/maps.component';
 import { PaginationApiComponent } from './components/components/pagination-api/pagination-api.component';
-import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 @NgModule({

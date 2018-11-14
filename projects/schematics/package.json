@@ -18,7 +18,6 @@
     "@types/chart.js": "^2.7.40",
     "@types/jasmine": "^2.6.0",
     "@types/node": "^8.0.31",
-    "angular-bootstrap-md": "^6.3.0",
     "chart.js": "^2.7.2",
     "font-awesome": "~4.7.x",
     "hammerjs": "~2.0.8",
