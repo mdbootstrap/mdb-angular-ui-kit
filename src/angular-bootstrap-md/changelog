@@ -1,3 +1,22 @@
+7.0.0
+Angular 7 version is now supported in MDB Angular.
+
+*** Fixes: ***
+
+    * Date picker - resolved problem with disabled state added in reactive forms
+    * Date picker - resolved problem with typing the date in the input field
+    * Date picker - changed z-index styles to fix the problem that caused other elements to overlap the component
+    * Time picker - changed z-index styles to fix the problem that caused other elements to overlap the component
+    * Accordion - resolved problem with 'Cannot read property expandAnimationState of undefined'
+    * MdbInputDirective - resolved problem with displaying error and success messages when errorMessage and successMessage inputs values are empty strings
+    * File Upload - resolved problem with 'Cannot read property unsubscribe of undefined'
+
+*** New features: ***
+
+    * Date picker - added new [ tabIndex ] input that allow to set tabindex of the date picker input field
+    * Time picker - added new [ tabIndex ] input that allow to set tabindex of the time picker input field
+    * Tabs - added new [ disableWaves ] input that allow to disable waves effect on the tabs buttons
+
 6.3.0
 The key "defaultProject" has been added to angular.json files of all packages containing the demo application. Thanks to that you can restart the application using the ng serve command.
 

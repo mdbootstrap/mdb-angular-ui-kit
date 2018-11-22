@@ -148,8 +148,8 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
       this._renderer.appendChild(this._elRef.nativeElement.parentElement, this.wrongTextContainer);
       const textWrong = this._elRef.nativeElement.getAttribute('data-error');
       this.wrongTextContainer.innerHTML = (textWrong ? textWrong : 'wrong');
-      if (!textWrong) {
-        this.wrongTextContainer.innerHTML = (this.errorMessage ? this.errorMessage : 'wrong');
+      if (!textWrong && this.errorMessage !== undefined) {
+        this.wrongTextContainer.innerHTML = this.errorMessage;
       }
       this._renderer.setStyle(this.wrongTextContainer, 'visibility', 'hidden');
 
@@ -159,8 +159,8 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
       this._renderer.appendChild(this._elRef.nativeElement.parentElement, this.rightTextContainer);
       const textSuccess = this._elRef.nativeElement.getAttribute('data-success');
       this.rightTextContainer.innerHTML = (textSuccess ? textSuccess : 'success');
-      if (!textSuccess) {
-        this.rightTextContainer.innerHTML = (this.successMessage ? this.successMessage : 'success');
+      if (!textSuccess && this.successMessage !== undefined) {
+        this.rightTextContainer.innerHTML = this.successMessage;
       }
       this._renderer.setStyle(this.rightTextContainer, 'visibility', 'hidden');
     }

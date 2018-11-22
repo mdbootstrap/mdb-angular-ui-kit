@@ -52,8 +52,8 @@
    public offset(element: HTMLElement, round = true): ClientRect {
      const elBcr = element.getBoundingClientRect();
      const viewportOffset = {
-       top: window.pageYOffset - document.documentElement.clientTop,
-       left: window.pageXOffset - document.documentElement.clientLeft
+       top: window.pageYOffset - (document.documentElement as any).clientTop,
+       left: window.pageXOffset - (document.documentElement as any).clientLeft
      };
 
      let elOffset = {
