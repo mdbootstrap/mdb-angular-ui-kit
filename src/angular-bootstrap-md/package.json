@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-md",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "Material Design for Bootstrap (MDB) is a powerful Material Design UI KIT for most popular HTML, CSS, and JS framework - Bootstrap.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -37,11 +37,11 @@
   },
   "homepage": "https://mdbootstrap.com",
   "peerDependencies": {
-    "@angular/animations": "6.0.0-rc.0 - 7.0.3",
-    "@angular/common": "6.0.0-rc.0 - 7.0.3",
-    "@angular/compiler": "6.0.0-rc.0 - 7.0.3",
-    "@angular/core": "6.0.0-rc.0 - 7.0.3",
-    "@angular/forms": "6.0.0-rc.0 - 7.0.3",
+    "@angular/animations": "6.0.0-rc.0 - 7.1.0",
+    "@angular/common": "6.0.0-rc.0 - 7.1.0",
+    "@angular/compiler": "6.0.0-rc.0 - 7.1.0",
+    "@angular/core": "6.0.0-rc.0 - 7.1.0",
+    "@angular/forms": "6.0.0-rc.0 - 7.1.0",
     "chart.js": "2.5.x",
     "hammerjs": "2.0.8",
     "font-awesome": "4.7.x",

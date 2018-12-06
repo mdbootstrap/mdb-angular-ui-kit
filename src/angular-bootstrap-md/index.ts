@@ -19,6 +19,11 @@ import { CheckboxModule } from './checkbox/checkbox.module';
 import { TableModule } from './tables/tables.module';
 import { BadgeModule } from './badge/badge.module';
 import { BreadcrumbModule } from './breadcrumbs/breadcrumb.module';
+import { InputUtilitiesModule } from './input-utilities/input-utilities.module';
+
+export {
+  MdbErrorDirective, MdbSuccessDirective, MdbValidateDirective, InputUtilitiesModule
+} from './input-utilities/index';
 
 export {
   MdbBreadcrumbComponent, MdbBreadcrumbItemComponent, BreadcrumbModule
@@ -61,7 +66,7 @@ export {
 } from './waves/index';
 
 export {
-  InputsModule, MdbInputDirective
+  InputsModule, MdbInputDirective, MdbInput
 } from './inputs/index';
 
 export {
@@ -122,8 +127,8 @@ const MODULES = [
   CheckboxModule,
   TableModule,
   BadgeModule,
-  BreadcrumbModule
-
+  BreadcrumbModule,
+  InputUtilitiesModule
 ];
 
 @NgModule({
@@ -145,7 +150,8 @@ const MODULES = [
     CheckboxModule,
     TableModule,
     BadgeModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    InputUtilitiesModule
   ],
   exports: MODULES,
   schemas: [NO_ERRORS_SCHEMA]

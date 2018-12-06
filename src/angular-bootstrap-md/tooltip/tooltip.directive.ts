@@ -1,12 +1,25 @@
 import {
-  Directive, Input, TemplateRef, ViewContainerRef, Output, EventEmitter,
-  Renderer2, ElementRef, OnInit, OnDestroy, OnChanges, SimpleChanges
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  Renderer2,
+  SimpleChanges,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
-import { TooltipContainerComponent } from './tooltip.component';
-import { TooltipConfig } from './tooltip.service';
-import { ComponentLoaderFactory } from '../utils/component-loader/component-loader.factory';
-import { ComponentLoader } from '../utils/component-loader/component-loader.class';
-import { OnChange } from '../utils/decorators';
+import {TooltipContainerComponent} from './tooltip.component';
+import {TooltipConfig} from './tooltip.service';
+import {ComponentLoaderFactory} from '../utils/component-loader/component-loader.factory';
+import {ComponentLoader} from '../utils/component-loader/component-loader.class';
+import {OnChange} from '../utils/decorators';
+import {isPlatformBrowser} from '@angular/common';
 
 @Directive({
   selector: '[mdbTooltip]',
@@ -40,10 +53,16 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
    * Returns whether or not the tooltip is currently being shown
    */
   @Input()
-  public get isOpen(): boolean { return this._tooltip.isShown; }
+  public get isOpen(): boolean {
+    return this._tooltip.isShown;
+  }
 
   public set isOpen(value: boolean) {
-    if (value) { this.show(); } else { this.hide(); }
+    if (value) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
   /**
@@ -63,21 +82,23 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Output() public hidden: EventEmitter<any>;
 
   @Input() public delay = 0;
-
+  @Input() public customHeight: string;
   @Input() public fadeDuration = 150;
 
   protected _delayTimeoutId: any;
-
+  isBrowser: any = false;
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
   public constructor(_viewContainerRef: ViewContainerRef,
-    _renderer: Renderer2,
-    _elementRef: ElementRef,
-    cis: ComponentLoaderFactory,
-    config: TooltipConfig) {
+                     _renderer: Renderer2,
+                     private _elementRef: ElementRef,
+                     cis: ComponentLoaderFactory,
+                     config: TooltipConfig,
+                     @Inject(PLATFORM_ID) private platformId: string) {
+    this.isBrowser = isPlatformBrowser((this.platformId));
     this._tooltip = cis
-      .createLoader<TooltipContainerComponent>(_elementRef, _viewContainerRef, _renderer)
-      .provide({ provide: TooltipConfig, useValue: config });
+      .createLoader<TooltipContainerComponent>(this._elementRef, _viewContainerRef, _renderer)
+      .provide({provide: TooltipConfig, useValue: config});
 
     Object.assign(this, config);
     this.onShown = this._tooltip.onShown;
@@ -104,6 +125,24 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     }
   }
 
+  changePositionIfNotFit(): void {
+      if (this.placement === 'top' && this._elementRef.nativeElement.offsetTop < (parseInt(this.customHeight, 10) + 16)) {
+        this.placement = 'bottom';
+      }
+
+      if (this.placement === 'bottom' && (this.getBottomOffset() as any) < (parseInt(this.customHeight, 10) + 32)) {
+        this.placement = 'top';
+      }
+  }
+
+  getBottomOffset() {
+    if (this.isBrowser) {
+      const windowHeight = window.innerHeight;
+      const bottom = this._elementRef.nativeElement.getBoundingClientRect().bottom;
+      return windowHeight - bottom;
+    }
+  }
+
   /**
    * Toggles an element’s tooltip. This is considered a “manual” triggering of
    * the tooltip.
@@ -125,17 +164,31 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
       return;
     }
 
+    if (!this.customHeight) {
+      if (this.placement === 'top' && this._elementRef.nativeElement.offsetTop < 40) {
+        this.placement = 'bottom';
+      }
+
+      if (this.placement === 'bottom' && this.getBottomOffset() as any < 60) {
+        this.placement = 'top';
+      }
+    } else if (this.customHeight) {
+      this.changePositionIfNotFit();
+    }
+
     const showTooltip = () => this._tooltip
       .attach(TooltipContainerComponent)
       .to(this.container)
-      .position({ attachment: this.placement })
+      .position({attachment: this.placement})
       .show({
         content: this.mdbTooltip,
         placement: this.placement
       });
 
     if (this.delay) {
-      this._delayTimeoutId = setTimeout(() => { showTooltip(); }, this.delay);
+      this._delayTimeoutId = setTimeout(() => {
+        showTooltip();
+      }, this.delay);
     } else {
       showTooltip();
     }

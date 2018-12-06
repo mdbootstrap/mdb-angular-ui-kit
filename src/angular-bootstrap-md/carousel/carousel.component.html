@@ -8,7 +8,7 @@
   </ol>
   <ol class="carousel-indicators" *ngIf="slides.length > 1 && !checkDots() && isControls">
    <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)">
-    <img class="img-fluid" src="{{ getImg(slidez) }}">
+    <img  class="d-block w-100 img-fluid" src="{{ getImg(slidez) }}">
    </li>
   </ol>
   <div class="carousel-inner"><ng-content></ng-content></div>

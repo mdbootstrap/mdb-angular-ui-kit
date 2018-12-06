@@ -1,5 +1,5 @@
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class MdbTableService {
   private _dataSource: any = [];
-
+  private _dataSourceChanged: Subject<any> = new Subject<any>();
   constructor() { }
 
   addRow(newRow: any) {
@@ -33,19 +33,17 @@ export class MdbTableService {
     this.getDataSource().pop();
   }
 
-  setDataSource(data: any) {
-    this._dataSource = data;
-  }
-
   getDataSource() {
     return this._dataSource;
   }
 
+  setDataSource(data: any) {
+    this._dataSource = data;
+    this._dataSourceChanged.next(this.getDataSource());
+  }
+
   dataSourceChange(): Observable<any> {
-    const dataSourceChanged = Observable.create((observer: any) => {
-      observer.next(this.getDataSource());
-    });
-    return dataSourceChanged;
+    return this._dataSourceChanged;
   }
 
   filterLocalDataBy(searchKey: any) {

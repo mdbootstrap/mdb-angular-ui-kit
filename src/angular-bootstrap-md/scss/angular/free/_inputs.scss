@@ -5,8 +5,8 @@
 
 //input counter
 .counter-danger {
-	border-bottom: 1px solid #F44336 !important;
-	box-shadow: 0 1px 0 0 #F44336 !important;
+	border-bottom: 1px solid $input-error-color !important;
+	box-shadow: 0 1px 0 0 $input-error-color !important;
 }
 
 input:focus~.chars {
@@ -62,4 +62,57 @@ input.counter-success~span.text-success {
 
 .md-form textarea.md-textarea {
 	overflow-y: auto !important;
+}
+
+input.form-control.validate-success.ng-valid.ng-dirty,
+input.form-control.validate-success.ng-valid.ng-touched,
+.form-submitted input.form-control.validate-success.ng-valid {
+	border-bottom: 1px solid $input-success-color !important;
+	box-shadow: 0 1px 0 0 $input-success-color !important;
+}
+
+input.form-control.validate-success.ng-valid.ng-dirty + label,
+input.form-control.validate-success.ng-valid.ng-touched + label,
+.form-submitted input.form-control.validate-success.ng-valid + label {
+	color: $input-success-color !important;
+}
+
+input.form-control.validate-error.ng-invalid.ng-touched,
+input.form-control.validate-error.ng-invalid.ng-dirty,
+.form-submitted input.form-control.validate-error.ng-invalid {
+	border-bottom: 1px solid $input-error-color !important;
+	box-shadow: 0 1px 0 0 $input-error-color !important;
+}
+
+input.form-control.validate-error.ng-invalid.ng-touched + label,
+input.form-control.validate-error.ng-invalid.ng-dirty + label,
+.form-submitted input.form-control.validate-error.ng-invalid + label {
+	color: $input-error-color !important;
+}
+
+.md-textarea.validate-success.ng-valid {
+	border-bottom: 1px solid $input-success-color !important;
+	box-shadow: 0 1px 0 0 $input-success-color !important;
+}
+
+.md-textarea.validate-success.ng-valid + label {
+	color: $input-success-color !important;
+}
+
+.md-textarea.validate-error.ng-invalid.ng-touched,
+.md-textarea.validate-error.ng-invalid.ng-dirty,
+.form-submitted .md-textarea.validate-error.ng-invalid {
+	border-bottom: 1px solid $input-error-color !important;
+	box-shadow: 0 1px 0 0 $input-error-color !important;
+}
+
+
+.md-textarea.validate-error.ng-invalid.ng-touched + label,
+.md-textarea.validate-error.ng-invalid.ng-dirty + label,
+.form-submitted .md-textarea.validate-error.ng-invalid + label {
+	color: $input-error-color !important;
+}
+
+.md-form {
+    margin-bottom: 2rem;
 }

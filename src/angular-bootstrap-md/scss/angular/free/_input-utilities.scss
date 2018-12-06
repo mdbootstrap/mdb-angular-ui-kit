@@ -1,0 +1,23 @@
+.error-message {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    font-size: .8rem;
+    color: $input-error-color;
+}
+
+.success-message {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    font-size: .8rem;
+    color: $input-success-color;
+}
+
+.md-textarea ~ .error-message {
+    top: 100px;
+}
+
+.md-textarea ~ .success-message {
+    top: 100px;
+}

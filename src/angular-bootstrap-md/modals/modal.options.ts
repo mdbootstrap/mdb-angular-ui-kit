@@ -28,6 +28,7 @@ export class ModalOptions {
   /**
    * Toggle animation
    */
+   containerClass?: string;
    animated?: boolean;
  }
 
@@ -50,6 +51,7 @@ export class ModalOptions {
    show: false,
    ignoreBackdropClick: false,
    class: '',
+   containerClass: '',
    animated: true
  };
 

@@ -1,4 +1,12 @@
-import { ComponentRef, Injectable, TemplateRef, EventEmitter, Renderer2, ViewContainerRef, ElementRef } from '@angular/core';
+import {
+  ComponentRef,
+  Injectable,
+  TemplateRef,
+  EventEmitter,
+  Renderer2,
+  RendererFactory2,
+  ViewContainerRef,
+  ElementRef } from '@angular/core';
 
 import { ComponentLoader } from '../utils/component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../utils/component-loader/component-loader.factory';
@@ -12,11 +20,14 @@ import { msConfig } from './modalService.config';
 export class MDBModalService {
   // constructor props
   public config: ModalOptions = modalConfigDefaults;
+  private renderer: Renderer2;
+  private vcr: ViewContainerRef;
+  private el: ElementRef;
 
-  public onShow: EventEmitter<any> = new EventEmitter();
-  public onShown: EventEmitter<any> = new EventEmitter();
-  public onHide: EventEmitter<any> = new EventEmitter();
-  public onHidden: EventEmitter<any> = new EventEmitter();
+  public open: EventEmitter<any> = new EventEmitter();
+  public opened: EventEmitter<any> = new EventEmitter();
+  public close: EventEmitter<any> = new EventEmitter();
+  public closed: EventEmitter<any> = new EventEmitter();
 
   protected isBodyOverflowing = false;
   protected originalBodyPadding = 0;
@@ -32,9 +43,10 @@ export class MDBModalService {
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
   // public constructor(private clf: ComponentLoaderFactory) {
-    public constructor(private clf: ComponentLoaderFactory, private el: ElementRef, private v: ViewContainerRef, private r: Renderer2) {
+    public constructor(rendererFactory: RendererFactory2, private clf: ComponentLoaderFactory) {
   //   this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
-    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(this.el, this.v, this.r);
+    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(this.el, this.vcr, this.renderer);
+    this.renderer = rendererFactory.createRenderer(null, null);
     msConfig.serviceInstance = this;
   }
 
@@ -149,22 +161,23 @@ export class MDBModalService {
 
   // thx d.walsh
   private getScrollbarWidth(): number {
-    const scrollDiv = document.createElement('div');
-    scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
-    document.body.appendChild(scrollDiv);
+    const scrollDiv = this.renderer.createElement('div');
+    this.renderer.addClass(scrollDiv, ClassName.SCROLLBAR_MEASURER);
+    this.renderer.appendChild(document.body, scrollDiv);
     const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-    document.body.removeChild(scrollDiv);
+    this.renderer.removeChild(document.body, scrollDiv);
+
     return scrollbarWidth;
 
   }
 
   private _createLoaders(): void {
     // const loader = this.clf.createLoader<ModalContainerComponent>(null, null, null);
-    const loader = this.clf.createLoader<ModalContainerComponent>(this.el, this.v, this.r);
-    this.copyEvent(loader.onBeforeShow, this.onShow);
-    this.copyEvent(loader.onShown, this.onShown);
-    this.copyEvent(loader.onBeforeHide, this.onHide);
-    this.copyEvent(loader.onHidden, this.onHidden);
+    const loader = this.clf.createLoader<ModalContainerComponent>(this.el, this.vcr, this.renderer);
+    this.copyEvent(loader.onBeforeShow, this.open);
+    this.copyEvent(loader.onShown, this.opened);
+    this.copyEvent(loader.onBeforeHide, this.close);
+    this.copyEvent(loader.onHidden, this.closed);
     this.loaders.push(loader);
   }
 

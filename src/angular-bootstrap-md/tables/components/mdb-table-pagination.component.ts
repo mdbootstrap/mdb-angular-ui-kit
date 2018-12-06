@@ -1,16 +1,15 @@
 import {
   Component, OnInit, Output, EventEmitter, Input, ChangeDetectorRef, OnChanges,
-  SimpleChanges,
-  AfterViewChecked
+  SimpleChanges
 } from '@angular/core';
 import { MdbTableService } from '../services/mdb-table.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'mdb-table-pagination',
   templateUrl: './mdb-table-pagination.component.html'
 })
-export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterViewChecked {
+export class MdbTablePaginationComponent implements OnInit, OnChanges {
   @Input() searchPagination: boolean = false;
   @Input() searchDataSource: any = null;
 
@@ -31,27 +30,33 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
   previousShouldBeDisabled: boolean = true;
 
   searchText: string = '';
+
+  pagination: Subject<{ first: number, last: number }> = new Subject<{ first: number, last: number }>();
+
   @Output() nextPageClick = new EventEmitter<any>();
   @Output() previousPageClick = new EventEmitter<any>();
 
-  constructor(private tableService: MdbTableService,
-    private cdRef: ChangeDetectorRef) {
-  }
-
-  ngOnInit() {
-    this.allItemsLength = this.tableService.getDataSource().length;
-  }
-
-  ngAfterViewChecked() {
+  constructor(
+    private tableService: MdbTableService,
+    private cdRef: ChangeDetectorRef
+  ) {
     this.tableService.dataSourceChange().subscribe((data: any) => {
       this.allItemsLength = data.length;
       this.lastVisibleItemIndex = data.length;
       this.calculateFirstItemIndex();
       this.calculateLastItemIndex();
       this.disableNextButton(data);
+      if (this.maxVisibleItems > this.allItemsLength) {
+          this.maxVisibleItems = this.allItemsLength;
+        }
       this.cdRef.detectChanges();
     });
   }
+
+  ngOnInit() {
+    this.allItemsLength = this.tableService.getDataSource().length;
+  }
+
 
   ngOnChanges(changes: SimpleChanges) {
     const searchDataSource = changes['searchDataSource'];
@@ -85,9 +90,6 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
     this.lastItemIndex = value;
     this.lastVisibleItemIndex = value;
     this.maxVisibleItems = value;
-    if (this.maxVisibleItems > this.allItemsLength) {
-      this.maxVisibleItems = this.allItemsLength;
-    }
     this.cdRef.detectChanges();
   }
 
@@ -108,6 +110,7 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
 
   calculateFirstItemIndex() {
     this.firstItemIndex = this.activePageNumber * this.maxVisibleItems - this.maxVisibleItems + 1;
+    this.pagination.next({ first: this.firstItemIndex, last: this.lastItemIndex });
   }
 
   calculateLastItemIndex() {
@@ -123,6 +126,12 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
     if (this.lastItemIndex > this.tableService.getDataSource().length) {
       this.lastItemIndex = this.tableService.getDataSource().length;
     }
+
+    this.pagination.next({ first: this.firstItemIndex, last: this.lastItemIndex });
+  }
+
+  paginationChange(): Observable<any> {
+    return this.pagination;
   }
 
   calculateHowManyPagesShouldBe() {

@@ -1,19 +1,30 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, HostBinding } from '@angular/core';
-import { ClassName, DISMISS_REASONS, ModalOptions, TransitionDurations } from './modal.options';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  HostBinding
+} from '@angular/core';
+import {
+  ClassName,
+  DISMISS_REASONS,
+  ModalOptions,
+  TransitionDurations
+} from './modal.options';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { msConfig } from './modalService.config';
 
 @Component({
   selector: 'mdb-modal-container',
-  template: `
-  <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')" role="document">
-  <div class="modal-content"><ng-content></ng-content></div>
-</div>`
+  templateUrl: 'modalContainer.component.html'
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
+  modalClass = 'modal';
   @HostBinding('tabindex') tabindex = -1;
   @HostBinding('role') role = 'dialog';
-  @HostBinding('class.modal') modla = true;
+  @HostBinding('class.modal') modal = true;
 
   private mdbModalService: any;
 
@@ -25,7 +36,11 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   private isModalHiding = false;
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
-    if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
+    if (
+      this.config.ignoreBackdropClick ||
+      this.config.backdrop === 'static' ||
+      event.target !== this._element.nativeElement
+    ) {
       return;
     }
     this.mdbModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
@@ -33,13 +48,20 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
   @HostListener('window:keydown.esc')
   public onEsc(): void {
-    if (this.config.keyboard && this.level === this.mdbModalService.getModalsCount()) {
+    if (
+      this.config.keyboard &&
+      this.level === this.mdbModalService.getModalsCount()
+    ) {
       this.mdbModalService.setDismissReason(DISMISS_REASONS.ESC);
       this.hide();
     }
   }
 
-  public constructor(options: ModalOptions, _element: ElementRef, private _renderer: Renderer2) {
+  public constructor(
+    options: ModalOptions,
+    _element: ElementRef,
+    private _renderer: Renderer2
+  ) {
     this.mdbModalService = msConfig.serviceInstance;
 
     this._element = _element;
@@ -47,20 +69,41 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.isAnimated) {
-      this._renderer.addClass(this._element.nativeElement, ClassName.FADE);
+    if (this.config.animated) {
+      this._renderer.addClass(this._element.nativeElement, 'fade');
     }
     this._renderer.setStyle(this._element.nativeElement, 'display', 'block');
-    setTimeout(() => {
-      this.isShown = true;
-      this._renderer.addClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW);
-    }, this.isAnimated ? TransitionDurations.BACKDROP : 0);
+    setTimeout(
+      () => {
+        this.isShown = true;
+        this._renderer.addClass(
+          this._element.nativeElement,
+          isBs3() ? ClassName.IN : ClassName.SHOW
+        );
+      },
+      this.isAnimated ? TransitionDurations.BACKDROP : 0
+    );
     if (document && document.body) {
       if (this.mdbModalService.getModalsCount() === 1) {
         this.mdbModalService.checkScrollbar();
         this.mdbModalService.setScrollbar();
       }
       this._renderer.addClass(document.body, ClassName.OPEN);
+    }
+
+    if (this.config.containerClass) {
+      this.updateContainerClass();
+    }
+  }
+
+  updateContainerClass() {
+    if (this.config.containerClass) {
+      const containerClasses = this.config.containerClass;
+      const classArr = containerClasses.split(' ');
+
+      for (let i = 0; i < classArr.length; i++) {
+        this._renderer.addClass(this._element.nativeElement, classArr[i]);
+      }
     }
   }
 
@@ -75,15 +118,25 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
     this.isModalHiding = true;
-    this._renderer.removeClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW);
+    this._renderer.removeClass(
+      this._element.nativeElement,
+      isBs3() ? ClassName.IN : ClassName.SHOW
+    );
 
-    setTimeout(() => {
-      this.isShown = false;
-      if (document && document.body && this.mdbModalService.getModalsCount() === 1) {
-        this._renderer.removeClass(document.body, ClassName.OPEN);
-      }
-      this.mdbModalService.hide(this.level);
-      this.isModalHiding = false;
-    }, this.isAnimated ? TransitionDurations.MODAL : 0);
+    setTimeout(
+      () => {
+        this.isShown = false;
+        if (
+          document &&
+          document.body &&
+          this.mdbModalService.getModalsCount() === 1
+        ) {
+          this._renderer.removeClass(document.body, ClassName.OPEN);
+        }
+        this.mdbModalService.hide(this.level);
+        this.isModalHiding = false;
+      },
+      this.isAnimated ? TransitionDurations.MODAL : 0
+    );
   }
 }

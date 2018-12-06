@@ -1,3 +1,33 @@
+7.1.0
+We have rewritten the entire validation of forms. New validation is faster, lighter, better! Read about it below.
+
+The mdbInputDirective directive has been divided into mdbInput and mdbValidate directives. Validation messages can ben now added with mdb-error and mdb-success components. More information on the usage can be found in validation documentation.
+
+New validation offers more flexibility and solves problems with updateOn: 'blur' and updateOn: 'submit' options.
+
+Those changes are backwards compatible. Directive mdbInputDirective will be still available for next few versions, but we recommend to use the new directives.
+
+*** Fixes: ***
+
+    * Data Tables - pagination and search will now work without problems against data coming from Remote API,
+    * Carousel with thumbnails - The problem with a larger thumbnails strip width than the slide photo in case of more slides has been solved,
+    * Material Select - Filtering results with filterEnabled will now returns each line that contains the search character,
+    * Date Picker - Significantly improved component performance. Solved an issue where Date Picker was rendered before it was needed,
+    * Tooltip - A tooltip that does not fit in a free space along the top edge of the screen will be placed along the bottom edge, and vice versa,
+    * Tooltip - Added input customHeight which supports the above effect, but in case the height of the tooltip has been changed,
+    * Tabs - The problem in which static tabs were rendered before those with *ngIf was solved. It is required to use a new input tabOrder. Read more about this here,
+    * Scroll Spy - Fixed problem with handling nested links.
+    * Modals - Solved problem with built-in modal service. Now it is possible to call modals from this service.
+
+*** Documentation: ***
+
+    * Data Tables - added new example how to use Data Tables with data from remote API,
+    * Tabs - added new example how to use both static & dynamic tabs,
+    * Tabs - added new tabOrder input,
+    * Tooltips - added new example how to modify the Tooltip height,
+    * Tooltips - added new customHeight input.
+    * Modals - added examples how to use built-in modal's service.
+
 7.0.0
 Angular 7 version is now supported in MDB Angular.
 
