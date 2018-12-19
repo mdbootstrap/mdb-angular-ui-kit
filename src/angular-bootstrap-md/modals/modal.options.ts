@@ -30,6 +30,7 @@ export class ModalOptions {
    */
    containerClass?: string;
    animated?: boolean;
+   scroll?: boolean;
  }
 
  @Injectable()
@@ -52,7 +53,8 @@ export class ModalOptions {
    ignoreBackdropClick: false,
    class: '',
    containerClass: '',
-   animated: true
+   animated: true,
+   scroll: false
  };
 
  export const ClassName: any = {
