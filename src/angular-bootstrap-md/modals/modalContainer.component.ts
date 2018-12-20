@@ -94,6 +94,10 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     if (this.config.containerClass) {
       this.updateContainerClass();
     }
+
+    if (this.config.scroll) {
+      this._renderer.setStyle(this._element.nativeElement, 'overflow-y', 'auto');
+    }
   }
 
   updateContainerClass() {

@@ -49,7 +49,7 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges {
       if (this.maxVisibleItems > this.allItemsLength) {
           this.maxVisibleItems = this.allItemsLength;
         }
-      this.cdRef.detectChanges();
+
     });
   }
 
@@ -125,6 +125,7 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges {
 
     if (this.lastItemIndex > this.tableService.getDataSource().length) {
       this.lastItemIndex = this.tableService.getDataSource().length;
+      this.lastVisibleItemIndex = this.tableService.getDataSource().length;
     }
 
     this.pagination.next({ first: this.firstItemIndex, last: this.lastItemIndex });

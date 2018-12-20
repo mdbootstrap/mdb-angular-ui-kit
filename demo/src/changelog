@@ -1,3 +1,31 @@
+7.1.1
+*** Fixes: ***
+
+    * Select - resolved problems with OnPush change detection,
+    * Select - changed styles and animation to add more material look,
+    * Multiselect - resolved problem with disabled option styles,
+    * Date Picker - resolved problem with dynamic value updating,
+    * Date Picker - resolved problem with opening using built-in method,
+    * Table Pagination - resolved two minor problems
+
+*** New features: ***
+
+    * Dynamic Modal - added new scroll property to modal options object. It can be used to add overflow-y: auto to modal with long content,
+    * Multiselect - added select all option. This option is enabled by default and can be turned off with [enableSelectAll]="false" input,
+    * Multiselect - added button for clearing selected options,
+    * Select and Multiselect - added new [highlightFirst] input which can be used to turn off highlight added by default to the first option.
+
+*** Documentation: ***
+
+    * Scrollspy - added new example for MDB scrollspy on full page,
+    * Accordion - added new example,
+    * File Input - added new example,
+    * Select - updated code in examples
+    * Multiselect - updated code in examples
+    * Added description how to change default Roboto font,
+    * Intro Sections - resolved few minor problems,
+    * Accordion - added toggle() method description.
+
 7.1.0
 We have rewritten the entire validation of forms. New validation is faster, lighter, better! Read about it below.
 
