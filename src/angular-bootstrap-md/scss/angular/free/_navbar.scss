@@ -65,6 +65,10 @@
   .dropdown-menu-right.dropdown-menu {
     left: unset;
   }
+  .dropdown-menu {
+    top: 100% !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
 }
 
 .breadcrumbs {
