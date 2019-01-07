@@ -1,3 +1,21 @@
+7.2.0
+In this release we added new mdb-auto-completer component, which is improved version of mdb-autocomplete.
+
+We encourage you to use mdb-auto-completer, but mdb-autocomplete will still be available until version 8 of MDB Angular.
+
+*** Fixes: ***
+
+    * Select - resolved problems with updating values dynamically,
+    * Dropdown - resolved problem with content position when opened in navbar,
+    * Modal - remove unnecessary icon styles,
+    * Autocomplete - resolved problem with angular/http.
+
+*** Documentation: ***
+
+    * Table with panel - resolved problem with icon names,
+    * Navbars - removed unnecessary margin from search element,
+    * Validation - added example for file upload validation.
+
 7.1.1
 *** Fixes: ***
 
