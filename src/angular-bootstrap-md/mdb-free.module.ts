@@ -106,7 +106,7 @@ export {
 } from './popover/index';
 
 export {
-  IconsModule, MdbIconComponent
+  IconsModule, MdbIconComponent, FalDirective, FarDirective, FasDirective, FabDirective
 } from './icons/index';
 
 

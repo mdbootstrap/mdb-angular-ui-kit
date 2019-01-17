@@ -1,7 +1,7 @@
 <div tabindex="0" (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)" (mouseenter)="pause()" (mouseleave)="play()" (mouseup)="play()" class="carousel {{ class }} {{ type }}">
   <div class="controls-top" *ngIf="slides.length > 1 && !checkNavigation() && isControls">
-    <a class="btn-floating" [class.disabled]="activeSlide===0&&noWrap" (click)="previousSlide()"><i class="fa fa-chevron-left"></i></a>
-    <a class="btn-floating" (click)="nextSlide()" [class.disabled]="isLast(activeSlide) && noWrap"><i class="fa fa-chevron-right"></i></a>
+    <a class="btn-floating" [class.disabled]="activeSlide===0&&noWrap" (click)="previousSlide()"><i class="fas fa-chevron-left"></i></a>
+    <a class="btn-floating" (click)="nextSlide()" [class.disabled]="isLast(activeSlide) && noWrap"><i class="fas fa-chevron-right"></i></a>
   </div>
   <ol class="carousel-indicators" *ngIf="slides.length > 1 && checkDots() && isControls">
    <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)"></li>

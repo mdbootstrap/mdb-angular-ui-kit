@@ -10,12 +10,11 @@ import {
   EventEmitter,
   Injector,
   NgZone,
-  Provider,
-  ReflectiveInjector,
   Renderer2,
   TemplateRef,
   Type,
-  ViewContainerRef
+  ViewContainerRef,
+  StaticProvider
 } from '@angular/core';
 import { PositioningOptions, PositioningService } from '../positioning/positioning.service';
 import { listenToTriggers } from '../triggers';
@@ -24,9 +23,7 @@ import { ContentRef } from './content-ref.class';
 export interface ListenOptions {
   target?: ElementRef;
   triggers?: string;
-  // show?: Function;
   show?: Function | any;
-  // hide?: Function;
   hide?: Function | any;
   toggle?: Function;
 }
@@ -40,15 +37,12 @@ export class ComponentLoader<T> {
   public hidden: EventEmitter<any> = new EventEmitter();
 
   public instance: T;
-  // public _componentRef: ComponentRef<T>;
   public _componentRef: ComponentRef<T> | any;
 
-  private _providers: Provider[] = [];
+  private _providers: StaticProvider[] = [];
   private _componentFactory: ComponentFactory<T>;
   private _zoneSubscription: any;
-  // private _contentRef: ContentRef;
   private _contentRef: ContentRef | any;
-  // private _innerComponent: ComponentRef<T>;
   private _innerComponent: ComponentRef<T> | any ;
 
   private _unregisterListenersFn: Function;
@@ -108,25 +102,23 @@ export class ComponentLoader<T> {
        return this;
      }
 
-     public provide(provider: Provider): ComponentLoader<T> {
+     public provide(provider: StaticProvider): ComponentLoader<T> {
        this._providers.push(provider);
        return this;
      }
 
      // todo: appendChild to element or document.querySelector(this.container)
-     public show(opts: { content?: string | TemplateRef<any>, [key: string]: any } = {}): ComponentRef<T> {
+     public show(opts: { content?: string | TemplateRef<any>, data?: any, [key: string]: any } = {}): ComponentRef<T> {
        this._subscribePositioning();
        this._innerComponent = null;
 
        if (!this._componentRef) {
          this.onBeforeShow.emit();
-         this._contentRef = this._getContentRef(opts.content);
-         const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
+         this._contentRef = this._getContentRef(opts.content, opts.data);
+         const injector = Injector.create({providers: this._providers, parent: this._injector});
 
          this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
          this._applicationRef.attachView(this._componentRef.hostView);
-         // this._componentRef = this._viewContainerRef
-         //   .createComponent(this._componentFactory, 0, injector, this._contentRef.nodes);
          this.instance = this._componentRef.instance;
 
          Object.assign(this._componentRef.instance, opts);
@@ -137,7 +129,6 @@ export class ComponentLoader<T> {
          }
 
          if (this.container === 'body' && typeof document !== 'undefined') {
-          //  document.querySelector(this.container as string)
           document.querySelector(this.container as string | any)
            .appendChild(this._componentRef.location.nativeElement);
          }
@@ -179,11 +170,6 @@ export class ComponentLoader<T> {
        if (this._viewContainerRef && this._contentRef.viewRef) {
          this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
        }
-       // this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
-       //
-       // if (this._contentRef.viewRef && this._viewContainerRef.indexOf(this._contentRef.viewRef) !== -1) {
-         //   this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
-         // }
 
          this._contentRef = null;
          this._componentRef = null;
@@ -265,7 +251,7 @@ export class ComponentLoader<T> {
          this._zoneSubscription = null;
        }
 
-       private _getContentRef(content: string | TemplateRef<any> | any): ContentRef {
+       private _getContentRef(content: string | TemplateRef<any> | any, data?: any): ContentRef {
          if (!content) {
            return new ContentRef([]);
          }
@@ -282,8 +268,9 @@ export class ComponentLoader<T> {
 
          if (typeof content === 'function') {
            const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(content);
-           const modalContentInjector = ReflectiveInjector.resolveAndCreate([...this._providers], this._injector);
+           const modalContentInjector = Injector.create({ providers: this._providers, parent: this._injector});
            const componentRef = contentCmptFactory.create(modalContentInjector);
+           Object.assign(componentRef.instance, data);
            this._applicationRef.attachView(componentRef.hostView);
            return new ContentRef([[componentRef.location.nativeElement]], componentRef.hostView, componentRef);
          }

@@ -1,3 +1,34 @@
+7.3.0
+In this release we have migrated our entire library to Font Awesome 5. Changing from 4 to 5 is not backward compatible, so we recommend updating the application to Font Awesome 5.
+
+*** Fixes: ***
+
+    * Datepicker - Solved problems with date formatting, when the component is in *ngIf,
+    * Tabs - It is no longer necessary to double-click to activate the tab during OnPush,
+    * Tabs - Disabled tab will not be marked as active,
+    * Sidenav & Custom Skin - Solved problem with text color overwriting in Sidenav in combination with custom skin,
+    * Select & Custom Skin - Solved problem with overwriting text color in Select with Custom Skin,
+    * Table Sort - Sorting tables will not display an error .toLowerCase() is undefined,
+    * Tooltips & Admin Template Pro - Fixed tooltips in Admin Template Pro,
+    * API - Removed deprecated API - HttpModule, eflectiveInjector, NavigationExtras.preserveQueryParams,
+    * Lightbox & Firebase - Solved problem with Lightbox and Firebase,
+    * Navbar - Navbar in mobile version will not flash on the screen,
+    * Textarea - Autoresizing Textarea will expand when text is added before rendering a view,
+    * Auto Completer - Resolved problem with .trim() is undefined in mdb-option component.
+
+*** Documentation: ***
+
+    * Checkbox - Added documentation for Template Driven & Reactive Forms Checkbox,
+    * PWA Tutorial - Published new version of Angular PWA tutorial with Firebase and IndexedDB!
+
+*** New Features: ***
+
+    * Font Awesome 5 Icons - compatibility with Font Awesome 5,
+    * Admin Template Pro - Added Sections page to Admin Template Pro,
+    * Steppers - added new Steppers component,
+    * Dynamic Modals - Added a new way to pass data to dynamic modals,
+    * Scrollspy - Added event activeLinkChange to Scrollspy.
+
 7.2.0
 In this release we added new mdb-auto-completer component, which is improved version of mdb-autocomplete.
 

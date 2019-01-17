@@ -31,6 +31,7 @@ export class ModalOptions {
    containerClass?: string;
    animated?: boolean;
    scroll?: boolean;
+   data?: Object;
  }
 
  @Injectable()
@@ -54,7 +55,8 @@ export class ModalOptions {
    class: '',
    containerClass: '',
    animated: true,
-   scroll: false
+   scroll: false,
+   data: {}
  };
 
  export const ClassName: any = {
