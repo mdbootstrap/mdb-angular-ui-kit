@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import {isPlatformBrowser} from '@angular/common';
 import {
   Directive,
   ElementRef,
@@ -102,29 +102,36 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
           }
         }
       }
-    } catch (error) { }
+    } catch (error) {
+    }
     this.delayedResize();
   }
+
   @HostListener('cut') oncut() {
     try {
       setTimeout(() => {
         this.delayedResize();
       }, 0);
-    } catch (error) { }
+    } catch (error) {
+    }
   }
+
   @HostListener('paste') onpaste() {
     try {
       setTimeout(() => {
         this.delayedResize();
       }, 0);
-    } catch (error) { }
+    } catch (error) {
+    }
   }
+
   @HostListener('drop') ondrop() {
     try {
       setTimeout(() => {
         this.delayedResize();
       }, 0);
-    } catch (error) { }
+    } catch (error) {
+    }
   }
 
   updateErrorMsg(value: string) {
@@ -140,6 +147,14 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
   }
 
   ngOnInit() {
+    try {
+      setTimeout(() => {
+        this.delayedResize();
+      }, 0);
+    } catch (error) {
+      console.log(error);
+    }
+
     // Inititalise a new <span> wrong/right elements and render it below the host component.
     if (this.mdbValidate) {
       this.wrongTextContainer = this._renderer.createElement('span');
@@ -254,11 +269,13 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
       }
     }, 0);
   }
+
   ngAfterViewInit() {
     if (this.isBrowser) {
       try {
         this.element = document.querySelector('.md-textarea-auto');
-      } catch (error) { }
+      } catch (error) {
+      }
 
     }
     const type = this.el.nativeElement.type;
@@ -280,10 +297,10 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
   }
 
   resize() {
-      if (this.el.nativeElement.classList.contains('md-textarea-auto')) {
-        this._renderer.setStyle(this.el.nativeElement, 'height', 'auto');
-        this._renderer.setStyle(this.el.nativeElement, 'height', this.el.nativeElement.scrollHeight + 'px');
-      }
+    if (this.el.nativeElement.classList.contains('md-textarea-auto')) {
+      this._renderer.setStyle(this.el.nativeElement, 'height', 'auto');
+      this._renderer.setStyle(this.el.nativeElement, 'height', this.el.nativeElement.scrollHeight + 'px');
+    }
 
   }
 
@@ -299,11 +316,13 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
     if (this.isBrowser) {
       try {
         inputId = this.el.nativeElement.id;
-      } catch (err) { }
+      } catch (err) {
+      }
 
       try {
         inputP = this.el.nativeElement.parentNode;
-      } catch (err) { }
+      } catch (err) {
+      }
 
       this.elLabel = inputP.querySelector('label[for="' + inputId + '"]') || inputP.querySelector('label');
       if (this.elLabel && this.el.nativeElement.value !== '') {
@@ -327,7 +346,8 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
           this._renderer.removeClass(this.elIcon, 'active');
         }
         // tslint:disable-next-line:max-line-length
-      } if (value === '' && this.isClicked ||
+      }
+      if (value === '' && this.isClicked ||
         value === '' && this.el.nativeElement.placeholder ||
         value === '' && this.el.nativeElement.attributes.placeholder
       ) {

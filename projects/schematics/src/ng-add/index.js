@@ -55,13 +55,16 @@ function updateModuleWithForRootMethod() {
 function addStylesAndScriptsToAngularJson(options) {
     return (host, context) => {
         const additionalStyles = [
-            { name: 'font-awesome', path: "node_modules/font-awesome/scss/font-awesome.scss" },
-            { name: 'bootstrap', path: "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss" },
-            { name: 'mdb', path: "node_modules/angular-bootstrap-md/scss/mdb-free.scss" }
+            { name: 'fontawesome', path: 'node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss' },
+            { name: 'fontawesome-solid', path: 'node_modules/@fortawesome/fontawesome-free/scss/solid.scss' },
+            { name: 'fontawesome-regular', path: 'node_modules/@fortawesome/fontawesome-free/scss/regular.scss' },
+            { name: 'fontawesome-brand', path: 'node_modules/@fortawesome/fontawesome-free/scss/brands.scss' },
+            { name: 'bootstrap', path: 'node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss' },
+            { name: 'mdb', path: 'node_modules/angular-bootstrap-md/scss/mdb-free.scss' }
         ];
         const additionalScripts = [
-            { name: 'chart.js', path: "node_modules/chart.js/dist/Chart.js" },
-            { name: 'hammerjs', path: "node_modules/hammerjs/hammer.min.js" }
+            { name: 'chart.js', path: 'node_modules/chart.js/dist/Chart.js' },
+            { name: 'hammerjs', path: 'node_modules/hammerjs/hammer.min.js' }
         ];
         try {
             const angularJsonFile = host.read('angular.json');

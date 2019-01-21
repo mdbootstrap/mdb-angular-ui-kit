@@ -4,7 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/angular-bootstrap-md.svg)](https://badge.fury.io/js/angular-bootstrap-md)
 
-Built with Angular 6, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
+Built with Angular 7, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
 
 400+ material UI elements, 600+ material icons, 74 CSS animations, TypeScript modules, SASS files and many more.
 
@@ -25,8 +25,8 @@ __________
 [![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2875%29.jpg)](https://mdbootstrap.com/angular/)
 
 # Version:
-- Angular CLI 6
-- Angular 6
+- Angular CLI 7
+- Angular 7
 
 # Quick start
 - Clone following repo:  
@@ -150,7 +150,7 @@ Writing you code with pure Angular is now quicker, easier, and cleaner.
 **TypeScript**  
 Superset of JavaScript that compiles to clean JavaScript output.  
 
-**Angular 6**  
+**Angular 7**  
 Create smarter and faster Angular apps with the latest official Angular release.  
 
 **Cross-browser compatibility**  

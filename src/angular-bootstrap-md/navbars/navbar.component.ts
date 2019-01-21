@@ -19,7 +19,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   public height: number;
   public duration = 350; // ms
 
-  public collapse = false;
+  public collapse = true;
   public showClass = false;
   public collapsing = false;
   @ViewChild('navbar') el: ElementRef;
@@ -63,27 +63,16 @@ export class NavbarComponent implements AfterViewInit, OnInit {
 
 
   ngAfterViewInit() {
-    /* bugfix - bez tego sypie ExpressionChangedAfterItHasBeenCheckedError -
-    https://github.com/angular/angular/issues/6005#issuecomment-165951692 */
-    setTimeout(() => {
-      this.height = this.el.nativeElement.scrollHeight;
-      this.collapse = true;
-
       if (!this.containerInside) {
         const childrens = Array.from(this.container.nativeElement.children);
         childrens.forEach(child => {
-          // this.navbar.nativeElement.append(child);
           this.renderer.appendChild(this.navbar.nativeElement, child);
-
           this.container.nativeElement.remove();
         });
-
       }
       if (this.el.nativeElement.children.length === 0) {
         this.el.nativeElement.remove();
       }
-    });
-
     this.addTogglerIconClasses();
   }
 
@@ -101,9 +90,11 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     this.shown = true;
     this.collapse = false;
     this.collapsing = true;
+
     setTimeout(() => {
+      this.height = this.el.nativeElement.scrollHeight;
       this.renderer.setStyle(this.el.nativeElement, 'height', this.height + 'px');
-    }, 10);
+    }, 0);
 
 
     setTimeout(() => {
@@ -120,7 +111,7 @@ export class NavbarComponent implements AfterViewInit, OnInit {
     this.collapsing = true;
     setTimeout(() => {
       this.renderer.setStyle(this.el.nativeElement, 'height', '0px');
-    }, 10);
+    }, 0);
 
 
     setTimeout(() => {
@@ -130,11 +121,11 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   }
 
   get displayStyle() {
-     if (!this.containerInside) {
+    if (!this.containerInside) {
       return 'flex';
-     } else {
-    return '';
-     }
+    } else {
+      return '';
+    }
   }
 
   @HostListener('window:resize', ['$event']) onResize(event: any) {

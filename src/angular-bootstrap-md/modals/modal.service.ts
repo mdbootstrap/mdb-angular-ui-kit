@@ -106,7 +106,7 @@ export class MDBModalService {
     .provide({provide: MDBModalRef, useValue: mdbModalRef})
     .attach(ModalContainerComponent)
     .to('body')
-    .show({content, isAnimated: this.config.animated});
+    .show({content, isAnimated: this.config.animated, data: this.config.data});
     modalContainerRef.instance.level = this.getModalsCount();
     mdbModalRef.hide = () => {
       modalContainerRef.instance.hide();

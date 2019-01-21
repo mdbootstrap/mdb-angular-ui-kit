@@ -13,7 +13,7 @@ export class MdbTableSortDirective {
   sorted = false;
 
   @HostListener('click') onclick() {
-    this.sortDataBy(this.sortBy.toLowerCase());
+    this.sortDataBy(this.sortBy.toString().toLowerCase());
   }
   constructor() { }
 
