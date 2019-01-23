@@ -72,7 +72,7 @@ export declare function parseJsonAst(input: string, mode?: JsonParseMode): JsonA
 /**
  * Options for the parseJson() function.
  */
-interface ParseJsonOptions {
+export interface ParseJsonOptions {
     /**
      * If omitted, will only emit errors related to the content of the JSON. If specified, any
      * JSON errors will also include the path of the file that caused the error.
@@ -91,4 +91,3 @@ interface ParseJsonOptions {
  * @returns {JsonValue} The value represented by the JSON string.
  */
 export declare function parseJson(input: string, mode?: JsonParseMode, options?: ParseJsonOptions): JsonValue;
-export {};

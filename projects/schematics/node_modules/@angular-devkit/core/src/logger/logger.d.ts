@@ -39,6 +39,7 @@ export declare class Logger extends Observable<LogEntry> implements LoggerApi {
     createChild(name: string): Logger;
     complete(): void;
     log(level: LogLevel, message: string, metadata?: JsonObject): void;
+    next(entry: LogEntry): void;
     debug(message: string, metadata?: JsonObject): void;
     info(message: string, metadata?: JsonObject): void;
     warn(message: string, metadata?: JsonObject): void;

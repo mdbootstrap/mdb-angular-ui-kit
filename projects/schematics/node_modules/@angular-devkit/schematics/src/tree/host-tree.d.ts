@@ -20,6 +20,7 @@ export declare class HostDirEntry implements DirEntry {
     dir(name: PathFragment): DirEntry;
     file(name: PathFragment): FileEntry | null;
     visit(visitor: FileVisitor): void;
+    private getSubfilesRecursively;
 }
 export declare class HostTree implements Tree {
     protected _backend: virtualFs.ReadonlyHost<{}>;

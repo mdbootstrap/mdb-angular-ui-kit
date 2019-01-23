@@ -14,3 +14,12 @@ export * from './partially-ordered-set';
 export * from './priority-queue';
 export * from './lang';
 export { tags, strings };
+export declare type DeepReadonly<T> = T extends (infer R)[] ? DeepReadonlyArray<R> : T extends Function ? T : T extends object ? DeepReadonlyObject<T> : T;
+export interface DeepReadonlyArray<T> extends Array<DeepReadonly<T>> {
+}
+export declare type DeepReadonlyObject<T> = {
+    readonly [P in keyof T]: DeepReadonly<T[P]>;
+};
+export declare type Readwrite<T> = {
+    -readonly [P in keyof T]: T[P];
+};

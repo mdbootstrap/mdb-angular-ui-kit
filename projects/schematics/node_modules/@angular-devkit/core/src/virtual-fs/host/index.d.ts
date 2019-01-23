@@ -16,5 +16,4 @@ export * from './safe';
 export * from './scoped';
 export * from './sync';
 export * from './resolver';
-import * as test from './test';
-export { test };
+export * from './test';
