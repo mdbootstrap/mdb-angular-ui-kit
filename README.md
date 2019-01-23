@@ -1,27 +1,224 @@
-# AngularBootstrapMdApp
+[![Angular-Bootstrap-with-Material-Design](https://mdbootstrap.com/img/Marketing/products/angular/mdb-free.jpg)](https://mdbootstrap.com/angular/)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
+# Angular Bootstrap with Material Design
 
-## Development server
+[![npm version](https://badge.fury.io/js/angular-bootstrap-md.svg)](https://badge.fury.io/js/angular-bootstrap-md)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Built with Angular 7, Bootstrap 4 and TypeScript. CLI version available. Absolutely no jQuery.
 
-## Code scaffolding
+400+ material UI elements, 600+ material icons, 74 CSS animations, TypeScript modules, SASS files and many more.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+All fully responsive. All compatible with different browsers.
 
-## Build
+__________
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Demo:  
+**Main demo**: https://mdbootstrap.com/angular/components/
 
-## Running unit tests
+# Live Preview
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2888%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2876%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2873%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2874%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2881%29.jpg)](https://mdbootstrap.com/angular/)
+[![Material Design for Bootstrap](https://mdbootstrap.com/img/Mockups/Lightbox/Original/img%20%2875%29.jpg)](https://mdbootstrap.com/angular/)
 
-## Running end-to-end tests
+# Version:
+- Angular CLI 7
+- Angular 7
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+# Quick start
+- Clone following repo:  
+```javascript
+git clone https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design.git .
+``` 
+note "." at the end. It will clone files directly into current folder. 
+- Run `npm i`
+- Run `npm start`
+- Voilà! Open browser and visit http://localhost:4200 
 
-## Further help
+Now you can navigate to our documentation (http://mdbootstrap.com/angular/), pick any component and place within your project.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Demo application
+
+Feel free to check our live example components: Just type `ng serve mdb-demo` in terminal!
+
+Type one of the below commands to remove demo application from this project:
+* npm `run remove-demo-unix` to remove demo application on UNIX based systems,
+* npm `run remove-demo-windows` to remove demo application on Windows systems.
+
+# Available commands
+
+* npm run build:lib - building library,
+* npm run pack - copying assets and packaging /dist directory into .tgz archive
+* npm run version - adjusting src/package.json version from main package.json file,
+* npm run compile - Executing above commands with correct sequence.
+
+# Modules list
+
+* ButtonsModule,
+* CarouselModule,
+* ChartsModule,
+* CollapseModule,
+* InputsModule,
+* ModalModule,
+* NavbarModule,
+* PopoverModule,
+* TooltipModule,
+* WavesModule,
+* MDBBootstrapModule - contains every MDB modules.
+
+# How to install MDB via npm:
+- create new project `ng new project_name --style=scss`
+- `npm i angular-bootstrap-md --save`
+- to app.module.ts add
+```javascript
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+@NgModule({
+    imports: [
+        MDBBootstrapModule.forRoot()
+    ],
+    schemas: [ NO_ERRORS_SCHEMA ]
+});
+```
+- in angular.json change:
+
+`"styleExt": "css"` to `"styleExt": "scss"`
+
+rename /src/styles.css to styles.scss
+
+- if you want to change styles in exisiting project you can use `ng set defaults.styleExt scss`
+
+- add below lines to angular.json: 
+```javascript
+"styles": [
+    "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+    "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+    "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+    "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+    "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
+    "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+    "src/styles.scss"
+],
+"scripts": [
+  "node_modules/chart.js/dist/Chart.js",
+  "node_modules/hammerjs/hammer.min.js"
+],
+```
+- install external libs
+```bash
+npm install -–save chart.js@2.5.0 @fortawesome/fontawesome-free hammerjs
+```
+
+### Run server
+```bash
+ng serve --open
+```
+
+## Getting started:
+
+http://mdbootstrap.com/angular/getting-started/
+
+**5min Quick Start**: https://mdbootstrap.com/angular/5min-quickstart/
+
+# Additional tutorials:
+
+**MDB - Bootstrap tutorial**: https://mdbootstrap.com/bootstrap-tutorial/
+
+**MDB - Wordpress tutorial**: https://mdbootstrap.com/wordpress-tutorial/
+
+# PRO version:
+
+**Angular Bootstrap with Material Design PRO (from $79)**: https://mdbootstrap.com/products/angular-ui-kit/  
+
+## Documentation:
+**Huge, detailed documentation avilable online on**: http://mdbootstrap.com/angular/
+
+# Highlights:  
+**Bootstrap 4**  
+Up-to-date with the latest standards of Bootstrap 4 and all the best it has to offer. 
+
+**Angular CLI**  
+A command line interface handling all the tedious tasks for you out of the box.
+
+**Detailed documentation**  
+Intuitive and user-friendly documentation, created with a copy-paste approach.
+
+**No jQuery**  
+Writing you code with pure Angular is now quicker, easier, and cleaner. 
+
+**TypeScript**  
+Superset of JavaScript that compiles to clean JavaScript output.  
+
+**Angular 7**  
+Create smarter and faster Angular apps with the latest official Angular release.  
+
+**Cross-browser compatibility**  
+Works perfectly with Chrome, Firefox, IE, Safari, Opera and Microsoft Edge.  
+
+**Frequent updates**  
+Expect any bugs being fixed in a matter of days.   
+
+**Active community**  
+MDB is broadly used by professionals on multiple levels, who are ready to aid you.
+
+**Modularity**  
+Use TypeScript modules to compile package adjusted yo your needs. 
+
+**Useful helpers**  
+Reduce the frequency of highly repetitive declarations in your CSS.
+
+**Technical support**  
+Every day we help our users with their issues and problems.  
+
+**SASS files**  
+Thought-out .scss files come in a compile-ready form.
+
+**Flexbox**  
+Full support of Flexbox layout system lets you forget about alignment issues.  
+
+
+A big **thank you to all our users** who are working with us to improve the software. We wouldn't be where we are without you. 
+
+
+# Useful Links:
+
+**jQuery version: https://github.com/mdbootstrap/bootstrap-material-design
+
+**React version: https://github.com/mdbootstrap/React-Bootstrap-with-Material-Design
+
+**Vue version: https://github.com/mdbootstrap/Vue-Bootstrap-with-Material-Design
+
+Getting started: https://mdbootstrap.com/angular-bootstrap-getting-started/  
+
+5 min quick start: https://mdbootstrap.com/angular/5min-quickstart/  
+
+Material Design + Bootstrap Tutorial: https://mdbootstrap.com/bootstrap-tutorial/  
+
+Material Design + WordPress Tutorial: https://mdbootstrap.com/wordpress-tutorial/  
+
+Freebies: https://mdbootstrap.com/freebies/  
+
+Premium Templates: https://mdbootstrap.com/templates/  
+
+Changelog: https://mdbootstrap.com/angular/changelog/
+
+# Social Media:  
+
+Twitter: https://twitter.com/MDBootstrap  
+
+Facebook: https://www.facebook.com/mdbootstrap  
+
+Pinterest: https://pl.pinterest.com/mdbootstrap 
+
+Google+: https://plus.google.com/u/0/b/107863090883699620484/+Mdbootstrap/posts  
+
+Dribbble: https://dribbble.com/mdbootstrap
+
+LinkedIn: https://www.linkedin.com/company/material-design-for-bootstrap
+
+## Contact:
+office@mdbootstrap.com
