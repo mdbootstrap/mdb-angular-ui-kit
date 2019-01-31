@@ -88,6 +88,8 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   protected _delayTimeoutId: any;
   isBrowser: any = false;
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
+  xxx: any;
+  yyy: any;
 
   public constructor(_viewContainerRef: ViewContainerRef,
                      _renderer: Renderer2,
@@ -95,6 +97,8 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
                      cis: ComponentLoaderFactory,
                      config: TooltipConfig,
                      @Inject(PLATFORM_ID) private platformId: string) {
+    this.xxx = _viewContainerRef;
+    this.yyy = cis;
     this.isBrowser = isPlatformBrowser((this.platformId));
     this._tooltip = cis
       .createLoader<TooltipContainerComponent>(this._elementRef, _viewContainerRef, _renderer)
@@ -139,13 +143,13 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   changePositionIfNotFit(): void {
-      if (this.placement === 'top' && this._elementRef.nativeElement.offsetTop < (parseInt(this.customHeight, 10) + 16)) {
-        this.placement = 'bottom';
-      }
+    if (this.placement === 'top' && this._elementRef.nativeElement.offsetTop < (parseInt(this.customHeight, 10) + 16)) {
+      this.placement = 'bottom';
+    }
 
-      if (this.placement === 'bottom' && (this.getBottomOffset() as any) < (parseInt(this.customHeight, 10) + 32)) {
-        this.placement = 'top';
-      }
+    if (this.placement === 'bottom' && (this.getBottomOffset() as any) < (parseInt(this.customHeight, 10) + 32)) {
+      this.placement = 'top';
+    }
   }
 
   getBottomOffset() {
@@ -172,13 +176,14 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
    * Opens an element’s tooltip. This is considered a “manual” triggering of
    * the tooltip.
    */
-  public show(): void {
+  public show(event?: any): void {
     if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.mdbTooltip) {
       return;
     }
 
     if (!this.customHeight) {
-      if (this.placement === 'top' && this._elementRef.nativeElement.offsetTop < 40) {
+      const elPosition = event ? event.target.getBoundingClientRect() : this._elementRef.nativeElement.getBoundingClientRect();
+      if (this.placement === 'top' && elPosition.top < 40) {
         this.placement = 'bottom';
       }
 

@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-md",
-  "version": "7.3.0",
+  "version": "7.4.0",
   "schematics": "./schematics/collection.json",
   "peerDependencies": {
     "@angular/common": "^7.0.0",

@@ -1,3 +1,43 @@
+7.4.0
+In this version we resolved problems with our modules and tree shaking.
+It is now possible to import only those modules you need in your application, which will significantly reduce bundle size. We also updated Bootstrap to the newest version (4.2.1).
+
+*** Bootstrap version update: ***
+
+    * Added new spinner loading component,
+    * Added new .font-weight-lighter and .font-weight-bolder utitlities,
+    * Added new .text-decoration-none class,
+    * Added new negative margin utility classes (e.g, .mb-n3),
+    * Changed auto columns (e.g, .col-auto) from max-width: none to max-width: 100% to prevent content from causing a column to overflow the parent.
+    * Added md prefix to scss code of our alert components to avoid overwritting bootstrap classes
+
+*** Fixes: ***
+
+    * Popover / Tooltip - resolved problems with displaying in Firefox/Safari browsers on Mac OS,
+    * Multiselect - changed some methods to provide better support for older browsers,
+    * Carousel - resolved problem with OnPush change detection,
+    * Validation - resolved problem with positioning messages under inputs with icons,
+    * Select with filter - resolved problem with ExpressionChangedAfterItHasBeenCheckedError,
+    * Select with icons - resolved problem with padding,
+    * Steppers - updated styles to resolve problem with Font Awesome 5 Pro icons,
+    * Tooltip - resolved problem with placement.
+
+*** Documentation: ***
+
+    * Multi item carousel - updated example code. From now only one item should be displayed on smaller screens,
+    * Switch - changed syntax of default component,
+    * Borders - added new border-white and rounded-pill examples,
+    * Overflow - new documentation page in utilities section
+    * Icons list - updated example code of the icons
+    * Table editable - changed example code to resolve problems with editing on Edge 15.
+
+*** New features: ***
+
+    * Select - added new [optionHeight] input which allow to customize options height,
+    * Select - you can now use [appendToBody]="true" input to avoid problems with displaying select dropdown in container with overflow: hidden,
+    * Multiselect - added new selectAllLabel input which allow to customize text of 'Select all' option,
+    * Tabs - added possibility to add action buttons to tabset header.
+
 7.3.0
 In this release we have migrated our entire library to Font Awesome 5. Changing from 4 to 5 is not backward compatible, so we recommend updating the application to Font Awesome 5.
 

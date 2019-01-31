@@ -40,8 +40,16 @@ textarea:focus~.chars {
 }
 
 
-.md-form .prefix~.error-message, .md-form .prefix~.success-message {
-	left: 2.5rem;
+.modal-body .md-form .prefix ~ .text-success, .modal-body .md-form .prefix ~ .text-danger {
+  left: 2.5rem;
+}
+
+.md-form .prefix ~ .text-success, .md-form .prefix ~ .text-danger {
+  left: 2.5rem;
+}
+
+.md-form .prefix ~ .error-message, .md-form .prefix ~ .success-message {
+  left: 2.5rem;
 }
 
 mdb-tab .md-form .prefix~.inputVal {

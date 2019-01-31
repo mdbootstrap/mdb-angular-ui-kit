@@ -8,7 +8,8 @@ import {
   HostListener,
   Inject,
   PLATFORM_ID,
-  AfterViewInit, ChangeDetectorRef
+  AfterViewInit,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import {isBs3} from '../utils/ng2-bootstrap-config';
@@ -24,7 +25,7 @@ export enum Direction { UNKNOWN, NEXT, PREV }
  */
 @Component({
   selector: 'mdb-carousel',
-  templateUrl: './carousel.component.html',
+  templateUrl: './carousel.component.html'
 })
 
 export class CarouselComponent implements OnDestroy, AfterViewInit {
@@ -40,12 +41,10 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   protected destroyed = false;
   protected el: ElementRef | any = null;
   protected animationEnd = true;
+  protected _currentActiveSlide: number | any;
 
   isBrowser: any = false;
-
-  /** If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
   @Input() public noWrap: boolean;
-  /**  If `true` — will disable pausing on carousel mouse hover */
   @Input() public noPause: boolean;
 
   @Input('isControls') public isControls = true;
@@ -56,13 +55,9 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   @Input('animation') public animation: String = '';
   @Input() activeSlideIndex: number;
 
-  // protected _currentActiveSlide: number;
-  protected _currentActiveSlide: number | any;
 
-  /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
   @Output() public activeSlideChange: EventEmitter<any> = new EventEmitter<any>(false);
 
-  /** Index of currently displayed slide(started for 0) */
   @Input()
   public set activeSlide(index: number) {
     if (this._slides.length && index !== this._currentActiveSlide) {
@@ -94,9 +89,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     return slide.el.nativeElement.querySelector('img').src;
   }
 
-  /**
-   * Delay of item cycling in milliseconds. If false, carousel won't cycle automatically.
-   */
   @Input()
   public get interval(): number {
     return this._interval;
@@ -125,10 +117,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     this.destroyed = true;
   }
 
-  /**
-   * Adds new slide. If this slide is first in collection - set it as active and starts auto changing
-   * @param slide
-   */
   public addSlide(slide: SlideComponent): void {
     this._slides.add(slide);
     if (this._slides.length === 1) {
@@ -147,27 +135,18 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  /**
-   * Removes specified slide. If this slide is active - will roll to another slide
-   * @param slide
-   */
   public removeSlide(slide: SlideComponent): void {
     const remIndex = this._slides.indexOf(slide);
 
     if (this._currentActiveSlide === remIndex) {
 
-      // removing of active slide
-      //  let nextSlideIndex: number = void 0;
       let nextSlideIndex: number | any = void 0;
       if (this._slides.length > 1) {
-        // if this slide last - will roll to first slide, if noWrap flag is FALSE or to previous, if noWrap is TRUE
-        // in case, if this slide in middle of collection, index of next slide is same to removed
         nextSlideIndex = !this.isLast(remIndex) ? remIndex :
           this.noWrap ? remIndex - 1 : 0;
       }
       this._slides.remove(remIndex);
 
-      // prevents exception with changing some value after checking
       setTimeout(() => {
         this._select(nextSlideIndex);
       }, 0);
@@ -175,7 +154,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       this._slides.remove(remIndex);
       const currentSlideIndex = this.getCurrentSlideIndex();
       setTimeout(() => {
-        // after removing, need to actualize index of current active slide
         this._currentActiveSlide = currentSlideIndex;
         this.activeSlideChange.emit(this._currentActiveSlide);
       }, 0);
@@ -183,21 +161,18 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  // Fixed problem while cannot swipe next / previous image while using HammerJS.
   swipe(action = this.SWIPE_ACTION.RIGHT) {
     if (action === this.SWIPE_ACTION.RIGHT) {
       this.previousSlide();
+      this.cdRef.markForCheck();
     }
 
     if (action === this.SWIPE_ACTION.LEFT) {
       this.nextSlide();
+      this.cdRef.markForCheck();
     }
   }
 
-  /**
-   * Rolling to next slide
-   * @param force: {boolean} if true - will ignore noWrap flag
-   */
   public nextSlide(force: boolean = false) {
     if (this.animation === 'slide') {
       this.pause();
@@ -217,10 +192,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  /**
-   * Rolling to previous slide
-   * @param force: {boolean} if true - will ignore noWrap flag
-   */
   public previousSlide(force: boolean = false): void {
     if (this.animation === 'slide') {
       this.pause();
@@ -241,7 +212,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   }
 
   protected fadeAnimation(goToIndex: number) {
-    // const currentSlide = this._slides.get(this._currentActiveSlide);
     const goToSlide = this._slides.get(goToIndex);
 
     if (this.animationEnd) {
@@ -252,11 +222,11 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
         setTimeout(() => {
           goToSlide.directionNext = false;
           this.animationEnd = true;
-
           this.activeSlide = goToIndex;
           this.activeSlideChange.emit({'direction': 'Next', 'relatedTarget': this.activeSlide});
           this.play();
-        }, 99);
+          this.cdRef.markForCheck();
+        }, 0);
       }
     }
   }
@@ -274,7 +244,8 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
           setTimeout(() => {
             goToSlide.directionLeft = true;
             currentSlide.directionLeft = true;
-          }, 99);
+            this.cdRef.markForCheck();
+          }, 100);
         }
       }
 
@@ -286,7 +257,8 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
           setTimeout(() => {
             goToSlide.directionRight = true;
             currentSlide.directionRight = true;
-          }, 99);
+            this.cdRef.markForCheck();
+          }, 100);
         }
       }
 
@@ -314,15 +286,12 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
 
           this.activeSlideChange.emit({'direction': directionName, 'relatedTarget': this.activeSlide});
           this.play();
-        }, 100);
+          this.cdRef.markForCheck();
+        }, 700);
       }
     }
   }
 
-  /**
-   * Rolling to specified slide
-   * @param index: {number} index of slide, which must be shown
-   */
   public selectSlide(index: number): void {
     this.pause();
     if (this.animation === 'slide') {
@@ -340,9 +309,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     this.play();
   }
 
-  /**
-   * Starts a auto changing of slides
-   */
   @HostListener('mouseleave') play() {
     if (!this.isPlaying) {
       this.isPlaying = true;
@@ -350,9 +316,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  /**
-   * Stops a auto changing of slides
-   */
   @HostListener('mouseenter') pause() {
     if (!this.noPause) {
       this.isPlaying = false;
@@ -360,26 +323,14 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  /**
-   * Finds and returns index of currently displayed slide
-   */
   public getCurrentSlideIndex(): number {
     return this._slides.findIndex((slide: SlideComponent) => slide.active);
   }
 
-  /**
-   * Defines, whether the specified index is last in collection
-   */
   public isLast(index: number): boolean {
     return index + 1 >= this._slides.length;
   }
 
-  /**
-   * Defines next slide index, depending of direction
-   * @param direction: Direction(UNKNOWN|PREV|NEXT)
-   * @param force: {boolean} if TRUE - will ignore noWrap flag, else will return undefined if next slide require wrapping
-
-   */
   private findNextSlideIndex(direction: Direction, force: boolean): any {
     let nextSlideIndex = 0;
 
@@ -389,12 +340,10 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
 
     switch (direction) {
       case Direction.NEXT:
-        // if this is last slide, not force, looping is disabled and need to going forward - select current slide, as a next
         nextSlideIndex = (!this.isLast(this._currentActiveSlide)) ? this._currentActiveSlide + 1 :
           (!force && this.noWrap) ? this._currentActiveSlide : 0;
         break;
       case Direction.PREV:
-        // if this is first slide, not force, looping is disabled and need to going backward - select current slide, as a next
         nextSlideIndex = (this._currentActiveSlide > 0) ? this._currentActiveSlide - 1 :
           (!force && this.noWrap) ? this._currentActiveSlide : this._slides.length - 1;
         break;
@@ -404,10 +353,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     return nextSlideIndex;
   }
 
-  /**
-   * Sets a slide, which specified through index, as active
-   * @param index
-   */
   private _select(index: number): void {
     if (isNaN(index)) {
       this.pause();
@@ -422,13 +367,9 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       this._currentActiveSlide = index;
       nextSlide.active = true;
       this.activeSlide = index;
-      // this.activeSlideChange.emit(index);
     }
   }
 
-  /**
-   * Starts loop of auto changing of slides
-   */
   private restartTimer(): any {
     this.resetTimer();
     if (this.isBrowser) {
@@ -448,9 +389,6 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  /**
-   * Stops loop of auto changing of slides
-   */
   private resetTimer(): void {
     if (this.isBrowser) {
       if (this.currentInterval) {
@@ -501,5 +439,4 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   @HostListener('click') focus() {
     this.el.nativeElement.focus();
   }
-
 }
