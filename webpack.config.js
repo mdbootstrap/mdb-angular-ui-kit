@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: './projects/schematics/src/ng-add/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist/schematics/ng-add'),
+    path: path.resolve(__dirname, 'dist/angular-bootstrap-md/schematics/ng-add'),
     filename: 'index.js',
     libraryTarget: 'commonjs2'
   },

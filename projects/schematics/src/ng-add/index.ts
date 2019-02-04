@@ -16,7 +16,7 @@ function addPackageJsonDependencies(): Rule {
     const dependencies: NodeDependency[] = [
       { type: NodeDependencyType.Default, version: '^2.7.2', name: 'chart.js' },
       { type: NodeDependencyType.Default, version: '^2.7.40', name: '@types/chart.js' },
-      { type: NodeDependencyType.Default, version: '~4.7.x', name: 'font-awesome' },
+      { type: NodeDependencyType.Default, version: '~5.6.3', name: '@fortawesome/fontawesome-free' },
       { type: NodeDependencyType.Default, version: '~2.0.8', name: 'hammerjs' }
     ];
 

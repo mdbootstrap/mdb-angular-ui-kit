@@ -22,6 +22,7 @@ export declare class VirtualDirEntry implements DirEntry {
     dir(name: PathFragment): DirEntry;
     file(name: PathFragment): FileEntry | null;
     visit(visitor: FileVisitor): void;
+    private getSubfilesRecursively;
 }
 /**
  * The root class of most trees.

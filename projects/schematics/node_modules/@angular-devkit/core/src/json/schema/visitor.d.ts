@@ -8,6 +8,7 @@
 import { Observable } from 'rxjs';
 import { JsonObject, JsonValue } from '../interface';
 import { JsonSchemaVisitor, JsonVisitor } from './interface';
+import { JsonSchema } from './schema';
 export interface ReferenceResolver<ContextT> {
     (ref: string, context?: ContextT): {
         context?: ContextT;
@@ -30,4 +31,4 @@ export interface ReferenceResolver<ContextT> {
  * @returns {Observable< | undefined>} The observable of the new root, if the root changed.
  */
 export declare function visitJson<ContextT>(json: JsonValue, visitor: JsonVisitor, schema?: JsonObject, refResolver?: ReferenceResolver<ContextT>, context?: ContextT): Observable<JsonValue>;
-export declare function visitJsonSchema(schema: JsonObject, visitor: JsonSchemaVisitor): void;
+export declare function visitJsonSchema(schema: JsonSchema, visitor: JsonSchemaVisitor): void;

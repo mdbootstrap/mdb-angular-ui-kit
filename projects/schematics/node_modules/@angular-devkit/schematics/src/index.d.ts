@@ -8,7 +8,7 @@
 import { FilePredicate, MergeStrategy, Tree as TreeInterface } from './tree/interface';
 export { SchematicsException } from './exception/exception';
 export * from './tree/action';
-export * from './engine';
+export * from './engine/index';
 export * from './exception/exception';
 export * from './tree/interface';
 export * from './rules/base';
@@ -29,9 +29,9 @@ export * from './sink/dryrun';
 export * from './sink/filesystem';
 export * from './sink/host';
 export * from './sink/sink';
-import * as formats from './formats';
+import * as formats from './formats/index';
 export { formats };
-import * as workflow from './workflow';
+import * as workflow from './workflow/index';
 export { workflow };
 export interface TreeConstructor {
     empty(): TreeInterface;

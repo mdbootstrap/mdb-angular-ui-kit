@@ -1,8 +1,0 @@
-.checkbox-teal [type="checkbox"]:checked+label:before {
-    border-color: transparent #009688 #009688 transparent;
-  }
-  
-  .checkbox-warning-filled [type="checkbox"][class*='filled-in']:checked+label:after {
-    border-color: #FF8800;
-    background-color: #FF8800;
-  }
