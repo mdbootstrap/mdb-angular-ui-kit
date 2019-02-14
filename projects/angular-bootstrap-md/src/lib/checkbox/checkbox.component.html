@@ -1,14 +1,14 @@
 <div
-  [ngClass]="{ 
+  [ngClass]="{
   'custom-control custom-checkbox': default,
   'form-check': !default,
   'custom-control-inline': inline,
   'form-check-inline': inline && !default }">
-  <input 
+  <input
     #input
     type="checkbox"
     class="custom-control-input"
-    [ngClass]="{ 
+    [ngClass]="{
       'filled-in': filledIn || rounded,
       'custom-control-input': default,
       'form-check-input': !default }"
@@ -20,14 +20,15 @@
     [attr.name]="name"
     [attr.value]="value"
     [tabIndex]="tabIndex"
+    (blur)="onBlur()"
     (click)="onCheckboxClick($event)"
     (change)="onCheckboxChange($event)"
   >
   <label
-    [ngClass]="{ 
+    [ngClass]="{
       'custom-control-label': default,
       'form-check-label': !default,
-      'label-before': checkboxPosition === 'right', 
+      'label-before': checkboxPosition === 'right',
       'checkbox-rounded': rounded,
       'disabled': disabled }"
     [attr.for]="id">

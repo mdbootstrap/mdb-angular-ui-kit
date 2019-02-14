@@ -88,17 +88,15 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   protected _delayTimeoutId: any;
   isBrowser: any = false;
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
-  xxx: any;
-  yyy: any;
 
-  public constructor(_viewContainerRef: ViewContainerRef,
-                     _renderer: Renderer2,
-                     private _elementRef: ElementRef,
-                     cis: ComponentLoaderFactory,
-                     config: TooltipConfig,
-                     @Inject(PLATFORM_ID) private platformId: string) {
-    this.xxx = _viewContainerRef;
-    this.yyy = cis;
+  public constructor(
+    _viewContainerRef: ViewContainerRef,
+    _renderer: Renderer2,
+    private _elementRef: ElementRef,
+    cis: ComponentLoaderFactory,
+    config: TooltipConfig,
+    @Inject(PLATFORM_ID) private platformId: string) {
+
     this.isBrowser = isPlatformBrowser((this.platformId));
     this._tooltip = cis
       .createLoader<TooltipContainerComponent>(this._elementRef, _viewContainerRef, _renderer)

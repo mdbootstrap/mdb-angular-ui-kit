@@ -18,7 +18,6 @@ export class MdbInput implements AfterViewChecked, AfterViewInit {
   public elLabel: ElementRef | any = null;
   public elIcon: Element | any = null;
   element: any = null;
-  @Input('placeholder') public placeholder: string;
   @Input('focusCheckbox') focusCheckbox = true;
   @Input('focusRadio') focusRadio = true;
 

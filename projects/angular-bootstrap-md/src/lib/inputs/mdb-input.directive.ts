@@ -26,9 +26,8 @@ export class MdbInputDirective implements AfterViewChecked, OnInit, AfterViewIni
   public elIcon: Element | any = null;
   element: any = null;
   @Input('mdbInputDirective') mdbInputDirective: MdbInputDirective;
-  @Input('placeholder') public placeholder: string;
   @Input('customRegex') customRegex: any;
-  @Input('mdbValidate') mdbValidate = true;
+  @Input('mdbValidation') mdbValidate = true;
   @Input('validateSuccess') validateSuccess = true;
   @Input('validateError') validateError = true;
   @Input('focusCheckbox') focusCheckbox = true;

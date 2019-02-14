@@ -1,5 +1,18 @@
-import { Component, OnInit, forwardRef, ViewChild, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  forwardRef,
+  ViewChild,
+  Input,
+  EventEmitter,
+  Output,
+  OnChanges,
+  SimpleChanges,
+  HostListener,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 export const CHECKBOX_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -41,9 +54,20 @@ export class CheckboxComponent implements OnInit, OnChanges {
 
   @Output() change: EventEmitter<MdbCheckboxChange> = new EventEmitter<MdbCheckboxChange>();
 
+  private checkboxClicked = new Subject<boolean>();
 
-  constructor() { }
+  constructor() {}
 
+  @HostListener('click', ['$event'])
+  onLabelClick(event: any) {
+    event.stopPropagation();
+    this.checkboxClicked.next(true);
+  }
+
+  @HostListener('document:click')
+  onDocumentClick() {
+    this.checkboxClicked.next(false);
+  }
 
   ngOnInit() {
     if (this.indeterminate && !this.filledIn && !this.rounded) {
@@ -84,9 +108,17 @@ export class CheckboxComponent implements OnInit, OnChanges {
     this.change.emit(this.changeEvent);
   }
 
+  onBlur() {
+    this.checkboxClicked.pipe(take(1)).subscribe(val => {
+      if (!val) {
+        this.onTouched();
+      }
+    });
+  }
+
   // Control Value Accessor Methods
-  onChange = (_: any) => { };
-  onTouched = () => { };
+  onChange = (_: any) => {};
+  onTouched = () => {};
 
   writeValue(value: any) {
     this.value = value;
@@ -104,5 +136,4 @@ export class CheckboxComponent implements OnInit, OnChanges {
   setDisabledState(isDisabled: boolean) {
     this.disabled = isDisabled;
   }
-
 }

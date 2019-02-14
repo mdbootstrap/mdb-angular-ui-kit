@@ -68,6 +68,65 @@ input.counter-success~span.text-success {
 	overflow-y: auto !important;
 }
 
+@media all and (min-width: 992px) {
+  textarea.md-textarea {
+    height: 48px !important;
+  }
+}
+
+.md-outline input.form-control.validate-success.ng-valid.ng-dirty,
+.md-outline input.form-control.validate-success.ng-valid.ng-touched,
+.md-outline.form-submitted input.form-control.validate-success.ng-valid {
+  border-color: $input-success-color !important;
+  box-shadow: inset 0 0 0 1px $input-success-color !important;
+}
+
+.md-outline input.form-control.validate-success.ng-valid.ng-dirty + label,
+.md-outline input.form-control.validate-success.ng-valid.ng-touched + label,
+.md-outline.form-submitted input.form-control.validate-success.ng-valid + label {
+  color: inherit !important;
+  font-weight: normal !important;
+}
+
+.md-outline input.form-control.validate-error.ng-invalid.ng-touched,
+.md-outline input.form-control.validate-error.ng-invalid.ng-dirty,
+.md-outline.form-submitted input.form-control.validate-error.ng-invalid {
+  border-color: $input-error-color !important;
+  box-shadow: inset 0 0 0 1px $input-error-color !important;
+}
+
+.md-outline input.form-control.validate-error.ng-invalid.ng-touched + label,
+.md-outline input.form-control.validate-error.ng-invalid.ng-dirty + label,
+.md-outline.form-submitted input.form-control.validate-error.ng-invalid + label {
+  color: inherit !important;
+  font-weight: normal !important;
+}
+
+.md-outline .md-textarea.validate-success.ng-valid {
+  border-color: $input-success-color !important;
+  box-shadow: inset 0 0 0 1px $input-success-color !important;
+}
+
+.md-outline .md-textarea.validate-success.ng-valid + label {
+  color: inherit !important;
+  font-weight: normal !important;
+}
+
+.md-outline .md-textarea.validate-error.ng-invalid.ng-touched,
+.md-outline .md-textarea.validate-error.ng-invalid.ng-dirty,
+.md-outline .form-submitted .md-textarea.validate-error.ng-invalid {
+  border-color: $input-error-color !important;
+  box-shadow: inset 0 0 0 1px $input-error-color !important;
+}
+
+
+.md-outline .md-textarea.validate-error.ng-invalid.ng-touched + label,
+.md-outline .md-textarea.validate-error.ng-invalid.ng-dirty + label,
+.md-outline .form-submitted .md-textarea.validate-error.ng-invalid + label {
+  color: inherit !important;
+  font-weight: normal !important;
+}
+
 input.form-control.validate-success.ng-valid.ng-dirty,
 input.form-control.validate-success.ng-valid.ng-touched,
 .form-submitted input.form-control.validate-success.ng-valid {

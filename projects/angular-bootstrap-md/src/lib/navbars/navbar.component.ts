@@ -1,13 +1,24 @@
-import { NavbarService } from './navbar.service';
-import { Component, ElementRef, ViewChild, Input, Renderer2, AfterViewInit, HostListener, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {NavbarService} from './navbar.service';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  Input,
+  Renderer2,
+  AfterViewInit,
+  HostListener,
+  OnInit,
+  ContentChild, AfterContentChecked
+} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {LinksComponent} from "./links.component";
 
 @Component({
   selector: 'mdb-navbar',
   templateUrl: 'navbar.component.html',
 })
 
-export class NavbarComponent implements AfterViewInit, OnInit {
+export class NavbarComponent implements AfterViewInit, OnInit, AfterContentChecked {
   @Input() iconBackground: string | string[];
   @Input() SideClass: string;
   @Input() containerInside = true;
@@ -22,15 +33,21 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   public collapse = true;
   public showClass = false;
   public collapsing = false;
+
+  private _itemsLength = 0;
+
   @ViewChild('navbar') el: ElementRef;
   @ViewChild('mobile') mobile: ElementRef;
   @ViewChild('nav') navbar: ElementRef;
   @ViewChild('container') container: ElementRef;
   @ViewChild('toggler') toggler: ElementRef;
+  @ContentChild(LinksComponent) links: LinksComponent;
 
   constructor(public renderer: Renderer2, private _navbarService: NavbarService) {
     // tslint:disable-next-line:max-line-length
-    this.subscription = this._navbarService.getNavbarLinkClicks().subscribe(navbarLinkClicks => { this.closeNavbarOnClick(navbarLinkClicks); });
+    this.subscription = this._navbarService.getNavbarLinkClicks().subscribe(navbarLinkClicks => {
+      this.closeNavbarOnClick(navbarLinkClicks);
+    });
   }
 
   closeNavbarOnClick(navbarLinkClicks: any) {
@@ -63,16 +80,16 @@ export class NavbarComponent implements AfterViewInit, OnInit {
 
 
   ngAfterViewInit() {
-      if (!this.containerInside) {
-        const childrens = Array.from(this.container.nativeElement.children);
-        childrens.forEach(child => {
-          this.renderer.appendChild(this.navbar.nativeElement, child);
-          this.container.nativeElement.remove();
-        });
-      }
-      if (this.el.nativeElement.children.length === 0) {
-        this.el.nativeElement.remove();
-      }
+    if (!this.containerInside) {
+      const childrens = Array.from(this.container.nativeElement.children);
+      childrens.forEach(child => {
+        this.renderer.appendChild(this.navbar.nativeElement, child);
+        this.container.nativeElement.remove();
+      });
+    }
+    if (this.el.nativeElement.children.length === 0) {
+      this.el.nativeElement.remove();
+    }
     this.addTogglerIconClasses();
   }
 
@@ -105,19 +122,21 @@ export class NavbarComponent implements AfterViewInit, OnInit {
   }
 
   hide() {
-    this.shown = false;
-    this.collapse = false;
-    this.showClass = false;
-    this.collapsing = true;
-    setTimeout(() => {
-      this.renderer.setStyle(this.el.nativeElement, 'height', '0px');
-    }, 0);
+    if (this.shown) {
+      this.shown = false;
+      this.collapse = false;
+      this.showClass = false;
+      this.collapsing = true;
+      setTimeout(() => {
+        this.renderer.setStyle(this.el.nativeElement, 'height', '0px');
+      }, 0);
 
 
-    setTimeout(() => {
-      this.collapsing = false;
-      this.collapse = true;
-    }, this.duration);
+      setTimeout(() => {
+        this.collapsing = false;
+        this.collapse = true;
+      }, this.duration);
+    }
   }
 
   get displayStyle() {
@@ -170,6 +189,17 @@ export class NavbarComponent implements AfterViewInit, OnInit {
       } else {
         this.renderer.removeClass(this.navbar.nativeElement, 'top-nav-collapse');
       }
+    }
+  }
+
+  ngAfterContentChecked() {
+    if (this.el.nativeElement.firstElementChild) {
+      if (this._itemsLength !== this.el.nativeElement.firstElementChild.firstElementChild.children.length) {
+        this.height = this.el.nativeElement.firstElementChild.firstElementChild.clientHeight;
+        this.renderer.setStyle(this.el.nativeElement, 'height', this.height + 'px');
+      }
+
+      this._itemsLength = this.el.nativeElement.firstElementChild.firstElementChild.children.length;
     }
   }
 }

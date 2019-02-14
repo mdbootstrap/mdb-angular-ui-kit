@@ -1,3 +1,47 @@
+7.4.1
+In this version we resolved problems with a lot of bugs. Check the 7.4.1 changes below.
+
+**Fixes:**
+
+* mdb-auto-completer component won't throw errors when navigating with keyboard while dropdown is closed,
+* mdbAutoCompleter - resolved problem with rendering completer's dropdown below the parent with overflow: hidden style - necessary to use the [appendToBody]="true" input,
+* mdbAutoCompleter will now render along the top edge of the input when it won't fit below the input,
+* mdbAutoCompleter - resolved problem with showing clear button in the first mdb-auto-completer while there were two or more of them,
+* mdb-image-card - image card will now properly scale when his container is .col-6 or more,
+* mdb-card - from now it's possible to overwrite the default shadow with one of .z-depth-* class,
+* mdbInputDirective - renamed the mdbValidate input to the mdbValidation due to duplicated name conflict,
+* mdbInput - from now, it's possible to bind dynamic value to the input placeholder via placeholder="{{text}}" string interpolation,
+* mdbCheckboxChange - will now be exported, so problem with unable to import this class from the ng-uikit-pro-standard will gone,
+* Sidenav & Nested Accordion - from now only the active mdb-accordion-item element will be highlighted,
+* Navbar - added possibility to use the hide() method to collapse navbar after click on mobile view,
+* Select - added mechanism to prevent line wrap in mdb-select item when it is wider than select dropdown,
+* Lightbox - image size will now be little bit larger,
+* Toast - the positioning classes .md-toast-top-center .md-toast-bottom-center will now work as they should,
+* Checkbox - resolved problem with validation while using onSubmit or onBlur properties,
+* Textarea validation - validation message won't be overlapped with bottom border of the element on Firefox,
+* Accordion - resolved problem with not working [multiple]="false" on mdb-accordion generated with *ngFor loop,
+* Thumbnail Carousel - thumbnails will now be properly highlighted while active.
+
+**New Features:**
+
+* Inputs - new Material 2.0 inputs (outlined),
+* Added new helper classes for opacity: Incremented by 10, .opacity-0, .opacity-10 until 100.
+* mdbAutoCompleter - added new [appendToBody]="true" input which will determine if completer's dropdown should be appended to the body element or it's parent. Useful while completer's parent got overflow: hidden style.
+* Date Picker - added new closeBtnClicked() method which allow to hide Date Picker programmatically.
+
+**Documentation:**
+
+* Masonry - Added documentation for Masonry Layout,
+* Autocompleter - added example how to use [appendToBody]="true" input,
+* Date Picker - added example how to show / hide date picker with typescript method,
+* Vertical Tabs - added new necessary class .list-group for the Vertical Tabs in list group,
+* Notifications - changed the iconClasses in API section,
+* Notifications - resolved problem with not working alerts,
+* Pattern Validation - updated the allow only letters regex pattern,
+* Navbar - corrected the method names,
+* Multi-Item carousel gallery - added new most recent code.
+
+
 7.4.0
 In this version we resolved problems with our modules and tree shaking.
 It is now possible to import only those modules you need in your application, which will significantly reduce bundle size. We also updated Bootstrap to the newest version (4.2.1).
