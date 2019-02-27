@@ -1,11 +1,10 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import {Directive, HostListener, Input} from '@angular/core';
 
 @Directive({
   selector: '[mdbTableSort]'
 })
 export class MdbTableSortDirective {
 
-  // tslint:disable-next-line:no-input-rename
   @Input('mdbTableSort') dataSource: Array<any> = [];
 
   @Input() sortBy: string;
@@ -13,9 +12,15 @@ export class MdbTableSortDirective {
   sorted = false;
 
   @HostListener('click') onclick() {
-    this.sortDataBy(this.sortBy.toString().toLowerCase());
+    this.sortDataBy(this.trimWhiteSigns(this.sortBy.toString().toLowerCase()));
   }
-  constructor() { }
+
+  constructor() {
+  }
+
+  trimWhiteSigns(headElement: any) {
+    return headElement.replace(/ /g, '');
+  }
 
   sortDataBy(key: string | any): void {
 

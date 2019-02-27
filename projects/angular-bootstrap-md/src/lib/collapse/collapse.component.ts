@@ -8,8 +8,8 @@ import { state, style, trigger, transition, animate } from '@angular/animations'
   template: '<ng-content></ng-content>',
   animations: [
     trigger('expandBody', [
-      state('collapsed', style({height: '0px', visibility: 'hidden', overflow: 'hidden'})),
-      state('expanded', style({height: '*', visibility: 'visible', overflow: 'visible'})),
+      state('collapsed', style({height: '0px'})),
+      state('expanded', style({height: '*'})),
       transition('expanded <=> collapsed', animate('500ms ease')),
     ])
   ],
