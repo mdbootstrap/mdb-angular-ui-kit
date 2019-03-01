@@ -1,3 +1,17 @@
+7.4.2
+In this version we resolved few bugs and resolved the problem with mdb-angular-free zip install on Windows. Check the 7.4.2 changes below.
+
+**Fixes:**
+
+* Collapse animation will now work properly on MacOS and Safari Browser,
+* Lightbox won't throw the this.galleryDescription is undefined no more,,
+* Resolved problem with search.toLowerCase() is undefined in Table Search,
+* mdbWavesEffect won't hide button text no more while button is nested in Accordion on Chrome 71 & 72.
+
+**New features:**
+
+* Table Sort - added custom trim function which allows to sort table data while table data contains white signs.
+
 7.4.1
 In this version we resolved problems with a lot of bugs. Check the 7.4.1 changes below.
 
