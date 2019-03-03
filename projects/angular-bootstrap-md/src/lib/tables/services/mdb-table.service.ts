@@ -49,7 +49,7 @@ export class MdbTableService {
   filterLocalDataBy(searchKey: any) {
     return this.getDataSource().filter((obj: Array<any>) => {
       return Object.keys(obj).some((key: any) => {
-        return (obj[key].toLowerCase()).includes(searchKey);
+        return (obj[key]) && (obj[key].toString().toLowerCase()).includes(searchKey);
       });
     });
   }
