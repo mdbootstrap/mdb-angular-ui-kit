@@ -9,7 +9,7 @@ import {
   Inject,
   PLATFORM_ID,
   AfterViewInit,
-  ChangeDetectorRef
+  ChangeDetectorRef, Renderer2
 } from '@angular/core';
 
 import {isBs3} from '../utils/ng2-bootstrap-config';
@@ -42,6 +42,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   protected el: ElementRef | any = null;
   protected animationEnd = true;
   protected _currentActiveSlide: number | any;
+  protected carouselIndicators: any;
 
   isBrowser: any = false;
   @Input() public noWrap: boolean;
@@ -107,7 +108,8 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     config: CarouselConfig,
     el: ElementRef,
     @Inject(PLATFORM_ID) platformId: string,
-    private cdRef: ChangeDetectorRef) {
+    private cdRef: ChangeDetectorRef,
+    private renderer: Renderer2) {
     this.isBrowser = isPlatformBrowser(platformId);
     Object.assign(this, config);
     this.el = el;
@@ -132,6 +134,11 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
         this._select(this.activeSlideIndex);
         this.activeSlideChange.emit({'relatedTarget': this.activeSlide});
       }, 0);
+    }
+
+    if (this.isControls) {
+      this.carouselIndicators = this.el.nativeElement.querySelectorAll('.carousel-indicators > li');
+      this.renderer.addClass(this.carouselIndicators[0], 'active');
     }
   }
 
@@ -181,7 +188,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       this.cdRef.markForCheck();
     } else if (this.animation === 'fade') {
       this.pause();
-      this.fadeAnimation(this.findNextSlideIndex(Direction.NEXT, force));
+      this.fadeAnimation(this.findNextSlideIndex(Direction.NEXT, force), Direction.NEXT);
       this.cdRef.markForCheck();
     } else {
       this.activeSlide = this.findNextSlideIndex(Direction.NEXT, force);
@@ -200,7 +207,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       this.cdRef.markForCheck();
     } else if (this.animation === 'fade') {
       this.pause();
-      this.fadeAnimation(this.findNextSlideIndex(Direction.PREV, force));
+      this.fadeAnimation(this.findNextSlideIndex(Direction.PREV, force), Direction.PREV);
       this.cdRef.markForCheck();
     } else {
       this.activeSlide = this.findNextSlideIndex(Direction.PREV, force);
@@ -211,7 +218,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  protected fadeAnimation(goToIndex: number) {
+  protected fadeAnimation(goToIndex: number, direction?: any) {
     const goToSlide = this._slides.get(goToIndex);
 
     if (this.animationEnd) {
@@ -220,6 +227,23 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       goToSlide.directionNext = true;
       if (this.isBrowser) {
         setTimeout(() => {
+          const previous = this._slides.get(this._currentActiveSlide).el.nativeElement;
+
+          this.renderer.setStyle(previous, 'opacity', '0');
+          this.renderer.setStyle(previous, 'transition', 'all 600ms');
+          this.renderer.setStyle(previous, 'display', 'block');
+
+          this.renderer.setStyle(goToSlide.el.nativeElement, 'display', 'block');
+          this.renderer.setStyle(goToSlide.el.nativeElement, 'opacity', '1');
+          this.renderer.setStyle(goToSlide.el.nativeElement, 'transition', 'all 600ms');
+
+          if (direction === 1) {
+            this.activeSlideChange.emit({'direction': 'Next', 'relatedTarget': this.activeSlide});
+          } else if (direction === 2) {
+            this.activeSlideChange.emit({'direction': 'Prev', 'relatedTarget': this.activeSlide});
+          }
+
+
           goToSlide.directionNext = false;
           this.animationEnd = true;
           this.activeSlide = goToIndex;

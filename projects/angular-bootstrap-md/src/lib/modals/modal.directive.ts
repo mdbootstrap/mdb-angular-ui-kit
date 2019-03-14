@@ -88,6 +88,12 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   isNested = false;
 
+  utils: Utils = new Utils()
+
+  @HostListener('keydown', ['$event']) onKeyDown(event: any) {
+    this.utils.focusTrapModal(event, this._element);
+  }
+
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {

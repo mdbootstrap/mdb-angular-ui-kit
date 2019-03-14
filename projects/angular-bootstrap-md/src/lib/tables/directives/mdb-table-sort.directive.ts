@@ -9,31 +9,37 @@ export class MdbTableSortDirective {
 
   @Input() sortBy: string;
 
-  sorted = false;
+  sorted = true;
 
   @HostListener('click') onclick() {
     this.sortDataBy(this.trimWhiteSigns(this.sortBy.toString().toLowerCase()));
   }
 
-  constructor() {
-  }
+  constructor() { }
 
-  trimWhiteSigns(headElement: any) {
+  trimWhiteSigns(headElement: any): string {
     return headElement.replace(/ /g, '');
   }
 
-  sortDataBy(key: string | any): void {
+  sortDataBy(key: string | any) {
+    key = key.split('.');
 
     this.dataSource.sort((a: any, b: any) => {
-      if (a[key] < b[key]) {
-        return this.sorted ? 1 : -1;
+      let i = 0;
+      while ( i < key.length) {
+        a = a[key[i]];
+        b = b[key[i]];
+        i++;
       }
-      if (a[key] > b[key]) {
-        return this.sorted ? -1 : 1;
-      }
-      return 0;
-    });
 
+      if (a < b) {
+        return this.sorted ? 1 : -1;
+      } else if (a > b) {
+        return this.sorted ? -1 : 1
+      } else {
+        return 0;
+      }
+    });
     this.sorted = !this.sorted;
   }
 }
