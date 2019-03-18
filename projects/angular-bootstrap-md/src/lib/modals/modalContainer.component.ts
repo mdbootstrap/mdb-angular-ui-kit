@@ -13,8 +13,8 @@ import {
   ModalOptions,
   TransitionDurations
 } from './modal.options';
-import { isBs3 } from '../utils/ng2-bootstrap-config';
-import { msConfig } from './modalService.config';
+import {isBs3} from '../utils/ng2-bootstrap-config';
+import {msConfig} from './modalService.config';
 
 @Component({
   selector: 'mdb-modal-container',
@@ -34,6 +34,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   public isAnimated: boolean;
   protected _element: ElementRef;
   private isModalHiding = false;
+
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (
@@ -46,6 +47,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.mdbModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
     this.hide();
   }
+
   @HostListener('window:keydown.esc')
   public onEsc(): void {
     if (
@@ -73,16 +75,29 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this._renderer.addClass(this._element.nativeElement, 'fade');
     }
     this._renderer.setStyle(this._element.nativeElement, 'display', 'block');
-    setTimeout(
-      () => {
-        this.isShown = true;
-        this._renderer.addClass(
-          this._element.nativeElement,
-          isBs3() ? ClassName.IN : ClassName.SHOW
-        );
-      },
-      this.isAnimated ? TransitionDurations.BACKDROP : 0
-    );
+    if (window && window.navigator.userAgent.indexOf('Edge') !== -1 && this.config && this.config.toString().indexOf('side-modal') === -1 ||
+      window && window.navigator.userAgent.indexOf('Edge') !== -1 && this.config && this.config.toString().indexOf('modal-full-height') === -1) {
+      this.isShown = true;
+      this._renderer.addClass(
+        this._element.nativeElement,
+        isBs3() ? ClassName.IN : ClassName.SHOW
+      );
+      this._renderer.setStyle(this._element.nativeElement, 'transition', 'transform 0.3s ease-out');
+      this._renderer.setStyle(this._element.nativeElement, 'transform', 'translate(0, 25px)');
+
+    } else {
+      setTimeout(
+        () => {
+          this.isShown = true;
+          this._renderer.addClass(
+            this._element.nativeElement,
+            isBs3() ? ClassName.IN : ClassName.SHOW
+          );
+        },
+        this.isAnimated ? TransitionDurations.BACKDROP : 0
+      );
+    }
+
     if (document && document.body) {
       if (this.mdbModalService.getModalsCount() === 1) {
         this.mdbModalService.checkScrollbar();

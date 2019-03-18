@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-md",
-  "version": "7.4.2",
+  "version": "7.4.3",
   "schematics": "./schematics/collection.json",
   "files": [
     "**/*"

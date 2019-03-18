@@ -1,3 +1,57 @@
+7.4.3
+New version brings a lot of bug fixes, and improved performance in Material Select Component. Check the every change in 7.4.3 below!
+
+**Fixes:**
+
+* Select - resolved problem with performance,
+* Select - resolved problem with option height on dynamic option update,
+* Multiselect with filter - resolved problem with options position,
+* Dynamic modal - resolved problem with animation when mdb-select component is added to modal template,
+* Datepicker - resolved problem with event emitting on input focus and added new [openOnFocus] input. Add [openOnFocus]="false" to prevent date picker from opening on input focus,
+* Checkbox - (change) event won't be emitted before valueChanges on Edge anymore,
+* Lightbox - magnifier icon will zoom picture properly,
+* Dynamic Modal - animation on Edge will now won't blink,
+* Dynamic Modal with Select - the animation won't blink on Edge anymore,
+* Modals - resolved problem with focusing element from background while modal was opened,
+* Auto Completer - resolved problem with scrolling down completer's dropdown with keyboard on Chrome,
+* Auto Completer - fixed problem with wrong highlighted item after first click on arrow down key,
+* Inputs with icon prefix - icon will now be highlighted after input focus,
+* Carousel with Crossfade - rewritten the crossfade animation so it now looks like this one from MDB jQuery.
+
+**New features:**
+
+* Auto Completer - added functionality to pick highlighted (with keyboard) item as input's value,
+* Auto Completer - added (select) output event which is fired after item selection,
+* Icon - added classInside input which allow to add class to inside element of mdb-icon element,
+* Badge - added classInside input which allow to add class to inside element of mdb-badge element,
+* Navbars - added possibility to add custom element to mdb-navbar template (it will allow to add custom back button to iOS devices),
+* Table Sort - added functionality to sort over nested object properties.
+
+**Docs:**
+
+* File Input - added example of upload options usage,
+* File Input - added few new examples how to use options,
+* Date Picker - added new [openOnFocus] input to input list,
+* Carousel - updated input list in API section,
+* Auto Completer - added example how to send API calls after (input) event,
+* Charts - added Stacked Bar Chart example,
+* Checkbox - Added Template-Driven forms example,
+* Checkbox - Added Reactive Forms example,
+* Table with Pagination - Modified Basic Example code,
+* Table Editable - Modified Basic Example code (now it has bigger padding on table items),
+* Plugins - Added Live Preview in MDB Angular Demo App,
+* Navbar - Added 4 new navbar examples to the Basic Example section,
+* Dropdowns - Added new example how to open dropdown from various elements,
+* Sticky Content - renamed sticky-after input to stickyAfter. Previous code is still compatible,
+* Steppers - Added new example how to add icons to the each steps with SCSS,
+* Toast with opacity -Customized the opacity scss code,
+* Sidenav - Added new example how to build sidenav with nested accordion links,
+* DataTables - Customized the searchItems() function in every DataTables example.
+
+**Changes:**
+
+* Auto Completer - changed behavior of textNoResults input. From now, you have to set it to be visible. From default, this text is not visible.
+
 7.4.2
 In this version we resolved few bugs and resolved the problem with mdb-angular-free zip install on Windows. Check the 7.4.2 changes below.
 
