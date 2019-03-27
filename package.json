@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "copy-scss": "cp -r projects/angular-bootstrap-md/src/lib/scss/ projects/angular-bootstrap-md/src/lib/img/ projects/angular-bootstrap-md/src/lib/font/ dist/angular-bootstrap-md",
-    "copy-files": "cp projects/angular-bootstrap-md/src/lib/changelog dist/angular-bootstrap-md",
+    "copy-files": "cp projects/angular-bootstrap-md/src/lib/changelog README.md dist/angular-bootstrap-md",
     "pack-archive": "cd dist/angular-bootstrap-md && npm pack . && cp angular-bootstrap-md-7.*.tgz ../..",
     "remove-archive": "rm dist/angular-bootstrap-md/angular-bootstrap-md-7.*.tgz && cd ../..",
     "compile-lib": "ng build angular-bootstrap-md && npm run copy-scss && npm run copy-files && npm run pack-archive && npm run remove-archive",
