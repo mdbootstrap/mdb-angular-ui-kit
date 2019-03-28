@@ -49,7 +49,9 @@ export class MdbTableService {
   filterLocalDataBy(searchKey: any) {
     return this.getDataSource().filter((obj: Array<any>) => {
       return Object.keys(obj).some((key: any) => {
-        return (obj[key].toString().toLowerCase()).includes(searchKey);
+        if (obj[key]) {
+          return (obj[key].toString().toLowerCase()).includes(searchKey);
+        }
       });
     });
   }
@@ -60,7 +62,7 @@ export class MdbTableService {
     }
 
     if (searchKey) {
-      return this.filterLocalDataBy(searchKey);
+      return this.filterLocalDataBy(searchKey.toLowerCase());
     }
   }
 
