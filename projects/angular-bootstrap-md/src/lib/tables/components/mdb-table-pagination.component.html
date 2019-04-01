@@ -5,7 +5,7 @@
       'justify-content-start': paginationAlign =='start'
     }">
 
-    <p *ngIf="!hideDescription">{{firstItemIndex}} - {{lastVisibleItemIndex}} of {{allItemsLength}}</p>
+    <li *ngIf="!hideDescription">{{firstItemIndex}} - {{lastVisibleItemIndex}} of {{allItemsLength}}</li>
     <!--Arrow left-->
     <li class="page-item" [ngClass]="{'disabled': checkIfPreviousShouldBeDisabled()}">
       <a class="page-link" mdbWavesEffect aria-label="Previous" (click)="previousPage()">

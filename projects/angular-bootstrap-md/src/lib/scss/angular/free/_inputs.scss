@@ -68,12 +68,6 @@ input.counter-success ~ span.text-success {
   overflow-y: auto !important;
 }
 
-@media all and (min-width: 992px) {
-  textarea.md-textarea {
-    height: 48px !important;
-  }
-}
-
 .md-outline input.form-control.validate-success.ng-valid.ng-dirty,
 .md-outline input.form-control.validate-success.ng-valid.ng-touched,
 .md-outline.form-submitted input.form-control.validate-success.ng-valid {
@@ -158,7 +152,6 @@ input.form-control.validate-error.ng-invalid.ng-dirty + label,
   border-bottom: 1px solid $input-success-color !important;
   box-shadow: 0 1px 0 0 $input-success-color !important;
 }
-.md-form .prefix.active
 .md-textarea.validate-success.ng-valid + label {
   color: $input-success-color !important;
 }

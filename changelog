@@ -1,3 +1,26 @@
+7.4.4
+New version brings some bug fixes and new features. Check every change in 7.4.4 below!
+
+**Fixes:**
+
+* Multiselect - disabled options will be now skipped correctly in 'Select all' method,
+* Table pagination - resolved problem with accessibility,
+* Table filter - resolved problem with searching in list with null values,
+* Table filter - search will now work correctly for uppercase letters,
+* Table sort - resolved problem with sorting null values,
+* Autocompleter - resolved problem with scrollbar,
+* Autocompleter - resolved problem with z-index in modal,
+* Textarea - resolved problem with rows attribute.
+
+**New Features:**
+
+* Time picker - added new (timeChanged) output that will be emitted on time change,
+* WYSIWYG plugin - added new (valueChanged) output which emits current value as string.
+
+**Docs:**
+
+* Skins - added new instructions on how to add new data to skin.
+
 7.4.3
 New version brings a lot of bug fixes, and improved performance in Material Select Component. Check the every change in 7.4.3 below!
 
