@@ -1,26 +1,29 @@
-
-
 // free
-import { ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import {ModuleWithProviders, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 
-import { CardsFreeModule } from './cards/cards.module';
-import { ButtonsModule } from './buttons/buttons.module';
-import { NavbarModule } from './navbars/navbar.module';
-import { DropdownModule } from './dropdown/dropdown.module';
-import { CarouselModule } from './carousel/carousel.module';
-import { ChartsModule } from './charts/chart.module';
-import { CollapseModule } from './collapse/collapse.module';
-import { ModalModule } from './modals/modal.module';
-import { TooltipModule } from './tooltip/tooltip.module';
-import { PopoverModule } from './popover/popover.module';
-import { InputsModule } from './inputs/inputs.module';
-import { WavesModule } from './waves/waves.module';
-import { IconsModule } from './icons/icon.module';
-import { CheckboxModule } from './checkbox/checkbox.module';
-import { TableModule } from './tables/tables.module';
-import { BadgeModule } from './badge/badge.module';
-import { BreadcrumbModule } from './breadcrumbs/breadcrumb.module';
-import { InputUtilitiesModule } from './input-utilities/input-utilities.module';
+import {CardsFreeModule} from './cards/cards.module';
+import {ButtonsModule} from './buttons/buttons.module';
+import {NavbarModule} from './navbars/navbar.module';
+import {DropdownModule} from './dropdown/dropdown.module';
+import {CarouselModule} from './carousel/carousel.module';
+import {ChartsModule} from './charts/chart.module';
+import {CollapseModule} from './collapse/collapse.module';
+import {ModalModule} from './modals/modal.module';
+import {TooltipModule} from './tooltip/tooltip.module';
+import {PopoverModule} from './popover/popover.module';
+import {InputsModule} from './inputs/inputs.module';
+import {WavesModule} from './waves/waves.module';
+import {IconsModule} from './icons/icon.module';
+import {CheckboxModule} from './checkbox/checkbox.module';
+import {TableModule} from './tables/tables.module';
+import {BadgeModule} from './badge/badge.module';
+import {BreadcrumbModule} from './breadcrumbs/breadcrumb.module';
+import {InputUtilitiesModule} from './input-utilities/input-utilities.module';
+import {StickyHeaderModule} from "./sticky-header/sticky-header.module";
+
+export {
+  StickyHeaderDirective, StickyHeaderModule
+} from './sticky-header/index';
 
 export {
   MdbErrorDirective, MdbSuccessDirective, MdbValidateDirective, InputUtilitiesModule
@@ -105,7 +108,6 @@ export {
 } from './icons/index';
 
 
-
 const MODULES = [
   ButtonsModule,
   CardsFreeModule,
@@ -124,7 +126,8 @@ const MODULES = [
   TableModule,
   BadgeModule,
   BreadcrumbModule,
-  InputUtilitiesModule
+  InputUtilitiesModule,
+  StickyHeaderModule
 ];
 
 @NgModule({
@@ -146,7 +149,8 @@ const MODULES = [
     TableModule,
     BadgeModule,
     BreadcrumbModule,
-    InputUtilitiesModule
+    InputUtilitiesModule,
+    StickyHeaderModule
   ],
   exports: MODULES,
   schemas: [NO_ERRORS_SCHEMA]
@@ -154,9 +158,9 @@ const MODULES = [
 export class MDBRootModule {
 }
 
-@NgModule({ exports: MODULES })
+@NgModule({exports: MODULES})
 export class MDBBootstrapModule {
   public static forRoot(): ModuleWithProviders {
-    return { ngModule: MDBRootModule };
+    return {ngModule: MDBRootModule};
   }
 }

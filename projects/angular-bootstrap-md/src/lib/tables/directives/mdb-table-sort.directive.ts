@@ -1,17 +1,21 @@
-import {Directive, HostListener, Input} from '@angular/core';
+import {Directive, EventEmitter, HostListener, Input, Output, ElementRef, Renderer2, OnInit} from '@angular/core';
 
 @Directive({
   selector: '[mdbTableSort]'
 })
-export class MdbTableSortDirective {
+export class MdbTableSortDirective implements OnInit {
+  sorted = true;
 
   @Input('mdbTableSort') dataSource: Array<any> = [];
-
   @Input() sortBy: string;
 
-  sorted = true;
+  @Output() sortEnd: EventEmitter<any[]> = new EventEmitter<any[]>();
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+
   @HostListener('click') onclick() {
-    this.sortDataBy(this.trimWhiteSigns(this.sortBy.toString().toLowerCase()));
+    this.sortDataBy(this.trimWhiteSigns(this.sortBy.toString()));
+    this.sortEnd.emit(this.dataSource);
   }
 
   trimWhiteSigns(headElement: any): string {
@@ -47,17 +51,24 @@ export class MdbTableSortDirective {
       }
 
       if (a < b) {
+        this.renderer.setAttribute(this.el.nativeElement, 'aria-sort', 'ascending');
+        this.renderer.setAttribute(this.el.nativeElement, 'aria-label', `${key}: activate to sort column descending`);
         return this.sorted ? 1 : -1;
       } else if (a > b) {
-        return this.sorted ? -1 : 1
-      }
-      else if (a == null || b == null) {
+        this.renderer.setAttribute(this.el.nativeElement, 'aria-sort', 'descending');
+        this.renderer.setAttribute(this.el.nativeElement, 'aria-label', `${key}: activate to sort column ascending`);
+        return this.sorted ? -1 : 1;
+      } else if (a == null || b == null) {
         return 1;
-      }
-      else {
+      } else {
         return 0;
       }
     });
     this.sorted = !this.sorted;
+  }
+
+  ngOnInit() {
+    const key = this.trimWhiteSigns(this.sortBy.toString()).split('.');
+    this.renderer.setAttribute(this.el.nativeElement, 'aria-label', `${key}: activate to sort column descending`);
   }
 }

@@ -11,7 +11,7 @@ import {
   ContentChild, AfterContentChecked
 } from '@angular/core';
 import {Subscription} from 'rxjs';
-import {LinksComponent} from "./links.component";
+import {LinksComponent} from './links.component';
 
 @Component({
   selector: 'mdb-navbar',
@@ -22,6 +22,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   @Input() iconBackground: string | string[];
   @Input() SideClass: string;
   @Input() containerInside = true;
+  @Input() collapseId = 'navbarCollapse';
   subscription: Subscription;
   navbarLinkClicks: any;
   shown = false;
@@ -35,6 +36,8 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   public collapsing = false;
 
   private _itemsLength = 0;
+
+  ariaExpanded = false;
 
   @ViewChild('navbar') el: ElementRef;
   @ViewChild('mobile') mobile: ElementRef;
@@ -107,6 +110,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
     this.shown = true;
     this.collapse = false;
     this.collapsing = true;
+    this.ariaExpanded = true;
 
     setTimeout(() => {
       this.height = this.el.nativeElement.scrollHeight;
@@ -127,6 +131,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
       this.collapse = false;
       this.showClass = false;
       this.collapsing = true;
+      this.ariaExpanded = false;
       setTimeout(() => {
         this.renderer.setStyle(this.el.nativeElement, 'height', '0px');
       }, 0);
@@ -178,6 +183,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
       this.shown = false;
       this.showClass = false;
       this.collapse = true;
+      this.ariaExpanded = false;
       this.renderer.setStyle(this.el.nativeElement, 'height', '');
     }
   }

@@ -1,3 +1,46 @@
+7.5.0
+New version brings breaking changes in tables, some bug fixes and new features. Check every change in 7.5.0 below!
+
+*** Breaking changes in tables: ***
+
+MdbTableService will be no longer used and it will be removed from package in MDB Angular 8 version. All methods available in this service were moved to the MdbTableDirective.
+
+New [tableEl] input was added to MdbTablePaginationComponent. This input accepts instance of MdbTableDirective, and it's required for the pagination to function properly.
+
+toLowerCase() method was removed from MdbTableSort directive due to problems with sorting in Chrome browser. Sort headers values must be now exactly the same as values of data source objects properties.
+
+All changes have been included in the new examples in the tables documentation.
+
+*** Fixes: ***
+
+    * Frame Modal - resolved problem with displaying in Safari browser,
+    * Fluid Modal - resolved problem with position on smaller screens,
+    * Autocompleter - resolved problem with dropdown position in modal,
+    * Autocompleter - resolved problem with form submitting when using enter key to select an option,
+    * Collapse - resolved problem with displaying shadow of card component,
+    * Horizontal Stepper - resolved problem with dynamic height update,
+    * Accordion - resolved problem with asynchronous data,
+    * Accordion - resolved problem with multiple accordion instances inside one component,
+    * Table sort header - resolved problem with accessibility,
+    * Navbar - resolved problem with accessibility of navbar toggler button.
+
+*** New Features: ***
+
+    * Date picker - added new inline version,
+    * Date picker - added javascript date to object emitted by (dateChanged) output,
+    * Date picker - added new (closeButtonClicked), (todayButtonClicked) and (clearButtonClicked) outputs,
+    * Table sort - added new (sortEnd) output that will emit sorted data,
+    * Sticky header - added new mdbStickyHeader directive that can be added to mdb-navbar component to hide navbar when scrolling down and bring it back when scrolling up.
+    * WYSIWYG plugin - added ControlValueAccessor implementation.
+
+
+*** Docs: ***
+
+    * Inputs - added new fix for yellow or blue background that is added with Chrome auto-fill,
+    * File upload plugin - changed component type from FileUploadComponent to MdbFileUploadComponent,
+    * Table sort - added TitleCase pipe to sort headers,
+    * Table pagination - onPreviousPageClick and onNextPageClick methods were moved to the MdbTablePaginationComponent internal code.
+
 7.4.4
 New version brings some bug fixes and new features. Check every change in 7.4.4 below!
 

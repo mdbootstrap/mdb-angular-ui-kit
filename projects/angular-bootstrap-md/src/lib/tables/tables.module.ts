@@ -8,7 +8,6 @@ import { MdbTableRowDirective } from './directives/mdb-table-row.directive';
 import { MdbTableService } from './services/mdb-table.service';
 import { MdbTablePaginationComponent } from './components/mdb-table-pagination.component';
 
-
 @NgModule({
     imports: [CommonModule],
     declarations: [

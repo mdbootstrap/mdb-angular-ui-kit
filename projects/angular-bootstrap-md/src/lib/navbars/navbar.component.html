@@ -5,12 +5,12 @@
       <ng-content></ng-content>
     <ng-content *ngIf="this.doubleNav == true" select="navlinks"></ng-content>
     <div *ngIf="this.doubleNav == false">
-      <button #toggler class="navbar-toggler" type="button" (click)="toggle(); $event.preventDefault()" mdbWavesEffect *ngIf="this.el.nativeElement.children.length !== 0">
+      <button #toggler class="navbar-toggler" type="button" [attr.aria-controls]="collapseId" [attr.aria-expanded]="ariaExpanded" aria-label="Toggle navigation" (click)="toggle(); $event.preventDefault()" mdbWavesEffect *ngIf="this.el.nativeElement.children.length !== 0">
         <span class="navbar-toggler-icon">
         </span>
       </button>
     </div>
-    <div #navbar [style.height]="height" class="navbar-collapse collapse" [ngClass]="{'collapse': collapse, 'show': showClass, 'collapsing': collapsing}">
+    <div #navbar [attr.id]="collapseId" [style.height]="height" class="navbar-collapse collapse" [ngClass]="{'collapse': collapse, 'show': showClass, 'collapsing': collapsing}">
       <ng-content select="links"></ng-content>
     </div>
   </div>
