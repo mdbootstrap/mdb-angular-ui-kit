@@ -1,15 +1,16 @@
 import {
   Component, OnInit, Output, EventEmitter, Input, ChangeDetectorRef, OnChanges,
-  SimpleChanges
+  SimpleChanges, AfterViewInit
 } from '@angular/core';
-import {MdbTableService} from '../services/mdb-table.service';
 import {Observable, Subject} from 'rxjs';
+import {MdbTableDirective} from "../directives/mdb-table.directive";
 
 @Component({
   selector: 'mdb-table-pagination',
   templateUrl: './mdb-table-pagination.component.html'
 })
-export class MdbTablePaginationComponent implements OnInit, OnChanges {
+export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterViewInit {
+  @Input() tableEl: MdbTableDirective;
   @Input() searchPagination: boolean = false;
   @Input() searchDataSource: any = null;
 
@@ -36,40 +37,44 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges {
   @Output() nextPageClick = new EventEmitter<any>();
   @Output() previousPageClick = new EventEmitter<any>();
 
-  constructor(
-    private tableService: MdbTableService,
-    private cdRef: ChangeDetectorRef
-  ) {
-    this.tableService.dataSourceChange().subscribe((data: any) => {
-
-      this.allItemsLength = data.length;
-      this.lastVisibleItemIndex = data.length;
-      this.calculateFirstItemIndex();
-      this.calculateLastItemIndex();
-      this.disableNextButton(data);
-      if (this.maxVisibleItems > this.allItemsLength) {
-        this.maxVisibleItems = this.allItemsLength;
-      }
-
-      if (this.searchDataSource) {
-        setTimeout(() => {
-          if (this.searchDataSource.length !== data.length) {
-            this.activePageNumber = 1;
-            this.firstItemIndex = 1;
-          } else {
-            if (this.firstItemIndex <= this.maxVisibleItems) {
-              this.lastVisibleItemIndex = this.maxVisibleItems;
-
-            } else {
-            }
-          }
-        }, 0);
-      }
-    });
+  constructor(private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.allItemsLength = this.tableService.getDataSource().length;
+    if (this.tableEl) {
+      this.allItemsLength = this.tableEl.getDataSource().length;
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.tableEl) {
+      this.tableEl.dataSourceChange().subscribe((data: any) => {
+
+        this.allItemsLength = data.length;
+        this.lastVisibleItemIndex = data.length;
+        this.calculateFirstItemIndex();
+        this.calculateLastItemIndex();
+        this.disableNextButton(data);
+
+        if (this.searchDataSource) {
+          setTimeout(() => {
+            if (this.searchDataSource.length !== data.length) {
+              this.activePageNumber = 1;
+              this.firstItemIndex = 1;
+            } else {
+              if (this.firstItemIndex <= this.maxVisibleItems && this.lastVisibleItemIndex <= data.length) {
+                this.lastVisibleItemIndex = this.maxVisibleItems;
+              }
+            }
+          }, 0);
+        }
+      });
+    }
+
+    this.paginationChange().subscribe((data: any) => {
+      this.firstItemIndex = data.first;
+      this.lastVisibleItemIndex = data.last;
+    });
   }
 
 
@@ -137,9 +142,9 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges {
       this.lastVisibleItemIndex = this.lastItemIndex;
     }
 
-    if (this.lastItemIndex > this.tableService.getDataSource().length) {
-      this.lastItemIndex = this.tableService.getDataSource().length;
-      this.lastVisibleItemIndex = this.tableService.getDataSource().length;
+    if (this.lastItemIndex > this.tableEl.getDataSource().length) {
+      this.lastItemIndex = this.tableEl.getDataSource().length;
+      this.lastVisibleItemIndex = this.tableEl.getDataSource().length;
     }
 
     this.pagination.next({first: this.firstItemIndex, last: this.lastItemIndex});
@@ -150,7 +155,7 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges {
   }
 
   calculateHowManyPagesShouldBe() {
-    return Math.ceil(this.tableService.getDataSource().length / this.maxVisibleItems);
+    return Math.ceil(this.tableEl.getDataSource().length / this.maxVisibleItems);
   }
 
   previousPage() {
@@ -165,8 +170,8 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges {
     this.calculateFirstItemIndex();
     this.calculateLastItemIndex();
 
-    if (this.lastItemIndex > this.tableService.getDataSource().length) {
-      this.lastItemIndex = this.tableService.getDataSource().length;
+    if (this.lastItemIndex > this.tableEl.getDataSource().length) {
+      this.lastItemIndex = this.tableEl.getDataSource().length;
     }
 
     if (this.lastVisibleItemIndex > this.allItemsLength) {

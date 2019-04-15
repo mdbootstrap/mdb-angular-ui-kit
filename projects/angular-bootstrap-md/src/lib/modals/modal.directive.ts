@@ -11,16 +11,16 @@ import {
   Renderer2, ViewContainerRef
 } from '@angular/core';
 
-import { document } from '../utils/facade/browser';
+import {document} from '../utils/facade/browser';
 
-import { isBs3 } from '../utils/ng2-bootstrap-config';
-import { Utils } from '../utils/utils.class';
-import { ModalBackdropComponent } from './modalBackdrop.component';
-import { ClassName, modalConfigDefaults, ModalOptions, DISMISS_REASONS } from './modal.options';
+import {isBs3} from '../utils/ng2-bootstrap-config';
+import {Utils} from '../utils/utils.class';
+import {ModalBackdropComponent} from './modalBackdrop.component';
+import {ClassName, modalConfigDefaults, ModalOptions, DISMISS_REASONS} from './modal.options';
 
-import { window } from '../utils/facade/browser';
-import { ComponentLoader } from '../utils/component-loader/component-loader.class';
-import { ComponentLoaderFactory } from '../utils/component-loader/component-loader.factory';
+import {window, navigator} from '../utils/facade/browser';
+import {ComponentLoader} from '../utils/component-loader/component-loader.class';
+import {ComponentLoaderFactory} from '../utils/component-loader/component-loader.factory';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -59,7 +59,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // seems like an Options
   public isAnimated = true;
   /** This field contains last dismiss reason.
-  Possible values: `backdrop-click`, `esc` and `null` (if modal was closed by direct call of `.hide()`). */
+   Possible values: `backdrop-click`, `esc` and `null` (if modal was closed by direct call of `.hide()`). */
   public dismissReason: string | any;
 
   public get isShown(): boolean {
@@ -166,10 +166,19 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
         this._renderer.addClass(document.body, ClassName.OPEN);
       }
     }
-
     this.showBackdrop(() => {
       this.showElement();
     });
+    if (!this.config.backdrop && this.config.ignoreBackdropClick) {
+      const modalHeight = this._element.nativeElement.firstElementChild.firstElementChild.clientHeight + 12;
+      this._renderer.setStyle(this._element.nativeElement, 'position', 'fixed');
+      this._renderer.setStyle(this._element.nativeElement, 'height', `${modalHeight}px`);
+      if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
+        this._renderer.setStyle(this._element.nativeElement, 'overflow', 'unset');
+        this._renderer.setStyle(this._element.nativeElement, 'overflow-y', 'unset');
+        this._renderer.setStyle(this._element.nativeElement, 'overflow-x', 'unset');
+      }
+    }
   }
 
   /** Allows to manually close modal */
@@ -275,7 +284,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       this._backdrop
         .attach(ModalBackdropComponent)
         .to('body')
-        .show({ isAnimated: this.isAnimated });
+        .show({isAnimated: this.isAnimated});
       this.backdrop = this._backdrop._componentRef;
 
       if (!callback) {
@@ -322,7 +331,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       }
       //  this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
       otherOpenedModals[otherOpenedModals.length - 1].nativeElement.focus();
-    } catch (error) { }
+    } catch (error) {
+    }
 
   }
 
