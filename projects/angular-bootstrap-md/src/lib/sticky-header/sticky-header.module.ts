@@ -7,8 +7,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   declarations: [StickyHeaderDirective],
   exports: [StickyHeaderDirective],
   imports: [
-    CommonModule,
-    BrowserAnimationsModule
+    CommonModule
   ]
 })
 export class StickyHeaderModule {
