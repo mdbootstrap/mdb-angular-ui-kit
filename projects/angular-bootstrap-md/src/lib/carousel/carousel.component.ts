@@ -138,7 +138,9 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
 
     if (this.isControls) {
       this.carouselIndicators = this.el.nativeElement.querySelectorAll('.carousel-indicators > li');
-      this.renderer.addClass(this.carouselIndicators[0], 'active');
+      if (this.carouselIndicators.length) {
+        this.renderer.addClass(this.carouselIndicators[0], 'active');
+      }
     }
   }
 
