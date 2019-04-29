@@ -47,7 +47,7 @@ export {
 } from './checkbox/index';
 
 export {
-  ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective, MdbBtnDirective
+  ButtonsModule, ButtonRadioDirective, ButtonCheckboxDirective, MdbBtnDirective, FixedButtonCaptionDirective
 } from './buttons/index';
 
 export {

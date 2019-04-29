@@ -1,3 +1,27 @@
+7.5.1
+New version brings some bug fixes and new features. Check every change in 7.5.1 below.
+
+*** Fixes: ***
+
+  * Sticky Header - resolved problem with 'BrowserModule has already been loaded',
+  * Toast - resolved problem with animation in Edge,
+  * Carousel - resolved problem with 'Cannot read property classList of undefined',
+  * Card reveal - resolved problems with animation,
+  * WYSIWYG plugin - resolve problems with value dynamic updates and valueChange event.
+
+*** New Features: ***
+
+  * Fixed buttons - added new mdbFixedCaption directive that allow to add caption to button,
+  * Navbar - added new [scrollSensitivity] input that allow to specify scroll amount needed for the top-nav-collapse class to be added,
+  * Stepper - added new [editable] input that allow to disable edition of finished step,
+  * Sidenav - added new [side] input that allow to change position of the sidenav. Use [side]="'right'" or [side]="'left'" options,
+  * Inputs - added new Material 2.0 input with background and animated border.
+
+*** Docs: ***
+
+  * Card reveal - added live example,
+  * Composition - added example with hidden sidenav under fixed navbar.
+
 7.5.0
 New version brings breaking changes in tables, some bug fixes and new features. Check every change in 7.5.0 below!
 

@@ -23,6 +23,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   @Input() SideClass: string;
   @Input() containerInside = true;
   @Input() collapseId = 'navbarCollapse';
+  @Input() scrollSensitivity = 120;
   subscription: Subscription;
   navbarLinkClicks: any;
   shown = false;
@@ -190,7 +191,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
 
   @HostListener('document:scroll') onScroll() {
     if (this.navbar.nativeElement.classList.contains('scrolling-navbar')) {
-      if (window.pageYOffset > 120) {
+      if (window.pageYOffset > this.scrollSensitivity) {
         this.renderer.addClass(this.navbar.nativeElement, 'top-nav-collapse');
       } else {
         this.renderer.removeClass(this.navbar.nativeElement, 'top-nav-collapse');
