@@ -175,6 +175,21 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
         });
     }
+
+    this._state.isOpenChange.subscribe(() => {
+      setTimeout(() => {
+        const dropdownContainer = this._elementRef.nativeElement.lastElementChild;
+        const left = dropdownContainer.getBoundingClientRect().left;
+
+        if (dropdownContainer.classList.contains('dropdown-menu-right') && left <= dropdownContainer.clientWidth) {
+          if (left < 0) {
+            this._renderer.setStyle(dropdownContainer, 'right', left + 'px')
+          } else {
+            this._renderer.setStyle(dropdownContainer, 'right', '0')
+          }
+        }
+      }, 0);
+    });
   }
 
   /**

@@ -1,7 +1,8 @@
 import {
   Directive,
   ElementRef,
-  EventEmitter, HostListener,
+  EventEmitter,
+  HostListener,
   Inject,
   Input,
   OnChanges,
@@ -107,6 +108,8 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
     this.shown = this._tooltip.onShown;
     this.onHidden = this._tooltip.onHidden;
     this.hidden = this._tooltip.onHidden;
+
+
   }
 
   @HostListener('click', ['$event']) onclick(event: any) {
@@ -127,26 +130,25 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
       triggers: this.triggers,
       show: () => this.show()
     });
+
     this.tooltipChange.subscribe((value: any) => {
       if (!value) {
         this._tooltip.hide();
       }
+    });
+
+    this.shown.subscribe(() => {
+      setTimeout(() => {
+        if (this._tooltip.instance.placement !== this.placement && this.isOpen) {
+          this._tooltip.instance.alignArrow(this.placement);
+        }
+      }, 0);
     });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (!changes['mdbTooltip'].isFirstChange()) {
       this.tooltipChange.emit(this.mdbTooltip);
-    }
-  }
-
-  changePositionIfNotFit(): void {
-    if (this.placement === 'top' && this._elementRef.nativeElement.offsetTop < (parseInt(this.customHeight, 10) + 16)) {
-      this.placement = 'bottom';
-    }
-
-    if (this.placement === 'bottom' && (this.getBottomOffset() as any) < (parseInt(this.customHeight, 10) + 32)) {
-      this.placement = 'top';
     }
   }
 
@@ -179,19 +181,6 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
       return;
     }
 
-    if (!this.customHeight) {
-      const elPosition = event ? event.target.getBoundingClientRect() : this._elementRef.nativeElement.getBoundingClientRect();
-      if (this.placement === 'top' && elPosition.top < 40) {
-        this.placement = 'bottom';
-      }
-
-      if (this.placement === 'bottom' && this.getBottomOffset() as any < 60) {
-        this.placement = 'top';
-      }
-    } else if (this.customHeight) {
-      this.changePositionIfNotFit();
-    }
-
     const showTooltip = () => this._tooltip
       .attach(TooltipContainerComponent)
       .to(this.container)
@@ -200,13 +189,81 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
         content: this.mdbTooltip,
         placement: this.placement
       });
+    this.showTooltip(showTooltip);
 
+    const elPosition = event ? event.target.getBoundingClientRect() : this._elementRef.nativeElement.getBoundingClientRect();
+    const tooltipEl = this._tooltip.instance['el'].nativeElement;
+
+    this.getCorrectAlignment(tooltipEl, elPosition);
+    this.showTooltip(showTooltip);
+  }
+
+  private getCorrectAlignment(tooltipEl: any, elPosition: ClientRect) {
+    const right = window.innerWidth - elPosition.width - elPosition.left;
+    const position = ['left', 'right', 'bottom', 'top'];
+    const heightForTop = this.customHeight ? (parseInt(this.customHeight, 10) + 16) : 40;
+    const heightForBottom = this.customHeight ? (parseInt(this.customHeight, 10) + 32) : 60;
+
+    if (this.placement == 'left') {
+      [
+        elPosition.left >= tooltipEl.clientWidth,
+        elPosition.left <= tooltipEl.clientWidth && right > tooltipEl.clientWidth,
+        elPosition.left <= tooltipEl.clientWidth && right <= tooltipEl.clientWidth && this.getBottomOffset() as any >= heightForBottom,
+        elPosition.left <= tooltipEl.clientWidth && right <= tooltipEl.clientWidth && this.getBottomOffset() as any < heightForBottom && elPosition.top >= heightForTop
+      ].forEach((el: boolean, index: number) => {
+        if (el) {
+          this.placement = position[index];
+        }
+      });
+    }
+
+    if (this.placement == 'right') {
+      [
+        right <= tooltipEl.clientWidth && elPosition.left > tooltipEl.clientWidth,
+        right >= tooltipEl.clientWidth,
+        right <= tooltipEl.clientWidth && elPosition.left <= tooltipEl.clientWidth && this.getBottomOffset() as any >= heightForBottom,
+        right <= tooltipEl.clientWidth && elPosition.left <= tooltipEl.clientWidth && this.getBottomOffset() as any < heightForBottom && elPosition.top >= heightForTop
+      ].forEach((el: boolean, index: number) => {
+        if (el) {
+          this.placement = position[index];
+        }
+      });
+    }
+
+    if (this.placement == 'top') {
+      [
+        elPosition.top < heightForTop && this.getBottomOffset() as any < heightForBottom && elPosition.left >= tooltipEl.clientWidth,
+        elPosition.top < heightForTop && this.getBottomOffset() as any < heightForBottom && elPosition.left < tooltipEl.clientWidth && right >= tooltipEl.clientWidth,
+        elPosition.top < heightForTop && this.getBottomOffset() as any >= heightForBottom,
+        elPosition.top >= heightForTop
+      ].forEach((el: boolean, index: number) => {
+        if (el) {
+          this.placement = position[index];
+        }
+      });
+    }
+
+    if (this.placement == 'bottom') {
+      [
+        this.getBottomOffset() as any < heightForBottom && elPosition.top < heightForTop && elPosition.left >= tooltipEl.clientWidth,
+        this.getBottomOffset() as any < heightForBottom && elPosition.top < heightForTop && elPosition.left < tooltipEl.clientWidth && right >= tooltipEl.clientWidth,
+        this.getBottomOffset() as any < heightForBottom && elPosition.top >= heightForTop,
+        this.getBottomOffset() as any <= heightForTop
+      ].forEach((el: boolean, index: number) => {
+        if (el) {
+          this.placement = position[index];
+        }
+      });
+    }
+  }
+
+  private showTooltip(fn: Function) {
     if (this.delay) {
       this._delayTimeoutId = setTimeout(() => {
-        showTooltip();
+        fn();
       }, this.delay);
     } else {
-      showTooltip();
+      fn();
     }
   }
 

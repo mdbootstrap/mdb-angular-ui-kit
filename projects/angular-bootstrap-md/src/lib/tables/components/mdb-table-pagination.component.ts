@@ -3,7 +3,7 @@ import {
   SimpleChanges, AfterViewInit
 } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {MdbTableDirective} from "../directives/mdb-table.directive";
+import {MdbTableDirective} from '../directives/mdb-table.directive';
 
 @Component({
   selector: 'mdb-table-pagination',
@@ -11,26 +11,26 @@ import {MdbTableDirective} from "../directives/mdb-table.directive";
 })
 export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() tableEl: MdbTableDirective;
-  @Input() searchPagination: boolean = false;
+  @Input() searchPagination = false;
   @Input() searchDataSource: any = null;
 
-  @Input() paginationAlign: string = '';
-  @Input() hideDescription: boolean = false;
+  @Input() paginationAlign = '';
+  @Input() hideDescription = false;
 
-  maxVisibleItems: number = 10;
+  maxVisibleItems = 10;
 
-  firstItemIndex: number = 0;
+  firstItemIndex = 0;
   lastItemIndex: number = this.maxVisibleItems;
-  lastVisibleItemIndex: number = 5;
+  lastVisibleItemIndex = 5;
 
-  activePageNumber: number = 1;
+  activePageNumber = 1;
 
-  allItemsLength: number = 0;
+  allItemsLength = 0;
 
-  nextShouldBeDisabled: boolean = false;
-  previousShouldBeDisabled: boolean = true;
+  nextShouldBeDisabled = false;
+  previousShouldBeDisabled = true;
 
-  searchText: string = '';
+  searchText = '';
 
   pagination: Subject<{ first: number, last: number }> = new Subject<{ first: number, last: number }>();
 
@@ -61,10 +61,6 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
             if (this.searchDataSource.length !== data.length) {
               this.activePageNumber = 1;
               this.firstItemIndex = 1;
-            } else {
-              if (this.firstItemIndex <= this.maxVisibleItems && this.lastVisibleItemIndex <= data.length) {
-                this.lastVisibleItemIndex = this.maxVisibleItems;
-              }
             }
           }, 0);
         }
