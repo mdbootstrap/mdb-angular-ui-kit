@@ -1,3 +1,33 @@
+7.5.2
+New version brings some bug fixes and new features. Check every change in 7.5.2 below.
+
+**Fixes:**
+
+* Table pagination - resolved problem with displayed value of maxVisibleItems,
+* Tooltip - resolved problems with alignment near the edge of viewport,
+* Dropdown - resolved problem with menu position when its open near the edge of viewport,
+* Autocompleter - resolved problem with dropdown position in Chrome,
+* Select/multiselect - resolved problem with animation of label added with html tag,
+* Date picker - resolved problem with dynamic value and format updates when locale input change,
+* Date picker - resolved problem with disabling component in reactive forms,
+* Validation - resolved problems with validation of default value in mdb-select component,
+* Sidenav - resolved problem with component blinking on initialization,
+* WYSIWYG plugin - added type="button" to the options buttons to resolve problem with form submitting.
+
+**New Features:**
+
+* Select / Multiselect - added possibility to customize toggle icon,
+* Sidenav - added new slim sidenav version,
+* Calendar plugin - added new [editable] input that allow to disable event editing,
+* Calendar plugin - added new [options] input that allow to add custom configuration options, options.
+
+**Docs:**
+
+* Modals - updated example code for long content modals,
+* Date picker - added new examples for setting default value,
+* Datatables - added new example for passing table data to dynamic modal,
+* Calendar plugin - added new instructions on how to use custom configuration options.
+
 7.5.1
 New version brings some bug fixes and new features. Check every change in 7.5.1 below.
 
