@@ -1,3 +1,4 @@
+// tslint:disable:max-file-line-count
 // todo: add delay support
 // todo: merge events onShow, onShown, etc...
 // todo: add global positioning configuration?
@@ -7,273 +8,413 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   ElementRef,
+  EmbeddedViewRef,
   EventEmitter,
   Injector,
   NgZone,
   Renderer2,
+  StaticProvider,
   TemplateRef,
   Type,
-  ViewContainerRef,
-  StaticProvider
+  ViewContainerRef
 } from '@angular/core';
-import { PositioningOptions, PositioningService } from '../positioning/positioning.service';
-import { listenToTriggers } from '../triggers';
-import { ContentRef } from './content-ref.class';
 
-export interface ListenOptions {
-  target?: ElementRef;
-  triggers?: string;
-  show?: Function | any;
-  hide?: Function | any;
-  toggle?: Function;
-}
+import { PositioningOptions, PositioningService} from './../positioning/positioning.service';
+
+import {
+  listenToTriggersV2,
+  registerEscClick,
+  registerOutsideClick
+} from './../../utilities';
+
+import { ContentRef } from './content-ref.class';
+import { ListenOptions } from './listen-options.model';
 
 export class ComponentLoader<T> {
-  public onBeforeShow: EventEmitter<any> = new EventEmitter();
-  public onShown: EventEmitter<any> = new EventEmitter();
-  public shown: EventEmitter<any> = new EventEmitter();
-  public onBeforeHide: EventEmitter<any> = new EventEmitter();
-  public onHidden: EventEmitter<any> = new EventEmitter();
-  public hidden: EventEmitter<any> = new EventEmitter();
+  onBeforeShow: EventEmitter<void> = new EventEmitter();
+  /* tslint:disable-next-line: no-any*/
+  onShown: EventEmitter<any> = new EventEmitter();
+  /* tslint:disable-next-line: no-any*/
+  onBeforeHide: EventEmitter<any> = new EventEmitter();
+  onHidden: EventEmitter<boolean> = new EventEmitter();
+  shown: EventEmitter<any> = new EventEmitter();
+  hidden: EventEmitter<any> = new EventEmitter();
 
-  public instance: T;
-  public _componentRef: ComponentRef<T> | any;
+  instance: T;
+  _componentRef: ComponentRef<T> | any;
+  _inlineViewRef: EmbeddedViewRef<T>;
 
   private _providers: StaticProvider[] = [];
   private _componentFactory: ComponentFactory<T>;
   private _zoneSubscription: any;
   private _contentRef: ContentRef | any;
-  private _innerComponent: ComponentRef<T> | any ;
+  private _innerComponent: ComponentRef<T> | any;
 
   private _unregisterListenersFn: Function;
 
-  public get isShown(): boolean {
+  get isShown(): boolean {
+    if (this._isHiding) {
+      return false;
+    }
+
     return !!this._componentRef;
   }
 
-    /**
-     * Placement of a component. Accepts: "top", "bottom", "left", "right"
-     */
-     private attachment: string;
+  private _isHiding = false;
 
-    /**
-     * A selector specifying the element the popover should be appended to.
-     * Currently only supports "body".
-     */
-     private container: string | ElementRef | any;
+  /**
+   * Placement of a component. Accepts: "top", "bottom", "left", "right"
+   */
+  private attachment: string;
 
-    /**
-     * Specifies events that should trigger. Supports a space separated list of
-     * event names.
-     */
-     private triggers: string;
+  /**
+   * A selector specifying the element the popover should be appended to.
+   */
+  /* tslint:disable-next-line: no-any*/
+  private container: string | ElementRef | any;
 
-    /**
-     * Do not use this directly, it should be instanced via
-     * `ComponentLoadFactory.attach`
-     * @internal
-     */
-     // tslint:disable-next-line
-     public constructor(private _viewContainerRef: ViewContainerRef,
-       private _renderer: Renderer2,
-       private _elementRef: ElementRef,
-       private _injector: Injector,
-       private _componentFactoryResolver: ComponentFactoryResolver,
-       private _ngZone: NgZone,
-       private _applicationRef: ApplicationRef,
-       private _posService: PositioningService) {
-     }
+  /**
+   * A selector used if container element was not found
+   */
+  private containerDefaultSelector = 'body';
 
-     public attach(compType: Type<T>): ComponentLoader<T> {
-       this._componentFactory = this._componentFactoryResolver
-       .resolveComponentFactory<T>(compType);
-       return this;
-     }
+  /**
+   * Specifies events that should trigger. Supports a space separated list of
+   * event names.
+   */
+  private triggers: string;
 
-     // todo: add behaviour: to target element, `body`, custom element
-     public to(container?: string): ComponentLoader<T> {
-       this.container = container || this.container;
-       return this;
-     }
+  private _listenOpts: any = {};
+  private _globalListener: Function | null = Function.prototype;
 
-     public position(opts?: PositioningOptions | any): ComponentLoader<T> {
-       this.attachment = opts.attachment || this.attachment;
-       this._elementRef = opts.target as ElementRef || this._elementRef;
-       return this;
-     }
+  /**
+   * Do not use this directly, it should be instanced via
+   * `ComponentLoadFactory.attach`
+   * @internal
+   */
+  // tslint:disable-next-line
+  public constructor(
+    private _viewContainerRef: ViewContainerRef,
+    private _renderer: Renderer2,
+    private _elementRef: ElementRef,
+    private _injector: Injector,
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    private _ngZone: NgZone,
+    private _applicationRef: ApplicationRef,
+    private _posService: PositioningService
+  ) {}
 
-     public provide(provider: StaticProvider): ComponentLoader<T> {
-       this._providers.push(provider);
-       return this;
-     }
+  attach(compType: Type<T>): ComponentLoader<T> {
+    this._componentFactory = this._componentFactoryResolver
+      .resolveComponentFactory<T>(compType);
 
-     // todo: appendChild to element or document.querySelector(this.container)
-     public show(opts: { content?: string | TemplateRef<any>, data?: any, [key: string]: any } = {}): ComponentRef<T> {
-       this._subscribePositioning();
-       this._innerComponent = null;
+    return this;
+  }
 
-       if (!this._componentRef) {
-         this.onBeforeShow.emit();
-         this._contentRef = this._getContentRef(opts.content, opts.data);
-         const injector = Injector.create({providers: this._providers, parent: this._injector});
+  // todo: add behaviour: to target element, `body`, custom element
+  to(container?: string | ElementRef): ComponentLoader<T> {
+    this.container = container || this.container;
 
-         this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
-         this._applicationRef.attachView(this._componentRef.hostView);
-         this.instance = this._componentRef.instance;
+    return this;
+  }
 
-         Object.assign(this._componentRef.instance, opts);
+  position(opts?: PositioningOptions | any): ComponentLoader<T> {
+    this.attachment = opts.attachment || this.attachment;
+    this._elementRef = (opts.target as ElementRef) || this._elementRef;
 
-         if (this.container instanceof ElementRef) {
-           this.container.nativeElement
-           .appendChild(this._componentRef.location.nativeElement);
-         }
+    return this;
+  }
 
-         if (this.container === 'body' && typeof document !== 'undefined') {
-          document.querySelector(this.container as string | any)
-           .appendChild(this._componentRef.location.nativeElement);
-         }
+  provide(provider: StaticProvider): ComponentLoader<T> {
+    this._providers.push(provider);
 
-         if (!this.container && this._elementRef && this._elementRef.nativeElement.parentElement) {
-           this._elementRef.nativeElement.parentElement
-           .appendChild(this._componentRef.location.nativeElement);
-         }
+    return this;
+  }
 
-         // we need to manually invoke change detection since events registered
-         // via
-         // Renderer::listen() are not picked up by change detection with the
-         // OnPush strategy
-         if (this._contentRef.componentRef) {
-           this._innerComponent = this._contentRef.componentRef.instance;
-           this._contentRef.componentRef.changeDetectorRef.markForCheck();
-           this._contentRef.componentRef.changeDetectorRef.detectChanges();
-         }
-         this._componentRef.changeDetectorRef.markForCheck();
-         this._componentRef.changeDetectorRef.detectChanges();
-         this.onShown.emit(this._componentRef.instance);
-       }
-       return this._componentRef;
-     }
+  // todo: appendChild to element or document.querySelector(this.container)
 
-     public hide(): ComponentLoader<T> {
-       if (!this._componentRef) {
-         return this;
-       }
+  show(opts: {
+    /* tslint:disable-next-line: no-any*/
+    content?: string | TemplateRef<any>;
+    /* tslint:disable-next-line: no-any*/
+    data?: any;
+    /* tslint:disable-next-line: no-any*/
+    [key: string]: any;
+  } = {}
+  ): ComponentRef<T> {
 
-       this.onBeforeHide.emit(this._componentRef.instance);
+    this._subscribePositioning();
+    this._innerComponent = null;
 
-       const componentEl = this._componentRef.location.nativeElement;
-       componentEl.parentNode.removeChild(componentEl);
-       if (this._contentRef.componentRef) {
-         this._contentRef.componentRef.destroy();
-       }
-       this._componentRef.destroy();
-       if (this._viewContainerRef && this._contentRef.viewRef) {
-         this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
-       }
+    if (!this._componentRef) {
+      this.onBeforeShow.emit();
+      this._contentRef = this._getContentRef(opts.content, opts.data);
 
-         this._contentRef = null;
-         this._componentRef = null;
+      const injector = Injector.create({
+        providers: this._providers,
+        parent: this._injector
+      });
 
-         this.onHidden.emit();
-         return this;
-       }
+      this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
 
-       public toggle(): void | any {
-         if (this.isShown) {
-           this.hide();
-           return;
-         }
+      this._applicationRef.attachView(this._componentRef.hostView);
+      // this._componentRef = this._viewContainerRef
+      //   .createComponent(this._componentFactory, 0, injector, this._contentRef.nodes);
+      this.instance = this._componentRef.instance;
 
-         this.show();
-       }
+      Object.assign(this._componentRef.instance, opts);
 
-       public dispose(): void {
-         if (this.isShown) {
-           this.hide();
-         }
+      if (this.container instanceof ElementRef) {
+        this.container.nativeElement.appendChild(
+          this._componentRef.location.nativeElement
+        );
+      }
 
-         this._unsubscribePositioning();
+      if (typeof this.container === 'string' && typeof document !== 'undefined') {
+        const selectedElement = document.querySelector(this.container) ||
+                                document.querySelector(this.containerDefaultSelector);
 
-         if (this._unregisterListenersFn) {
-           this._unregisterListenersFn();
-         }
-       }
+        if (selectedElement) {
+          selectedElement.appendChild(this._componentRef.location.nativeElement);
+        }
+      }
 
-       public listen(listenOpts: ListenOptions): ComponentLoader<T> {
-         this.triggers = listenOpts.triggers || this.triggers;
+      if (
+        !this.container &&
+        this._elementRef &&
+        this._elementRef.nativeElement.parentElement
+      ) {
+        this._elementRef.nativeElement.parentElement.appendChild(
+          this._componentRef.location.nativeElement
+        );
+      }
 
-         listenOpts.target = listenOpts.target || this._elementRef;
-         listenOpts.show = listenOpts.show || (() => this.show());
-         listenOpts.hide = listenOpts.hide || (() => this.hide());
-         listenOpts.toggle = listenOpts.toggle || (() => this.isShown
-           ? listenOpts.hide()
-           : listenOpts.show());
+      // we need to manually invoke change detection since events registered
+      // via
+      // Renderer::listen() are not picked up by change detection with the
+      // OnPush strategy
+      if (this._contentRef.componentRef) {
+        this._innerComponent = this._contentRef.componentRef.instance;
+        this._contentRef.componentRef.changeDetectorRef.markForCheck();
+        this._contentRef.componentRef.changeDetectorRef.detectChanges();
+      }
+      this._componentRef.changeDetectorRef.markForCheck();
+      this._componentRef.changeDetectorRef.detectChanges();
+      this.onShown.emit(this._componentRef.instance);
+    }
 
-         this._unregisterListenersFn = listenToTriggers(
-           this._renderer,
-           listenOpts.target.nativeElement,
-           this.triggers,
-           listenOpts.show,
-           listenOpts.hide,
-           listenOpts.toggle);
+    this._registerOutsideClick();
 
-         return this;
-       }
+    return this._componentRef;
+  }
 
-       public getInnerComponent(): ComponentRef<T> {
-         return this._innerComponent;
-       }
+  hide(): ComponentLoader<T> {
+    if (!this._componentRef) {
+      return this;
+    }
 
-       private _subscribePositioning(): void | any {
-         if (this._zoneSubscription || !this.attachment) {
-           return;
-         }
+    this._posService.deletePositionElement(this._componentRef.location);
 
-         this._zoneSubscription = this._ngZone
-         .onStable.subscribe(() => {
-           if (!this._componentRef) {
-             return;
-           }
-           this._posService.position({
-             element: this._componentRef.location,
-             target: this._elementRef,
-             attachment: this.attachment,
-             appendToBody: this.container === 'body'
-           });
-         });
-       }
+    this.onBeforeHide.emit(this._componentRef.instance);
 
-       private _unsubscribePositioning(): void | any {
-         if (!this._zoneSubscription) {
-           return;
-         }
-         this._zoneSubscription.unsubscribe();
-         this._zoneSubscription = null;
-       }
+    const componentEl = this._componentRef.location.nativeElement;
+    componentEl.parentNode.removeChild(componentEl);
+    if (this._contentRef.componentRef) {
+      this._contentRef.componentRef.destroy();
+    }
+    this._componentRef.destroy();
+    if (this._viewContainerRef && this._contentRef.viewRef) {
+      this._viewContainerRef.remove(
+        this._viewContainerRef.indexOf(this._contentRef.viewRef)
+      );
+    }
+    if (this._contentRef.viewRef) {
+      this._contentRef.viewRef.destroy();
+    }
 
-       private _getContentRef(content: string | TemplateRef<any> | any, data?: any): ContentRef {
-         if (!content) {
-           return new ContentRef([]);
-         }
+    this._contentRef = null;
+    this._componentRef = null;
+    this._removeGlobalListener();
 
-         if (content instanceof TemplateRef) {
-           if (this._viewContainerRef) {
-             const viewRef = this._viewContainerRef.createEmbeddedView<TemplateRef<T>>(content);
-             return new ContentRef([viewRef.rootNodes], viewRef);
-           }
-           const viewRef = content.createEmbeddedView({});
-           this._applicationRef.attachView(viewRef);
-           return new ContentRef([viewRef.rootNodes], viewRef);
-         }
+    this.onHidden.emit();
 
-         if (typeof content === 'function') {
-           const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(content);
-           const modalContentInjector = Injector.create({ providers: this._providers, parent: this._injector});
-           const componentRef = contentCmptFactory.create(modalContentInjector);
-           Object.assign(componentRef.instance, data);
-           this._applicationRef.attachView(componentRef.hostView);
-           return new ContentRef([[componentRef.location.nativeElement]], componentRef.hostView, componentRef);
-         }
-         return new ContentRef([[this._renderer.createText(`${content}`)]]);
-       }
-     }
+    return this;
+  }
+
+  toggle(): void {
+    if (this.isShown) {
+      this.hide();
+
+      return;
+    }
+
+    this.show();
+  }
+
+  dispose(): void {
+    if (this.isShown) {
+      this.hide();
+    }
+
+    this._unsubscribePositioning();
+
+    if (this._unregisterListenersFn) {
+      this._unregisterListenersFn();
+    }
+  }
+
+  listen(listenOpts: ListenOptions | any): ComponentLoader<T> {
+    this.triggers = listenOpts.triggers || this.triggers;
+    this._listenOpts.outsideClick = listenOpts.outsideClick;
+    this._listenOpts.outsideEsc = listenOpts.outsideEsc;
+    listenOpts.target = listenOpts.target || this._elementRef.nativeElement;
+
+    const hide = (this._listenOpts.hide = () =>
+      listenOpts.hide ? listenOpts.hide() : void this.hide());
+    const show = (this._listenOpts.show = (registerHide: Function) => {
+      listenOpts.show ? listenOpts.show(registerHide) : this.show(registerHide);
+      registerHide();
+    });
+
+    const toggle = (registerHide: Function) => {
+      this.isShown ? hide() : show(registerHide);
+    };
+
+    this._unregisterListenersFn = listenToTriggersV2(this._renderer, {
+      target: listenOpts.target,
+      triggers: listenOpts.triggers,
+      show,
+      hide,
+      toggle
+    });
+
+    return this;
+  }
+
+  _removeGlobalListener() {
+    if (this._globalListener) {
+      this._globalListener();
+      this._globalListener = null;
+    }
+  }
+
+  attachInline(
+    vRef: ViewContainerRef,
+    /* tslint:disable-next-line: no-any*/
+    template: TemplateRef<any>
+  ): ComponentLoader<T> {
+    this._inlineViewRef = vRef.createEmbeddedView(template);
+
+    return this;
+  }
+
+  _registerOutsideClick(): void {
+    if (!this._componentRef || !this._componentRef.location) {
+      return;
+    }
+    // why: should run after first event bubble
+    if (this._listenOpts && this._listenOpts.outsideClick) {
+      const target = this._componentRef.location.nativeElement;
+      setTimeout(() => {
+        this._globalListener = registerOutsideClick(this._renderer, {
+          targets: [target, this._elementRef.nativeElement],
+          outsideClick: this._listenOpts.outsideClick,
+          hide: () => this._listenOpts.hide()
+        });
+      });
+    }
+    if (this._listenOpts.outsideEsc) {
+      const target = this._componentRef.location.nativeElement;
+      this._globalListener = registerEscClick(this._renderer, {
+        targets: [target, this._elementRef.nativeElement],
+        outsideEsc: this._listenOpts.outsideEsc,
+        hide: () => this._listenOpts.hide()
+      });
+    }
+  }
+
+  getInnerComponent(): ComponentRef<T> {
+    return this._innerComponent;
+  }
+
+  private _subscribePositioning(): void {
+    if (this._zoneSubscription || !this.attachment) {
+      return;
+    }
+
+    this.onShown.subscribe(() => {
+      this._posService.position({
+        element: this._componentRef.location,
+        target: this._elementRef,
+        attachment: this.attachment,
+        appendToBody: this.container === 'body'
+      });
+    });
+
+    this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
+      if (!this._componentRef) {
+        return;
+      }
+
+      this._posService.calcPosition();
+    });
+  }
+
+  private _unsubscribePositioning(): void {
+    if (!this._zoneSubscription) {
+      return;
+    }
+
+    this._zoneSubscription.unsubscribe();
+    this._zoneSubscription = null;
+  }
+
+  private _getContentRef(
+    /* tslint:disable-next-line: no-any*/
+    content: string | TemplateRef<any> | any,
+    /* tslint:disable-next-line: no-any*/
+    data?: any,
+    /* tslint:disable-next-line: no-any*/
+  ): ContentRef {
+    if (!content) {
+      return new ContentRef([]);
+    }
+
+    if (content instanceof TemplateRef) {
+      if (this._viewContainerRef) {
+        const _viewRef = this._viewContainerRef
+          .createEmbeddedView<TemplateRef<T>>(content);
+        _viewRef.markForCheck();
+
+        return new ContentRef([_viewRef.rootNodes], _viewRef);
+      }
+      const viewRef = content.createEmbeddedView({});
+      this._applicationRef.attachView(viewRef);
+
+      return new ContentRef([viewRef.rootNodes], viewRef);
+    }
+
+    if (typeof content === 'function') {
+      const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(
+        content
+      );
+
+      const modalContentInjector = Injector.create({
+        providers: this._providers,
+        parent: this._injector
+      });
+
+      const componentRef = contentCmptFactory.create(modalContentInjector);
+      Object.assign(componentRef.instance, data);
+      this._applicationRef.attachView(componentRef.hostView);
+
+      return new ContentRef(
+        [[componentRef.location.nativeElement]],
+        componentRef.hostView,
+        componentRef
+      );
+    }
+
+    return new ContentRef([[this._renderer.createText(`${content}`)]]);
+  }
+}

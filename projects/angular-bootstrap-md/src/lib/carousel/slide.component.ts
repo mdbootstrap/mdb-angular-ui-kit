@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnDestroy, Input, OnInit, ElementRef } from '@angular/core';
 
-import { CarouselComponent } from './carousel.component';
+// import { CarouselComponent } from './carousel.component';
 
 @Component({
   selector: 'mdb-slide, mdb-carousel-item',
@@ -27,18 +27,18 @@ export class SlideComponent implements OnInit, OnDestroy {
   // public el: ElementRef = null;
   public el: ElementRef | any = null;
 
-  public constructor(public carousel: CarouselComponent, el: ElementRef) {
+  public constructor(el: ElementRef) {
     // this.carousel = carousel;
     this.el = el;
   }
 
   /** Fires changes in container collection after adding a new slide instance */
   public ngOnInit(): void {
-    this.carousel.addSlide(this);
+    // this.carousel.addSlide(this);
   }
 
   /** Fires changes in container collection after removing of this slide instance */
   public ngOnDestroy(): void {
-    this.carousel.removeSlide(this);
+    // this.carousel.removeSlide(this);
   }
 }

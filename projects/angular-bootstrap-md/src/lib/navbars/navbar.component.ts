@@ -24,6 +24,8 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   @Input() containerInside = true;
   @Input() collapseId = 'navbarCollapse';
   @Input() scrollSensitivity = 120;
+  @Input() scrollableNavbar = false;
+
   subscription: Subscription;
   navbarLinkClicks: any;
   shown = false;
@@ -95,6 +97,9 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
       this.el.nativeElement.remove();
     }
     this.addTogglerIconClasses();
+    if (this.scrollableNavbar) {
+      this.renderer.addClass(this.el.nativeElement, 'collapsed-navbar-scroll');
+    }
   }
 
   toggle() {

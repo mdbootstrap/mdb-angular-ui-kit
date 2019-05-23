@@ -2,7 +2,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostListener,
   Inject,
   Input,
   OnChanges,
@@ -21,6 +20,7 @@ import {ComponentLoaderFactory} from '../utils/component-loader/component-loader
 import {ComponentLoader} from '../utils/component-loader/component-loader.class';
 import {OnChange} from '../utils/decorators';
 import {isPlatformBrowser} from '@angular/common';
+import { PositioningService } from '../utils/positioning/positioning.service';
 
 @Directive({
   selector: '[mdbTooltip]',
@@ -71,6 +71,8 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() public isDisabled: boolean;
 
+  @Input() dynamicPosition = true;
+
   /**
    * Emits an event when the tooltip is shown
    */
@@ -91,9 +93,10 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
   public constructor(
-    _viewContainerRef: ViewContainerRef,
     _renderer: Renderer2,
     private _elementRef: ElementRef,
+    private _positionService: PositioningService,
+    _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,
     config: TooltipConfig,
     @Inject(PLATFORM_ID) private platformId: string) {
@@ -112,19 +115,6 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
 
   }
 
-  @HostListener('click', ['$event']) onclick(event: any) {
-    if (this.triggers.toString().includes('focus')) {
-      event.stopPropagation();
-      this.show();
-    }
-  }
-
-  @HostListener('window:click') onblur() {
-    if (this.triggers.toString().includes('focus') && this.isOpen) {
-      this.hide();
-    }
-  }
-
   public ngOnInit(): void {
     this._tooltip.listen({
       triggers: this.triggers,
@@ -136,27 +126,11 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
         this._tooltip.hide();
       }
     });
-
-    this.shown.subscribe(() => {
-      setTimeout(() => {
-        if (this._tooltip.instance.placement !== this.placement && this.isOpen) {
-          this._tooltip.instance.alignArrow(this.placement);
-        }
-      }, 0);
-    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (!changes['mdbTooltip'].isFirstChange()) {
       this.tooltipChange.emit(this.mdbTooltip);
-    }
-  }
-
-  getBottomOffset() {
-    if (this.isBrowser) {
-      const windowHeight = window.innerHeight;
-      const bottom = this._elementRef.nativeElement.getBoundingClientRect().bottom;
-      return windowHeight - bottom;
     }
   }
 
@@ -176,86 +150,37 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
    * Opens an element’s tooltip. This is considered a “manual” triggering of
    * the tooltip.
    */
-  public show(event?: any): void {
+  public show(): void {
     if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.mdbTooltip) {
       return;
     }
 
-    const showTooltip = () => this._tooltip
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this.dynamicPosition
+        },
+        preventOverflow: {
+          enabled: this.dynamicPosition
+        }
+      }
+    });
+
+    const showTooltip = () => {
+      this._tooltip
       .attach(TooltipContainerComponent)
       .to(this.container)
       .position({attachment: this.placement})
       .show({
         content: this.mdbTooltip,
-        placement: this.placement
+        placement: this.placement,
       });
-    this.showTooltip(showTooltip);
+    };
 
-    const elPosition = event ? event.target.getBoundingClientRect() : this._elementRef.nativeElement.getBoundingClientRect();
-    const tooltipEl = this._tooltip.instance['el'].nativeElement;
-
-    this.getCorrectAlignment(tooltipEl, elPosition);
     this.showTooltip(showTooltip);
   }
 
-  private getCorrectAlignment(tooltipEl: any, elPosition: ClientRect) {
-    const right = window.innerWidth - elPosition.width - elPosition.left;
-    const position = ['left', 'right', 'bottom', 'top'];
-    const heightForTop = this.customHeight ? (parseInt(this.customHeight, 10) + 16) : 40;
-    const heightForBottom = this.customHeight ? (parseInt(this.customHeight, 10) + 32) : 60;
 
-    if (this.placement == 'left') {
-      [
-        elPosition.left >= tooltipEl.clientWidth,
-        elPosition.left <= tooltipEl.clientWidth && right > tooltipEl.clientWidth,
-        elPosition.left <= tooltipEl.clientWidth && right <= tooltipEl.clientWidth && this.getBottomOffset() as any >= heightForBottom,
-        elPosition.left <= tooltipEl.clientWidth && right <= tooltipEl.clientWidth && this.getBottomOffset() as any < heightForBottom && elPosition.top >= heightForTop
-      ].forEach((el: boolean, index: number) => {
-        if (el) {
-          this.placement = position[index];
-        }
-      });
-    }
-
-    if (this.placement == 'right') {
-      [
-        right <= tooltipEl.clientWidth && elPosition.left > tooltipEl.clientWidth,
-        right >= tooltipEl.clientWidth,
-        right <= tooltipEl.clientWidth && elPosition.left <= tooltipEl.clientWidth && this.getBottomOffset() as any >= heightForBottom,
-        right <= tooltipEl.clientWidth && elPosition.left <= tooltipEl.clientWidth && this.getBottomOffset() as any < heightForBottom && elPosition.top >= heightForTop
-      ].forEach((el: boolean, index: number) => {
-        if (el) {
-          this.placement = position[index];
-        }
-      });
-    }
-
-    if (this.placement == 'top') {
-      [
-        elPosition.top < heightForTop && this.getBottomOffset() as any < heightForBottom && elPosition.left >= tooltipEl.clientWidth,
-        elPosition.top < heightForTop && this.getBottomOffset() as any < heightForBottom && elPosition.left < tooltipEl.clientWidth && right >= tooltipEl.clientWidth,
-        elPosition.top < heightForTop && this.getBottomOffset() as any >= heightForBottom,
-        elPosition.top >= heightForTop
-      ].forEach((el: boolean, index: number) => {
-        if (el) {
-          this.placement = position[index];
-        }
-      });
-    }
-
-    if (this.placement == 'bottom') {
-      [
-        this.getBottomOffset() as any < heightForBottom && elPosition.top < heightForTop && elPosition.left >= tooltipEl.clientWidth,
-        this.getBottomOffset() as any < heightForBottom && elPosition.top < heightForTop && elPosition.left < tooltipEl.clientWidth && right >= tooltipEl.clientWidth,
-        this.getBottomOffset() as any < heightForBottom && elPosition.top >= heightForTop,
-        this.getBottomOffset() as any <= heightForTop
-      ].forEach((el: boolean, index: number) => {
-        if (el) {
-          this.placement = position[index];
-        }
-      });
-    }
-  }
 
   private showTooltip(fn: Function) {
     if (this.delay) {

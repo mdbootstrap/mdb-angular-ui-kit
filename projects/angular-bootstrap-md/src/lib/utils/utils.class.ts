@@ -1,5 +1,5 @@
 import { window, document } from './facade/browser';
-import {ElementRef} from "@angular/core";
+import {ElementRef} from '@angular/core';
 
 export class Utils {
   constructor() {
@@ -29,7 +29,7 @@ export class Utils {
     let lastFocusableElement: any;
 
     const KEYCODE_TAB = 9;
-
+    /*tslint:disable-next-line:max-line-length */
     focusableElements = el.nativeElement.querySelectorAll('a[href], button, textarea, input, select, form, mdb-select, mdb-auto-completer, mdb-checkbox, mdb-range-input');
     firstFocusableElement = focusableElements[0];
     lastFocusableElement = focusableElements[focusableElements.length - 1];
