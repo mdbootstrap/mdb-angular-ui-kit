@@ -14,7 +14,7 @@
   white-space: normal;
   word-break: normal;
   word-spacing: normal;
-}
+}a
 
 // Base class
 .tooltip {
@@ -119,15 +119,15 @@
  to { opacity: 1; }
 }
 
-.tooltip-fadeIn { 
+.tooltip-fadeIn {
   -webkit-animation-name: fadeInTooltip;
   animation-name: fadeInTooltip;
   -webkit-animation-delay: 0.2s;
-  -moz-animation-delay: 0.2s;   
+  -moz-animation-delay: 0.2s;
   animation-delay: 0.2s;
   -webkit-animation-duration: 0.2s;
   animation-duration: 0.2s;
-  -webkit-animation-fill-mode: both;    
+  -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
 
@@ -145,14 +145,7 @@ a[tooltip] {
 }
 
 .tooltip-arrow {
-  width: 0;
-  height: 0;
-  border: 0 solid transparent;
-  border-right-width: 7px;
-  border-left-width: 7px;
-  border-bottom: 7px solid black;
-  margin-left: auto;
-  margin-right: auto;
+
   &.left {
     position: relative;
     margin-right: -0.6rem;
@@ -166,5 +159,61 @@ a[tooltip] {
   &.top {
     position: relative;
     transform: rotate(-180deg);
+  }
+}
+
+.tooltip-top {
+  padding: $tooltip-arrow-height 0;
+
+  .arrow {
+    bottom: 0;
+
+    &::before {
+      top: 0;
+      border-width: $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-top-color: $tooltip-arrow-color;
+    }
+  }
+}
+
+.tooltip-right {
+  padding: 0 $tooltip-arrow-height;
+
+  .arrow {
+    left: 0;
+
+    &::before {
+      right: 0;
+      border-width: ($tooltip-arrow-width / 2) $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-right-color: $tooltip-arrow-color;
+    }
+  }
+}
+
+.tooltip-bottom {
+  padding: $tooltip-arrow-height 0;
+
+  .arrow {
+    top: 0;
+
+    &::before {
+      bottom: 0;
+      border-width: 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+      border-bottom-color: $tooltip-arrow-color;
+    }
+  }
+}
+
+.tooltip-left {
+  padding: 0 $tooltip-arrow-height;
+
+  .arrow {
+    right: 0;
+
+    &::before {
+      left: 0;
+      border-width: ($tooltip-arrow-width / 2) 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+      border-left-color: $tooltip-arrow-color;
+    }
   }
 }

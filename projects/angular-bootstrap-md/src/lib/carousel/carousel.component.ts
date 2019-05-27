@@ -9,11 +9,10 @@ import {
   Inject,
   PLATFORM_ID,
   AfterViewInit,
-  ChangeDetectorRef, Renderer2
+  ChangeDetectorRef, Renderer2, ContentChildren, QueryList
 } from '@angular/core';
 
 import {isBs3} from '../utils/ng2-bootstrap-config';
-import {LinkedList} from '../utils/linked-list.class';
 import {SlideComponent} from './slide.component';
 import {CarouselConfig} from './carousel.config';
 import {isPlatformBrowser} from '@angular/common';
@@ -31,9 +30,9 @@ export enum Direction { UNKNOWN, NEXT, PREV }
 export class CarouselComponent implements OnDestroy, AfterViewInit {
   SWIPE_ACTION = {LEFT: 'swipeleft', RIGHT: 'swiperight'};
 
-  protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
+  @ContentChildren(SlideComponent) _slidesList: QueryList<SlideComponent>;
   public get slides(): SlideComponent[] {
-    return this._slides.toArray();
+    return this._slidesList.toArray();
   }
 
   protected currentInterval: any;
@@ -41,19 +40,19 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   protected destroyed = false;
   protected el: ElementRef | any = null;
   protected animationEnd = true;
-  protected _currentActiveSlide: number | any;
+  protected _currentActiveSlide: number;
   protected carouselIndicators: any;
 
   isBrowser: any = false;
   @Input() public noWrap: boolean;
   @Input() public noPause: boolean;
 
-  @Input('isControls') public isControls = true;
+  @Input() public isControls = true;
   @Input() public keyboard: boolean;
 
-  @Input('class') public class: String = '';
-  @Input('type') public type: String = '';
-  @Input('animation') public animation: String = '';
+  @Input() public class: String = '';
+  @Input() public type: String = '';
+  @Input() public animation: String = '';
   @Input() activeSlideIndex: number;
 
 
@@ -61,7 +60,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
 
   @Input()
   public set activeSlide(index: number) {
-    if (this._slides.length && index !== this._currentActiveSlide) {
+    if (this._slidesList && index !== this._currentActiveSlide) {
       this._select(index);
     }
   }
@@ -119,54 +118,32 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     this.destroyed = true;
   }
 
-  public addSlide(slide: SlideComponent): void {
-    this._slides.add(slide);
-    if (this._slides.length === 1) {
-      this._currentActiveSlide = void 0;
-      this.activeSlide = 0;
-      this.play();
-    }
-  }
-
   ngAfterViewInit() {
+    this._slidesList.changes.subscribe( (slidesList: QueryList<SlideComponent> ) => {
+      this._slidesList = slidesList;
+      setTimeout(() => {
+        this._select(0);
+      }, 0);
+    });
+
     if (this.activeSlideIndex) {
       setTimeout(() => {
         this._select(this.activeSlideIndex);
         this.activeSlideChange.emit({'relatedTarget': this.activeSlide});
       }, 0);
+    } else {
+      setTimeout(() => {
+        this._select(0);
+      }, 0);
     }
 
     if (this.isControls) {
       this.carouselIndicators = this.el.nativeElement.querySelectorAll('.carousel-indicators > li');
-      if (this.carouselIndicators.length) {
+      if (this.carouselIndicators.length && this.activeSlideIndex) {
+        this.renderer.addClass(this.carouselIndicators[this.activeSlideIndex], 'active');
+      } else {
         this.renderer.addClass(this.carouselIndicators[0], 'active');
       }
-    }
-  }
-
-  public removeSlide(slide: SlideComponent): void {
-    const remIndex = this._slides.indexOf(slide);
-
-    if (this._currentActiveSlide === remIndex) {
-
-      let nextSlideIndex: number | any = void 0;
-      if (this._slides.length > 1) {
-        nextSlideIndex = !this.isLast(remIndex) ? remIndex :
-          this.noWrap ? remIndex - 1 : 0;
-      }
-      this._slides.remove(remIndex);
-
-      setTimeout(() => {
-        this._select(nextSlideIndex);
-      }, 0);
-    } else {
-      this._slides.remove(remIndex);
-      const currentSlideIndex = this.getCurrentSlideIndex();
-      setTimeout(() => {
-        this._currentActiveSlide = currentSlideIndex;
-        this.activeSlideChange.emit(this._currentActiveSlide);
-      }, 0);
-
     }
   }
 
@@ -221,7 +198,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   }
 
   protected fadeAnimation(goToIndex: number, direction?: any) {
-    const goToSlide = this._slides.get(goToIndex);
+    const goToSlide = this.slides[goToIndex];
 
     if (this.animationEnd) {
       this.animationEnd = false;
@@ -229,7 +206,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       goToSlide.directionNext = true;
       if (this.isBrowser) {
         setTimeout(() => {
-          const previous = this._slides.get(this._currentActiveSlide).el.nativeElement;
+          const previous = this.slides[this._currentActiveSlide].el.nativeElement;
 
           this.renderer.setStyle(previous, 'opacity', '0');
           this.renderer.setStyle(previous, 'transition', 'all 600ms');
@@ -259,8 +236,8 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
 
   protected slideAnimation(goToIndex: number, direction: any) {
 
-    const currentSlide = this._slides.get(this._currentActiveSlide);
-    const goToSlide = this._slides.get(goToIndex);
+    const currentSlide = this.slides[this._currentActiveSlide];
+    const goToSlide = this.slides[goToIndex];
 
     if (this.animationEnd) {
       if (direction === Direction.NEXT) {
@@ -350,11 +327,11 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   }
 
   public getCurrentSlideIndex(): number {
-    return this._slides.findIndex((slide: SlideComponent) => slide.active);
+    return this.slides.findIndex((slide: SlideComponent) => slide.active);
   }
 
   public isLast(index: number): boolean {
-    return index + 1 >= this._slides.length;
+    return index + 1 >= this.slides.length;
   }
 
   private findNextSlideIndex(direction: Direction, force: boolean): any {
@@ -371,7 +348,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
         break;
       case Direction.PREV:
         nextSlideIndex = (this._currentActiveSlide > 0) ? this._currentActiveSlide - 1 :
-          (!force && this.noWrap) ? this._currentActiveSlide : this._slides.length - 1;
+          (!force && this.noWrap) ? this._currentActiveSlide : this.slides.length - 1;
         break;
       default:
         throw new Error('Unknown direction');
@@ -384,11 +361,11 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       this.pause();
       return;
     }
-    const currentSlide = this._slides.get(this._currentActiveSlide);
+    const currentSlide = this.slides[this._currentActiveSlide];
     if (currentSlide) {
       currentSlide.active = false;
     }
-    const nextSlide = this._slides.get(index);
+    const nextSlide = this.slides[index];
     if (nextSlide) {
       this._currentActiveSlide = index;
       nextSlide.active = true;

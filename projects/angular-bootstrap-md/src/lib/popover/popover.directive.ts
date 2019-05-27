@@ -6,6 +6,7 @@ import {PopoverConfig} from './popover.config';
 import {ComponentLoaderFactory} from '../utils/component-loader/component-loader.factory';
 import {ComponentLoader} from '../utils/component-loader/component-loader.class';
 import {PopoverContainerComponent} from './popover-container.component';
+import { PositioningService } from '../utils/positioning/positioning.service';
 
 /**
  * A lightweight, extensible directive for fancy popover creation.
@@ -52,6 +53,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
     }
   }
 
+  @Input() dynamicPosition = true;
+  @Input() outsideClick = false;
   /**
    * Emits an event when the popover is shown
    */
@@ -69,7 +72,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
                      _renderer: Renderer2,
                      _viewContainerRef: ViewContainerRef,
                      _config: PopoverConfig,
-                     cis: ComponentLoaderFactory) {
+                     cis: ComponentLoaderFactory,
+                     private _positionService: PositioningService) {
     this._popover = cis
       .createLoader<PopoverContainerComponent>(_elementRef, _viewContainerRef, _renderer)
       .provide({provide: PopoverConfig, useValue: _config});
@@ -89,6 +93,17 @@ export class PopoverDirective implements OnInit, OnDestroy {
       return;
     }
 
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this.dynamicPosition
+        },
+        preventOverflow: {
+          enabled: this.dynamicPosition
+        }
+      }
+    });
+
     this._popover
       .attach(PopoverContainerComponent)
       .to(this.container)
@@ -99,6 +114,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
         title: this.mdbPopoverHeader || this.popoverTitle
       });
     this.isOpen = true;
+
+    if (!this.dynamicPosition) {
+      this._positionService.calcPosition();
+      this._positionService.deletePositionElement(this._popover._componentRef.location);
+    }
   }
 
   /**
@@ -140,6 +160,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   public ngOnInit(): any {
     this._popover.listen({
       triggers: this.triggers,
+      outsideClick: this.outsideClick,
       show: () => this.show()
     });
   }

@@ -1,3 +1,35 @@
+7.5.3
+New version brings some bug fixes and new features. Check every change in 7.5.3 below.
+
+**Fixes:**
+
+* Tooltip with routerLink and nested i tag won't reload page after click,
+* Improved positioning in Tooltip - use dynamicPosition input to turn off adjusting position,
+* Improved positioning in Popover - use dynamicPosition input to turn off adjusting position,
+* Accordion will now allow to use keyboard navigation (Tab, Enter, Space).
+
+**New Features:**
+
+* Double Range Slider - Added new component - Two dots range slider,
+* Accordion - changed icon behavior - now it is rendered with css and content property,
+* Flipping Cards - added (animationStart) and (animationEnd) outputs,
+* File Upload plugin - added new customText input which allow to overwrite default text in File Upload,
+* File Upload Plugin - added new [defaultFile]" input which allow to set default file for File Input component,
+* Date Picker - added possibility to use LocaleService as global service - one instance for every instance of Date Picker,
+* Material Select - added feature which allow to highlight specific item after keyboard button push (eg. push "F", and Select will highlight item which starts on "F" char),
+* Material Select - added new [filterAutocomplete]="true" input which allow to determine, Select should allow browser autocomplete mechanism or not,
+* Material Select - Select will now allow you to define custom template in it,
+* Toast / Notification - added new actionButtonClass config property which allow to add CSS class to action button in toast,
+* Date Picker - added new editableDateField config property which allow to disable Date Picker input field to put there some text,
+* Popover - added new [outsideClick]="true" input which allow to determine, if Popover should be closed after clicking in it's content,
+* Date Picker - added new [outlineInput]="true" input which allow to use the .md-outline class inside Date Picker,
+* Time Picker - added new [outlineInput]="true" input which allow to use the .md-outline class inside Time Picker.
+
+**Docs:**
+
+* Multi Item Carousel - added new Multi item responsive carousel,
+* Flipping Cards - added information about this, that Flipping Cards requires BrowserAnimationsModule.
+
 7.5.2
 New version brings some bug fixes and new features. Check every change in 7.5.2 below.
 

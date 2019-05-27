@@ -21,6 +21,10 @@ textarea:focus ~ .chars {
   display: block;
 }
 
+.md-form label {
+  left: 0;
+}
+
 //active styles for input label
 .md-form label.active {
   color: #757575;
