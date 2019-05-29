@@ -13,8 +13,8 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
-    "@angular-devkit/core": "^7.2.1",
-    "@angular-devkit/schematics": "^7.2.1",
+    "@angular-devkit/core": "^8.0.0",
+    "@angular-devkit/schematics": "^8.0.0",
     "@types/chart.js": "^2.7.40",
     "@types/jasmine": "^2.6.0",
     "@types/node": "^8.0.31",
@@ -22,6 +22,6 @@
     "font-awesome": "~4.7.x",
     "hammerjs": "~2.0.8",
     "jasmine": "^2.8.0",
-    "typescript": "^2.5.2"
+    "typescript": "^3.4.5"
   }
 }

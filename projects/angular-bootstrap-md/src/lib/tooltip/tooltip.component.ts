@@ -29,8 +29,8 @@ export class TooltipContainerComponent implements AfterViewInit {
   public animation: boolean;
   public el: ElementRef;
   @Input() containerClass = '';
-  @ViewChild('tooltipInner') tooltipInner: ElementRef;
-  @ViewChild('tooltipArrow') tooltipArrow: ElementRef;
+  @ViewChild('tooltipInner', { static: false }) tooltipInner: ElementRef;
+  @ViewChild('tooltipArrow', { static: false }) tooltipArrow: ElementRef;
   @HostBinding('class.show') show = !this.isBs3;
 
   public get isBs3(): boolean {

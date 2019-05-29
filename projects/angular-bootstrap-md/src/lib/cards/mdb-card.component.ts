@@ -11,7 +11,7 @@ export class MdbCardComponent implements OnInit {
     @Input() cascade: boolean;
     @Input() wider: boolean;
 
-    @ViewChild('card') card: ElementRef;
+    @ViewChild('card', { static: false }) card: ElementRef;
 
 
     @Input() set narrower(narrower: boolean) {

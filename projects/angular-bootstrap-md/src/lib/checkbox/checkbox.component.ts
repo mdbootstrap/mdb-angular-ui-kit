@@ -33,7 +33,7 @@ export class MdbCheckboxChange {
   providers: [CHECKBOX_VALUE_ACCESSOR]
 })
 export class CheckboxComponent implements OnInit, OnChanges {
-  @ViewChild('input') inputEl: any;
+  @ViewChild('input', { static: false }) inputEl: any;
 
   private defaultId = `mdb-checkbox-${++defaultIdNumber}`;
 

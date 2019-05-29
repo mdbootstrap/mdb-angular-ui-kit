@@ -42,12 +42,12 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
 
   ariaExpanded = false;
 
-  @ViewChild('navbar') el: ElementRef;
-  @ViewChild('mobile') mobile: ElementRef;
-  @ViewChild('nav') navbar: ElementRef;
-  @ViewChild('container') container: ElementRef;
-  @ViewChild('toggler') toggler: ElementRef;
-  @ContentChild(LinksComponent) links: LinksComponent;
+  @ViewChild('navbar', { static: false }) el: ElementRef;
+  @ViewChild('mobile', { static: false }) mobile: ElementRef;
+  @ViewChild('nav', { static: false }) navbar: ElementRef;
+  @ViewChild('container', { static: false }) container: ElementRef;
+  @ViewChild('toggler', { static: false }) toggler: ElementRef;
+  @ContentChild(LinksComponent, { static: false }) links: LinksComponent;
 
   constructor(public renderer: Renderer2, private _navbarService: NavbarService) {
     // tslint:disable-next-line:max-line-length
