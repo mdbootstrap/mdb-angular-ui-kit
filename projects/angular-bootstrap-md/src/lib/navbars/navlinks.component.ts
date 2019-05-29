@@ -1,7 +1,6 @@
 import { NavbarService } from './navbar.service';
-import { AfterContentInit, Component, ContentChildren, ElementRef, QueryList, EventEmitter, Output } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, ElementRef, QueryList, EventEmitter, Output, AfterViewInit } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 @Component({
   selector: 'navlinks',
   template: `
