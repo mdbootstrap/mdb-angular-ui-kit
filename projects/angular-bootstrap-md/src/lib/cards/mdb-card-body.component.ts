@@ -1,10 +1,11 @@
 
-import { Component, Input, ElementRef, Renderer2, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'mdb-card-body',
     templateUrl: './mdb-card-body.component.html',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MdbCardBodyComponent implements OnInit {
