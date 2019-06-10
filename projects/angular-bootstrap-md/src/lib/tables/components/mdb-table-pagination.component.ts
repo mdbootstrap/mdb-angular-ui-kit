@@ -13,7 +13,8 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
   @Input() tableEl: MdbTableDirective;
   @Input() searchPagination = false;
   @Input() searchDataSource: any = null;
-
+  @Input() ofKeyword = 'of';
+  @Input() dashKeyword = '-';
   @Input() paginationAlign = '';
   @Input() hideDescription = false;
 

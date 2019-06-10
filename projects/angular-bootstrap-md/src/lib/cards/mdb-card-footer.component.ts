@@ -1,8 +1,9 @@
-import { Component, Input, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'mdb-card-footer',
     templateUrl: './mdb-card-footer.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MdbCardFooterComponent implements OnInit {

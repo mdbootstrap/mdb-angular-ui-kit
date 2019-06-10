@@ -3,11 +3,9 @@ import { AfterContentInit, Component, ContentChildren, ElementRef, QueryList, Ev
 import { RouterLinkWithHref } from '@angular/router';
 @Component({
   selector: 'navlinks',
-  template: `
-        <ng-content></ng-content>
-    `,
+  template: ` <ng-content></ng-content> `,
 })
-export class NavlinksComponent implements AfterViewInit, AfterContentInit {
+export class NavlinksComponent implements AfterContentInit {
   @ContentChildren(RouterLinkWithHref, { read: ElementRef, descendants: true })
   links: QueryList<ElementRef>;
 
@@ -17,18 +15,12 @@ export class NavlinksComponent implements AfterViewInit, AfterContentInit {
   ngAfterContentInit() {
     const that = this;
 
-
-
     setTimeout(function () {
       that.links.forEach(function (element) {
         element.nativeElement.onclick = function () {
           that._navbarService.setNavbarLinkClicks();
         };
       });
-
     }, 0);
-  }
-  ngAfterViewInit() {
-
   }
 }

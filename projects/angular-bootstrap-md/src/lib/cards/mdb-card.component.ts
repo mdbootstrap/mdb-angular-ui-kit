@@ -1,9 +1,10 @@
 
-import { Component, Input, ElementRef, Renderer2, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, Renderer2, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'mdb-card',
     templateUrl: './mdb-card.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MdbCardComponent implements OnInit {

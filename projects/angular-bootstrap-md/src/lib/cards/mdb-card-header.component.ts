@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, Renderer2, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'mdb-card-header',
     templateUrl: './mdb-card-header.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class MdbCardHeaderComponent implements OnInit {
