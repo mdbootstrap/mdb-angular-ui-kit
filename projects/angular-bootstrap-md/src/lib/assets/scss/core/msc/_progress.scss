@@ -1,0 +1,839 @@
+// Progress
+mdb-progress .progress {
+  box-shadow: none;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background-color: #eee;
+  .progress-bar {
+    box-shadow: none;
+    height: 4px;
+    border-radius: 0;
+    background-color: $primary-color-dark;
+  }
+  .progress-bar-animated {
+    -webkit-transition: width 2s ease-in-out;
+    transition: width 2s ease-in-out;
+  }
+  .indeterminate {
+    background-color: #90caf9;
+    &:before {
+      content: '';
+      position: absolute;
+      background-color: inherit;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      will-change: left, right;
+      // Custom bezier
+      animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: inherit;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      will-change: left, right;
+      // Custom bezier
+      animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+      animation-delay: 1.15s;
+    }
+  }
+
+  @keyframes indeterminate {
+    0% {
+      left: -35%;
+      right: 100%;
+    }
+    60% {
+      left: 100%;
+      right: -90%;
+    }
+    100% {
+      left: 100%;
+      right: -90%;
+    }
+  }
+  @keyframes indeterminate-short {
+    0% {
+      left: -200%;
+      right: 100%;
+    }
+    60% {
+      left: 107%;
+      right: -8%;
+    }
+    100% {
+      left: 107%;
+      right: -8%;
+    }
+  }
+}
+
+/*********************
+  CIRCLE
+**********************/
+
+/*
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+ */
+
+/**************************/
+
+/* STYLES FOR THE SPINNER */
+
+/**************************/
+
+/*
+ * Constants:
+ *      STROKEWIDTH = 3px
+ *      ARCSIZE     = 270 degrees (amount of circle the arc takes up)
+ *      ARCTIME     = 1333ms (time it takes to expand and contract arc)
+ *      ARCSTARTROT = 216 degrees (how much the start location of the arc
+ *                                should rotate each time, 216 gives us a
+ *                                5 pointed star shape (it's 360/5 * 3).
+ *                                For a 7 pointed star, we might do
+ *                                360/7 * 3 = 154.286)
+ *      CONTAINERWIDTH = 28px
+ *      SHRINK_TIME = 400ms
+ */
+
+.preloader-wrapper {
+  display: inline-block;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  &.small {
+    width: 36px;
+    height: 36px;
+  }
+  &.big {
+    width: 64px;
+    height: 64px;
+  }
+  &.active {
+    /* duration: 360 * ARCTIME / (ARCSTARTROT + (360-ARCSIZE)) */
+    -webkit-animation: container-rotate 1568ms linear infinite;
+    animation: container-rotate 1568ms linear infinite;
+  }
+}
+
+@-webkit-keyframes container-rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes container-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.spinner-blue,
+.spinner-blue-only {
+  border-color: #4285f4;
+}
+
+.spinner-red,
+.spinner-red-only {
+  border-color: #db4437;
+}
+
+.spinner-yellow,
+.spinner-yellow-only {
+  border-color: #f4b400;
+}
+
+.spinner-green,
+.spinner-green-only {
+  border-color: #0f9d58;
+}
+
+/**
+ * IMPORTANT NOTE ABOUT CSS ANIMATION PROPERTIES (keanulee):
+ *
+ * iOS Safari (tested on iOS 8.1) does not handle animation-delay very well - it doesn't
+ * guarantee that the animation will start _exactly_ after that value. So we avoid using
+ * animation-delay and instead set custom keyframes for each color (as redundant as it
+ * seems).
+ *
+ * We write out each animation in full (instead of separating animation-name,
+ * animation-duration, etc.) because under the polyfill, Safari does not recognize those
+ * specific properties properly, treats them as -webkit-animation, and overrides the
+ * other animation rules. See https://github.com/Polymer/platform/issues/53.
+ */
+
+.active .spinner-layer.spinner-blue {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both,
+    blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both,
+    blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+.active .spinner-layer.spinner-red {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both,
+    red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both,
+    red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+.active .spinner-layer.spinner-yellow {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both,
+    yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both,
+    yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+.active .spinner-layer.spinner-green {
+  /* durations: 4 * ARCTIME */
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both,
+    green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both,
+    green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+.active .spinner-layer.spinner-blue-only,
+.active .spinner-layer.spinner-red-only,
+.active .spinner-layer.spinner-yellow-only,
+.active .spinner-layer.spinner-green-only,
+.active .spinner-layer.spinner-primary-color-only {
+  /* durations: 4 * ARCTIME */
+  opacity: 1;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+@-webkit-keyframes fill-unfill-rotate {
+  12.5% {
+    -webkit-transform: rotate(135deg);
+  }
+  /* 0.5 * ARCSIZE */
+  25% {
+    -webkit-transform: rotate(270deg);
+  }
+  /* 1   * ARCSIZE */
+  37.5% {
+    -webkit-transform: rotate(405deg);
+  }
+  /* 1.5 * ARCSIZE */
+  50% {
+    -webkit-transform: rotate(540deg);
+  }
+  /* 2   * ARCSIZE */
+  62.5% {
+    -webkit-transform: rotate(675deg);
+  }
+  /* 2.5 * ARCSIZE */
+  75% {
+    -webkit-transform: rotate(810deg);
+  }
+  /* 3   * ARCSIZE */
+  87.5% {
+    -webkit-transform: rotate(945deg);
+  }
+  /* 3.5 * ARCSIZE */
+  to {
+    -webkit-transform: rotate(1080deg);
+  }
+  /* 4   * ARCSIZE */
+}
+
+@keyframes fill-unfill-rotate {
+  12.5% {
+    transform: rotate(135deg);
+  }
+  /* 0.5 * ARCSIZE */
+  25% {
+    transform: rotate(270deg);
+  }
+  /* 1   * ARCSIZE */
+  37.5% {
+    transform: rotate(405deg);
+  }
+  /* 1.5 * ARCSIZE */
+  50% {
+    transform: rotate(540deg);
+  }
+  /* 2   * ARCSIZE */
+  62.5% {
+    transform: rotate(675deg);
+  }
+  /* 2.5 * ARCSIZE */
+  75% {
+    transform: rotate(810deg);
+  }
+  /* 3   * ARCSIZE */
+  87.5% {
+    transform: rotate(945deg);
+  }
+  /* 3.5 * ARCSIZE */
+  to {
+    transform: rotate(1080deg);
+  }
+  /* 4   * ARCSIZE */
+}
+
+@-webkit-keyframes blue-fade-in-out {
+  from {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  26% {
+    opacity: 0;
+  }
+  89% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blue-fade-in-out {
+  from {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  26% {
+    opacity: 0;
+  }
+  89% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes red-fade-in-out {
+  from {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  51% {
+    opacity: 0;
+  }
+}
+
+@keyframes red-fade-in-out {
+  from {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  51% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes yellow-fade-in-out {
+  from {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 0;
+  }
+}
+
+@keyframes yellow-fade-in-out {
+  from {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes green-fade-in-out {
+  from {
+    opacity: 0;
+  }
+  65% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes green-fade-in-out {
+  from {
+    opacity: 0;
+  }
+  65% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/**
+ * Patch the gap that appear between the two adjacent div.circle-clipper while the
+ * spinner is rotating (appears on Chrome 38, Safari 7.1, and IE 11).
+ */
+
+.gap-patch {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 10%;
+  height: 100%;
+  overflow: hidden;
+  border-color: inherit;
+}
+
+.gap-patch .circle {
+  width: 1000%;
+  left: -450%;
+}
+
+.circle-clipper {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  border-color: inherit;
+  .circle {
+    width: 200%;
+    height: 100%;
+    border-width: 3px;
+    /* STROKEWIDTH */
+    border-style: solid;
+    border-color: inherit;
+    border-bottom-color: transparent !important;
+    border-radius: 50%;
+    -webkit-animation: none;
+    animation: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &.left .circle {
+    left: 0;
+    border-right-color: transparent !important;
+    -webkit-transform: rotate(129deg);
+    transform: rotate(129deg);
+  }
+  &.right .circle {
+    left: -100%;
+    border-left-color: transparent !important;
+    -webkit-transform: rotate(-129deg);
+    transform: rotate(-129deg);
+  }
+}
+
+.active .circle-clipper.left .circle {
+  /* duration: ARCTIME */
+  -webkit-animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+.active .circle-clipper.right .circle {
+  /* duration: ARCTIME */
+  -webkit-animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+@-webkit-keyframes left-spin {
+  from {
+    -webkit-transform: rotate(130deg);
+  }
+  50% {
+    -webkit-transform: rotate(-5deg);
+  }
+  to {
+    -webkit-transform: rotate(130deg);
+  }
+}
+
+@keyframes left-spin {
+  from {
+    transform: rotate(130deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(130deg);
+  }
+}
+
+@-webkit-keyframes right-spin {
+  from {
+    -webkit-transform: rotate(-130deg);
+  }
+  50% {
+    -webkit-transform: rotate(5deg);
+  }
+  to {
+    -webkit-transform: rotate(-130deg);
+  }
+}
+
+@keyframes right-spin {
+  from {
+    transform: rotate(-130deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  to {
+    transform: rotate(-130deg);
+  }
+}
+
+#spinnerContainer.cooldown {
+  /* duration: SHRINK_TIME */
+  -webkit-animation: container-rotate 1568ms linear infinite,
+    fade-out 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  animation: container-rotate 1568ms linear infinite, fade-out 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@-webkit-keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+#mdb-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  /* change if the mask should have another color than white */
+  z-index: 9998;
+  /* makes sure it stays on top */
+  height: 100%;
+  width: 100%;
+}
+
+.spinning-preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.spinning-preloader-container.complete {
+  opacity: 0;
+  display: none;
+}
+
+// <progressbar> static
+mdb-progress .progress {
+  height: 4px !important;
+  .progress-bar {
+    &.progress-bar-success {
+      background-color: #5cb85c;
+    }
+    &.progress-bar-info {
+      background-color: #5bc0de;
+    }
+    &.progress-bar-warning {
+      background-color: #f0ad4e;
+    }
+    &.progress-bar-danger {
+      background-color: #d9534f;
+    }
+  }
+}
+
+//<mdb-progress-bar>
+.primary-color-dark {
+  .mat-progress-bar-buffer {
+    background-color: #90caf9 !important;
+  }
+  .mat-progress-bar-fill::after {
+    background-color: #0d47a1 !important;
+  }
+}
+
+//<progress-spinner>
+.preloader-wrapper {
+  .mat-progress-spinner {
+    width: 100% !important;
+    height: 100% !important;
+    svg path {
+      transition: stroke 0.3s;
+      stroke-width: 6px !important;
+      fill: transparent;
+    }
+    &[mode='indeterminate'] svg {
+      animation-duration: 5332ms, 1333ms !important;
+    }
+  }
+  .spinner-blue-only.mat-progress-spinner svg path {
+    stroke: #4285f4;
+  }
+
+  .spinner-red-only.mat-progress-spinner svg path {
+    stroke: #db4437;
+  }
+
+  .spinner-yellow-only.mat-progress-spinner svg path {
+    stroke: #f4b400;
+  }
+
+  .spinner-green-only.mat-progress-spinner svg path {
+    stroke: #0f9d58;
+  }
+}
+
+.preloader-wrapper.crazy {
+  animation: container-rotate 784ms linear infinite;
+}
+
+mdb-progress-spinner,
+mat-progress-spinner {
+  display: block;
+  height: 100px;
+  width: 100px;
+  svg {
+    height: 100%;
+    width: 100%;
+    transform-origin: center;
+  }
+  path {
+    fill: transparent;
+    stroke-width: 10px;
+    transition: stroke 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+  }
+  &[mode='indeterminate'] svg {
+    animation-duration: 5.25s, 2.887s;
+    animation-name: mat-progress-spinner-sporadic-rotate, mat-progress-spinner-linear-rotate;
+    animation-timing-function: cubic-bezier(0.35, 0, 0.25, 1), linear;
+    animation-iteration-count: infinite;
+    transition: none;
+  }
+}
+
+@keyframes mat-progress-spinner-linear-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mat-progress-spinner-sporadic-rotate {
+  12.5% {
+    transform: rotate(135deg);
+  }
+  25% {
+    transform: rotate(270deg);
+  }
+  37.5% {
+    transform: rotate(405deg);
+  }
+  50% {
+    transform: rotate(540deg);
+  }
+  62.5% {
+    transform: rotate(675deg);
+  }
+  75% {
+    transform: rotate(810deg);
+  }
+  87.5% {
+    transform: rotate(945deg);
+  }
+  100% {
+    transform: rotate(1080deg);
+  }
+}
+
+.spinning-preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: -webkit-linear-gradient(top, #fff 0, #f2f2f2 100%) #f2f2f2;
+  background: linear-gradient(to bottom, #fff 0, #f2f2f2 100%) #f2f2f2;
+  -webkit-transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.spinning-preloader-container > .spinning-preloader-elements,
+.spinning-preloader-container > .spinning-preloader-elements:after,
+.spinning-preloader-container > .spinning-preloader-elements:before {
+  border: 3px solid transparent;
+  border-radius: 50%;
+}
+.spinning-preloader-container > .spinning-preloader-elements {
+  display: block;
+  width: 150px;
+  height: 150px;
+  border-top-color: #44749d;
+  z-index: 1500;
+  opacity: 1;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+.spinning-preloader-container > .spinning-preloader-elements:after,
+.spinning-preloader-container > .spinning-preloader-elements:before {
+  content: '';
+  position: absolute;
+}
+.spinning-preloader-container > .spinning-preloader-elements:before {
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-top-color: #da222b;
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
+}
+.spinning-preloader-container > .spinning-preloader-elements:after {
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border-top-color: #f6dc74;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+.spinning-preloader-container.complete {
+  opacity: 0;
+  display: none;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotateZ(0);
+    transform: rotateZ(0);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotateZ(0);
+    transform: rotateZ(0);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}

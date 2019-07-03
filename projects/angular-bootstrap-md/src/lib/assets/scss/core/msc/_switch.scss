@@ -1,0 +1,123 @@
+// Switch free
+.bs-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  input {
+    display: none;
+    &:checked {
+      + .slider {
+        background-color: #2196f3;
+        &:before {
+          transform: translateX(26px);
+        }
+      }
+    }
+    &:focus {
+      + .slider {
+        box-shadow: 0 0 1px #2196f3;
+      }
+    }
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    &:before {
+      position: absolute;
+      content: '';
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+    }
+    &.round {
+      border-radius: 34px;
+      &:before {
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+// Switch
+.switch label {
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    opacity: 0;
+    @include switch-width-height(0, 0);
+
+    &:checked + .lever {
+      background-color: map-get($switch-colors, 'checked-lever-bg');
+    }
+
+    &:checked + .lever:after {
+      background-color: map-get($switch-colors, 'bg');
+      left: $switch-input-checkbox-checked-lever-after-left;
+    }
+
+    &:checked:not(:disabled) ~ .lever:active:after {
+      @include box-shadows(
+        $switch-lever-after-box-shadow-darker,
+        $switch-lever-after-box-shadow-transp
+      );
+    }
+
+    &:not(:disabled) ~ .lever:active:after {
+      @include box-shadows(
+        $switch-lever-after-box-shadow-darker,
+        $switch-lever-after-box-shadow-lighter
+      );
+    }
+
+    &:disabled + .lever {
+      cursor: default;
+    }
+
+    &:disabled + .lever:after,
+    &:disabled:checked + .lever:after {
+      background-color: $input-disabled-solid-color;
+    }
+  }
+
+  .lever {
+    content: '';
+    display: inline-block;
+    position: relative;
+    background-color: map-get($switch-colors, 'unchecked-lever-bg');
+    border-radius: $switch-lever-border-radius-small;
+    margin-right: $switch-lever-mr;
+    vertical-align: middle;
+    margin: $switch-lever-margin;
+    @include switch-width-height(2.5rem, 0.9375rem);
+    @include transition-main($switch-lever-after-transition-bg);
+
+    &:after {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      background-color: map-get($switch-colors, 'unchecked-bg');
+      border-radius: $switch-lever-after-border-radius-high;
+      left: $switch-lever-after-left;
+      top: $switch-lever-after-top;
+      @include box-shadows($switch-lever-after-box-shadow-darker);
+      @include switch-width-height(1.3125rem, 1.3125rem);
+      @include transition-main(
+        $switch-lever-after-transition-left,
+        $switch-lever-after-transition-bg,
+        $switch-lever-after-transition-box
+      );
+    }
+  }
+}

@@ -1,0 +1,8 @@
+<div
+  class="card"
+  [ngClass]="{ 'card-cascade': cascade, wider: wider, 'card-image': imageBackground }"
+  #card
+  [ngStyle]="{ 'background-image': imageBackground }"
+>
+  <ng-content></ng-content>
+</div>

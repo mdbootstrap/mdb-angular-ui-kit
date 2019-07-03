@@ -2,25 +2,25 @@
  * Public API Surface of ng-uikit-pro-standard-compile
  */
 // MDB Angular Free
-export * from './lib/badge/index';
-export * from './lib/breadcrumbs/index';
-export * from './lib/buttons/index';
-export * from './lib/cards/index';
-export * from './lib/carousel/index';
-export * from './lib/charts/index';
-export * from './lib/checkbox/index';
-export * from './lib/collapse/index';
-export * from './lib/dropdown/index';
-export * from './lib/icons/index';
-export * from './lib/input-utilities/index';
-export * from './lib/inputs/index';
-export * from './lib/modals/index';
-export * from './lib/navbars/index';
-export * from './lib/popover/index';
-export * from './lib/tables/index';
-export * from './lib/tooltip/index';
-export * from './lib/waves/index';
-export * from './lib/mdb-free.module';
+export * from './lib/free/badge/index';
+export * from './lib/free/breadcrumbs/index';
+export * from './lib/free/buttons/index';
+export * from './lib/free/cards/index';
+export * from './lib/free/carousel/index';
+export * from './lib/free/charts/index';
+export * from './lib/free/checkbox/index';
+export * from './lib/free/collapse/index';
+export * from './lib/free/dropdown/index';
+export * from './lib/free/icons/index';
+export * from './lib/free/input-utilities/index';
+export * from './lib/free/inputs/index';
+export * from './lib/free/modals/index';
+export * from './lib/free/navbars/index';
+export * from './lib/free/popover/index';
+export * from './lib/free/tables/index';
+export * from './lib/free/tooltip/index';
+export * from './lib/free/waves/index';
+export * from './lib/free/mdb-free.module';
 
 
 

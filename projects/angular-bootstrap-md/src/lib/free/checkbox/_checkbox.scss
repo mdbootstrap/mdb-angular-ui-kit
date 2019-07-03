@@ -1,0 +1,73 @@
+.form-check-label.label-before:before,
+.form-check-label.label-before:after {
+  top: 0 !important;
+  right: 0 !important;
+  left: auto !important;
+}
+
+.custom-control-label.label-before:before,
+.custom-control-label.label-before:after {
+  top: 0.25rem !important;
+  right: 0 !important;
+  left: auto !important;
+}
+
+.custom-control-label.label-before {
+  position: absolute;
+}
+
+.custom-control-inline .label-before {
+  position: relative;
+}
+
+.form-check-label.label-before {
+  padding-left: 0 !important;
+  padding-right: 35px;
+}
+
+.custom-control-label.label-before {
+  padding-left: 0 !important;
+  padding-right: 25px !important;
+}
+
+.form-check-input[type='checkbox']:checked + .label-before:before,
+label.btn input[type='checkbox']:checked + .label-before:before {
+  top: -4px !important;
+  right: 10px !important;
+  left: auto !important;
+}
+
+.form-check-input[type='checkbox']:indeterminate + .label-before:before,
+label.btn input[type='checkbox']:indeterminate + .label-before:before {
+  top: -11px !important;
+  right: 16px !important;
+  left: auto !important;
+}
+
+.form-check-input[type='checkbox'].filled-in + .label-before:before,
+label.btn input[type='checkbox'].filled-in + .label-before:before {
+  top: 0 !important;
+  right: 10px !important;
+  left: auto !important;
+}
+
+.form-check-input[type='checkbox'].filled-in:checked + .label-before:before,
+label.btn input[type='checkbox'].filled-in:checked + .label-before:before {
+  top: 0 !important;
+  right: 10px !important;
+  left: auto !important;
+}
+
+.form-check-input[type='checkbox'].filled-in + .label-before:after,
+label.btn input[type='checkbox'].filled-in + .label-before:after {
+  top: 0 !important;
+  left: auto !important;
+}
+
+.checkbox-rounded:after {
+  border-radius: 50% !important;
+}
+
+mdb-checkbox .form-check {
+  padding-left: 0 !important;
+}
