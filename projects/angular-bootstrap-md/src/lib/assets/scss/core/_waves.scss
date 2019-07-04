@@ -163,17 +163,3 @@ a {
     display: inline-block;
   }
 }
-
-//Angular styles
-mdb-tabset {
-  a {
-    &.waves-effect,
-    &.waves-light {
-      display: block;
-    }
-  }
-}
-
-.waves-effect {
-  z-index: 0;
-}

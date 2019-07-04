@@ -1,3 +1,78 @@
+8.0.0
+New version brings refactor in styles and few components. Check every change in 8.0.0 below.
+
+**MIGRATION INSTRUCTIONS:**
+You should definitely read the entire migration guide carefully and understandably before updating your application to the latest.
+
+**Most important changes in version 8.0.0:**
+
+* support for Angular 8 - new Angular version is now required in MDB Angular 8.0.0,
+* modular styles - components styles will be now loaded with thier modules, that means you can load only the styles you need in your application (some of the styles still remain global as they are not part of any component),
+* some bug fixes and new features.
+
+**Fixes:**
+
+* Fluid modal - the modal will no longer overwrite padding-right styles on the body element,
+* Fixed button - resolved problem with ExpressionChangedAfterItHasBeenCheckedError error,
+* Dynamic modal - resolved problem with focus trap (other elements on the page should no longer be focusable if the modal is displayed),
+* Autocompleter - resolved problem with click event on the clear button,
+* Autocompleter - resolved problem with blocked events in autocompleter dropdown (it should be possible to add events to mdb-option components and other custom elements that are displayed in completer dropdown),
+* Stepper - removed automatic mode change from horizontal to vertical on smaller screens. The stepper mode will be changed only if [vertical]value change,
+* Dropdown - resolved problem with visibility of dropdown menu when it was opened from element with mdbTooltipdirective.
+
+**New Features:**
+
+* Steppers - added new [stepChange] output which will be fired on every step change,
+* Autocompleter - added Control Value Accessor to completer input (that should resolve problems wit valueChange in reactive forms).
+* Material Select - added ChangeDetectionStrategy.OnPush from default to the Material Select dropdown.
+
+**Docs:**
+
+All code examples have been updated to work correctly in Angular 8 projects. Due to the changes in styles modularity, there may be slight differences when it comes to overwritting component styles. We also reviewed the documentation and removed minor errors like typos and old, unused code.
+
+* Autocompleter - changed the code of the examples to make it shorter and more readable.
+
+7.5.4
+New version brings some bug fixes and new features. Check every change in 7.5.4 below.
+
+**Fixes:**
+
+* Select label with prefilled value 0 won't break lifting up label element,
+* Select will now be properly aligned with other material inputs,
+* Material Select will now close it's dropdown while clicking outside of it on iOS,
+* visibleOptions in Material Select will now work again when select was opened for the first time,
+* Carousel won't throw classList is undefined anymore,
+* Datepicker won't throw document is undefined while SSR no more,
+* Datepicker will now allow to use Font Awesome 5 Pro with css,
+* Datepicker will now format date properly while using patchValue and JS date format,
+* Toast with changed opacity won't blink anymore,
+* Resolved problems with access specificators on fullTemplateTypeCheck mode,
+* Color Picker won't throw erorrs when destroying it's instance,
+* Sidenav with routerLink will now open active links after reload while using HashLocationStrategy.
+
+**New Features:**
+
+* Material Select - Added new input - [outline] which will allow to use outline input type,
+* Multi Select - Added new input - [outline] which will allow to use outline input type,
+* Material Select - added ChangeDetectionStrategy.OnPush from default to the Material Select dropdown,
+* Autocomplete - Added new output which will emit value after clicking in clear button,
+* Table Editor plugin - added behavior to highlight table editor row when editing row,
+* Table Pagination - added two new ofKeyword, dashKeyword inputs which allow to overwrite default text in Table Pagination,
+* Accordion - added new (animationStateChange) event which will be fired after accordion animation end,
+* Cards - added ChangeDetectionStrategy.OnPush from default to the Cards components,
+* Sortable plugin - added new [disabledDragElements]="[]" input which allow to determine, on which elements sortable effect should be disabled.
+* Chat plugin - added new chat example - Small Chat,
+* E-commerce components - added new example - Shopping Cart.
+
+**Docs:**
+
+* Navbars - resolved problem with dropdown alignment on mobile screen,
+* Material Select - added missing inputs and outputs to the Material Select API docs.
+
+**Other:**
+
+* Resolved vulnerability problems on four repositories: MDB Free, MDB Admin Free, MDB Pro, MDB Admin Pro.
+
 7.5.3
 New version brings some bug fixes and new features. Check every change in 7.5.3 below.
 

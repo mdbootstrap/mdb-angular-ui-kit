@@ -169,6 +169,11 @@
   color: $white-base;
 }
 
+// Gradient buttons
+@each $name, $val in $gradients {
+  @include make-gradient-button($name, $val);
+}
+
 // Angular styles
 
 .btn {
