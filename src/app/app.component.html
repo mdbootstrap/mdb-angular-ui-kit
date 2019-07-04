@@ -1,12 +1,43 @@
-<!-- Start your project here-->
-<div style="height: 100vh">
-  <div class="flex-center flex-column">
-    <h1 class="animated fadeIn mb-4">Material Design for Bootstrap (Angular)</h1>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
 
-    <h5 class="animated fadeIn mb-3">Thank you for using our product. We're glad you're with us.</h5>
-    <h6 class="animated fadeIn mb-3">Start browsing <a href="https://mdbootstrap.com/angular">documentation</a>.</h6>
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#">Navbar</a></mdb-navbar-brand>
 
-    <p class="animated fadeIn text-muted">MDB Team</p>
-  </div>
-</div>
-<!-- /Start your project here-->
+    <!-- Collapsible content -->
+    <links>
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto custom-nav">
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect >About<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item page-scroll">
+                <a class="nav-link waves-light" mdbWavesEffect >Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect >Support</a>
+            </li>
+            <li class="nav-item btn-group" dropdown>
+                <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light"
+                   mdbWavesEffect>Products </a>
+                <div class="dropdown-menu dropdown-primary dropdown-menu-xl-right" role="menu">
+                    <a class="dropdown-item" >Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+        <!-- Links -->
+
+        <!-- Search form -->
+        <form class="form-inline waves-light" mdbWavesEffect>
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            </div>
+        </form>
+    </links>
+    <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

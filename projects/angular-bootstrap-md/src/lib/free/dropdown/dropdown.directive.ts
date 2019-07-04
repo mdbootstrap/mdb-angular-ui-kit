@@ -205,7 +205,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     this._state.isOpenChange.subscribe(() => {
       setTimeout(() => {
-        const dropdownContainer = this._elementRef.nativeElement.lastElementChild;
+        const dropdownContainer = this._elementRef.nativeElement.querySelector('.dropdown-menu');
         const left = dropdownContainer.getBoundingClientRect().left;
 
         if (
@@ -230,10 +230,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this.isOpen || this.isDisabled) {
       return;
     }
-
     // material and dropup dropdown animation
     // const parent = this._elementRef.nativeElement.classList;
-    const container = this._elementRef.nativeElement.lastElementChild;
+    const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
 
     setTimeout(() => {
       container.classList.add('fadeInDropdown');
@@ -262,7 +261,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           content: dropdownMenu.templateRef,
           placement: _placement,
         });
-
       this._state.isOpenChange.emit(true);
     });
   }
@@ -277,7 +275,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     const parent = this._elementRef.nativeElement.classList;
-    const container = this._elementRef.nativeElement.lastElementChild;
+    const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
 
     if (parent.value === 'dropdown open show' || parent.value === 'btn-group dropup open show') {
       container.classList.remove('fadeInDropdown');

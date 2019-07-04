@@ -167,14 +167,14 @@ $md-card-font-size: 0.9rem !default;
 $md-card-text-color: #747373 !default;
 
 // Images
-$image-path: '../../img' !default;
+$image-path: '../img' !default;
 $avatar-img-max-width: 100px !default;
 
 // Carousels
 $carousel-control-icon-width: 2.25rem !default;
 $carousel-control-icon-height: $carousel-control-icon-width !default;
-$carousel-control-prev-icon: url(../../img/svg/arrow_left.svg) !default;
-$carousel-control-next-icon: url(../../img/svg/arrow_right.svg) !default;
+$carousel-control-prev-icon: url('../../img/svg/arrow_left.svg') !default;
+$carousel-control-next-icon: url('../../img/svg/arrow_right.svg') !default;
 $carousel-indicators-width: 0.625rem !default;
 $carousel-indicators-height: $carousel-indicators-width !default;
 $carousel-indicators-border-radius: $border-radius-circle !default;
