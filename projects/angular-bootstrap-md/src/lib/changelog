@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 8.0.0
 New version brings refactor in styles and few components. Check every change in 8.0.0 below.
 
@@ -34,7 +32,6 @@ All code examples have been updated to work correctly in Angular 8 projects. Due
 
 * Autocompleter - changed the code of the examples to make it shorter and more readable.
 
->>>>>>> 887703fd75091ab1099fbb41c7f04c54d7fce75c
 7.5.4
 New version brings some bug fixes and new features. Check every change in 7.5.4 below.
 
