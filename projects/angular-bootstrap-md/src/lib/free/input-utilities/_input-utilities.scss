@@ -1,0 +1,15 @@
+.error-message {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: 0.8rem;
+  color: $input-error-color;
+}
+
+.success-message {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: 0.8rem;
+  color: $input-success-color;
+}

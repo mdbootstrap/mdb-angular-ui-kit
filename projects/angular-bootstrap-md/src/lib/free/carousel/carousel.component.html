@@ -1,0 +1,57 @@
+<div
+  tabindex="0"
+  (swipeleft)="swipe($event.type)"
+  (swiperight)="swipe($event.type)"
+  (mouseenter)="pause()"
+  (mouseleave)="play()"
+  (mouseup)="play()"
+  class="carousel {{ class }} {{ type }}"
+>
+  <div class="controls-top" *ngIf="slides.length > 1 && !checkNavigation() && isControls">
+    <a
+      mdbBtn
+      floating="true"
+      [class.disabled]="activeSlide === 0 && noWrap"
+      (click)="previousSlide()"
+      ><i class="fas fa-chevron-left"></i
+    ></a>
+    <a mdbBtn floating="true" (click)="nextSlide()" [class.disabled]="isLast(activeSlide) && noWrap"
+      ><i class="fas fa-chevron-right"></i
+    ></a>
+  </div>
+  <ol class="carousel-indicators" *ngIf="slides.length > 1 && checkDots() && isControls">
+    <li
+      *ngFor="let slidez of slides; let i = index"
+      [class.active]="slidez.active === true"
+      (click)="selectSlide(i)"
+    ></li>
+  </ol>
+  <ol class="carousel-indicators" *ngIf="slides.length > 1 && !checkDots() && isControls">
+    <li
+      *ngFor="let slidez of slides; let i = index"
+      [class.active]="slidez.active === true"
+      (click)="selectSlide(i)"
+    >
+      <img class="d-block w-100 img-fluid" src="{{ getImg(slidez) }}" />
+    </li>
+  </ol>
+  <div class="carousel-inner"><ng-content></ng-content></div>
+  <a
+    class="carousel-control-prev"
+    [class.disabled]="activeSlide === 0 && noWrap"
+    (click)="previousSlide()"
+    *ngIf="slides.length > 1 && checkNavigation() && isControls"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a
+    class="carousel-control-next"
+    (click)="nextSlide()"
+    [class.disabled]="isLast(activeSlide) && noWrap"
+    *ngIf="slides.length > 1 && checkNavigation() && isControls"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

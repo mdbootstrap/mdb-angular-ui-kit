@@ -1,0 +1,24 @@
+.flex-column {
+  .nav-item a {
+    width: 100%;
+    margin: 0;
+    color: #495057;
+    margin-bottom: -1px;
+  }
+
+  .active a {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff !important;
+  }
+
+  .list-group-item {
+    border-radius: 0;
+  }
+}
+
+.flex-column.list-group {
+  .nav-link {
+    padding: 0 !important;
+  }
+}

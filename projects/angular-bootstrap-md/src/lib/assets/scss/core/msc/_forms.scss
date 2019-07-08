@@ -1,0 +1,868 @@
+// Forms basic
+// Input + label wrapper styles
+.md-form {
+  // Text inputs
+  input[type='text'],
+  input[type='password'],
+  input[type='email'],
+  input[type='url'],
+  input[type='time'],
+  input[type='date'],
+  input[type='datetime-local'],
+  input[type='tel'],
+  input[type='number'],
+  input[type='search-md'],
+  input[type='search'],
+  textarea.md-textarea {
+    // General Styles
+    transition: $input-transition;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid $input-border-color;
+    border-radius: 0;
+    box-sizing: content-box;
+    background-color: transparent;
+
+    // Focused input style
+    &:focus:not([readonly]) {
+      box-shadow: 0 1px 0 0 $input-md-focus-color;
+      border-bottom: 1px solid $input-md-focus-color;
+
+      // Focused label style
+      + label {
+        color: $input-md-focus-color;
+      }
+    }
+
+    // Form message shared styles
+    + label:after {
+      content: '';
+      position: absolute;
+      top: $input-label-after-top;
+      display: block;
+      opacity: 0;
+      transition: $input-label-after-transition;
+    }
+
+    // Valid input style
+    &.valid,
+    &:focus.valid {
+      border-bottom: 1px solid $input-success-color;
+      box-shadow: 0 1px 0 0 $input-success-color;
+    }
+
+    &.valid + label:after,
+    &:focus.valid + label:after {
+      content: attr(data-success);
+      color: $input-success-color;
+      opacity: 1;
+    }
+
+    // Invalid input style
+    &.invalid,
+    &:focus.invalid {
+      border-bottom: 1px solid $input-error-color;
+      box-shadow: 0 1px 0 0 $input-error-color;
+    }
+
+    &.invalid + label:after,
+    &:focus.invalid + label:after {
+      content: attr(data-error);
+      color: $input-error-color;
+      opacity: 1;
+    }
+
+    &.form-control.valid + label:after,
+    &.form-control:focus.valid + label:after {
+      top: $input-label-valid-top;
+    }
+
+    &.form-control.invalid + label:after,
+    &.form-control:focus.invalid + label:after {
+      top: $input-label-invalid-top;
+    }
+
+    &.form-control-lg.valid + label:after,
+    &.form-control-lg:focus.valid + label:after {
+      top: $input-label-valid-top-lg;
+    }
+
+    &.form-control-lg.invalid + label:after,
+    &.form-control-lg:focus.invalid + label:after {
+      top: $input-label-invalid-top-lg;
+    }
+
+    &.form-control-sm.valid + label:after,
+    &.form-control-sm:focus.valid + label:after {
+      top: $input-label-valid-top-sm;
+    }
+
+    &.form-control-sm.invalid + label:after,
+    &.form-control-sm:focus.invalid + label:after {
+      top: $input-label-invalid-top-sm;
+    }
+  }
+
+  > input[type='date']:not(.browser-default) + label {
+    transform: translateY(-27px) scale(0.8);
+    transform-origin: 0 0;
+  }
+
+  > input[type]:-webkit-autofill:not(.browser-default):not([type='search']) + label,
+  > input[type='time']:not(.browser-default) + label {
+    transform: translateY(-25px);
+    transform-origin: 0 0;
+    font-size: 0.8rem;
+  }
+
+  .was-validated {
+    input[type='text'] {
+      &:valid {
+        + label {
+          color: $input-success-color !important;
+        }
+      }
+
+      &:invalid {
+        + label {
+          color: $input-error-color !important;
+        }
+      }
+    }
+
+    .form-control {
+      &:valid:focus {
+        box-shadow: 0 1px 0 0 $input-success-color !important;
+      }
+
+      &:valid {
+        border-color: $input-success-color !important;
+      }
+
+      &:invalid:focus {
+        box-shadow: 0 1px 0 0 $input-error-color !important;
+      }
+
+      &:invalid {
+        border-color: $input-error-color !important;
+      }
+    }
+  }
+
+  // Input with label
+  .form-control {
+    margin: 0 0 $input-form-control-margin-bottom 0;
+    border-radius: 0;
+    padding: $input-form-control-padding-top 0 $input-form-control-padding-bottom 0;
+    // background-image: none;
+    background-color: transparent;
+    height: auto;
+
+    &:focus {
+      box-shadow: none;
+      // background: transparent;
+    }
+
+    &:disabled,
+    &[readonly] {
+      border-bottom: 1px solid $grey-lighten-1;
+      background-color: transparent;
+    }
+
+    &.is-valid {
+      border-color: $input-success-color;
+
+      &:focus {
+        border-color: $input-success-color !important;
+        box-shadow: 0 1px 0 0 $input-success-color !important;
+      }
+    }
+
+    &.is-invalid {
+      border-color: $input-error-color;
+
+      &:focus {
+        box-shadow: 0 1px 0 0 $input-error-color !important;
+        border-color: $input-error-color !important;
+      }
+    }
+
+    &.is-valid,
+    &.is-invalid {
+      background-position: center right !important;
+    }
+  }
+
+  @include make-input(
+    $input-validate-mb,
+    $input-label-font-size,
+    $input-label-active-font-size,
+    $input-prefix-top,
+    $input-prefix-font-size,
+    $input-prefix-margin-left,
+    $input-prefix-width,
+    $input-form-text-ml
+  );
+  position: relative;
+  margin-top: $input-md-form-margin-top;
+  margin-bottom: $input-md-form-margin-bottom;
+
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    transition: transform 0.2s ease-out, color 0.2s ease-out;
+    transform-origin: 0% 100%;
+    transform: translateY(12px);
+    cursor: text;
+    color: $input-label-color;
+
+    &.active {
+      transform: translateY(-14px) scale(0.8);
+    }
+  }
+
+  .prefix {
+    position: absolute;
+    transition: $input-prefix-transition;
+
+    &.active {
+      color: $input-md-focus-color;
+    }
+  }
+
+  &.form-lg {
+    @include make-input(
+      $input-validate-mb-lg,
+      $input-label-font-size-lg,
+      $input-label-active-font-size-lg,
+      $input-prefix-top-lg,
+      $input-prefix-font-size-lg,
+      $input-prefix-margin-left-lg,
+      $input-prefix-width-lg,
+      $input-form-text-ml-lg
+    );
+  }
+
+  &.form-sm {
+    @include make-input(
+      $input-validate-mb-sm,
+      $input-label-font-size-sm,
+      $input-label-active-font-size-sm,
+      $input-prefix-top-sm,
+      $input-prefix-font-size-sm,
+      $input-prefix-margin-left-sm,
+      $input-prefix-width-sm,
+      $input-form-text-ml-sm
+    );
+  }
+
+  // Textarea
+  textarea {
+    &.md-textarea {
+      overflow-y: hidden;
+      padding: $textarea-padding 0;
+      resize: none;
+    }
+
+    &.md-textarea-auto {
+      padding: 0;
+      padding-top: $textarea-padding;
+    }
+
+    // Label color for textarea
+    ~ label {
+      &.active {
+        color: $input-md-focus-color;
+      }
+    }
+  }
+
+  &.md-outline {
+    position: relative;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='url'],
+    input[type='time'],
+    input[type='date'],
+    input[type='datetime-local'],
+    input[type='tel'],
+    input[type='number'],
+    input[type='search-md'],
+    input[type='search'],
+    textarea.md-textarea {
+      // General Styles
+      transition: all 0.3s;
+      outline: none;
+      box-shadow: none;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      background-color: transparent;
+      box-sizing: border-box;
+
+      // Focused input style
+      &:focus:not([readonly]) {
+        border-color: #4285f4;
+        box-shadow: inset 0px 0px 0px 1px #4285f4;
+
+        // Focused label style
+        + label {
+          color: #4285f4;
+        }
+      }
+
+      // Valid input style
+      &.valid,
+      &:focus.valid {
+        border-color: $input-success-color;
+        box-shadow: inset 0px 0px 0px 1px $input-success-color;
+      }
+
+      &:focus:not([readonly]).valid + label,
+      &.valid + label:after,
+      &:focus.valid + label:after {
+        content: attr(data-success);
+        color: $input-success-color;
+        opacity: 1;
+      }
+
+      // Invalid input style
+      &.invalid,
+      &:focus.invalid {
+        border-color: $input-error-color;
+        box-shadow: inset 0px 0px 0px 1px $input-error-color;
+      }
+
+      &:focus:not([readonly]).invalid + label,
+      &.invalid + label:after,
+      &:focus.invalid + label:after {
+        content: attr(data-error);
+        color: $input-error-color;
+        opacity: 1;
+      }
+
+      &.form-control.valid + label:after,
+      &.form-control:focus.valid + label:after {
+        top: 2.75rem;
+        left: 0;
+        position: absolute;
+      }
+
+      &.form-control.invalid + label:after,
+      &.form-control:focus.invalid + label:after {
+        top: 2.75rem;
+        left: 0;
+        position: absolute;
+      }
+    }
+
+    > input[type]:-webkit-autofill:not(.browser-default):not([type='search']) + label,
+    > input[type='time']:not(.browser-default) + label {
+      transform: translateY(-9px) scale(0.8);
+      transform-origin: 0 0;
+      background: #fff;
+      font-weight: 500;
+      padding-right: 5px;
+      padding-left: 5px;
+      font-size: 11px;
+      left: 8px;
+    }
+
+    > input[type]:-webkit-autofill:not(.browser-default):not([type='search']) + label.active,
+    > input[type='time']:not(.browser-default) + label.active {
+      transform: translateY(-9px) scale(0.8);
+      transform-origin: 0 0;
+    }
+
+    @-webkit-keyframes autofill {
+      to {
+        color: #495057;
+        background: transparent;
+      }
+    }
+
+    @keyframes autofill {
+      to {
+        color: #495057;
+        background: transparent;
+      }
+    }
+
+    input:-webkit-autofill {
+      -webkit-animation-name: autofill;
+      animation-name: autofill;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    .form-control {
+      padding: 0.375rem 0.75rem;
+    }
+
+    label {
+      font-size: 1rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding-left: 10px;
+      transition: transform 0.2s ease-out, color 0.2s ease-out;
+      transform-origin: 0% 100%;
+      transform: translateY(9px);
+      cursor: text;
+      color: #757575;
+
+      &.active {
+        transform: translateY(-13px) scale(0.8);
+        background: #fff;
+        font-weight: 500;
+        padding-right: 5px;
+        padding-left: 5px;
+        left: 8px;
+      }
+    }
+
+    &.form-lg {
+      .form-control {
+        &.form-control-lg {
+          padding: 0.5rem 0.725rem;
+        }
+      }
+
+      label {
+        font-size: 1.25rem;
+        transform: translateY(10px);
+
+        &.active {
+          font-size: 1.1rem;
+          transform: translateY(-14px) scale(0.8);
+        }
+      }
+
+      .prefix {
+        top: 0.65rem;
+        font-size: 25px;
+
+        ~ input,
+        ~ textarea {
+          margin-left: 2.2rem;
+          width: calc(100% - 2.2rem);
+        }
+
+        ~ label {
+          margin-left: 2.2rem;
+        }
+
+        ~ .form-text {
+          margin-left: 2.3rem;
+        }
+      }
+    }
+
+    &.form-sm {
+      .form-control {
+        &.form-control-sm {
+          padding: 0.25rem 0.625rem;
+        }
+      }
+
+      label {
+        font-size: 0.8rem;
+        transform: translateY(8px);
+
+        &.active {
+          font-size: 0.85rem;
+          transform: translateY(-12px) scale(0.8);
+        }
+      }
+
+      .prefix {
+        top: 0.5rem;
+        font-size: 15px;
+
+        ~ input,
+        ~ textarea {
+          margin-left: 1.6rem;
+          width: calc(100% - 1.6rem);
+        }
+
+        ~ label {
+          margin-left: 1.6rem;
+        }
+
+        ~ .form-text {
+          margin-left: 1.7rem;
+        }
+      }
+    }
+
+    .prefix {
+      position: absolute;
+      transition: color 0.2s;
+
+      &:focus {
+        color: #4285f4;
+      }
+    }
+
+    .prefix {
+      top: 0.6rem;
+      font-size: 20px;
+
+      ~ input,
+      ~ textarea {
+        margin-left: 2rem;
+        width: calc(100% - 2rem);
+      }
+
+      ~ label {
+        margin-left: 2rem;
+      }
+
+      ~ .form-text {
+        margin-left: 2.1rem;
+      }
+    }
+
+    .character-counter {
+      margin-top: -0.5rem;
+    }
+  }
+
+  &.md-bg {
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='url'],
+    input[type='time'],
+    input[type='date'],
+    input[type='datetime-local'],
+    input[type='tel'],
+    input[type='number'],
+    input[type='search-md'],
+    input[type='search'],
+    textarea.md-textarea {
+      &:focus:not([readonly]) {
+        box-shadow: none;
+        border-bottom: none;
+      }
+
+      box-sizing: border-box;
+      padding: 10px 5px;
+      border: 0;
+      border-top-left-radius: 0.3rem;
+      border-top-right-radius: 0.3rem;
+      background: #f5f5f5 no-repeat;
+      background-image: linear-gradient(to bottom, $input-md-focus-color, $input-md-focus-color),
+        linear-gradient(to bottom, $input-border-color, $input-border-color);
+      background-size: 0 2px, 100% 1px;
+      background-position: 50% 100%, 50% 100%;
+      transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+
+      &:focus {
+        background-color: #dcdcdc;
+        background-size: 100% 2px, 100% 1px;
+        outline: none;
+      }
+    }
+
+    > input[type='date']:not(.browser-default) + label {
+      transform: translateY(-12px) scale(0.8);
+      transform-origin: 0 0;
+    }
+
+    > input[type]:-webkit-autofill:not(.browser-default):not([type='search']) + label,
+    > input[type='time']:not(.browser-default) + label {
+      transform: translateY(-12px);
+      transform-origin: 0 0;
+      font-size: 0.8rem;
+    }
+
+    .form-control {
+      padding: 1.1rem 0.7rem 0.4rem !important;
+    }
+
+    label {
+      top: 0;
+      padding-left: 0.7rem;
+      font-size: 1rem;
+      transition: transform 0.2s ease-out, color 0.2s ease-out;
+      transform-origin: 0% 100%;
+      transform: translateY(13px);
+
+      &.active {
+        transform: translateY(-3px) scale(0.8);
+        font-weight: 500;
+        padding-left: 0.75rem;
+      }
+    }
+
+    &.form-lg {
+      label {
+        transform: translateY(16px);
+
+        &.active {
+          transform: translateY(-4px) scale(0.8);
+        }
+      }
+    }
+
+    &.form-sm {
+      label {
+        transform: translateY(11px);
+
+        &.active {
+          transform: translateY(-2px) scale(0.8);
+        }
+      }
+    }
+  }
+}
+
+.md-form .form-control.is-invalid,
+.was-validated .md-form .form-control:invalid {
+  padding-right: 0;
+}
+
+.md-form .form-control.is-valid,
+.was-validated .md-form .form-control:valid {
+  padding-right: 0;
+}
+
+.needs-validation .md-form label {
+  left: 0.3rem;
+}
+
+// Custom fille input browser support
+@each $lang, $text in $custom-mdb-file-text {
+  .custom-file-input {
+    &:lang(#{$lang}) {
+      & ~ .custom-file-label {
+        &::after {
+          content: $text;
+        }
+      }
+    }
+  }
+}
+
+//input disabled
+.disabled {
+  cursor: not-allowed !important;
+}
+
+//input counter
+.counter-danger {
+  border-bottom: 1px solid $input-error-color !important;
+  box-shadow: 0 1px 0 0 $input-error-color !important;
+}
+
+input:focus ~ .chars {
+  float: right;
+  clear: both;
+  display: block;
+}
+
+textarea:focus ~ .chars {
+  float: right;
+  clear: both;
+  display: block;
+}
+
+.md-form label {
+  left: 0;
+}
+
+//active styles for input label
+.md-form label.active {
+  color: #757575;
+}
+
+//inputs validation
+.counter-success {
+  border-bottom: 1px solid $input-success-color !important;
+  box-shadow: 0 1px 0 0 $input-success-color !important;
+}
+
+.inputVal {
+  font-size: 0.8rem;
+  position: absolute;
+}
+
+.modal-body .md-form .prefix ~ .text-success,
+.modal-body .md-form .prefix ~ .text-danger {
+  left: 2.5rem;
+}
+
+.md-form .prefix ~ .text-success,
+.md-form .prefix ~ .text-danger {
+  left: 2.5rem;
+}
+
+.md-form .prefix ~ .error-message,
+.md-form .prefix ~ .success-message {
+  left: 2.5rem;
+}
+
+mdb-tab .md-form .prefix ~ .inputVal {
+  left: 2rem;
+}
+
+input.counter-danger ~ span.text-danger {
+  visibility: visible;
+}
+
+input.counter-success ~ span.text-success {
+  visibility: visible;
+}
+
+.md-form textarea.md-textarea {
+  overflow-y: auto !important;
+}
+
+.md-outline input.form-control.validate-success.ng-valid.ng-dirty,
+.md-outline input.form-control.validate-success.ng-valid.ng-touched,
+.md-outline.form-submitted input.form-control.validate-success.ng-valid {
+  border-color: $input-success-color !important;
+  box-shadow: inset 0 0 0 1px $input-success-color !important;
+}
+
+.md-outline input.form-control.validate-success.ng-valid.ng-dirty + label,
+.md-outline input.form-control.validate-success.ng-valid.ng-touched + label,
+.md-outline.form-submitted input.form-control.validate-success.ng-valid + label {
+  color: inherit !important;
+  font-weight: normal !important;
+}
+
+.md-outline input.form-control.validate-error.ng-invalid.ng-touched,
+.md-outline input.form-control.validate-error.ng-invalid.ng-dirty,
+.md-outline.form-submitted input.form-control.validate-error.ng-invalid {
+  border-color: $input-error-color !important;
+  box-shadow: inset 0 0 0 1px $input-error-color !important;
+}
+
+.md-outline input.form-control.validate-error.ng-invalid.ng-touched + label,
+.md-outline input.form-control.validate-error.ng-invalid.ng-dirty + label,
+.md-outline.form-submitted input.form-control.validate-error.ng-invalid + label {
+  color: inherit !important;
+  font-weight: normal !important;
+}
+
+.md-outline .md-textarea.validate-success.ng-valid {
+  border-color: $input-success-color !important;
+  box-shadow: inset 0 0 0 1px $input-success-color !important;
+}
+
+.md-outline .md-textarea.validate-success.ng-valid + label {
+  color: inherit !important;
+  font-weight: normal !important;
+}
+
+.md-outline .md-textarea.validate-error.ng-invalid.ng-touched,
+.md-outline .md-textarea.validate-error.ng-invalid.ng-dirty,
+.md-outline .form-submitted .md-textarea.validate-error.ng-invalid {
+  border-color: $input-error-color !important;
+  box-shadow: inset 0 0 0 1px $input-error-color !important;
+}
+
+.md-outline .md-textarea.validate-error.ng-invalid.ng-touched + label,
+.md-outline .md-textarea.validate-error.ng-invalid.ng-dirty + label,
+.md-outline .form-submitted .md-textarea.validate-error.ng-invalid + label {
+  color: inherit !important;
+  font-weight: normal !important;
+}
+
+input.form-control.validate-success.ng-valid.ng-dirty,
+input.form-control.validate-success.ng-valid.ng-touched,
+.form-submitted input.form-control.validate-success.ng-valid {
+  border-bottom: 1px solid $input-success-color !important;
+  box-shadow: 0 1px 0 0 $input-success-color !important;
+}
+
+input.form-control.validate-success.ng-valid.ng-dirty + label,
+input.form-control.validate-success.ng-valid.ng-touched + label,
+.form-submitted input.form-control.validate-success.ng-valid + label {
+  color: $input-success-color !important;
+}
+
+input.form-control.validate-error.ng-invalid.ng-touched,
+input.form-control.validate-error.ng-invalid.ng-dirty,
+.form-submitted input.form-control.validate-error.ng-invalid {
+  border-bottom: 1px solid $input-error-color !important;
+  box-shadow: 0 1px 0 0 $input-error-color !important;
+}
+
+input.form-control.validate-error.ng-invalid.ng-touched + label,
+input.form-control.validate-error.ng-invalid.ng-dirty + label,
+.form-submitted input.form-control.validate-error.ng-invalid + label {
+  color: $input-error-color !important;
+}
+
+.md-textarea.validate-success.ng-valid {
+  border-bottom: 1px solid $input-success-color !important;
+  box-shadow: 0 1px 0 0 $input-success-color !important;
+}
+.md-textarea.validate-success.ng-valid + label {
+  color: $input-success-color !important;
+}
+
+.md-textarea.validate-error.ng-invalid.ng-touched,
+.md-textarea.validate-error.ng-invalid.ng-dirty,
+.form-submitted .md-textarea.validate-error.ng-invalid {
+  border-bottom: 1px solid $input-error-color !important;
+  box-shadow: 0 1px 0 0 $input-error-color !important;
+}
+
+.md-textarea.validate-error.ng-invalid.ng-touched + label,
+.md-textarea.validate-error.ng-invalid.ng-dirty + label,
+.form-submitted .md-textarea.validate-error.ng-invalid + label {
+  color: $input-error-color !important;
+}
+
+.md-form {
+  margin-bottom: 2rem;
+}
+
+.error-message {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: 0.8rem;
+  color: $input-error-color;
+}
+
+.success-message {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: 0.8rem;
+  color: $input-success-color;
+}
+
+// Input groups
+// Input group
+.md-form {
+  &.input-group {
+    label {
+      top: 0;
+      margin-bottom: 0;
+    }
+    .input-group-text {
+      background-color: $input-group-text-bgc;
+      &.md-addon {
+        border: none;
+        background-color: transparent;
+        font-weight: 500;
+      }
+    }
+    .form-control {
+      margin: 0;
+      padding: $input-group-form-control-py $input-group-form-control-px;
+    }
+  }
+}

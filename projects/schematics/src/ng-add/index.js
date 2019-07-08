@@ -9,7 +9,8 @@ function addPackageJsonDependencies() {
             { type: schematics_utilities_1.NodeDependencyType.Default, version: '^2.7.2', name: 'chart.js' },
             { type: schematics_utilities_1.NodeDependencyType.Default, version: '^2.7.40', name: '@types/chart.js' },
             { type: schematics_utilities_1.NodeDependencyType.Default, version: '~5.6.3', name: '@fortawesome/fontawesome-free' },
-            { type: schematics_utilities_1.NodeDependencyType.Default, version: '~2.0.8', name: 'hammerjs' }
+            { type: schematics_utilities_1.NodeDependencyType.Default, version: '~2.0.8', name: 'hammerjs' },
+            { type: schematics_utilities_1.NodeDependencyType.Default, version: '~3.7.2', name: 'animate.css' },
         ];
         dependencies.forEach(dependency => {
             schematics_utilities_1.addPackageJsonDependency(host, dependency);
@@ -59,8 +60,9 @@ function addStylesAndScriptsToAngularJson(options) {
             { name: 'fontawesome-solid', path: 'node_modules/@fortawesome/fontawesome-free/scss/solid.scss' },
             { name: 'fontawesome-regular', path: 'node_modules/@fortawesome/fontawesome-free/scss/regular.scss' },
             { name: 'fontawesome-brand', path: 'node_modules/@fortawesome/fontawesome-free/scss/brands.scss' },
-            { name: 'bootstrap', path: 'node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss' },
-            { name: 'mdb', path: 'node_modules/angular-bootstrap-md/scss/mdb-free.scss' }
+            { name: 'bootstrap', path: 'node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss' },
+            { name: 'mdb', path: 'node_modules/angular-bootstrap-md/assets/scss/mdb.scss' },
+            { name: 'animate.css', path: 'node_modules/animate.css/animate.css' },
         ];
         const additionalScripts = [
             { name: 'chart.js', path: 'node_modules/chart.js/dist/Chart.js' },

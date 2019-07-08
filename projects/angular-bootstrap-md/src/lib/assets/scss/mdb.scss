@@ -1,0 +1,50 @@
+/*!
+ * Material Design for Bootstrap 4
+ * Version: MDB FREE 4.8.4
+ *
+ *
+ * Copyright: Material Design for Bootstrap
+ * https://mdbootstrap.com/
+ *
+ * Read the license: https://mdbootstrap.com/general/license/
+ *
+ *
+ * Documentation: https://mdbootstrap.com/
+ *
+ * Getting started: https://mdbootstrap.com/docs/jquery/getting-started/download/
+ *
+ * Tutorials: https://mdbootstrap.com/education/bootstrap/
+ *
+ * Templates: https://mdbootstrap.com/templates/
+ *
+ * Support: https://mdbootstrap.com/support/
+ *
+ * Contact: office@mdbootstrap.com
+ *
+ * Attribution: Animate CSS, Twitter Bootstrap, Materialize CSS, Normalize CSS, Waves JS, WOW JS, Toastr, Chart.js
+ *
+ */
+
+@charset "UTF-8";
+
+// Bootstrap
+@import 'core/bootstrap/functions';
+@import 'core/bootstrap/variables';
+@import 'core/bootstrap/rfs';
+// CORE
+@import 'core/mixins';
+@import 'core/colors';
+@import 'core/variables';
+@import 'core/global';
+@import 'core/helpers';
+@import 'core/typography';
+@import 'core/masks';
+@import 'core/waves';
+@import 'core/msc/forms';
+
+
+
+@import 'core/directives';
+// MSC
+@import 'msc';
+
