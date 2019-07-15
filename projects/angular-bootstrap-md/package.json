@@ -1,12 +1,12 @@
 {
   "name": "angular-bootstrap-md",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "schematics": "./schematics/collection.json",
   "files": [
     "**/*"
   ],
   "peerDependencies": {
-    "@angular/common": "^7.0.0",
-    "@angular/core": "^7.0.0"
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
   }
 }
