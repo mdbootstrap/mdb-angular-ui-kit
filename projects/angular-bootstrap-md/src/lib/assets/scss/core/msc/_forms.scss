@@ -244,6 +244,12 @@
       $input-prefix-width-lg,
       $input-form-text-ml-lg
     );
+
+    // fix(validation): resolved problem with alignment of mdb-error and mdb-success components
+    mdb-error,
+    mdb-success {
+      left: 3rem !important;
+    }
   }
 
   &.form-sm {
@@ -257,6 +263,12 @@
       $input-prefix-width-sm,
       $input-form-text-ml-sm
     );
+
+    // fix(validation): resolved problem with alignment of mdb-error and mdb-success components
+    mdb-error,
+    mdb-success {
+      left: 2rem !important;
+    }
   }
 
   // Textarea
@@ -273,11 +285,11 @@
     }
 
     // Label color for textarea
-    ~ label {
+    /*     ~ label {
       &.active {
         color: $input-md-focus-color;
       }
-    }
+    } */
   }
 
   &.md-outline {

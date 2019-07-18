@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import { ClassName, DISMISS_REASONS, ModalOptions, TransitionDurations } from './modal.options';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
-import { msConfig } from './modalService.config';
 import { Utils } from '../utils';
+import { MDBModalService } from './modal.service';
 
 @Component({
   selector: 'mdb-modal-container',
@@ -25,7 +25,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   @HostBinding('role') role = 'dialog';
   @HostBinding('class.modal') modal = true;
 
-  private mdbModalService: any;
+  private mdbModalService: MDBModalService;
 
   public config: ModalOptions;
   public isShown = false;
@@ -62,7 +62,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   public constructor(options: ModalOptions, _element: ElementRef, private _renderer: Renderer2) {
-    this.mdbModalService = msConfig.serviceInstance;
+    // this.mdbModalService = msConfig.serviceInstance;
 
     this._element = _element;
     this.config = Object.assign({}, options);
@@ -149,6 +149,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this._element.nativeElement,
       isBs3() ? ClassName.IN : ClassName.SHOW
     );
+
+    // fix(modal): resolved problem with not pausing iframe/video when closing modal
+    const iframeElements = Array.from(this._element.nativeElement.querySelectorAll('iframe'));
+    const videoElements = Array.from(this._element.nativeElement.querySelectorAll('video'));
+
+    iframeElements.forEach((iframe: HTMLIFrameElement) => {
+      const srcAttribute: any = iframe.getAttribute('src');
+      this._renderer.setAttribute(iframe, 'src', srcAttribute);
+    });
+
+    videoElements.forEach((video: HTMLVideoElement) => {
+      video.pause();
+    });
 
     setTimeout(
       () => {

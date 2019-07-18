@@ -170,6 +170,13 @@ export class PopoverDirective implements OnInit, OnDestroy {
     }
   }
 
+  // fix(popover): popover with outsideClick='true' will now close after clicking in document on iPad Safari
+  @HostListener('document:touchstart', ['$event']) onTouchStart(event: any) {
+    if (this.outsideClick && !event.target.classList.contains('popover-body')) {
+      this.hide();
+    }
+  }
+
   public ngOnInit(): any {
     this._popover.listen({
       triggers: this.triggers,

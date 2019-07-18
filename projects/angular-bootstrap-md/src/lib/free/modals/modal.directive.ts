@@ -217,6 +217,19 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       event.preventDefault();
     }
 
+    // fix(modal): resolved problem with not pausing iframe/video when closing modal
+    const iframeElements = Array.from(this._element.nativeElement.querySelectorAll('iframe'));
+    const videoElements = Array.from(this._element.nativeElement.querySelectorAll('video'));
+
+    iframeElements.forEach((iframe: HTMLIFrameElement) => {
+      const srcAttribute: any = iframe.getAttribute('src');
+      this._renderer.setAttribute(iframe, 'src', srcAttribute);
+    });
+
+    videoElements.forEach((video: HTMLVideoElement) => {
+      video.pause();
+    });
+
     this.onHide.emit(this);
     this.close.emit(this);
 

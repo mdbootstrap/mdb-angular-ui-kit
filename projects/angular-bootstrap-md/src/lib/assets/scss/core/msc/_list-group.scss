@@ -22,3 +22,9 @@
     padding: 0 !important;
   }
 }
+
+.list-group-item-action {
+  @include hover-focus {
+    z-index: unset; // Fix for situation when in Safari list group item is invisible on hover
+  }
+}

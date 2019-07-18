@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   HostBinding,
@@ -18,7 +19,7 @@ import { Observable, Subject } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
 })
 // tslint:disable-next-line:component-class-suffix
-export class MdbTableDirective implements OnInit {
+export class MdbTableDirective implements OnInit, AfterViewInit {
   @Input()
   @HostBinding('class.table-striped')
   striped: boolean;
@@ -65,8 +66,7 @@ export class MdbTableDirective implements OnInit {
   }
 
   rowRemoved(): Observable<boolean> {
-    // tslint:disable-next-line: deprecation
-    const rowRemoved = Observable.create((observer: any) => {
+    const rowRemoved = new Observable<boolean>((observer: any) => {
       observer.next(true);
     });
     return rowRemoved;
@@ -93,10 +93,10 @@ export class MdbTableDirective implements OnInit {
     return this.getDataSource().filter((obj: Array<any>) => {
       return Object.keys(obj).some((key: any) => {
         if (obj[key]) {
-          return obj[key]
-            .toString()
+          // Fix(tableSearch): table search will now able to filter through nested data
+          return JSON.stringify(obj)
             .toLowerCase()
-            .includes(searchKey);
+            .includes(searchKey) as any;
         }
       });
     });
@@ -113,8 +113,7 @@ export class MdbTableDirective implements OnInit {
   }
 
   searchDataObservable(searchKey: any): Observable<any> {
-    // tslint:disable-next-line: deprecation
-    const observable = Observable.create((observer: any) => {
+    const observable = new Observable((observer: any) => {
       observer.next(this.searchLocalDataBy(searchKey));
     });
     return observable;
@@ -122,20 +121,26 @@ export class MdbTableDirective implements OnInit {
 
   ngOnInit() {
     this.renderer.addClass(this.el.nativeElement, 'table');
+  }
 
+  ngAfterViewInit() {
+    // Fix(stickyHeader): resolved problem with not working stickyHeader="true" on Chrome
     if (this.stickyHeader) {
       const tableHead = this.el.nativeElement.querySelector('thead');
-      this.renderer.addClass(tableHead, 'sticky-top');
-      if (this.stickyHeaderBgColor) {
-        this.renderer.setStyle(tableHead, 'background-color', this.stickyHeaderBgColor);
-      } else {
-        this.renderer.setStyle(tableHead, 'background-color', '#f2f2f2');
-      }
-      if (this.stickyHeaderTextColor) {
-        this.renderer.setStyle(tableHead, 'color', this.stickyHeaderTextColor);
-      } else {
-        this.renderer.setStyle(tableHead, 'color', '#000000');
-      }
+
+      Array.from(tableHead.firstElementChild.children).forEach((child: any) => {
+        this.renderer.addClass(child, 'sticky-top');
+        if (this.stickyHeaderBgColor) {
+          this.renderer.setStyle(child, 'background-color', this.stickyHeaderBgColor);
+        } else {
+          this.renderer.setStyle(child, 'background-color', '#f2f2f2');
+        }
+        if (this.stickyHeaderTextColor) {
+          this.renderer.setStyle(child, 'color', this.stickyHeaderTextColor);
+        } else {
+          this.renderer.setStyle(child, 'color', '#000000');
+        }
+      });
     }
   }
 }

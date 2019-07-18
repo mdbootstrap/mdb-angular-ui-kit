@@ -14,11 +14,6 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
 @Component({
   selector: 'mdb-tooltip-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // tslint:disable-next-line:no-host-metadata-property
-  host: {
-    '[class]':
-      '"tooltip-fadeIn tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
-  },
   template: `
     <div #tooltipArrow class="tooltip-arrow arrow"></div>
     <div #tooltipInner class="tooltip-inner">
@@ -38,6 +33,10 @@ export class TooltipContainerComponent implements AfterViewInit {
   @ViewChild('tooltipInner', { static: true }) tooltipInner: ElementRef;
   @ViewChild('tooltipArrow', { static: true }) tooltipArrow: ElementRef;
   @HostBinding('class.show') show = !this.isBs3;
+  @HostBinding('class')
+  get tooltipClasses() {
+    return `tooltip-fadeIn tooltip in tooltip-${this.placement} bs-tooltip-${this.placement} ${this.placement} ${this.containerClass}`;
+  }
 
   public get isBs3(): boolean {
     return isBs3();

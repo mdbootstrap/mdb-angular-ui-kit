@@ -6,8 +6,11 @@ import {
   Output,
   EventEmitter,
   HostListener,
+  ContentChildren,
+  QueryList,
 } from '@angular/core';
 import { state, style, trigger, transition, animate } from '@angular/animations';
+import { FixedButtonCaptionDirective } from '../buttons/fixed-caption.directive';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -23,6 +26,7 @@ import { state, style, trigger, transition, animate } from '@angular/animations'
   ],
 })
 export class CollapseComponent implements OnInit {
+  @ContentChildren(FixedButtonCaptionDirective) captions: QueryList<FixedButtonCaptionDirective>;
   @Input() isCollapsed = true;
 
   @Output() showBsCollapse: EventEmitter<any> = new EventEmitter();
@@ -45,11 +49,16 @@ export class CollapseComponent implements OnInit {
         this.shownBsCollapse.emit(this);
         this.expanded.emit(this);
         this.overflow = 'visible';
+        this.showCaptions();
       } else {
         this.hiddenBsCollapse.emit(this);
         this.collapsed.emit(this);
       }
     }, 0);
+  }
+
+  showCaptions() {
+    this.captions.forEach((caption: FixedButtonCaptionDirective) => caption.showCaption());
   }
 
   toggle() {

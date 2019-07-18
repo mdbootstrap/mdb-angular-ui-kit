@@ -22,8 +22,7 @@ export class MdbTableService {
   }
 
   rowRemoved(): Observable<boolean> {
-    // tslint:disable-next-line: deprecation
-    const rowRemoved = Observable.create((observer: any) => {
+    const rowRemoved = new Observable<boolean>((observer: any) => {
       observer.next(true);
     });
     return rowRemoved;
@@ -70,8 +69,7 @@ export class MdbTableService {
   }
 
   searchDataObservable(searchKey: any): Observable<any> {
-    // tslint:disable-next-line: deprecation
-    const observable = Observable.create((observer: any) => {
+    const observable = new Observable((observer: any) => {
       observer.next(this.searchLocalDataBy(searchKey));
     });
     return observable;

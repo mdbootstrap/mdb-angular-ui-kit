@@ -118,8 +118,7 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
   }
 
   searchTextObs(): Observable<any> {
-    // tslint:disable-next-line: deprecation
-    const observable = Observable.create((observer: any) => {
+    const observable = new Observable((observer: any) => {
       observer.next(this.searchText);
     });
     return observable;
@@ -187,17 +186,28 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
     this.nextPageClick.emit({ first: this.firstItemIndex, last: this.lastItemIndex });
   }
 
+  firstPage() {
+    this.activePageNumber = 1;
+    this.calculateFirstItemIndex();
+    this.calculateLastItemIndex();
+  }
+
+  lastPage() {
+    const lastPage = Math.round(this.allItemsLength / this.maxVisibleItems);
+    this.activePageNumber = lastPage;
+    this.calculateFirstItemIndex();
+    this.calculateLastItemIndex();
+  }
+
   nextPageObservable(): Observable<any> {
-    // tslint:disable-next-line: deprecation
-    const obs = Observable.create((observer: any) => {
+    const obs = new Observable((observer: any) => {
       observer.next(this.firstItemIndex);
     });
     return obs;
   }
 
   previousPageObservable(): Observable<any> {
-    // tslint:disable-next-line: deprecation
-    const obs = Observable.create((observer: any) => {
+    const obs = new Observable((observer: any) => {
       observer.next(this.lastVisibleItemIndex);
     });
     return obs;

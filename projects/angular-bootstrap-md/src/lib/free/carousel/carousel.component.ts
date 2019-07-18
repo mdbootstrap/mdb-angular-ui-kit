@@ -128,6 +128,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.play();
     this._slidesList.changes.subscribe((slidesList: QueryList<SlideComponent>) => {
       this._slidesList = slidesList;
       setTimeout(() => {

@@ -1,4 +1,3 @@
-xxxxxxxxxxx
 <p align="center">
   <a href="https://mdbootstrap.com/docs/angular/">
     <img width="500" src="https://mdbootstrap.com/img/Marketing/general/logo/huge/mdb-angular.png">

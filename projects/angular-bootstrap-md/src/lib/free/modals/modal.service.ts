@@ -20,7 +20,6 @@ import {
   ModalOptions,
   TransitionDurations,
 } from './modal.options';
-import { msConfig } from './modalService.config';
 
 @Injectable()
 export class MDBModalService {
@@ -57,7 +56,6 @@ export class MDBModalService {
       this.renderer
     );
     this.renderer = rendererFactory.createRenderer(null, null);
-    msConfig.serviceInstance = this;
   }
 
   /** Shows a modal */
@@ -119,7 +117,12 @@ export class MDBModalService {
       .provide({ provide: MDBModalRef, useValue: mdbModalRef })
       .attach(ModalContainerComponent)
       .to('body')
-      .show({ content, isAnimated: this.config.animated, data: this.config.data });
+      .show({
+        content,
+        isAnimated: this.config.animated,
+        data: this.config.data,
+        mdbModalService: this,
+      });
     modalContainerRef.instance.focusModalElement();
     modalContainerRef.instance.level = this.getModalsCount();
     mdbModalRef.hide = () => {
@@ -166,10 +169,6 @@ export class MDBModalService {
       window.getComputedStyle(document.body).getPropertyValue('padding-right') || '0',
       10
     );
-
-    if (this.isBodyOverflowing) {
-      document.body.style.paddingRight = `${this.originalBodyPadding + this.scrollbarWidth}px`;
-    }
   }
 
   private resetScrollbar(): void {

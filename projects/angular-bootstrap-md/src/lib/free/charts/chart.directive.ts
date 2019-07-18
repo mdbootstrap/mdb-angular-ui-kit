@@ -7,7 +7,7 @@ import {
   Input,
   Output,
   SimpleChanges,
-  Directive
+  Directive,
 } from '@angular/core';
 
 import { Color } from './color.service';
@@ -15,7 +15,7 @@ import { Colors } from './colors.service';
 
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Inject } from '@angular/core';
-// import * as Chart from 'chart.js';
+
 declare var Chart: any;
 @Directive({ selector: 'canvas[mdbChart]', exportAs: 'mdb-base-chart' })
 export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors {
@@ -31,14 +31,14 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
     [70, 191, 189],
     [253, 180, 92],
     [148, 159, 177],
-    [77, 83, 96]
+    [77, 83, 96],
   ];
 
   @Input() public data: number[] | any[];
   @Input() public datasets: any[];
   @Input() public labels: Array<any> = [];
   @Input() public options: any = {
-    legend: { display: false }
+    legend: { display: false },
   };
   @Input() public chartType: string;
   @Input() public colors: Array<any>;
@@ -73,7 +73,10 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
   public ngOnChanges(changes: SimpleChanges): void {
     if (this.initFlag) {
       // Check if the changes are in the data or datasets
-      if ((changes.hasOwnProperty('data') || changes.hasOwnProperty('datasets')) && !changes.hasOwnProperty('labels')) {
+      if (
+        (changes.hasOwnProperty('data') || changes.hasOwnProperty('datasets')) &&
+        !changes.hasOwnProperty('labels')
+      ) {
         if (changes['data']) {
           this.updateChartData(changes['data'].currentValue);
         } else {
@@ -95,7 +98,7 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
     }
   }
 
-  public getChartBuilder(ctx: any/*, data:Array<any>, options:any*/): any {
+  public getChartBuilder(ctx: any /*, data:Array<any>, options:any*/): any {
     const datasets: any = this.getDatasets();
 
     const options: any = Object.assign({}, this.options);
@@ -122,12 +125,22 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
       type: this.chartType,
       data: {
         labels: this.labels,
-        datasets: datasets
+        datasets: datasets,
       },
-      options: options
+      options: options,
     };
 
     return new Chart(ctx, opts);
+  }
+
+  // feature(chart): added getPointDataAtEvent which will return clicked chart's point data
+  public getPointDataAtEvent(event: any) {
+    if (event.active.length > 0) {
+      const datasetIndex = event.active[0]._datasetIndex;
+      const dataIndex = event.active[0]._index;
+      const dataObject = this.datasets[datasetIndex].data[dataIndex];
+      return dataObject;
+    }
   }
 
   private updateChartData(newDataValues: number[] | any[]): void {
@@ -147,7 +160,7 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
   private getDatasets(): any {
     let datasets: any = void 0;
     // in case if datasets is not provided, but data is present
-    if (!this.datasets || !this.datasets.length && (this.data && this.data.length)) {
+    if (!this.datasets || (!this.datasets.length && (this.data && this.data.length))) {
       if (Array.isArray(this.data[0])) {
         datasets = (this.data as Array<number[]>).map((data: number[], index: number) => {
           return { data, label: this.labels[index] || `Label ${index}` };
@@ -157,18 +170,16 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
       }
     }
 
-    if (this.datasets && this.datasets.length ||
-      (datasets && datasets.length)) {
-      datasets = (this.datasets || datasets)
-        .map((elm: number, index: number) => {
-          const newElm: any = Object.assign({}, elm);
-          if (this.colors && this.colors.length) {
-            Object.assign(newElm, this.colors[index]);
-          } else {
-            Object.assign(newElm, getColors(this.chartType, index, newElm.data.length));
-          }
-          return newElm;
-        });
+    if ((this.datasets && this.datasets.length) || (datasets && datasets.length)) {
+      datasets = (this.datasets || datasets).map((elm: number, index: number) => {
+        const newElm: any = Object.assign({}, elm);
+        if (this.colors && this.colors.length) {
+          Object.assign(newElm, this.colors[index]);
+        } else {
+          Object.assign(newElm, getColors(this.chartType, index, newElm.data.length));
+        }
+        return newElm;
+      });
     }
 
     if (!datasets) {
@@ -181,7 +192,7 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
 
   private refresh(): any {
     this.ngOnDestroy();
-    this.chart = this.getChartBuilder(this.ctx/*, data, this.options*/);
+    this.chart = this.getChartBuilder(this.ctx /*, data, this.options*/);
   }
 }
 
@@ -200,7 +211,7 @@ function formatLineColor(colors: Array<number>): Color {
     pointBackgroundColor: rgba(colors, 1),
     pointBorderColor: '#fff',
     pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: rgba(colors, 0.8)
+    pointHoverBorderColor: rgba(colors, 0.8),
   };
 }
 
@@ -209,7 +220,7 @@ function formatBarColor(colors: Array<number>): Color {
     backgroundColor: rgba(colors, 0.6),
     borderColor: rgba(colors, 1),
     hoverBackgroundColor: rgba(colors, 0.8),
-    hoverBorderColor: rgba(colors, 1)
+    hoverBorderColor: rgba(colors, 1),
   };
 }
 
@@ -220,7 +231,7 @@ function formatPieColors(colors: Array<number[]>): any {
     pointBackgroundColor: colors.map((color: number[]) => rgba(color, 1)),
     pointBorderColor: colors.map(() => '#fff'),
     pointHoverBackgroundColor: colors.map((color: number[]) => rgba(color, 1)),
-    pointHoverBorderColor: colors.map((color: number[]) => rgba(color, 1))
+    pointHoverBorderColor: colors.map((color: number[]) => rgba(color, 1)),
   };
 }
 
@@ -229,7 +240,7 @@ function formatPolarAreaColors(colors: Array<number[]>): Color {
     backgroundColor: colors.map((color: number[]) => rgba(color, 0.6)),
     borderColor: colors.map((color: number[]) => rgba(color, 1)),
     hoverBackgroundColor: colors.map((color: number[]) => rgba(color, 0.8)),
-    hoverBorderColor: colors.map((color: number[]) => rgba(color, 1))
+    hoverBorderColor: colors.map((color: number[]) => rgba(color, 1)),
   };
 }
 
@@ -276,5 +287,3 @@ function getColors(chartType: string, index: number, count: number): any {
   }
   return generateColor(index);
 }
-
-
