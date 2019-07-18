@@ -1,9 +1,9 @@
 .carousel {
   .carousel-control-prev-icon {
-    background-image: url('../img/svg/arrow_left.svg') !important;
+    background-image: $carousel-control-prev-icon !important;
   }
 
   .carousel-control-next-icon {
-    background-image: url('../img/svg/arrow_right.svg') !important;
+    background-image: $carousel-control-next-icon !important;
   }
 }
