@@ -1,3 +1,62 @@
+8.1.1
+In version 8.1.1 we added some minor fixes and updated documentation pages. Check what changed below:
+
+**Fixes:**
+
+* Lightbox - resolved problem with styles (hover, cursor, margin),
+* Lightbox - resolved problems with back button in mobile browsers,
+* Ligthbox/Carousel - resolved problem with paths to images,
+* Autocompleter - resolved problem with dropdown position when its rendered on top, it should no longer cover the input
+* Autocompleter - resolved problem with closing the dropdown with hide() method,
+* Fixed button - removed unnecessary right and left styles,
+* Select - removed display: none style from standard HTML select,
+* Inline date picker - resolved problem with closing dropdown when using multiple date pickers in the same view, the dropdown should now close automatically when another date picker is opened
+* Inline date picker - resolved problem with previous/next buttons styles,
+* Credit card directive - resolved problem with formatting of the Diners card number,
+* Rounded buttons - resolved problem with styles when using rounded buttons and mdb-calendar plugin in the same view,
+* Range slider - resolved problem with value updates in reactive forms.
+
+**Docs:**
+
+* Cards - updated code responsible for rendering image overlay,
+* Progressbar - updated API section of the component.
+
+8.1.0
+In version 8.1.0 we added some new features and bug fixes. Check what changed below:
+
+**Fixes:**
+
+* Dynamic modal - resolved problem with backdrop in lazy loaded modules (it should no longer remain on screen after navigating to a different module),
+* Carousel - resolved problem with auto slide,
+* Sticky header - resolved problem with stickyHeader="true" in Chrome browser,
+* Table search - resolved problem with filtering for nested data,
+* Vertical list group (mdb-tabset) - resolved problem with display on hover in Safari browser,
+* Time picker and Date picker - resolved problem with different input position in these form controls,
+* Popover - resolved problem with outsideClick in Safari browser (ipad),
+* Accordion - resolved problem with alignment of indicator icon,
+* Accordion - resolved problem with OnPush change detection,
+* Register/login modal - resolved problem with alignment of mdb-success and mdb-error messages,
+* Video modal - resolved problem with not pausing video when closing modal,
+* Select - resolve problem with position of clear button,
+* Double navigation - resolved problem with missing margin-left and margin-right in dobule navigation layouts,
+* Textarea - resolved problem with active state of the label (it should no longer have blue color when it's not focused),
+* Fixed caption button - resolved problem with element[NATIVE_ADD_LISTENER] is not a function error.
+
+**New features:**
+
+* Table pagination - added new buttons for navigation to first and last page,
+* Charts - added new getPointDataAtEvent(event) for getting cursor position after click.
+
+**Docs:**
+
+* Migration guide - added information about cards and skins,
+* Sidenav - added live preview for slim sidenav,
+* Charts- added example on how to display values for each point of the graph,
+* Forms - updated example code with new validation method,
+* Validation - updated example code for onSubmit validation method,
+* Dynamic modal - added example on how to use output events,
+* Parallax - added additional information about the usage in Angular project.
+
 8.0.0
 New version brings refactor in styles and few components. Check every change in 8.0.0 below.
 

@@ -1,3 +1,26 @@
+8.1.1
+In version 8.1.1 we added some minor fixes and updated documentation pages. Check what changed below:
+
+**Fixes:**
+
+* Lightbox - resolved problem with styles (hover, cursor, margin),
+* Lightbox - resolved problems with back button in mobile browsers,
+* Ligthbox/Carousel - resolved problem with paths to images,
+* Autocompleter - resolved problem with dropdown position when its rendered on top, it should no longer cover the input
+* Autocompleter - resolved problem with closing the dropdown with hide() method,
+* Fixed button - removed unnecessary right and left styles,
+* Select - removed display: none style from standard HTML select,
+* Inline date picker - resolved problem with closing dropdown when using multiple date pickers in the same view, the dropdown should now close automatically when another date picker is opened
+* Inline date picker - resolved problem with previous/next buttons styles,
+* Credit card directive - resolved problem with formatting of the Diners card number,
+* Rounded buttons - resolved problem with styles when using rounded buttons and mdb-calendar plugin in the same view,
+* Range slider - resolved problem with value updates in reactive forms.
+
+**Docs:**
+
+* Cards - updated code responsible for rendering image overlay,
+* Progressbar - updated API section of the component.
+
 8.1.0
 In version 8.1.0 we added some new features and bug fixes. Check what changed below:
 
