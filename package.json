@@ -42,7 +42,7 @@
     "@angular-devkit/core": "^8.0.2",
     "@angular-devkit/schematics": "^8.0.2",
     "@angular/cli": "~8.0.2",
-    "@angular/compiler-cli": "^8.0.0",
+    "@angular/compiler-cli": "~8.1.2",
     "@angular/language-service": "~8.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
