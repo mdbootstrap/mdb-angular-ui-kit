@@ -10,6 +10,8 @@ import {
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject, timer } from 'rxjs';
@@ -35,6 +37,7 @@ export class MdbCheckboxChange {
   styleUrls: ['checkbox-module.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [CHECKBOX_VALUE_ACCESSOR],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements OnInit, OnChanges {
   @ViewChild('input', { static: true }) inputEl: any;
@@ -60,7 +63,7 @@ export class CheckboxComponent implements OnInit, OnChanges {
 
   private checkboxClicked = new Subject<boolean>();
 
-  constructor() {}
+  constructor(private _cdRef: ChangeDetectorRef) {}
 
   @HostListener('click', ['$event'])
   onLabelClick(event: any) {
@@ -100,6 +103,8 @@ export class CheckboxComponent implements OnInit, OnChanges {
     this.checked = !this.checked;
     this.indeterminate = false;
     this.onChange(this.checked);
+
+    this._cdRef.markForCheck();
   }
 
   onCheckboxClick(event: any) {

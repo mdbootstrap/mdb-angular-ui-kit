@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'mdb-breadcrumb',
-  templateUrl: './mdb-breadcrumb.component.html'
+  templateUrl: './mdb-breadcrumb.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MdbBreadcrumbComponent {
   @Input() customClass: string;

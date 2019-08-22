@@ -1,10 +1,9 @@
 // Dropdowns
-.dropdown {
-  .dropdown-menu {
-    .dropdown-item {
-      &:active {
-        background-color: $grey-darken-1;
-      }
+
+.dropdown-menu {
+  .dropdown-item {
+    &:active {
+      background-color: $grey-darken-1;
     }
   }
 }
@@ -22,24 +21,36 @@
   }
 }
 
-dropdown {
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    transform: translate3d(0px, 47px, 0px);
-    top: 0px;
-    left: 0px;
-    will-change: transform;
-  }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+
+  margin-top: 5px;
+  left: 0px;
+  will-change: transform;
 }
 
+.medium-dropdown {
+  transform: translate3d(0px, 36px, 0px) !important;
+}
+.small-dropdown {
+  transform: translate3d(5px, 34px, 0px) !important;
+}
+.large-dropdown {
+  transform: translate3d(5px, 57px, 0px) !important;
+}
+.btn-group {
+  > .dropdown-menu {
+    transform: translate3d(0px, 43px, 0px);
+  }
+}
 //dropup
 .dropup {
   // Different positioning for bottom up menu
-  .dropdown-menu {
+  > .dropdown-menu {
     display: none;
     // // position: absolute;
-    // transform: translate3d(117px, -165px, 0px);
+    transform: translate3d(117px, 0px, 0px) !important;
     // // top: 0px;
     // // left: 0px;
     will-change: transform;
@@ -59,16 +70,16 @@ dropdown {
 }
 
 //material dropdown
-.dropdown {
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    transform: translate3d(6px, 49px, 0px);
-    top: 0px;
-    left: 0px;
-    will-change: transform;
-  }
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  transform: translate3d(6px, 49px, 0px);
+  top: 0px;
+  left: 0px;
+  will-change: transform;
 }
+
 //material dropdown animation
 .dropdown.show {
   .dropdown-menu {

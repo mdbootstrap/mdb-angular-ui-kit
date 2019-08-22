@@ -1,9 +1,17 @@
-import { Component, Input, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {
+  Component,
+  Input,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { document } from './../utils/facade/browser';
 
 @Component({
   selector: 'mdb-icon',
   templateUrl: './icon.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MdbIconComponent implements OnInit {
   @Input() icon: string;

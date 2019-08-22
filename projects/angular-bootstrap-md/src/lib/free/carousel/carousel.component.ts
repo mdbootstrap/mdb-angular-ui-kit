@@ -14,6 +14,7 @@ import {
   QueryList,
   Renderer2,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { isBs3 } from '../utils/ng2-bootstrap-config';
@@ -35,6 +36,7 @@ export enum Direction {
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel-module.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarouselComponent implements OnDestroy, AfterViewInit {
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
@@ -170,10 +172,24 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   }
 
   public nextSlide(force: boolean = false) {
+    this.restartTimer();
+    // Start next slide, pause actual slide
+    const videoList = this.el.nativeElement.getElementsByTagName('video');
+    const direction = Direction.NEXT;
+    const indexEl = this.findNextSlideIndex(direction, force);
+    if (videoList.length > 0) {
+      // Check for video carousel
+      for (let i = 0; i < videoList.length; i++) {
+        if (i === indexEl) {
+          videoList[i].play();
+        } else {
+          videoList[i].pause();
+        }
+      }
+    }
     if (this.animation === 'slide') {
       this.pause();
-      const direction = Direction.NEXT;
-      this.slideAnimation(this.findNextSlideIndex(direction, force), direction);
+      this.slideAnimation(this.findNextSlideIndex(Direction.NEXT, force), Direction.NEXT);
       this.cdRef.markForCheck();
     } else if (this.animation === 'fade') {
       this.pause();
@@ -189,9 +205,24 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   }
 
   public previousSlide(force: boolean = false): void {
+    this.restartTimer();
+    // Start previous slide, pause actual slide
+    const videoList = this.el.nativeElement.getElementsByTagName('video');
+    const direction = Direction.PREV;
+    const indexel = this.findNextSlideIndex(direction, force);
+    if (videoList.length > 0) {
+      // Check for video carousel
+      for (let i = 0; i < videoList.length; i++) {
+        if (i === indexel) {
+          videoList[i].play();
+        } else {
+          videoList[i].pause();
+        }
+      }
+    }
+
     if (this.animation === 'slide') {
       this.pause();
-      const direction = Direction.PREV;
       this.slideAnimation(this.findNextSlideIndex(direction, force), direction);
       this.cdRef.markForCheck();
     } else if (this.animation === 'fade') {
@@ -326,6 +357,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     if (!this.isPlaying) {
       this.isPlaying = true;
       this.restartTimer();
+      this.cdRef.markForCheck();
     }
   }
 
@@ -333,6 +365,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     if (!this.noPause) {
       this.isPlaying = false;
       this.resetTimer();
+      this.cdRef.markForCheck();
     }
   }
 

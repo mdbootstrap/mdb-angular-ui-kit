@@ -6,6 +6,7 @@ import {
   OnInit,
   Renderer2,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 @Component({
@@ -13,6 +14,7 @@ import {
   templateUrl: './mdb-badge.component.html',
   styleUrls: ['./badge-module.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MDBBadgeComponent implements OnInit {
   @Input() @HostBinding('class.badge-default') default: boolean;

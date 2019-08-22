@@ -232,7 +232,17 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
     // material and dropup dropdown animation
     // const parent = this._elementRef.nativeElement.classList;
+    const button = this._elementRef.nativeElement.querySelector('.dropdown-toggle');
     const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
+    if (button.classList.contains('btn-sm')) {
+      container.classList.add('small-dropdown');
+    }
+    if (button.classList.contains('btn-md')) {
+      container.classList.add('medium-dropdown');
+    }
+    if (button.classList.contains('btn-lg')) {
+      container.classList.add('large-dropdown');
+    }
 
     setTimeout(() => {
       container.classList.add('fadeInDropdown');
@@ -274,24 +284,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       return;
     }
 
-    const parent = this._elementRef.nativeElement.classList;
+    // const parent = this._elementRef.nativeElement.classList;
     const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
+    // if (parent.value.includes('dropdown')) {
+    container.classList.remove('fadeInDropdown');
 
-    if (parent.value === 'dropdown open show' || parent.value === 'btn-group dropup open show') {
-      container.classList.remove('fadeInDropdown');
-
-      setTimeout(() => {
-        if (this._showInline) {
-          this._isInlineOpen = false;
-          this.onHidden.emit(true);
-          this.hidden.emit(true);
-        } else {
-          this._dropdown.hide();
-        }
-
-        this._state.isOpenChange.emit(false);
-      }, 560);
-    } else {
+    setTimeout(() => {
       if (this._showInline) {
         this._isInlineOpen = false;
         this.onHidden.emit(true);
@@ -301,7 +299,18 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       }
 
       this._state.isOpenChange.emit(false);
-    }
+    }, 560);
+    // } else {
+    //   if (this._showInline) {
+    //     this._isInlineOpen = false;
+    //     this.onHidden.emit(true);
+    //     this.hidden.emit(true);
+    //   } else {
+    //     this._dropdown.hide();
+    //   }
+
+    //   this._state.isOpenChange.emit(false);
+    // }
   }
 
   /**

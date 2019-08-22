@@ -1,4 +1,11 @@
-import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Injectable,
+  ElementRef,
+  RendererFactory2,
+  Inject,
+  PLATFORM_ID,
+  NgZone,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { positionElements } from './ng-positioning';
@@ -45,24 +52,30 @@ export class PositioningService {
   private update$$ = new Subject<null>();
   private positionElements = new Map();
 
-  constructor(rendererFactory: RendererFactory2, @Inject(PLATFORM_ID) platformId: number) {
+  constructor(
+    rendererFactory: RendererFactory2,
+    @Inject(PLATFORM_ID) platformId: number,
+    private _ngZone: NgZone
+  ) {
     if (isPlatformBrowser(platformId)) {
-      merge(
-        fromEvent(window, 'scroll'),
-        fromEvent(window, 'resize'),
-        // tslint:disable-next-line: deprecation
-        of(0, animationFrameScheduler),
-        this.update$$
-      ).subscribe(() => {
-        this.positionElements.forEach((positionElement: PositioningOptions) => {
-          positionElements(
-            _getHtmlElement(positionElement.target),
-            _getHtmlElement(positionElement.element),
-            positionElement.attachment,
-            positionElement.appendToBody,
-            this.options,
-            rendererFactory.createRenderer(null, null)
-          );
+      this._ngZone.runOutsideAngular(() => {
+        merge(
+          fromEvent(window, 'scroll'),
+          fromEvent(window, 'resize'),
+          // tslint:disable-next-line: deprecation
+          of(0, animationFrameScheduler),
+          this.update$$
+        ).subscribe(() => {
+          this.positionElements.forEach((positionElement: PositioningOptions) => {
+            positionElements(
+              _getHtmlElement(positionElement.target),
+              _getHtmlElement(positionElement.element),
+              positionElement.attachment,
+              positionElement.appendToBody,
+              this.options,
+              rendererFactory.createRenderer(null, null)
+            );
+          });
         });
       });
     }

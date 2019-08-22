@@ -8,6 +8,8 @@ import {
   HostListener,
   ContentChildren,
   QueryList,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { state, style, trigger, transition, animate } from '@angular/animations';
 import { FixedButtonCaptionDirective } from '../buttons/fixed-caption.directive';
@@ -24,6 +26,7 @@ import { FixedButtonCaptionDirective } from '../buttons/fixed-caption.directive'
       transition('expanded <=> collapsed', animate('500ms ease')),
     ]),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CollapseComponent implements OnInit {
   @ContentChildren(FixedButtonCaptionDirective) captions: QueryList<FixedButtonCaptionDirective>;
@@ -36,7 +39,7 @@ export class CollapseComponent implements OnInit {
   @Output() collapsed: EventEmitter<any> = new EventEmitter();
   @Output() expanded: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  constructor(private _cdRef: ChangeDetectorRef) {}
 
   @HostBinding('@expandBody') expandAnimationState: string;
   @HostBinding('style.overflow')
@@ -70,6 +73,7 @@ export class CollapseComponent implements OnInit {
     this.isCollapsed = false;
 
     this.showBsCollapse.emit(this);
+    this._cdRef.markForCheck();
   }
 
   hide() {
@@ -78,6 +82,7 @@ export class CollapseComponent implements OnInit {
     this.isCollapsed = true;
 
     this.hideBsCollapse.emit(this);
+    this._cdRef.markForCheck();
   }
 
   initializeCollapseState() {

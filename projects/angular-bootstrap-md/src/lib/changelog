@@ -1,3 +1,26 @@
+8.2.0
+In version 8.2.0 we resolved some problems with change detection and reduced number of unecessary change detection cycles caused by our components. These changes should positively affect the performance of applications that use MDB Angular.
+
+**Fixes:**
+
+* Credit card directive - changed limit of Diners card from 19 to 14,
+* Autocomplete - resolved problem with position of dropdown displayed above the completer input (it should now update correctly when number of displayed options change),
+* Date picker - resolved problem with label animation when click is detected directly on label text,
+* Date picker - resolved problem with display of default date when using locales other than 'en',
+* Carousel - resolved problem with video playing in the background even when slide is not active,
+* Select - resolved problem with long placeholder overlapping select input,
+* Toast - resolved problem with null check in show method,
+* Navbar - resolved problem with scroll in navbar dropdown when .fixed-top class is added,
+* Dropdown - resolved problem with fade out animation,
+* File upload plugin - resolved problem with resetting default file,
+* File upload plugin - resolved problem with 'No file choosen' message when default file is available.
+
+**New features:**
+
+* Autocomplete - added new (selected) output that is fired on selection change,
+* Accordion - added new [autoExpand] input that allow to disable auto expanding of accordion items in sidenav when active route is detected,
+* Table editor plugin - added sorting feature.
+
 8.1.1
 In version 8.1.1 we added some minor fixes and updated documentation pages. Check what changed below:
 

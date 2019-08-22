@@ -11,15 +11,21 @@ import {
   Renderer2,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  Inject,
+  NgZone,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, fromEvent } from 'rxjs';
 import { LinksComponent } from './links.component';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'mdb-navbar',
   templateUrl: 'navbar.component.html',
   styleUrls: ['./navbars-module.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements AfterViewInit, OnInit, AfterContentChecked {
   @Input() iconBackground: string | string[];
@@ -52,7 +58,13 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   @ViewChild('toggler', { static: false }) toggler: ElementRef;
   @ContentChild(LinksComponent, { static: false }) links: LinksComponent;
 
-  constructor(public renderer: Renderer2, private _navbarService: NavbarService) {
+  constructor(
+    public renderer: Renderer2,
+    private _navbarService: NavbarService,
+    private _cdRef: ChangeDetectorRef,
+    private _ngZone: NgZone,
+    @Inject(DOCUMENT) private _document: any
+  ) {
     // tslint:disable-next-line:max-line-length
     this.subscription = this._navbarService.getNavbarLinkClicks().subscribe(navbarLinkClicks => {
       this.closeNavbarOnClick(navbarLinkClicks);
@@ -78,6 +90,18 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
     }
   }
 
+  private _listenToScroll() {
+    this._ngZone.runOutsideAngular(() => {
+      fromEvent(this._document, 'scroll').subscribe(() => {
+        if (window.pageYOffset > this.scrollSensitivity) {
+          this.renderer.addClass(this.navbar.nativeElement, 'top-nav-collapse');
+        } else {
+          this.renderer.removeClass(this.navbar.nativeElement, 'top-nav-collapse');
+        }
+      });
+    });
+  }
+
   ngOnInit() {
     const isDoubleNav = this.SideClass.split(' ');
     if (isDoubleNav.indexOf('double-nav') !== -1) {
@@ -101,6 +125,10 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
     this.addTogglerIconClasses();
     if (this.scrollableNavbar) {
       this.renderer.addClass(this.el.nativeElement, 'collapsed-navbar-scroll');
+    }
+
+    if (this.navbar.nativeElement.classList.contains('scrolling-navbar')) {
+      this._listenToScroll();
     }
   }
 
@@ -130,6 +158,8 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
       this.collapse = true;
       this.showClass = true;
     }, this.duration);
+
+    this._cdRef.markForCheck();
   }
 
   hide() {
@@ -148,6 +178,8 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
         this.collapse = true;
       }, this.duration);
     }
+
+    this._cdRef.markForCheck();
   }
 
   get displayStyle() {
@@ -159,21 +191,21 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   }
 
   @HostListener('window:resize', ['$event']) onResize(event: any) {
-    let breakpoit = 0;
+    let breakpoint = 0;
 
     if (this.SideClass.includes('navbar-expand-xl')) {
-      breakpoit = 1200;
+      breakpoint = 1200;
     } else if (this.SideClass.includes('navbar-expand-lg')) {
-      breakpoit = 992;
+      breakpoint = 992;
     } else if (this.SideClass.includes('navbar-expand-md')) {
-      breakpoit = 768;
+      breakpoint = 768;
     } else if (this.SideClass.includes('navbar-expand-sm')) {
-      breakpoit = 576;
+      breakpoint = 576;
     } else {
-      breakpoit = event.target.innerWidth + 1;
+      breakpoint = event.target.innerWidth + 1;
     }
 
-    if (event.target.innerWidth < breakpoit) {
+    if (event.target.innerWidth < breakpoint) {
       if (!this.shown) {
         this.collapse = false;
         this.renderer.setStyle(this.el.nativeElement, 'height', '0px');
@@ -194,16 +226,6 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
     }
   }
 
-  @HostListener('document:scroll') onScroll() {
-    if (this.navbar.nativeElement.classList.contains('scrolling-navbar')) {
-      if (window.pageYOffset > this.scrollSensitivity) {
-        this.renderer.addClass(this.navbar.nativeElement, 'top-nav-collapse');
-      } else {
-        this.renderer.removeClass(this.navbar.nativeElement, 'top-nav-collapse');
-      }
-    }
-  }
-
   ngAfterContentChecked() {
     if (this.el.nativeElement.firstElementChild) {
       if (
@@ -216,5 +238,6 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
 
       this._itemsLength = this.el.nativeElement.firstElementChild.firstElementChild.children.length;
     }
+    this._cdRef.markForCheck();
   }
 }
