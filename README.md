@@ -5,7 +5,6 @@
 </p>
 
 <h1 align="center">Angular Bootstrap with Material Design</h1>
-
 <p align="center">
   Built with <b>Angular 8, Bootstrap 4 and TypeScript</b>. CLI version available. Absolutely no jQuery.
 </p>
@@ -134,8 +133,8 @@ rename /src/styles.css to styles.scss
 ```javascript
 "styles": [
     "node_modules/font-awesome/scss/font-awesome.scss",
-    "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-    "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+  	"node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+  	"node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
     "src/styles.scss"
 ],
 "scripts": [
