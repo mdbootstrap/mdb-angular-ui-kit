@@ -28,5 +28,26 @@ That's why we came up with standards below, following them will maximize the cha
 4. Use Gulp to minify your code after finishing
 5. Create clear titles and detailed descriptions for your Pull Requests
 
+## Submitting a Pull Request
+
+Before you submit your Pull Request (PR) consider the following guidelines:
+
+1. Search [GitHub](https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design/pulls) for an open or closed PR that relates to your submission. You don't want to duplicate effort.
+2. Fork the mdbootstrap/Angular-Bootstrap-with-Material-Design repo.
+3. Make your changes in a new git branch:
+
+    ```shell
+    git checkout -b your-branch-name master
+    ```
+4. Commit your changes using a descriptive commit message.
+5. Push your branch to GitHub
+    
+    ```shell
+    git push origin your-branch-name
+    ```
+6. In GitHub, send a pull request to `Angular-Bootstrap-with-Material-Design:dev`
+
+Thank you for your contribution!
+
 ## Questions
 If you're not sure about your ideas or you'd like to talk about them with our team before starting, write to: contact@mdbootstrap.com, and for every query regarding technical consultance open your case on [Support Forum](https://mdbootstrap.com/support/)
