@@ -421,6 +421,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       nextSlide.active = true;
       this.activeSlide = index;
     }
+    this.cdRef.markForCheck();
   }
 
   private restartTimer(): any {

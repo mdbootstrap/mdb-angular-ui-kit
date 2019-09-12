@@ -48,19 +48,33 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * Currently only supports "body".
    */
   @Input() container: string;
-
+  @Input()
+  dropup: boolean;
+  @Input()
+  dropupDefault = false;
   /**
    * This attribute indicates that the dropdown should be opened upwards
    */
   @HostBinding('class.dropup')
-  @Input()
-  dropup: boolean;
+  public get isDropup() {
+    if (this.dropup) {
+      this._isDropupDefault = false;
+      return this.dropup;
+    } else if (this.dropupDefault) {
+      this._isDropupDefault = true;
+      return this.dropupDefault;
+    } else if (this.dropupDefault && this.dropup) {
+      this._isDropupDefault = false;
+      return this.dropup;
+    }
+  }
 
   /**
    * Indicates that dropdown will be closed on item or document click,
    * and after pressing ESC
    */
-  @Input() set autoClose(value: boolean) {
+  @Input()
+  set autoClose(value: boolean) {
     if (typeof value === 'boolean') {
       this._state.autoClose = value;
     }
@@ -137,7 +151,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   _dropdown: ComponentLoader<BsDropdownContainerComponent>;
   _subscriptions: Subscription[] = [];
   _isInited = false;
-
+  _isDropupDefault: boolean;
   constructor(
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
@@ -232,18 +246,35 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
     // material and dropup dropdown animation
     // const parent = this._elementRef.nativeElement.classList;
-    const button = this._elementRef.nativeElement.querySelector('.dropdown-toggle');
+
+    const button = this._elementRef.nativeElement.children[0];
     const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
-    if (button.classList.contains('btn-sm')) {
-      container.classList.add('small-dropdown');
-    }
-    if (button.classList.contains('btn-md')) {
-      container.classList.add('medium-dropdown');
-    }
-    if (button.classList.contains('btn-lg')) {
-      container.classList.add('large-dropdown');
+
+    if (
+      container.parentNode.classList.contains('btn-group') &&
+      !container.parentNode.classList.contains('dropdown') &&
+      !this._isDropupDefault
+    ) {
+      container.parentNode.classList.add('dropdown');
     }
 
+    if (button.tagName !== 'BUTTON') {
+      if (button.tagName === 'A') {
+        container.classList.add('a-various-dropdown');
+      } else {
+        container.classList.add('various-dropdown');
+      }
+    } else {
+      if (button.classList.contains('btn-sm')) {
+        container.classList.add('small-dropdown');
+      }
+      if (button.classList.contains('btn-md')) {
+        container.classList.add('medium-dropdown');
+      }
+      if (button.classList.contains('btn-lg')) {
+        container.classList.add('large-dropdown');
+      }
+    }
     setTimeout(() => {
       container.classList.add('fadeInDropdown');
     }, 200);
@@ -257,8 +288,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
     this._state.dropdownMenu.then(dropdownMenu => {
       // check direction in which dropdown should be opened
-      const _dropup =
-        this.dropup === true || (typeof this.dropup !== 'undefined' && this.dropup !== false);
+      const _dropup = this.dropup === true || this.dropupDefault === true;
+
       this._state.direction = _dropup ? 'up' : 'down';
       const _placement = this.placement || (_dropup ? 'top left' : 'bottom left');
 

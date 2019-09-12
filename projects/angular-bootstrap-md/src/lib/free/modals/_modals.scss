@@ -954,6 +954,11 @@ body {
 
   // Modal background
 }
+.modal-dynamic > :first-child {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
 .side-modal.fade:not(.show) .modal-dialog {
   -webkit-transform: translate3d(25%, 0, 0);

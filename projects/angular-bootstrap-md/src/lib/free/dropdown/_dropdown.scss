@@ -29,7 +29,12 @@
   left: 0px;
   will-change: transform;
 }
-
+.various-dropdown {
+  transform: translate3d(0px, 21px, 0px) !important;
+}
+.a-various-dropdown {
+  transform: translate3d(0px, 29px, 0px) !important;
+}
 .medium-dropdown {
   transform: translate3d(0px, 36px, 0px) !important;
 }

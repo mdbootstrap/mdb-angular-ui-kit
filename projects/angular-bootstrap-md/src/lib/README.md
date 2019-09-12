@@ -128,14 +128,14 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 rename /src/styles.css to styles.scss
 
-- if you want to change styles in exisiting project you can use `ng set defaults.styleExt scss`
+- if you want to change styles in exisiting project you can use `ng config schematics.@schematics/angular:component.styleext scss`
 
 - add below lines to angular.json:
 ```javascript
 "styles": [
     "node_modules/font-awesome/scss/font-awesome.scss",
-    "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-    "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+    "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+    "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
     "src/styles.scss"
 ],
 "scripts": [

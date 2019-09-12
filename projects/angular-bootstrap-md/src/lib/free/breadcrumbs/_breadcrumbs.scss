@@ -1,6 +1,10 @@
 .breadcrumb-item {
+  cursor: pointer;
   &.active {
     color: #6c757d !important;
+    > .breadcrumb-item {
+      cursor: default;
+    }
   }
 }
 .light-font {
@@ -10,6 +14,9 @@
     }
     &.active {
       color: #cfd8dc !important;
+      > .breadcrumb-item {
+        cursor: default;
+      }
     }
   }
 }
@@ -21,6 +28,9 @@
     }
     &.active {
       color: #455a64 !important;
+      > .breadcrumb-item {
+        cursor: default;
+      }
     }
   }
 }

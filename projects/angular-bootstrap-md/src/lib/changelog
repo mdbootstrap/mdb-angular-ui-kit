@@ -1,3 +1,42 @@
+8.3.0
+In version 8.3.0 we added some fixes, new features and updated code in documentation pages. Check what changed below:
+
+**Fixes:**
+
+* Admin Pro Template - resolved problem with responsivity,
+* Flipping cards - resolved problem with animation,
+* Time picker - resolved problem with change detection when setting default value,
+* Time picker - component will now open on input focus, to disable this behavior set openOnFocus input to false,
+* Checkbox - resolved problem with position of validation message for longer text,
+* Radio buttons group - resolved problem with styles for rounded buttons,
+* Breadcrumbs - added cursor: pointer style for inactive elements,
+* File upload - resolved problem with uploading the same file multiple times in a row,
+* Sidenav - resolved problems with accordion items auto expand on route change,
+* Sidenav - reduced size of indicator arrow in accordion items and fixed its animation,
+* Modal - resolved problem with alignment of items in dynamic full height modal,
+* Select - resolved problem with styles on disabled state,
+* Toast - resolved problem with maxOpened option,
+* Carousel - resolved problem with displaying first slide when OnPush strategy is used in parent component,
+* Accordion - resolved problem with aria-expanded value,
+* Select - resolve problem with highlightColor and highlightTextColor options,
+* Autocompleter - dropdown will no longer be closed on input click.
+
+**New Features:**
+
+* Date picker - added possibility to add default date in JavaScript Date Object format. Component will also return date object if useDateObject option is set to true (default value is false)
+* Dropdown - added new dropupDefault input that allow to use dropup component with default Bootstrap styles,
+* Autocompleter - added new clear method that allow to reset displayed value,
+* Table - added new searchLocalDataByFields method that allow to filter result only in specific table columns,
+* Autocompleter - added new optionHeight input that allow to set height for the dropdown options,
+* Autocompleter - added new visibleOptions input that allow to change number of options visible in the dropdown,
+* Autocompleter - added new displayValue input that allow to specify option value that will be displayed in the input text field. This is useful in case where we want the value processed by the form control to be different from the displayed value (for example when value of the option is an object).
+
+**Docs:**
+      
+* Datatables - added example of master detail table
+* Charts - added examples of data formatting
+* Time picker - added validation example
+
 8.2.0
 In version 8.2.0 we resolved some problems with change detection and reduced number of unecessary change detection cycles caused by our components. These changes should positively affect the performance of applications that use MDB Angular.
 

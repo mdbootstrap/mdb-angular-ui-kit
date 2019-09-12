@@ -94,9 +94,22 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       return Object.keys(obj).some((key: any) => {
         if (obj[key]) {
           // Fix(tableSearch): table search will now able to filter through nested data
+
           return JSON.stringify(obj)
             .toLowerCase()
             .includes(searchKey) as any;
+        }
+      });
+    });
+  }
+
+  filterLocalDataByFields(searchKey: any, keys: string[]) {
+    return this.getDataSource().filter((obj: Array<any>) => {
+      return Object.keys(obj).some((key: any) => {
+        if (keys.includes(key)) {
+          if (obj[key].toLowerCase().includes(searchKey)) {
+            return obj[key];
+          }
         }
       });
     });
@@ -111,7 +124,18 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       return this.filterLocalDataBy(searchKey.toLowerCase());
     }
   }
+  searchLocalDataByFields(searchKey: any, keys: string[]) {
+    if (!searchKey) {
+      return this.getDataSource();
+    }
 
+    if (searchKey && keys.length > 0) {
+      return this.filterLocalDataByFields(searchKey.toLowerCase(), keys);
+    }
+    if (!keys || keys.length === 0) {
+      return this.filterLocalDataBy(searchKey.toLowerCase());
+    }
+  }
   searchDataObservable(searchKey: any): Observable<any> {
     const observable = new Observable((observer: any) => {
       observer.next(this.searchLocalDataBy(searchKey));

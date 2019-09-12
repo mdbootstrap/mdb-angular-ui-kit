@@ -5,13 +5,15 @@ import { BsDropdownState } from './dropdown.state';
   selector: 'mdb-dropdown-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-  <div [class.dropup]="direction === 'up'"
-  [class.dropdown]="direction === 'down'"
-  [class.show]="isOpen"
-  [class.open]="isOpen">
-    <ng-content></ng-content>
-  </div>
-  `
+    <div
+      [class.dropup]="direction === 'up'"
+      [class.dropdown]="direction === 'down'"
+      [class.show]="isOpen"
+      [class.open]="isOpen"
+    >
+      <ng-content></ng-content>
+    </div>
+  `,
 })
 export class BsDropdownContainerComponent implements OnDestroy {
   isOpen = false;

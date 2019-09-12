@@ -36,10 +36,17 @@ export class MdbErrorDirective implements OnInit, OnDestroy {
     }
     return null;
   }
-
+  private _calculateMarginTop() {
+    const parent = this.el.nativeElement.parentNode.querySelector('.form-check');
+    const heightParent = parent ? parent.offsetHeight : null;
+    if (heightParent) {
+      const margin = heightParent / 12.5;
+      this.el.nativeElement.style.top = `${heightParent + heightParent / margin}px`;
+    }
+  }
   ngOnInit() {
     const textarea = this._getClosestEl(this.el.nativeElement, '.md-textarea');
-
+    this._calculateMarginTop();
     if (textarea) {
       let height = textarea.offsetHeight + 4 + 'px';
       this.renderer.setStyle(this.el.nativeElement, 'top', height);
