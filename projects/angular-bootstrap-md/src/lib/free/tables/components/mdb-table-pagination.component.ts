@@ -193,7 +193,7 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
   }
 
   lastPage() {
-    const lastPage = Math.round(this.allItemsLength / this.maxVisibleItems);
+    const lastPage = Math.ceil(this.allItemsLength / this.maxVisibleItems);
     this.activePageNumber = lastPage;
     this.calculateFirstItemIndex();
     this.calculateLastItemIndex();

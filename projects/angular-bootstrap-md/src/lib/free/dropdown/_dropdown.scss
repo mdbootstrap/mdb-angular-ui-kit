@@ -66,11 +66,15 @@
   .dropdown-menu {
     display: block;
     opacity: 0;
-    transition: 0.55s;
   }
 
   .fadeInDropdown {
     opacity: 1;
+  }
+}
+.dropup-material.show {
+  .dropdown-menu {
+    transition: 0.55s;
   }
 }
 

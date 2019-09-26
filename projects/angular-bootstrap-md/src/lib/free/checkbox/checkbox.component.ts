@@ -99,7 +99,6 @@ export class CheckboxComponent implements OnInit, OnChanges {
     if (this.disabled) {
       return;
     }
-
     this.checked = !this.checked;
     this.indeterminate = false;
     this.onChange(this.checked);
@@ -132,6 +131,7 @@ export class CheckboxComponent implements OnInit, OnChanges {
   writeValue(value: any) {
     this.value = value;
     this.checked = !!value;
+    this._cdRef.markForCheck();
   }
 
   registerOnChange(fn: (_: any) => void) {

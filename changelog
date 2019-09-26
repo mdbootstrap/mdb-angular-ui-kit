@@ -1,3 +1,16 @@
+8.3.1
+In version 8.3.1 we added some fixes and updated code in the documentation pages. Check what changed below:
+
+**Fixes:**
+
+* Checkbox - resolved problem with checked state updates on ngModel value change,
+* Autocompleter - resolved problem with Cannot read property 'value' of undefined on up arrow navigation,
+* Dropdown - resolved problem with material styles in default version,
+* Textarea - added possibility to resize material version,
+* Timepicker - resolved problem with clear button, it should be now displayed correctly,
+* Table pagination - resolved problem with pagination when switching to last item,
+* Sidenav - resolved problem with accordion auto expand/collapse when queryParams are used.
+
 8.3.0
 In version 8.3.0 we added some fixes, new features and updated code in documentation pages. Check what changed below:
 

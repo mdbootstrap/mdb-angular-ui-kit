@@ -251,13 +251,15 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
 
     if (
-      container.parentNode.classList.contains('btn-group') &&
+      !container.parentNode.classList.contains('btn-group') &&
       !container.parentNode.classList.contains('dropdown') &&
       !this._isDropupDefault
     ) {
       container.parentNode.classList.add('dropdown');
     }
-
+    if (this.dropup && !this._isDropupDefault) {
+      container.parentNode.classList.add('dropup-material');
+    }
     if (button.tagName !== 'BUTTON') {
       if (button.tagName === 'A') {
         container.classList.add('a-various-dropdown');
@@ -277,13 +279,26 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
     setTimeout(() => {
       container.classList.add('fadeInDropdown');
-    }, 200);
+    }, 0);
 
     if (this._showInline) {
       this._isInlineOpen = true;
-      this.onShown.emit(true);
-      this.shown.emit(true);
+      if (
+        container.parentNode.classList.contains('dropdown') ||
+        container.parentNode.classList.contains('dropup-material')
+      ) {
+        setTimeout(() => {
+          this.onShown.emit(true);
+          this.shown.emit(true);
+        }, 560);
+      } else {
+        setTimeout(() => {
+          this.onShown.emit(true);
+          this.shown.emit(true);
+        }, 0);
+      }
       this._state.isOpenChange.emit(true);
+
       return;
     }
     this._state.dropdownMenu.then(dropdownMenu => {
@@ -302,6 +317,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           content: dropdownMenu.templateRef,
           placement: _placement,
         });
+
       this._state.isOpenChange.emit(true);
     });
   }
@@ -319,18 +335,34 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
     // if (parent.value.includes('dropdown')) {
     container.classList.remove('fadeInDropdown');
+    if (
+      container.parentNode.classList.contains('dropdown') ||
+      container.parentNode.classList.contains('dropup-material')
+    ) {
+      setTimeout(() => {
+        if (this._showInline) {
+          this._isInlineOpen = false;
+          this.onHidden.emit(true);
+          this.hidden.emit(true);
+        } else {
+          this._dropdown.hide();
+        }
 
-    setTimeout(() => {
-      if (this._showInline) {
-        this._isInlineOpen = false;
-        this.onHidden.emit(true);
-        this.hidden.emit(true);
-      } else {
-        this._dropdown.hide();
-      }
+        this._state.isOpenChange.emit(false);
+      }, 560);
+    } else {
+      setTimeout(() => {
+        if (this._showInline) {
+          this._isInlineOpen = false;
+          this.onHidden.emit(true);
+          this.hidden.emit(true);
+        } else {
+          this._dropdown.hide();
+        }
 
-      this._state.isOpenChange.emit(false);
-    }, 560);
+        this._state.isOpenChange.emit(false);
+      }, 0);
+    }
     // } else {
     //   if (this._showInline) {
     //     this._isInlineOpen = false;
