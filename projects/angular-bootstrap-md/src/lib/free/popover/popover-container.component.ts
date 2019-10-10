@@ -13,8 +13,8 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   selector: 'mdb-popover-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <h3 class="popover-header" *ngIf="title">{{ title }}</h3>
-    <div class="popover-body">
+    <h3 class="popover-header" [ngClass]="headerClass" *ngIf="title">{{ title }}</h3>
+    <div class="popover-body" [ngClass]="bodyClass">
       <ng-content></ng-content>
     </div>
   `,
@@ -24,12 +24,13 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
 export class PopoverContainerComponent implements OnInit {
   @Input() public placement: string;
   @Input() public title: string;
-
+  public containerClass: string;
+  public bodyClass: string;
+  public headerClass: string;
   @HostBinding('class.show') show = '!isBs3';
   @HostBinding('attr.role') role = 'tooltip';
   //  @HostBinding('class') class;
   @HostBinding('class') class: any;
-
   public get isBs3(): boolean {
     return isBs3();
   }
@@ -45,6 +46,8 @@ export class PopoverContainerComponent implements OnInit {
       ' ' +
       this.placement +
       ' bs-popover-' +
-      this.placement;
+      this.placement +
+      ' ' +
+      this.containerClass;
   }
 }

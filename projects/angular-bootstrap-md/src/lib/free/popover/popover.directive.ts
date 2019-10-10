@@ -22,6 +22,9 @@ import { PositioningService } from '../utils/positioning/positioning.service';
  */
 @Directive({ selector: '[mdbPopover]', exportAs: 'bs-mdbPopover' })
 export class PopoverDirective implements OnInit, OnDestroy {
+  @Input() public containerClass: string;
+  @Input() public bodyClass: string;
+  @Input() public headerClass: string;
   /**
    * Content to be displayed as popover.
    */
@@ -125,6 +128,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
         content: this.mdbPopover,
         placement: this.placement,
         title: this.mdbPopoverHeader || this.popoverTitle,
+        containerClass: this.containerClass ? this.containerClass : '',
+        bodyClass: this.bodyClass ? this.bodyClass : '',
+        headerClass: this.headerClass ? this.headerClass : '',
       });
     this.isOpen = true;
 

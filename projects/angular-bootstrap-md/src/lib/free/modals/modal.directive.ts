@@ -192,13 +192,13 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       this.showElement();
     });
     if (!this.config.backdrop && this.config.ignoreBackdropClick) {
-      const style = window.getComputedStyle(this._element.nativeElement.firstElementChild);
-      const modalHeight = ['height', 'padding-top', 'padding-bottom', 'margin-top', 'margin-bottom']
-        .map(key => parseInt(style.getPropertyValue(key), 10))
-        .reduce((prev, cur) => prev + cur);
+      // const style = window.getComputedStyle(this._element.nativeElement.firstElementChild);
+      // const modalHeight = ['height', 'padding-top', 'padding-bottom', 'margin-top', 'margin-bottom']
+      //   .map(key => parseInt(style.getPropertyValue(key), 10))
+      //   .reduce((prev, cur) => prev + cur);
 
       this._renderer.setStyle(this._element.nativeElement, 'position', 'fixed');
-      this._renderer.setStyle(this._element.nativeElement, 'height', `${modalHeight}px`);
+      // this._renderer.setStyle(this._element.nativeElement, 'height', `${modalHeight}px`);
 
       if (
         navigator.userAgent.indexOf('Safari') !== -1 &&

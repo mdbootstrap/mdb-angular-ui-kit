@@ -78,9 +78,5 @@ export class MdbCardComponent implements OnInit {
         this._r.addClass(this._el.nativeElement, element);
       });
     }
-    if (this._el.nativeElement.parentElement.classList.contains('card-deck')) {
-      this._r.addClass(this._el.nativeElement, 'w-100');
-      this._r.addClass(this._el.nativeElement, 'mx-0');
-    }
   }
 }

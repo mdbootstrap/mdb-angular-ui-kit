@@ -1,3 +1,30 @@
+8.4.0
+In version 8.4.0 we added some fixes and new features. Check what changed below:
+
+**Fixes:**
+
+* Datepicker - resolved problem with opening multiple datepickers on label click. Every component will now have unique id. You can specify this id in [id]        input, otherwise custom id will be created,
+* Chips - resolved problem with displaying default tags on component initialization,
+* Chips - resolved problem with deleting items with backspace/delete key,
+* Chips - resolved problem with input focus after adding first tag or removing last tag,
+* Modal - resolved problem with modal position when backdrop option is set to false,
+* Autocompleter - resolved problem with closing dropdown on scroll click. We needed to drop support for dropdown state updates on input blur event, because in    many cases it was impossible to check whether dropdow should b* closed. If you need to programatically change focus to other element with focus() method, you   should also programatically hide autocompleter dropdow* by using its hide() method,
+* Autocompleter - removed unecessary border styles from mdb-option,
+* Autocomplter - resolved problem with opening dropdown when [clearButton] is set to false,
+* Dropdown - resolved problem with change detection, dropdown should be correctly removed from DOM even when OnPush strategy is used in parent component,
+* Select - dropdown won't open on right click on input,
+* Select - resolved problem with displaying long placeholder and label text,
+* Select - resolved problem with opening dropdown on label click (this problem occured only when label was added as html element and not with [label] input ,
+* Sortable plugin - resolved problem with blocked click events,
+* Sortable plugin - resolved problem with width of cards in card deck example.
+
+**New Features:**
+
+* Select - added possibility to add object to the value parameter in select options array,
+* Select - added new [compareWith] input that accepts a function that will be used to find corresponding option for specified value (useful when using object     as option value),
+* Calendar plugin - added new (monthChanged), (weekChanged) and (listChanged) outputs,
+* Popover - added new [bodyClass], [headerClass] and [containerClass] inputs that allow to specify custom classes.
+
 8.3.1
 In version 8.3.1 we added some fixes and updated code in the documentation pages. Check what changed below:
 

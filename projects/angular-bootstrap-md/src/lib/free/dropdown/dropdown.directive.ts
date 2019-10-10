@@ -11,6 +11,7 @@ import {
   Renderer2,
   ViewContainerRef,
   ViewEncapsulation,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -158,7 +159,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     private _viewContainerRef: ViewContainerRef,
     private _cis: ComponentLoaderFactory,
     private _config: BsDropdownConfig,
-    private _state: BsDropdownState
+    private _state: BsDropdownState,
+    private cdRef: ChangeDetectorRef
   ) {
     // create dropdown component loader
     this._dropdown = this._cis
@@ -344,6 +346,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           this._isInlineOpen = false;
           this.onHidden.emit(true);
           this.hidden.emit(true);
+          this.cdRef.markForCheck();
         } else {
           this._dropdown.hide();
         }
@@ -356,6 +359,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           this._isInlineOpen = false;
           this.onHidden.emit(true);
           this.hidden.emit(true);
+          this.cdRef.markForCheck();
         } else {
           this._dropdown.hide();
         }
