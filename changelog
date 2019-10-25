@@ -1,3 +1,26 @@
+8.5.0
+In version 8.5.0 we added some fixes and new features. Check what changed below:
+
+**Fixes:**
+
+* Datepicker - resolved problem with opening multiple datepickers on label click when inline mode is used,
+* Datepicker - resolved problem with styles of right and left arrows when date picker is rendered inside mdb-stepper,
+* Datepicker - resolved problem with z-index in inline mode (dropdown should no longer be overlapped by a footer),
+* Multiselect - resolved problem with styles of checkboxes when select is used inside element with md-form class,
+* Select - resolved problem with setting default value when change is detected in option array,
+* Select - component styles have been corrected to adapt its appearance to other MDB form elements,
+* Autocomplete - number of visible options will no longer be set by default. It resolves problem with options styles when mdb-options have a non-standard height.
+
+**New Features:**
+
+* Table sort - added new (sorted) output that emits data, sortDirection and sortBy parameters,
+* Autocomplete - added new [dropdownHeight] input that allows to customize dropdown height (it will only work if visibleOptions input is not used).
+
+**Docs:**
+
+* Modal - added list of options available for dynamic modals
+* MDB Angular Boilerplate - added guide on how to configure MDB Angular Pro version.
+
 8.4.0
 In version 8.4.0 we added some fixes and new features. Check what changed below:
 

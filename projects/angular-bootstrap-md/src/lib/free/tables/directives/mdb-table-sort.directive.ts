@@ -1,21 +1,47 @@
-import {Directive, EventEmitter, HostListener, Input, Output, ElementRef, Renderer2, OnInit} from '@angular/core';
+import {
+  Directive,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  ElementRef,
+  Renderer2,
+  OnInit,
+} from '@angular/core';
+
+enum SortDirection {
+  ASC = 'ascending',
+  DESC = 'descending',
+}
+
+export interface SortedData {
+  data: any[];
+  sortOrder: string;
+  sortBy: string;
+}
 
 @Directive({
-  selector: '[mdbTableSort]'
+  selector: '[mdbTableSort]',
 })
 export class MdbTableSortDirective implements OnInit {
-  sorted = true;
+  sortedInto = true;
+  order: string;
 
   @Input('mdbTableSort') dataSource: Array<any> = [];
   @Input() sortBy: string;
 
   @Output() sortEnd: EventEmitter<any[]> = new EventEmitter<any[]>();
-
+  @Output() sorted: EventEmitter<SortedData> = new EventEmitter<SortedData>();
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('click') onclick() {
     this.sortDataBy(this.trimWhiteSigns(this.sortBy.toString()));
     this.sortEnd.emit(this.dataSource);
+    this.sorted.emit({
+      data: this.dataSource,
+      sortOrder: this.order,
+      sortBy: this.sortBy,
+    });
   }
 
   trimWhiteSigns(headElement: any): string {
@@ -31,7 +57,7 @@ export class MdbTableSortDirective implements OnInit {
     }
     if (newIndex >= arr.length) {
       let k = newIndex - arr.length;
-      while ((k--) + 1) {
+      while (k-- + 1) {
         arr.push(null);
       }
     }
@@ -52,23 +78,40 @@ export class MdbTableSortDirective implements OnInit {
 
       if (a < b) {
         this.renderer.setAttribute(this.el.nativeElement, 'aria-sort', 'ascending');
-        this.renderer.setAttribute(this.el.nativeElement, 'aria-label', `${key}: activate to sort column descending`);
-        return this.sorted ? 1 : -1;
+        this.renderer.setAttribute(
+          this.el.nativeElement,
+          'aria-label',
+          `${key}: activate to sort column descending`
+        );
+        this.order = SortDirection.ASC;
+
+        return this.sortedInto ? 1 : -1;
       } else if (a > b) {
         this.renderer.setAttribute(this.el.nativeElement, 'aria-sort', 'descending');
-        this.renderer.setAttribute(this.el.nativeElement, 'aria-label', `${key}: activate to sort column ascending`);
-        return this.sorted ? -1 : 1;
+        this.renderer.setAttribute(
+          this.el.nativeElement,
+          'aria-label',
+          `${key}: activate to sort column ascending`
+        );
+        this.order = SortDirection.DESC;
+
+        return this.sortedInto ? -1 : 1;
       } else if (a == null || b == null) {
         return 1;
       } else {
         return 0;
       }
     });
-    this.sorted = !this.sorted;
+
+    this.sortedInto = !this.sortedInto;
   }
 
   ngOnInit() {
     const key = this.trimWhiteSigns(this.sortBy.toString()).split('.');
-    this.renderer.setAttribute(this.el.nativeElement, 'aria-label', `${key}: activate to sort column descending`);
+    this.renderer.setAttribute(
+      this.el.nativeElement,
+      'aria-label',
+      `${key}: activate to sort column descending`
+    );
   }
 }
