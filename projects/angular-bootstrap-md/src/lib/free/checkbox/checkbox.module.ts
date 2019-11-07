@@ -7,15 +7,8 @@ import { CheckboxComponent } from './checkbox.component';
 export { CHECKBOX_VALUE_ACCESSOR, CheckboxComponent } from './checkbox.component';
 
 @NgModule({
-  declarations: [
-    CheckboxComponent
-  ],
-  exports: [
-    CheckboxComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule
-  ]
+  declarations: [CheckboxComponent],
+  exports: [CheckboxComponent],
+  imports: [CommonModule, FormsModule],
 })
-export class CheckboxModule { }
+export class CheckboxModule {}

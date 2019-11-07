@@ -38,12 +38,10 @@ const BACKDROP_TRANSITION_DURATION = 150;
 export class ModalDirective implements AfterViewInit, OnDestroy {
   /** allows to set modal configuration via element property */
   @Input()
-  // public set config(conf: ModalOptions) {
   public set config(conf: ModalOptions | any) {
     this._config = this.getConfig(conf);
   }
 
-  // public get config(): ModalOptions {
   public get config(): ModalOptions | any {
     return this._config;
   }
@@ -85,10 +83,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   protected timerHideModal: any = 0;
   protected timerRmBackDrop: any = 0;
 
-  // constructor props
-  protected _element: ElementRef;
-  protected _renderer: Renderer2;
-
   // reference to backdrop component
   protected backdrop: ComponentRef<ModalBackdropComponent>;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
@@ -126,13 +120,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   }
 
   public constructor(
-    _element: ElementRef,
+    protected _element: ElementRef,
     _viewContainerRef: ViewContainerRef,
-    _renderer: Renderer2,
+    protected _renderer: Renderer2,
     clf: ComponentLoaderFactory
   ) {
-    this._element = _element;
-    this._renderer = _renderer;
     this._backdrop = clf.createLoader<ModalBackdropComponent>(
       _element,
       _viewContainerRef,
@@ -192,13 +184,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       this.showElement();
     });
     if (!this.config.backdrop && this.config.ignoreBackdropClick) {
-      // const style = window.getComputedStyle(this._element.nativeElement.firstElementChild);
-      // const modalHeight = ['height', 'padding-top', 'padding-bottom', 'margin-top', 'margin-bottom']
-      //   .map(key => parseInt(style.getPropertyValue(key), 10))
-      //   .reduce((prev, cur) => prev + cur);
-
       this._renderer.setStyle(this._element.nativeElement, 'position', 'fixed');
-      // this._renderer.setStyle(this._element.nativeElement, 'height', `${modalHeight}px`);
 
       if (
         navigator.userAgent.indexOf('Safari') !== -1 &&
@@ -233,7 +219,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this.onHide.emit(this);
     this.close.emit(this);
 
-    // todo: add an option to prevent hiding
     if (!this._isShown) {
       return;
     }
@@ -264,7 +249,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
    *  @internal
    */
   protected showElement(): void {
-    // todo: replace this with component loader usage
     if (
       !this._element.nativeElement.parentNode ||
       this._element.nativeElement.parentNode.nodeType !== Node.ELEMENT_NODE
@@ -320,7 +304,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     });
   }
 
-  // todo: original show was calling a callback when done, but we can use promise
   /** @internal */
   protected showBackdrop(callback?: Function): void {
     if (
@@ -378,7 +361,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       if (!otherOpenedModals.length) {
         return;
       }
-      //  this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
       otherOpenedModals[otherOpenedModals.length - 1].nativeElement.focus();
     } catch (error) {}
   }

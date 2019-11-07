@@ -21,6 +21,7 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 import { isPlatformBrowser } from '@angular/common';
+import { LEFT_ARROW, RIGHT_ARROW } from '../utils/keyboard-navigation';
 
 export enum Direction {
   UNKNOWN,
@@ -49,7 +50,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   protected currentInterval: any;
   protected isPlaying: boolean;
   protected destroyed = false;
-  protected el: ElementRef | any = null;
+
   protected animationEnd = true;
   protected _currentActiveSlide: number;
   protected carouselIndicators: any;
@@ -115,14 +116,13 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
 
   public constructor(
     config: CarouselConfig,
-    el: ElementRef,
+    protected el: ElementRef,
     @Inject(PLATFORM_ID) platformId: string,
     private cdRef: ChangeDetectorRef,
     private renderer: Renderer2
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
     Object.assign(this, config);
-    this.el = el;
   }
 
   public ngOnDestroy(): void {
@@ -478,12 +478,12 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   @HostListener('keyup', ['$event']) keyboardControl(event: KeyboardEvent) {
     if (this.keyboard) {
       // tslint:disable-next-line: deprecation
-      if (event.keyCode === 39) {
+      if (event.keyCode === RIGHT_ARROW) {
         this.nextSlide();
       }
 
       // tslint:disable-next-line: deprecation
-      if (event.keyCode === 37) {
+      if (event.keyCode === LEFT_ARROW) {
         this.previousSlide();
       }
     }

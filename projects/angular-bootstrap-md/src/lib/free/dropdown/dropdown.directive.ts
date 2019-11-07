@@ -49,15 +49,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * Currently only supports "body".
    */
   @Input() container: string;
-  @Input()
-  dropup: boolean;
-  @Input()
-  dropupDefault = false;
+  @Input() dropup: boolean;
+  @Input() dropupDefault = false;
   /**
    * This attribute indicates that the dropdown should be opened upwards
    */
-  @HostBinding('class.dropup')
-  public get isDropup() {
+  @HostBinding('class.dropup') public get isDropup() {
     if (this.dropup) {
       this._isDropupDefault = false;
       return this.dropup;
@@ -74,8 +71,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * Indicates that dropdown will be closed on item or document click,
    * and after pressing ESC
    */
-  @Input()
-  set autoClose(value: boolean) {
+  @Input() set autoClose(value: boolean) {
     if (typeof value === 'boolean') {
       this._state.autoClose = value;
     }
@@ -143,7 +139,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   get isBs4(): boolean {
     return !isBs3();
   }
-  // todo: move to component loader
+
   _isInlineOpen = false;
   _showInline: boolean;
   _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
@@ -153,6 +149,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   _subscriptions: Subscription[] = [];
   _isInited = false;
   _isDropupDefault: boolean;
+
   constructor(
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
@@ -247,7 +244,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       return;
     }
     // material and dropup dropdown animation
-    // const parent = this._elementRef.nativeElement.classList;
 
     const button = this._elementRef.nativeElement.children[0];
     const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
@@ -333,9 +329,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       return;
     }
 
-    // const parent = this._elementRef.nativeElement.classList;
     const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');
-    // if (parent.value.includes('dropdown')) {
+
     container.classList.remove('fadeInDropdown');
     if (
       container.parentNode.classList.contains('dropdown') ||
@@ -367,17 +362,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._state.isOpenChange.emit(false);
       }, 0);
     }
-    // } else {
-    //   if (this._showInline) {
-    //     this._isInlineOpen = false;
-    //     this.onHidden.emit(true);
-    //     this.hidden.emit(true);
-    //   } else {
-    //     this._dropdown.hide();
-    //   }
-
-    //   this._state.isOpenChange.emit(false);
-    // }
   }
 
   /**

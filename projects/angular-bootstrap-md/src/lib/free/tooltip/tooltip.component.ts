@@ -28,7 +28,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   public placement: string;
   public popupClass: string;
   public animation: boolean;
-  public el: ElementRef;
+
   @Input() containerClass = '';
   @ViewChild('tooltipInner', { static: true }) tooltipInner: ElementRef;
   @ViewChild('tooltipArrow', { static: true }) tooltipArrow: ElementRef;
@@ -42,8 +42,7 @@ export class TooltipContainerComponent implements AfterViewInit {
     return isBs3();
   }
 
-  public constructor(config: TooltipConfig, elem: ElementRef) {
-    this.el = elem;
+  public constructor(config: TooltipConfig, public elem: ElementRef) {
     Object.assign(this, config);
   }
 

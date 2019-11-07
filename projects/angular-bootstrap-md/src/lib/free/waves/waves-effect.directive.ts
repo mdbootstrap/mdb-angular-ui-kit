@@ -3,16 +3,10 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
   selector: '[mdbWavesEffect]',
 })
 export class WavesDirective {
-  el: ElementRef;
-
-  constructor(el: ElementRef) {
-    this.el = el;
-  }
+  constructor(public el: ElementRef) {}
 
   @HostListener('click', ['$event'])
   public click(event: any) {
-    // event.stopPropagation();
-
     if (!this.el.nativeElement.classList.contains('disabled')) {
       const button = this.el.nativeElement;
       if (!button.classList.contains('waves-effect')) {

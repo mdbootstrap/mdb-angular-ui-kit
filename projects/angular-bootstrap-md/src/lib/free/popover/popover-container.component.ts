@@ -29,7 +29,7 @@ export class PopoverContainerComponent implements OnInit {
   public headerClass: string;
   @HostBinding('class.show') show = '!isBs3';
   @HostBinding('attr.role') role = 'tooltip';
-  //  @HostBinding('class') class;
+
   @HostBinding('class') class: any;
   public get isBs3(): boolean {
     return isBs3();

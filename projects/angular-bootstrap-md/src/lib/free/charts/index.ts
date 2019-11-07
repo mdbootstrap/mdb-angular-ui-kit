@@ -1,4 +1,4 @@
 export * from './chart.directive';
-export { Color } from './color.service';
-export { Colors } from './colors.service';
+export { Color } from './color.interface';
+export { Colors } from './colors.interface';
 export { ChartsModule } from './chart.module';

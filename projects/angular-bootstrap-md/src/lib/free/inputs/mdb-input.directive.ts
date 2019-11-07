@@ -14,6 +14,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { DOWN_ARROW, UP_ARROW } from '../utils/keyboard-navigation';
 
 @Directive({
   selector: '[mdbInputDirective]',
@@ -25,7 +26,9 @@ export class MdbInputDirective
   public el: ElementRef | any = null;
   public elLabel: ElementRef | any = null;
   public elIcon: Element | any = null;
+
   element: any = null;
+
   @Input() mdbInputDirective: MdbInputDirective;
   @Input() customRegex: any;
   @Input() mdbValidate = true;
@@ -44,7 +47,6 @@ export class MdbInputDirective
     private _renderer: Renderer2,
     @Inject(PLATFORM_ID) platformId: string
   ) {
-    this.el = _elRef;
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -80,20 +82,20 @@ export class MdbInputDirective
       if (event.target.type === 'number') {
         if (event.shiftKey) {
           switch (event.keyCode) {
-            case 38:
+            case UP_ARROW:
               event.target.value = +event.target.value + 10;
               break;
-            case 40:
+            case DOWN_ARROW:
               event.target.value = +event.target.value - 10;
               break;
           }
         }
         if (event.altKey) {
           switch (event.keyCode) {
-            case 38:
+            case UP_ARROW:
               event.target.value = +event.target.value + 0.1;
               break;
-            case 40:
+            case DOWN_ARROW:
               event.target.value = +event.target.value - 0.1;
               break;
           }
@@ -324,10 +326,6 @@ export class MdbInputDirective
   ngAfterViewChecked() {
     this.initComponent();
     this.checkValue();
-    // tslint:disable-next-line:max-line-length
-    /* if (this.el.nativeElement.tagName === 'MDB-COMPLETER' && this.el.nativeElement.getAttribute('ng-reflect-model') == null && !this.isClicked) {
-        this._renderer.removeClass(this.elLabel, 'active');
-    } */
   }
 
   resize() {
@@ -389,12 +387,6 @@ export class MdbInputDirective
         (value === '' && this.el.nativeElement.attributes.placeholder)
       ) {
         this._renderer.addClass(this.elLabel, 'active');
-      }
-      if (this.el.nativeElement.getAttribute('ng-reflect-model') != null) {
-        // tslint:disable-next-line:max-line-length
-        /* if (this.el.nativeElement.tagName === 'MDB-COMPLETER' && this.el.nativeElement.getAttribute('ng-reflect-model').length !== 0) {
-            this._renderer.addClass(this.elLabel, 'active');
-        } */
       }
     }
   }

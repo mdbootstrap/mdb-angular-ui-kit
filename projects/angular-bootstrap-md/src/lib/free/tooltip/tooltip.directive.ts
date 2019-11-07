@@ -92,8 +92,10 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Input() public fadeDuration = 150;
 
   protected _delayTimeoutId: any;
-  isBrowser: any = false;
+
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
+
+  isBrowser: any = false;
 
   public constructor(
     _renderer: Renderer2,

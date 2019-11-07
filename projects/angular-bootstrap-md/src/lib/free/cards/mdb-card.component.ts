@@ -43,7 +43,7 @@ export class MdbCardComponent implements OnInit {
   @Input() set dark(dark: boolean) {
     if (dark) {
       this._r.addClass(this._el.nativeElement, 'card-dark');
-    } else if (!dark && this._el.nativeElement.classList.contains('card-dard')) {
+    } else if (!dark && this._el.nativeElement.classList.contains('card-dark')) {
       this._r.removeClass(this._el.nativeElement, 'card-dark');
     }
   }

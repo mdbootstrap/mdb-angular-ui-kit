@@ -124,6 +124,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       return this.filterLocalDataBy(searchKey.toLowerCase());
     }
   }
+
   searchLocalDataByFields(searchKey: any, keys: string[]) {
     if (!searchKey) {
       return this.getDataSource();
@@ -136,6 +137,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       return this.filterLocalDataBy(searchKey.toLowerCase());
     }
   }
+
   searchDataObservable(searchKey: any): Observable<any> {
     const observable = new Observable((observer: any) => {
       observer.next(this.searchLocalDataBy(searchKey));

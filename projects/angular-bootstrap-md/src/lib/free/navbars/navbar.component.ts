@@ -104,11 +104,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
 
   ngOnInit() {
     const isDoubleNav = this.SideClass.split(' ');
-    if (isDoubleNav.indexOf('double-nav') !== -1) {
-      this.doubleNav = true;
-    } else {
-      this.doubleNav = false;
-    }
+    this.doubleNav = isDoubleNav.indexOf('double-nav') !== -1;
   }
 
   ngAfterViewInit() {

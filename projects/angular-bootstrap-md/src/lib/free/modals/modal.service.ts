@@ -23,7 +23,6 @@ import {
 
 @Injectable()
 export class MDBModalService {
-  // constructor props
   public config: ModalOptions = modalConfigDefaults;
   private renderer: Renderer2;
   private vcr: ViewContainerRef;
@@ -39,17 +38,13 @@ export class MDBModalService {
 
   protected scrollbarWidth = 0;
 
-  // protected backdropRef: ComponentRef<ModalBackdropComponent>;
   protected backdropRef: ComponentRef<ModalBackdropComponent> | any;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
-  // private lastDismissReason = '';
   private lastDismissReason: any = '';
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
-  // public constructor(private clf: ComponentLoaderFactory) {
   public constructor(rendererFactory: RendererFactory2, private clf: ComponentLoaderFactory) {
-    //   this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       this.el,
       this.vcr,
@@ -187,7 +182,6 @@ export class MDBModalService {
   }
 
   private _createLoaders(): void {
-    // const loader = this.clf.createLoader<ModalContainerComponent>(null, null, null);
     const loader = this.clf.createLoader<ModalContainerComponent>(this.el, this.vcr, this.renderer);
     this.copyEvent(loader.onBeforeShow, this.open);
     this.copyEvent(loader.onShown, this.opened);

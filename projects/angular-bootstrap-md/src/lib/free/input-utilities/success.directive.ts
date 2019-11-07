@@ -8,6 +8,7 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
+import { Utils } from '../utils';
 
 let defaultIdNumber = 0;
 
@@ -26,16 +27,10 @@ export class MdbSuccessDirective implements OnInit, OnDestroy {
 
   textareaListenFunction: Function;
 
+  private utils: Utils = new Utils();
+
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
-  private _getClosestEl(el: any, selector: string) {
-    for (; el && el !== document; el = el.previousElementSibling) {
-      if (el.matches(selector)) {
-        return el;
-      }
-    }
-    return null;
-  }
   private _calculateMarginTop() {
     const parent = this.el.nativeElement.parentNode.querySelector('.form-check');
     const heightParent = parent ? parent.offsetHeight : null;
@@ -44,8 +39,9 @@ export class MdbSuccessDirective implements OnInit, OnDestroy {
       this.el.nativeElement.style.top = `${heightParent + heightParent / margin}px`;
     }
   }
+
   ngOnInit() {
-    const textarea = this._getClosestEl(this.el.nativeElement, '.md-textarea');
+    const textarea = this.utils.getClosestEl(this.el.nativeElement, '.md-textarea');
     this._calculateMarginTop();
     if (textarea) {
       let height = textarea.offsetHeight + 4 + 'px';

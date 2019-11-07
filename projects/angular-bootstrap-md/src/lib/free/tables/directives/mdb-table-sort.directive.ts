@@ -12,6 +12,7 @@ import {
 enum SortDirection {
   ASC = 'ascending',
   DESC = 'descending',
+  CONST = 'constant',
 }
 
 export interface SortedData {
@@ -32,6 +33,7 @@ export class MdbTableSortDirective implements OnInit {
 
   @Output() sortEnd: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Output() sorted: EventEmitter<SortedData> = new EventEmitter<SortedData>();
+
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('click') onclick() {
@@ -97,8 +99,10 @@ export class MdbTableSortDirective implements OnInit {
 
         return this.sortedInto ? -1 : 1;
       } else if (a == null || b == null) {
+        this.order = SortDirection.CONST;
         return 1;
       } else {
+        this.order = SortDirection.CONST;
         return 0;
       }
     });

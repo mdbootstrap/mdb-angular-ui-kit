@@ -10,6 +10,7 @@ import {
   Inject,
   AfterViewChecked,
 } from '@angular/core';
+import { DOWN_ARROW, UP_ARROW } from '../utils/keyboard-navigation';
 
 @Directive({
   selector: '[mdbInput]',
@@ -18,12 +19,13 @@ import {
 export class MdbInput implements AfterViewChecked, AfterViewInit {
   public elLabel: ElementRef | any = null;
   public elIcon: Element | any = null;
-  element: any = null;
+
   @Input() focusCheckbox = true;
   @Input() focusRadio = true;
 
   isBrowser: any = false;
   isClicked = false;
+  element: any = null;
 
   constructor(
     private el: ElementRef,
@@ -55,27 +57,25 @@ export class MdbInput implements AfterViewChecked, AfterViewInit {
     } catch (error) {}
   }
 
-  @HostListener('input') oniput() {}
-
   @HostListener('keydown', ['$event']) onkeydown(event: any) {
     try {
       if (event.target.type === 'number') {
         if (event.shiftKey) {
           switch (event.keyCode) {
-            case 38:
+            case UP_ARROW:
               event.target.value = +event.target.value + 10;
               break;
-            case 40:
+            case DOWN_ARROW:
               event.target.value = +event.target.value - 10;
               break;
           }
         }
         if (event.altKey) {
           switch (event.keyCode) {
-            case 38:
+            case UP_ARROW:
               event.target.value = +event.target.value + 0.1;
               break;
-            case 40:
+            case DOWN_ARROW:
               event.target.value = +event.target.value - 0.1;
               break;
           }

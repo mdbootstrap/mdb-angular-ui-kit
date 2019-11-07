@@ -6,7 +6,7 @@ import {
   Renderer2,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { document } from './../utils/facade/browser';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'mdb-icon',
@@ -26,6 +26,8 @@ export class MdbIconComponent implements OnInit {
 
   sizeClass = '';
 
+  utils: Utils = new Utils();
+
   constructor(private _el: ElementRef, private _renderer: Renderer2) {}
 
   ngOnInit() {
@@ -44,8 +46,8 @@ export class MdbIconComponent implements OnInit {
     this.fal = classList.contains('fal');
 
     const formWrapper =
-      this._getClosestEl(this._el.nativeElement, '.md-form') ||
-      this._getClosestEl(this._el.nativeElement, '.md-outline');
+      this.utils.getClosestEl(this._el.nativeElement, '.md-form') ||
+      this.utils.getClosestEl(this._el.nativeElement, '.md-outline');
 
     if (formWrapper) {
       formWrapper.childNodes.forEach((el: any) => {
@@ -59,14 +61,5 @@ export class MdbIconComponent implements OnInit {
         }
       });
     }
-  }
-
-  private _getClosestEl(el: any, selector: string) {
-    for (; el && el !== document; el = el.parentNode) {
-      if (el.matches && el.matches(selector)) {
-        return el;
-      }
-    }
-    return null;
   }
 }

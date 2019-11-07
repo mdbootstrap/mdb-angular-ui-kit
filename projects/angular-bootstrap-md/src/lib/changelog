@@ -1,3 +1,28 @@
+8.6.0
+In version 8.6.0 we added some fixes and new features. Check what changed below:
+
+**Fixes:**
+
+* Select - resolved problem with maintaing focus on component when navigating using keyboard and added proper colors for focused component,
+* Select - resolved problem with navigation to other element using tab or shift+tab keys,
+* Select - added different color for highlighted options to help to distinguish selected options from highlighted options,
+* Select - resolved problem with highlighting option when typing its name (it works when filter input is disabled),
+* Select - resolved problem with dropdown position when using filter input or custom content,
+* Select - resolved problems with styles and dropdown position in outline mode,
+* Select - resolved problems with resetting selected value,
+* Buttons - styles will be now properly updated if inputs values change,
+* Prefix icon - removed unecessary color transition delay,
+* Datepicker - resolved problem with disabling component with reactive forms
+* Datepicker - resolved problem with z-index in inline mode (this problem occured when multiple components were used in the same view),
+* Table sort - resolved problem with returning undefined sortOrder in (sorted) output.
+
+**New Features:**
+
+* Select - added possibility to use prefix icon,
+* Select - added proper aria attributes,
+* Timepicker - added possibility to mark input as readonly,
+* WYSIWYG plugin - added new (valueContent) output that will return only text content without HTML tags.
+
 8.5.0
 In version 8.5.0 we added some fixes and new features. Check what changed below:
 

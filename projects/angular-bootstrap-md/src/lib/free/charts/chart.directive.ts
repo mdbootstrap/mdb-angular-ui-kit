@@ -10,13 +10,14 @@ import {
   Directive,
 } from '@angular/core';
 
-import { Color } from './color.service';
-import { Colors } from './colors.service';
+import { Color } from './color.interface';
+import { Colors } from './colors.interface';
 
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Inject } from '@angular/core';
 
 declare var Chart: any;
+
 @Directive({ selector: 'canvas[mdbChart]', exportAs: 'mdb-base-chart' })
 export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors {
   public static defaultColors: Array<number[]> = [
@@ -37,9 +38,7 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
   @Input() public data: number[] | any[];
   @Input() public datasets: any[];
   @Input() public labels: Array<any> = [];
-  @Input() public options: any = {
-    legend: { display: false },
-  };
+  @Input() public options: any = { legend: { display: false } };
   @Input() public chartType: string;
   @Input() public colors: Array<any>;
   @Input() public legend = false;
@@ -49,13 +48,13 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
 
   public ctx: any;
   public chart: any;
+
   cvs: any;
   initFlag = false;
 
-  element: ElementRef;
   isBrowser: any = false;
-  public constructor(element: ElementRef, @Inject(PLATFORM_ID) platformId: string) {
-    this.element = element;
+
+  public constructor(public element: ElementRef, @Inject(PLATFORM_ID) platformId: string) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -98,7 +97,7 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
     }
   }
 
-  public getChartBuilder(ctx: any /*, data:Array<any>, options:any*/): any {
+  public getChartBuilder(ctx: any): any {
     const datasets: any = this.getDatasets();
 
     const options: any = Object.assign({}, this.options);
@@ -192,7 +191,7 @@ export class BaseChartDirective implements OnDestroy, OnChanges, OnInit, Colors 
 
   private refresh(): any {
     this.ngOnDestroy();
-    this.chart = this.getChartBuilder(this.ctx /*, data, this.options*/);
+    this.chart = this.getChartBuilder(this.ctx);
   }
 }
 

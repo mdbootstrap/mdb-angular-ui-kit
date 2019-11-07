@@ -18,6 +18,7 @@ export class MdbValidateDirective implements OnInit {
     this.updateErrorClass();
     this.updateSuccessClass();
   }
+
   @Input()
   get validateSuccess() {
     return this._validateSuccess;
@@ -26,6 +27,7 @@ export class MdbValidateDirective implements OnInit {
     this._validateSuccess = value;
     this.updateSuccessClass();
   }
+
   @Input()
   get validateError() {
     return this._validateError;

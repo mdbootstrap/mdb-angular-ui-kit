@@ -42,8 +42,7 @@ export class CollapseComponent implements OnInit {
   constructor(private _cdRef: ChangeDetectorRef) {}
 
   @HostBinding('@expandBody') expandAnimationState: string;
-  @HostBinding('style.overflow')
-  overflow = 'hidden';
+  @HostBinding('style.overflow') overflow = 'hidden';
 
   @HostListener('@expandBody.done', ['$event'])
   onExpandBodyDone(event: any) {

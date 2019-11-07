@@ -49,16 +49,10 @@ export class ModalBackdropComponent implements OnInit {
     }
   }
 
-  public element: ElementRef;
-  public renderer: Renderer2;
-
   protected _isAnimated: boolean;
   protected _isShown = false;
 
-  public constructor(element: ElementRef, renderer: Renderer2) {
-    this.element = element;
-    this.renderer = renderer;
-  }
+  public constructor(public element: ElementRef, public renderer: Renderer2) {}
 
   ngOnInit(): void {
     if (this.isAnimated) {
