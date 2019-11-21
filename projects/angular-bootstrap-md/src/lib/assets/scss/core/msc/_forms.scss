@@ -765,12 +765,14 @@ input.counter-success ~ span.text-success {
   font-weight: normal !important;
 }
 
-.md-outline .md-textarea.validate-success.ng-valid {
+.md-outline .md-textarea.validate-success.ng-valid.ng-dirty,
+.md-outline .md-textarea.validate-success.ng-valid.ng-touched {
   border-color: $input-success-color !important;
   box-shadow: inset 0 0 0 1px $input-success-color !important;
 }
 
-.md-outline .md-textarea.validate-success.ng-valid + label {
+.md-outline .md-textarea.validate-success.ng-valid.ng-dirty,
+.md-outline .md-textarea.validate-success.ng-valid.ng-touched + label {
   color: inherit !important;
   font-weight: normal !important;
 }
@@ -815,11 +817,14 @@ input.form-control.validate-error.ng-invalid.ng-dirty + label,
   color: $input-error-color !important;
 }
 
-.md-textarea.validate-success.ng-valid {
+.md-textarea.validate-success.ng-valid.ng-dirty,
+.md-textarea.validate-success.ng-valid.ng-touched {
   border-bottom: 1px solid $input-success-color !important;
   box-shadow: 0 1px 0 0 $input-success-color !important;
 }
-.md-textarea.validate-success.ng-valid + label {
+
+.md-textarea.validate-success.ng-valid.ng-dirty + label,
+.md-textarea.validate-success.ng-valid.ng-touched + label {
   color: $input-success-color !important;
 }
 

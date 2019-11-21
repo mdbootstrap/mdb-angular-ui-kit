@@ -58,9 +58,16 @@ export class MdbBtnDirective implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.color) {
       this.renderer.removeClass(this.el.nativeElement, this.colorClass);
-      if (this.color !== '') {
+      if (this.color && this.color !== '') {
         this.colorClass = 'btn-' + this.color;
         this.renderer.addClass(this.el.nativeElement, this.colorClass);
+      }
+
+      if (this.outline) {
+        const currentOutlineClass = this.outlineClass;
+        this.outlineClass = 'btn-outline-' + this.color;
+        this.renderer.removeClass(this.el.nativeElement, currentOutlineClass);
+        this.renderer.addClass(this.el.nativeElement, this.outlineClass);
       }
     }
     if (changes.gradient) {
@@ -71,16 +78,30 @@ export class MdbBtnDirective implements OnInit, OnChanges {
       }
     }
     if (changes.outline) {
-      this.renderer.removeClass(this.el.nativeElement, this.outlineClass);
+      if (!this.outline) {
+        this.renderer.removeClass(this.el.nativeElement, this.outlineClass);
+      }
       if (this.outline) {
-        this.outlineClass = 'btn-outline-' + this.color;
+        this.renderer.removeClass(this.el.nativeElement, this.colorClass);
         this.renderer.addClass(this.el.nativeElement, this.outlineClass);
       }
+      this.outlineClass = 'btn-outline-' + this.color;
     }
     if (changes.flat) {
       this.renderer.removeClass(this.el.nativeElement, this.flatClass);
       if (this.flat) {
-        this.flatClass = 'btn-flat';
+        if (this.color) {
+          this.renderer.removeClass(this.el.nativeElement, this.colorClass);
+        }
+        if (this.gradient) {
+          this.renderer.removeClass(this.el.nativeElement, this.gradientClass);
+        }
+        if (this.outline) {
+          this.renderer.removeClass(this.el.nativeElement, this.outlineClass);
+        }
+        if (this.rounded) {
+          this.renderer.removeClass(this.el.nativeElement, this.roundedClass);
+        }
         this.renderer.addClass(this.el.nativeElement, this.flatClass);
       }
     }

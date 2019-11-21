@@ -12,6 +12,11 @@ import {
 import { Observable, Subject } from 'rxjs';
 import { MdbTableDirective } from '../directives/mdb-table.directive';
 
+export interface MdbPaginationIndex {
+  first: number;
+  last: number;
+}
+
 @Component({
   selector: 'mdb-table-pagination',
   templateUrl: './mdb-table-pagination.component.html',
@@ -40,14 +45,12 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
 
   searchText = '';
 
-  pagination: Subject<{ first: number; last: number }> = new Subject<{
-    first: number;
-    last: number;
-  }>();
+  pagination: Subject<MdbPaginationIndex> = new Subject<MdbPaginationIndex>();
 
-  @Output() nextPageClick = new EventEmitter<any>();
-  @Output() previousPageClick = new EventEmitter<any>();
-
+  @Output() nextPageClick = new EventEmitter<MdbPaginationIndex>();
+  @Output() previousPageClick = new EventEmitter<MdbPaginationIndex>();
+  @Output() firstPageClick = new EventEmitter<MdbPaginationIndex>();
+  @Output() lastPageClick = new EventEmitter<MdbPaginationIndex>();
   constructor(private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {
@@ -190,6 +193,8 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
     this.activePageNumber = 1;
     this.calculateFirstItemIndex();
     this.calculateLastItemIndex();
+
+    this.firstPageClick.emit({ first: this.firstItemIndex, last: this.lastItemIndex });
   }
 
   lastPage() {
@@ -197,6 +202,8 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
     this.activePageNumber = lastPage;
     this.calculateFirstItemIndex();
     this.calculateLastItemIndex();
+
+    this.lastPageClick.emit({ first: this.firstItemIndex, last: this.lastItemIndex });
   }
 
   nextPageObservable(): Observable<any> {

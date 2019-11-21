@@ -1,3 +1,25 @@
+8.7.0
+In version 8.7.0 we added some fixes and new features. Check what changed below:
+
+**Fixes:**
+
+* Sidenav - resolved problem with closing sidenav when mobile keyboard appear on the screen,
+* Datepicker - resolved problem with next and previous arrows styles on IE11,
+* Select - resolved problem with search input and value container styles in outline mode,
+* Select - added validation styles for bootstrap version,
+* Autocomplete - resolved problem with dropdown dynamic position when appendToBody option is used,
+* Autocomplete - resolved problem with dynamic dropdown position updates on option filtering,
+* Lightbox - resolved problems with browser navigation,
+* Buttons - resolved problem with dynamic style updates for outline and flat button,
+* Color picker plugin - resolved problem with rendering the plugin inside modal,
+* Zip packages/Admin template - resolved problem with ng test and ng lint.
+
+**New Features:**
+
+* Table search - added possibility to search through multiple table columns,
+* Reveal cards - added new (animationStart) and (animationEnd) outputs,
+* Table pagination - added new (lastPageClick) and (firstPageClick) outputs.
+
 8.6.0
 In version 8.6.0 we added some fixes and new features. Check what changed below:
 
@@ -120,7 +142,7 @@ In version 8.3.0 we added some fixes, new features and updated code in documenta
 * Autocompleter - added new displayValue input that allow to specify option value that will be displayed in the input text field. This is useful in case where we want the value processed by the form control to be different from the displayed value (for example when value of the option is an object).
 
 **Docs:**
-      
+
 * Datatables - added example of master detail table
 * Charts - added examples of data formatting
 * Time picker - added validation example

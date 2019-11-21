@@ -89,7 +89,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
     return this._dataSourceChanged;
   }
 
-  filterLocalDataBy(searchKey: any) {
+  filterLocalDataBy(searchKey: string) {
     return this.getDataSource().filter((obj: Array<any>) => {
       return Object.keys(obj).some((key: any) => {
         if (obj[key]) {
@@ -103,7 +103,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
     });
   }
 
-  filterLocalDataByFields(searchKey: any, keys: string[]) {
+  filterLocalDataByFields(searchKey: string, keys: string[]) {
     return this.getDataSource().filter((obj: Array<any>) => {
       return Object.keys(obj).some((key: any) => {
         if (keys.includes(key)) {
@@ -114,8 +114,37 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       });
     });
   }
-
-  searchLocalDataBy(searchKey: any) {
+  filterLocalDataByMultipleFields(searchKey: string, keys?: string[]) {
+    const items = searchKey.split(' ').map((x: { toLowerCase: () => void }) => x.toLowerCase());
+    return this.getDataSource().filter((x: Array<any>) => {
+      for (const item of items) {
+        let flag = false;
+        if (keys !== undefined) {
+          for (const prop in x) {
+            if (keys.includes(prop)) {
+              if (x[prop].toLowerCase().indexOf(item) !== -1) {
+                flag = true;
+                break;
+              }
+            }
+          }
+        }
+        if (keys === undefined) {
+          for (const prop in x) {
+            if (x[prop].toLowerCase().indexOf(item) !== -1) {
+              flag = true;
+              break;
+            }
+          }
+        }
+        if (!flag) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }
+  searchLocalDataBy(searchKey: string) {
     if (!searchKey) {
       return this.getDataSource();
     }
@@ -125,7 +154,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
     }
   }
 
-  searchLocalDataByFields(searchKey: any, keys: string[]) {
+  searchLocalDataByFields(searchKey: string, keys: string[]) {
     if (!searchKey) {
       return this.getDataSource();
     }
@@ -137,8 +166,15 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       return this.filterLocalDataBy(searchKey.toLowerCase());
     }
   }
-
-  searchDataObservable(searchKey: any): Observable<any> {
+  searchLocalDataByMultipleFields(searchKey: string, keys?: string[]) {
+    if (!searchKey) {
+      return this.getDataSource();
+    }
+    if (searchKey && keys !== undefined) {
+      return this.filterLocalDataByMultipleFields(searchKey.toLowerCase(), keys);
+    }
+  }
+  searchDataObservable(searchKey: string): Observable<any> {
     const observable = new Observable((observer: any) => {
       observer.next(this.searchLocalDataBy(searchKey));
     });
