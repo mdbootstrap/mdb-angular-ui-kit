@@ -15,10 +15,12 @@ import {
   ChangeDetectionStrategy,
   Inject,
   NgZone,
+  OnDestroy,
 } from '@angular/core';
-import { Subscription, fromEvent } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
 import { LinksComponent } from './links.component';
 import { DOCUMENT } from '@angular/common';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'mdb-navbar',
@@ -27,7 +29,7 @@ import { DOCUMENT } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent implements AfterViewInit, OnInit, AfterContentChecked {
+export class NavbarComponent implements AfterViewInit, OnInit, AfterContentChecked, OnDestroy {
   @Input() iconBackground: string | string[];
   @Input() SideClass: string;
   @Input() containerInside = true;
@@ -35,7 +37,8 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   @Input() scrollSensitivity = 120;
   @Input() scrollableNavbar = false;
 
-  subscription: Subscription;
+  private _destroy$: Subject<void> = new Subject();
+
   navbarLinkClicks: any;
   shown = false;
 
@@ -65,10 +68,12 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
     private _ngZone: NgZone,
     @Inject(DOCUMENT) private _document: any
   ) {
-    // tslint:disable-next-line:max-line-length
-    this.subscription = this._navbarService.getNavbarLinkClicks().subscribe(navbarLinkClicks => {
-      this.closeNavbarOnClick(navbarLinkClicks);
-    });
+    this._navbarService
+      .getNavbarLinkClicks()
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(navbarLinkClicks => {
+        this.closeNavbarOnClick(navbarLinkClicks);
+      });
   }
 
   closeNavbarOnClick(navbarLinkClicks: any) {
@@ -92,13 +97,15 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
 
   private _listenToScroll() {
     this._ngZone.runOutsideAngular(() => {
-      fromEvent(this._document, 'scroll').subscribe(() => {
-        if (window.pageYOffset > this.scrollSensitivity) {
-          this.renderer.addClass(this.navbar.nativeElement, 'top-nav-collapse');
-        } else {
-          this.renderer.removeClass(this.navbar.nativeElement, 'top-nav-collapse');
-        }
-      });
+      fromEvent(this._document, 'scroll')
+        .pipe(takeUntil(this._destroy$))
+        .subscribe(() => {
+          if (window.pageYOffset > this.scrollSensitivity) {
+            this.renderer.addClass(this.navbar.nativeElement, 'top-nav-collapse');
+          } else {
+            this.renderer.removeClass(this.navbar.nativeElement, 'top-nav-collapse');
+          }
+        });
     });
   }
 
@@ -235,5 +242,10 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
       this._itemsLength = this.el.nativeElement.firstElementChild.firstElementChild.children.length;
     }
     this._cdRef.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }

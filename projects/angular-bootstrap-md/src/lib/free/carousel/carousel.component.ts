@@ -22,6 +22,8 @@ import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 import { isPlatformBrowser } from '@angular/common';
 import { LEFT_ARROW, RIGHT_ARROW } from '../utils/keyboard-navigation';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 export enum Direction {
   UNKNOWN,
@@ -46,6 +48,8 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   public get slides(): SlideComponent[] {
     return this._slidesList.toArray();
   }
+
+  private _destroy$: Subject<void> = new Subject();
 
   protected currentInterval: any;
   protected isPlaying: boolean;
@@ -127,16 +131,20 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
 
   public ngOnDestroy(): void {
     this.destroyed = true;
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   ngAfterViewInit() {
     this.play();
-    this._slidesList.changes.subscribe((slidesList: QueryList<SlideComponent>) => {
-      this._slidesList = slidesList;
-      setTimeout(() => {
-        this._select(0);
-      }, 0);
-    });
+    this._slidesList.changes
+      .pipe(takeUntil(this._destroy$))
+      .subscribe((slidesList: QueryList<SlideComponent>) => {
+        this._slidesList = slidesList;
+        setTimeout(() => {
+          this._select(0);
+        }, 0);
+      });
 
     if (this.activeSlideIndex) {
       setTimeout(() => {

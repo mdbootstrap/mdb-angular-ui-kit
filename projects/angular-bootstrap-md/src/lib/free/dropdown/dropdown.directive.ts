@@ -13,7 +13,7 @@ import {
   ViewEncapsulation,
   ChangeDetectorRef,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
 
 import { ComponentLoader } from '../utils/component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../utils/component-loader/component-loader.factory';
@@ -23,6 +23,7 @@ import { BsDropdownState } from './dropdown.state';
 import { BsComponentRef } from '../utils/component-loader/bs-component-ref.class';
 import { BsDropdownMenuDirective } from './dropdown-menu.directive';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -136,6 +137,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   @Output() onHidden: EventEmitter<any>;
   @Output() hidden: EventEmitter<any>;
 
+  private _destroy$: Subject<void> = new Subject();
+
   get isBs4(): boolean {
     return !isBs3();
   }
@@ -196,18 +199,16 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     });
 
     // toggle visibility on toggle element click
-    this._subscriptions.push(
-      this._state.toggleClick.subscribe((value: boolean) => this.toggle(value))
-    );
+    this._state.toggleClick
+      .pipe(takeUntil(this._destroy$))
+      .subscribe((value: boolean) => this.toggle(value));
 
     // hide dropdown if set disabled while opened
-    this._subscriptions.push(
-      this._state.isDisabledChange.subscribe((element: any) => {
-        if (element === true) {
-          this.hide();
-        }
-      })
-    );
+    this._state.isDisabledChange.pipe(takeUntil(this._destroy$)).subscribe((element: any) => {
+      if (element === true) {
+        this.hide();
+      }
+    });
 
     // attach dropdown menu inside of dropdown
     if (this._showInline) {
@@ -216,7 +217,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       });
     }
 
-    this._state.isOpenChange.subscribe(() => {
+    this._state.isOpenChange.pipe(takeUntil(this._destroy$)).subscribe(() => {
       setTimeout(() => {
         const dropdownContainer = this._elementRef.nativeElement.querySelector('.dropdown-menu');
         const left = dropdownContainer.getBoundingClientRect().left;
@@ -378,9 +379,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // clean up subscriptions and destroy dropdown
-    for (const sub of this._subscriptions) {
-      sub.unsubscribe();
-    }
+    this._destroy$.next();
+    this._destroy$.complete();
     this._dropdown.dispose();
   }
 }

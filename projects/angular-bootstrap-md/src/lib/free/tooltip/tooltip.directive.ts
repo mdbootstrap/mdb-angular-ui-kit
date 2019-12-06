@@ -21,6 +21,8 @@ import { ComponentLoader } from '../utils/component-loader/component-loader.clas
 import { OnChange } from '../utils/decorators';
 import { isPlatformBrowser } from '@angular/common';
 import { PositioningService } from '../utils/positioning/positioning.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[mdbTooltip]',
@@ -91,6 +93,8 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   @Input() public customHeight: string;
   @Input() public fadeDuration = 150;
 
+  private _destroy$: Subject<void> = new Subject();
+
   protected _delayTimeoutId: any;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
@@ -124,7 +128,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
       show: () => this.show(),
     });
 
-    this.tooltipChange.subscribe((value: any) => {
+    this.tooltipChange.pipe(takeUntil(this._destroy$)).subscribe((value: any) => {
       if (!value) {
         this._tooltip.hide();
       }
@@ -219,5 +223,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
 
   public ngOnDestroy(): void {
     this._tooltip.dispose();
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }

@@ -8,9 +8,11 @@ import {
   OnChanges,
   SimpleChanges,
   AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { MdbTableDirective } from '../directives/mdb-table.directive';
+import { takeUntil } from 'rxjs/operators';
 
 export interface MdbPaginationIndex {
   first: number;
@@ -21,7 +23,7 @@ export interface MdbPaginationIndex {
   selector: 'mdb-table-pagination',
   templateUrl: './mdb-table-pagination.component.html',
 })
-export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterViewInit {
+export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @Input() tableEl: MdbTableDirective;
   @Input() searchPagination = false;
   @Input() searchDataSource: any = null;
@@ -29,6 +31,8 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
   @Input() dashKeyword = '-';
   @Input() paginationAlign = '';
   @Input() hideDescription = false;
+
+  private _destroy$: Subject<void> = new Subject();
 
   maxVisibleItems = 10;
 
@@ -61,28 +65,33 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
 
   ngAfterViewInit() {
     if (this.tableEl) {
-      this.tableEl.dataSourceChange().subscribe((data: any) => {
-        this.allItemsLength = data.length;
-        this.lastVisibleItemIndex = data.length;
-        this.calculateFirstItemIndex();
-        this.calculateLastItemIndex();
-        this.disableNextButton(data);
+      this.tableEl
+        .dataSourceChange()
+        .pipe(takeUntil(this._destroy$))
+        .subscribe((data: any) => {
+          this.allItemsLength = data.length;
+          this.lastVisibleItemIndex = data.length;
+          this.calculateFirstItemIndex();
+          this.calculateLastItemIndex();
+          this.disableNextButton(data);
 
-        if (this.searchDataSource) {
-          setTimeout(() => {
-            if (this.searchDataSource.length !== data.length) {
-              this.activePageNumber = 1;
-              this.firstItemIndex = 1;
-            }
-          }, 0);
-        }
-      });
+          if (this.searchDataSource) {
+            setTimeout(() => {
+              if (this.searchDataSource.length !== data.length) {
+                this.activePageNumber = 1;
+                this.firstItemIndex = 1;
+              }
+            }, 0);
+          }
+        });
     }
 
-    this.paginationChange().subscribe((data: any) => {
-      this.firstItemIndex = data.first;
-      this.lastVisibleItemIndex = data.last;
-    });
+    this.paginationChange()
+      .pipe(takeUntil(this._destroy$))
+      .subscribe((data: any) => {
+        this.firstItemIndex = data.first;
+        this.lastVisibleItemIndex = data.last;
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -238,5 +247,10 @@ export class MdbTablePaginationComponent implements OnInit, OnChanges, AfterView
     if (this.activePageNumber === 1) {
       return true;
     }
+  }
+
+  ngOnDestroy() {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }

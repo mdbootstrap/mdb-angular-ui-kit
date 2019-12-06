@@ -1,3 +1,20 @@
+8.8.0
+In version 8.8.0 we added some fixes and new tree view component. Check what changed below:
+
+**Fixes:**
+
+* Sticky header - resolved problem with navbar z-index,
+* Table search/Table editor - resolved problem with filtering when a property value is null,
+* Datepicker - resolved problem with setting minYear and maxYear options,
+* Select - clear button will no longer be displayed if no option is selected,
+* Timepicker - component view will be now updated correctly on form control value change,
+* Color picker plugin - resolved problem with displaying wrong rgba color on component initialization,
+* Resolved problem with memory leaks caused by unsubscribed subscriptions.
+
+**New Features:**
+
+* Added new tree view component.
+
 8.7.0
 In version 8.7.0 we added some fixes and new features. Check what changed below:
 

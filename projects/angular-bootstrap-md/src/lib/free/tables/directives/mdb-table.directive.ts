@@ -106,9 +106,11 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
   filterLocalDataByFields(searchKey: string, keys: string[]) {
     return this.getDataSource().filter((obj: Array<any>) => {
       return Object.keys(obj).some((key: any) => {
-        if (keys.includes(key)) {
-          if (obj[key].toLowerCase().includes(searchKey)) {
-            return obj[key];
+        if (obj[key]) {
+          if (keys.includes(key)) {
+            if (obj[key].toLowerCase().includes(searchKey)) {
+              return obj[key];
+            }
           }
         }
       });
@@ -119,12 +121,15 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
     return this.getDataSource().filter((x: Array<any>) => {
       for (const item of items) {
         let flag = false;
+
         if (keys !== undefined) {
           for (const prop in x) {
-            if (keys.includes(prop)) {
-              if (x[prop].toLowerCase().indexOf(item) !== -1) {
-                flag = true;
-                break;
+            if (x[prop]) {
+              if (keys.includes(prop)) {
+                if (x[prop].toLowerCase().indexOf(item) !== -1) {
+                  flag = true;
+                  break;
+                }
               }
             }
           }
