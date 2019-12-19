@@ -1,3 +1,21 @@
+8.8.1
+In version 8.8.1 we added some fixes for the existing components and small update for the calendar plugin. Check what changed below:
+
+**Fixes:**
+
+* Inputs - resolved problem with styles of long label,
+* Datepicker inline - clicking on the icon won't open the disabled component,
+* Textarea - resolved problem with position of validation message,
+* Textarea - active styles for prefix icon will be applied correctly,
+* Search - resolved problem with the icon position when the input is inside container with .md-form class,
+* Autocomplete - clear button will be added correctly if default value is set,
+* Admin Template Pro - resolved problem with styles of images that use waves effect,
+* Admin Template Pro - resolved problem with styles of icons in the sidenav.
+
+**Plugins:**
+
+* Calendar - added new [defaultView] input that allow to set default view for the component (week/month/list).
+
 8.8.0
 In version 8.8.0 we added some fixes and new tree view component. Check what changed below:
 

@@ -1,15 +1,16 @@
-.error-message {
+.error-message,
+.success-message {
   position: absolute;
-  top: 40px;
+  bottom: -20px;
   left: 0;
+  top: unset;
   font-size: 0.8rem;
+}
+
+.error-message {
   color: $input-error-color;
 }
 
 .success-message {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  font-size: 0.8rem;
   color: $input-success-color;
 }

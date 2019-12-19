@@ -35,10 +35,6 @@ export class MdbIconComponent implements OnInit {
       this.sizeClass = `fa-${this.size}`;
     }
 
-    if (this._el.nativeElement.parentElement.classList.contains('md-form')) {
-      this._renderer.addClass(this._el.nativeElement, 'prefix');
-    }
-
     const classList = this._el.nativeElement.classList;
     this.fab = classList.contains('fab');
     this.far = classList.contains('far');
@@ -51,7 +47,7 @@ export class MdbIconComponent implements OnInit {
 
     if (formWrapper) {
       formWrapper.childNodes.forEach((el: any) => {
-        if (el.tagName === 'INPUT') {
+        if (el.tagName === 'INPUT' || 'TEXTAREA') {
           this._renderer.listen(el, 'focus', () => {
             this._renderer.addClass(this._el.nativeElement, 'active');
           });

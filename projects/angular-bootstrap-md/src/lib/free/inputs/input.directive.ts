@@ -161,10 +161,6 @@ export class MdbInput implements AfterViewChecked, AfterViewInit {
         this._renderer.addClass(this.elLabel, 'active');
       }
       this.elIcon = inputP.querySelector('i') || false;
-
-      if (this.elIcon) {
-        this._renderer.addClass(this.elIcon, 'active');
-      }
     }
   }
 

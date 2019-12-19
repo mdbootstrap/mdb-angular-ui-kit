@@ -105,15 +105,17 @@
   }
 
   > input[type='date']:not(.browser-default) + label {
-    transform: translateY(-27px) scale(0.8);
+    transform: translateY(-14px) scale(0.8);
     transform-origin: 0 0;
+    width: 125%;
   }
 
   > input[type]:-webkit-autofill:not(.browser-default):not([type='search']) + label,
   > input[type='time']:not(.browser-default) + label {
-    transform: translateY(-25px);
+    transform: translateY(-14px);
     transform-origin: 0 0;
     font-size: 0.8rem;
+    width: 100%;
   }
 
   .was-validated {
@@ -213,14 +215,20 @@
     top: 0;
     left: 0;
     font-size: 1rem;
-    transition: transform 0.2s ease-out, color 0.2s ease-out;
+    transition: transform 0.2s ease-out, color 0.2s ease-out, max-width 0.2s ease-out;
     transform-origin: 0% 100%;
     transform: translateY(12px);
     cursor: text;
     color: $input-label-color;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 100%;
 
     &.active {
       transform: translateY(-14px) scale(0.8);
+      max-width: 123%;
     }
   }
 
@@ -376,7 +384,7 @@
 
     > input[type]:-webkit-autofill:not(.browser-default):not([type='search']) + label,
     > input[type='time']:not(.browser-default) + label {
-      transform: translateY(-9px) scale(0.8);
+      transform: translateY(-14px) scale(0.8);
       transform-origin: 0 0;
       background: #fff;
       font-weight: 500;
@@ -388,7 +396,7 @@
 
     > input[type]:-webkit-autofill:not(.browser-default):not([type='search']) + label.active,
     > input[type='time']:not(.browser-default) + label.active {
-      transform: translateY(-9px) scale(0.8);
+      transform: translateY(-14px) scale(0.8);
       transform-origin: 0 0;
     }
 
@@ -423,7 +431,7 @@
       top: 0;
       left: 0;
       padding-left: 10px;
-      transition: transform 0.2s ease-out, color 0.2s ease-out;
+      transition: transform 0.2s ease-out, color 0.2s ease-out, max-width 0.2 ease-out;
       transform-origin: 0% 100%;
       transform: translateY(9px);
       cursor: text;
