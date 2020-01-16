@@ -1,3 +1,20 @@
+8.8.2
+In version 8.8.2 we added some fixes for the existing components and removed duplicated css styles. Check what changed below:
+
+**Fixes:**
+
+* Styles - removed duplicated code,
+* Toast - resolved problem with box-shadow styles on hover,
+* Table - removed unecessary styles from a elements,
+* Table sort - slightly improved performance,
+* Validation - prefix icons will get correct validation color styles (success/error),
+* Validation - fixed position of validation messages,
+* Sidenav - will not be closed when viewport height change,
+* Select - will not be overlapped by table header with sticky-top class,
+* Pills - removed unecessary shadow styles on hover,
+* Static modal - backdrop will be added/removed correctly when config value change,
+* Calendar plugin - fixed parameter name in object emitted by (monthChanged) output.
+
 8.8.1
 In version 8.8.1 we added some fixes for the existing components and small update for the calendar plugin. Check what changed below:
 

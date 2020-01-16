@@ -100,7 +100,7 @@ a
   text-align: center;
   // background-color: $tooltip-bg;
   padding: 0.2rem 0.4rem;
-  @extend .z-depth-1-half;
+  box-shadow: $z-depth-1-half;
   border-radius: ($border-radius);
 
   &::before {

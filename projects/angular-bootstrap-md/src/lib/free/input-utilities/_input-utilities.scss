@@ -1,12 +1,15 @@
 .error-message,
 .success-message {
   position: absolute;
-  bottom: -20px;
+  top: 40px;
   left: 0;
-  top: unset;
   font-size: 0.8rem;
 }
-
+textarea ~ .error-message,
+textarea ~ .success-message {
+  top: unset;
+  bottom: -20px;
+}
 .error-message {
   color: $input-error-color;
 }

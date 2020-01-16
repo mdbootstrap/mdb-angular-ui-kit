@@ -68,6 +68,22 @@ export class MdbTableSortDirective implements OnInit {
   }
 
   sortDataBy(key: string | any) {
+    let ariaPass = true;
+
+    const setAria = (sort: 'ascending' | 'descending', id: any) => {
+      if (ariaPass) {
+        const inverse = sort === 'ascending' ? 'descending' : 'ascending';
+
+        this.renderer.setAttribute(this.el.nativeElement, 'aria-sort', sort);
+        this.renderer.setAttribute(
+          this.el.nativeElement,
+          'aria-label',
+          `${id}: activate to sort column ${inverse}`
+        );
+        ariaPass = false;
+      }
+    };
+
     key = key.split('.');
 
     this.dataSource.sort((a: any, b: any) => {
@@ -79,22 +95,12 @@ export class MdbTableSortDirective implements OnInit {
       }
 
       if (a < b) {
-        this.renderer.setAttribute(this.el.nativeElement, 'aria-sort', 'ascending');
-        this.renderer.setAttribute(
-          this.el.nativeElement,
-          'aria-label',
-          `${key}: activate to sort column descending`
-        );
+        setAria('ascending', key);
         this.order = SortDirection.ASC;
 
         return this.sortedInto ? 1 : -1;
       } else if (a > b) {
-        this.renderer.setAttribute(this.el.nativeElement, 'aria-sort', 'descending');
-        this.renderer.setAttribute(
-          this.el.nativeElement,
-          'aria-label',
-          `${key}: activate to sort column ascending`
-        );
+        setAria('descending', key);
         this.order = SortDirection.DESC;
 
         return this.sortedInto ? -1 : 1;

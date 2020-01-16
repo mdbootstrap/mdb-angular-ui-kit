@@ -7,6 +7,7 @@ import {
   HostListener,
   Input,
   OnDestroy,
+  OnChanges,
   Output,
   Renderer2,
   ViewContainerRef,
@@ -35,7 +36,7 @@ const BACKDROP_TRANSITION_DURATION = 150;
   exportAs: 'mdb-modal, mdbModal',
 })
 // tslint:disable-next-line:component-class-suffix
-export class ModalDirective implements AfterViewInit, OnDestroy {
+export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
   /** allows to set modal configuration via element property */
   @Input()
   public set config(conf: ModalOptions | any) {
@@ -84,7 +85,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   protected timerRmBackDrop: any = 0;
 
   // reference to backdrop component
-  protected backdrop: ComponentRef<ModalBackdropComponent>;
+  protected backdrop: ComponentRef<ModalBackdropComponent> | undefined;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
   // todo: implement _dialog
   _dialog: any;
@@ -148,6 +149,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
         this.show();
       }
     }, 0);
+  }
+
+  public ngOnChanges(): any {
+    this.config.backdrop ? this.showBackdrop() : this.removeBackdrop();
   }
 
   /* Public methods */
@@ -351,6 +356,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   /** @internal */
   protected removeBackdrop(): void {
     this._backdrop.hide();
+    this.backdrop = undefined;
   }
 
   protected focusOtherModal() {

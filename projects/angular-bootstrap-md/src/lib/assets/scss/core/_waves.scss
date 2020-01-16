@@ -157,7 +157,7 @@
   display: block;
 }
 
-a {
+a:not(.nav-link) {
   &.waves-effect,
   &.waves-light {
     display: inline-block;

@@ -20,6 +20,7 @@ let defaultIdNumber = 0;
 })
 // tslint:disable-next-line:component-class-suffix
 export class MdbErrorDirective implements OnInit, OnDestroy {
+  prefix: HTMLElement;
   @Input() id = `mdb-error-${defaultIdNumber++}`;
 
   @HostBinding('class.error-message') errorMsg = true;
@@ -41,6 +42,11 @@ export class MdbErrorDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.prefix = this.el.nativeElement.parentNode.querySelector('.prefix');
+    if (this.prefix) {
+      this.prefix.classList.add('error-message');
+    }
+
     const textarea = this.utils.getClosestEl(this.el.nativeElement, '.md-textarea');
     this._calculateMarginTop();
     if (textarea) {
@@ -57,6 +63,9 @@ export class MdbErrorDirective implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.textareaListenFunction) {
       this.textareaListenFunction();
+    }
+    if (this.prefix) {
+      this.prefix.classList.remove('error-message');
     }
   }
 }

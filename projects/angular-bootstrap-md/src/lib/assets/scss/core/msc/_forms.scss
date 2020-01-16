@@ -238,6 +238,12 @@
 
     &.active {
       color: $input-md-focus-color;
+      &.success-message {
+        color: $input-success-color;
+      }
+      &.error-message {
+        color: $input-error-color;
+      }
     }
   }
 
