@@ -7,10 +7,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ContactCreateComponent } from './contact-create/contact-create.component';
-import { ContactListComponent } from './contact-list/contact-list.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { DataSubmitComponent } from './data-submit/data-submit.component';
+import { DataVisualizeComponent } from './data-visualize/data-visualize.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +18,15 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    ContactCreateComponent,
-    ContactListComponent
+    DataSubmitComponent,
+    DataVisualizeComponent,
   ],
     imports: [
         BrowserModule,
         MDBBootstrapModule.forRoot(),
-        RouterModule
+        RouterModule,
+        FormsModule,
+        AppRoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]

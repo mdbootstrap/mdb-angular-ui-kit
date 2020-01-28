@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContactListComponent } from './contact-list/contact-list.component';
-import { ContactCreateComponent } from './contact-create/contact-create.component';
 import { HomeComponent } from './home/home.component';
+import { DataSubmitComponent } from './data-submit/data-submit.component';
+import { DataVisualizeComponent } from './data-visualize/data-visualize.component';
 
 const routes: Routes = [
   {path:  '', pathMatch:  'full', redirectTo:  'home'},
   {path: 'home', component: HomeComponent},
-  {path: 'contact-create', component: ContactCreateComponent},
-  {path: 'contact-list', component: ContactListComponent}
+  {path: 'data-submit', component: DataSubmitComponent},
+  {path: 'data-visualize', component: DataVisualizeComponent}
 ];
 
 @NgModule({
