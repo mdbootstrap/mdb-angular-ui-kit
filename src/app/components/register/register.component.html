@@ -1,0 +1,66 @@
+<!-- Default form register -->
+    <form class="text-center border border-light p-5">
+<div class="w-responsive text-center mx-auto p-3 mt-2" style="width: 500px">
+      <p class="h4 mb-4">Sign up</p>
+
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- First name -->
+          <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+        </div>
+      </div>
+
+      <!-- E-mail -->
+      <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+      <!-- Password -->
+      <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+      <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        At least 8 characters and 1 digit
+      </small>
+
+      <!-- Phone number -->
+      <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+      <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        Optional - for two-step authentication
+      </small>
+
+      <!-- Newsletter -->
+      <div class="row">
+        <div class="col-md-6 mx-auto d-flex justify-content-center">
+          <mdb-checkbox [default]="true">Subscribe to our newsletter</mdb-checkbox>
+        </div>
+      </div>
+
+      <!-- Sign up button -->
+      <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+
+      <!-- Social register -->
+      <p>or sign up with:</p>
+
+      <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="facebook"></mdb-icon>
+      </a>
+      <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="twitter"></mdb-icon>
+      </a>
+      <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="linkedin"></mdb-icon>
+      </a>
+      <a type="button" class="light-blue-text mx-2">
+        <mdb-icon fab icon="github"></mdb-icon>
+      </a>
+
+      <hr>
+
+      <!-- Terms of service -->
+      <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a></p>
+      </div>
+    </form>
+    <!-- Default form register -->

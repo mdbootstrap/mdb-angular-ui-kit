@@ -31,6 +31,7 @@
     "@types/chart.js": "^2.7.42",
     "angular-bootstrap-md": "file:angular-bootstrap-md-8.8.2.tgz",
     "chart.js": "^2.5.0",
+    "component": "^1.1.0",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.5.2",

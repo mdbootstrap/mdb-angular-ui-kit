@@ -9,8 +9,11 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { DataSubmitComponent } from './data-submit/data-submit.component';
-import { DataVisualizeComponent } from './data-visualize/data-visualize.component';
+import { DataSubmitComponent } from './components/data-submit/data-submit.component';
+import { DataVisualizeComponent } from './components/data-visualize/data-visualize.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { DataVisualizeComponent } from './data-visualize/data-visualize.componen
     HomeComponent,
     DataSubmitComponent,
     DataVisualizeComponent,
+    LogInComponent,
+    RegisterComponent,
+    ContactComponent,
   ],
     imports: [
         BrowserModule,

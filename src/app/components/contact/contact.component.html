@@ -1,0 +1,39 @@
+<!-- Default form contact -->
+<form class="card text-center border border-light p-5">
+<div class="w-responsive text-center mx-auto p-3 mt-2" style="width: 500px">
+  <p class="h4 mb-4">Contact us</p>
+
+  <!-- Name -->
+  <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name">
+
+  <!-- Email -->
+  <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+  <!-- Subject -->
+  <label>Subject</label>
+  <select class="browser-default custom-select mb-4">
+    <option value="" disabled>Choose option</option>
+    <option value="1" selected>Feedback</option>
+    <option value="2">Report a bug</option>
+    <option value="3">Feature request</option>
+    <option value="4">Feature request</option>
+  </select>
+
+  <!-- Message -->
+  <div class="form-group">
+    <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message"></textarea>
+  </div>
+
+  <!-- Copy -->
+  <div class="row">
+    <div class="col-md-6 mx-auto d-flex justify-content-center">
+      <mdb-checkbox [default]="true" class="mb-4">Send me a copy of this message</mdb-checkbox>
+    </div>
+  </div>
+
+
+  <!-- Send button -->
+  <button mdbBtn color="info" block="true" type="submit">Send</button>
+  </div>
+</form>
+<!-- Default form contact -->
