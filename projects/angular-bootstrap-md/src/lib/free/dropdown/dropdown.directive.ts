@@ -52,6 +52,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   @Input() container: string;
   @Input() dropup: boolean;
   @Input() dropupDefault = false;
+  @Input() dynamicPosition = false;
   /**
    * This attribute indicates that the dropdown should be opened upwards
    */
@@ -149,6 +150,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   _isDisabled: boolean;
   _dropdown: ComponentLoader<BsDropdownContainerComponent>;
+  _dropup: boolean;
   _subscriptions: Subscription[] = [];
   _isInited = false;
   _isDropupDefault: boolean;
@@ -191,6 +193,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._isInited = true;
 
     this._showInline = !this.container;
+
+    this._dropup = this.dropup;
 
     // attach DOM listeners
     this._dropdown.listen({
@@ -278,6 +282,20 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
     setTimeout(() => {
       container.classList.add('fadeInDropdown');
+
+      if (this.dynamicPosition) {
+        const bounding = container.getBoundingClientRect();
+        const out: { top: boolean; bottom: boolean } = {
+          top: bounding.top < 0,
+          bottom: bounding.bottom > (window.innerHeight || document.documentElement.clientHeight),
+        };
+
+        if (this.dropup && out.top) {
+          this.dropup = false;
+        } else if (!this.dropup && out.bottom) {
+          this.dropup = true;
+        }
+      }
     }, 0);
 
     if (this._showInline) {
@@ -328,6 +346,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   hide(): void {
     if (!this.isOpen) {
       return;
+    }
+
+    if (this.dropup !== this._dropup) {
+      this.dropup = this._dropup;
     }
 
     const container = this._elementRef.nativeElement.querySelector('.dropdown-menu');

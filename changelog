@@ -1,3 +1,25 @@
+8.9.0
+In version 8.9.0 we added some fixes and features for the existing components. Check what changed below:
+
+**Fixes:**
+
+* Validation - resolved problem with styles of outline inputs,
+* Select - adjusted outline input height to the height of the inputs in other form controls,
+* Stepper - (stepChange) event will not be emitted for disabled steps,
+* Datepicker - resolved problems with global options,
+* Autocomplete - fixed dropdown bottom position in outline mode,
+* Timepicker - component will now return new value and change event when clear method is used,
+* Checkbox - resolved problem with label styles (removed unnecessary overflow and white-space properties),
+* Sidenav - resolved problem with styles of the links with waves effect,
+* Sortable plugin - input/textarea funcitonality will no longer be blocked by the sortable directive,
+* Sidenav/Accordion - added checks for window object to resolve problems with server side rendering.
+
+**New features:**
+
+* Dropdown - added new dynamicPosition input, when this option is active component will dynamically update dropdown position (if the menu does not fit the viewport),
+* Timepicker - added possibility to add custom styles for footer and AM/PM buttons and custom translation to buttons,
+* Timepicker - added possibility to add new button that will clear the current selected value.
+
 8.8.2
 In version 8.8.2 we added some fixes for the existing components and removed duplicated css styles. Check what changed below:
 

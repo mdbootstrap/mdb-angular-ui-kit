@@ -215,19 +215,24 @@
     top: 0;
     left: 0;
     font-size: 1rem;
-    transition: transform 0.2s ease-out, color 0.2s ease-out, max-width 0.2s ease-out;
+    transition: transform 0.2s ease-out, color 0.2s ease-out;
     transform-origin: 0% 100%;
     transform: translateY(12px);
     cursor: text;
     color: $input-label-color;
+    &.active {
+      transform: translateY(-14px) scale(0.8);
+    }
+  }
+
+  label:not(.form-check-label) {
+    transition: transform 0.2s ease-out, color 0.2s ease-out, max-width 0.2s ease-out;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    display: inline-block;
     max-width: 100%;
 
     &.active {
-      transform: translateY(-14px) scale(0.8);
       max-width: 123%;
     }
   }
