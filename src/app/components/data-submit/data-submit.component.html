@@ -1,54 +1,93 @@
-<form class="text-center border border-light p-5">
-    <div class="w-responsive text-center mx-auto p-3 mt-2" style="width: 500px">
-        <p class="h4 mb-4">Dataset submission interface</p>
-
-        <div class="container mt-5 mb-5">
+<form class="text-center border border-light p-5" xmlns="http://www.w3.org/1999/html">
+    <div class="w-responsive text-center mx-auto p-3 mt-2">
+        <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
+                <p class="h4 mb-4">Metadata submission interface</p>
+                <!-- Default form group -->
+                <form>
+                    <!-- Default input -->
                     <div class="form-group">
-                        <div class="row">
-                            <label class="col-sm-3 col-form-label" for="files">Files</label>
-                            <div class="col-sm-9">
-              						<input type="file" ng2FileSelect [uploader]="uploader"  (onFileSelected)="onFileSelected($event)"/>
-<!--                                <div class="btn-group" (click)="fileInput.click()">-->
-<!--                                    <button type="button" class="btn btn-primary btn-group-icon btn-group-divider">-->
-<!--                                        <i class="ion-plus-round"></i>-->
-<!--                                    </button>-->
-<!--                                    <button type="button" class="btn btn-primary">-->
-<!--                                        Add Documents-->
-<!--                                    </button>-->
-<!--                                </div>-->
+                        <label for="stationName">Station Name</label>
+                        <input type="text" class="form-control" id="stationName" placeholder="STATION001">
+                    </div>
+                    <!-- Default input -->
+                    <div class="form-group">
+                        <label for="stationDescription">Station Description</label>
+                        <textarea class="form-control rounded-0" id="stationDescription" rows="3" placeholder="The station is located on a polygon ridge"></textarea>
+                    </div>
+                     <div class="form-group">
+                        <label for="stationCoordinates">Station Coordinates</label>
+                        <input type="text" class="form-control" id="stationCoordinates" placeholder="-74.0001 83.0900">
+                    </div>
+                     <div class="form-group">
+                        <label for="stationAltitude">Station Altitude (m)</label>
+                        <input type="text" class="form-control" id="stationAltitude" placeholder="15">
+                    </div>
+                    <div class="form-group">
+                        <label for="sensorName">Sensor Name</label>
+                        <input type="text" class="form-control" id="sensorName" placeholder="Campbell CR1000">
+                    </div>
+                    <button mdbBtn color="info" block="true" type="submit">Send</button>
+                </form>
+                <!-- Default form group -->
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+                    <p class="h4 mb-4">Dataset submission interface</p>
+                        <div class="container mt-5 mb-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label class="col-sm-3 col-form-label" for="files">Files</label>
+                                            <div class="col-sm-9">
+                                                    <input type="file" ng2FileSelect [uploader]="uploader"  (onFileSelected)="onFileSelected($event)"/>
+                <!--                                <div class="btn-group" (click)="fileInput.click()">-->
+                <!--                                    <button type="button" class="btn btn-primary btn-group-icon btn-group-divider">-->
+                <!--                                        <i class="ion-plus-round"></i>-->
+                <!--                                    </button>-->
+                <!--                                    <button type="button" class="btn btn-primary">-->
+                <!--                                        Add Documents-->
+                <!--                                    </button>-->
+                <!--                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9 mt-5">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Size</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let item of uploader.queue">
+                                            <td>
+                                                {{ item?.file?.name }}
+                                            </td>
+                                            <td>
+                                                {{ item?.file?.size / 1024 / 1024 | number:'.2' }} MB
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
+                                                    Remove
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-9 mt-5">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Size</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr *ngFor="let item of uploader.queue">
-                            <td>
-                                {{ item?.file?.name }}
-                            </td>
-                            <td>
-                                {{ item?.file?.size / 1024 / 1024 | number:'.2' }} MB
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
-                                    Remove
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
     </div>
 </form>
+

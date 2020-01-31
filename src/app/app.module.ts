@@ -15,6 +15,7 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FileUploadModule } from 'ng2-file-upload';
         RouterModule,
         FormsModule,
         AppRoutingModule,
-        FileUploadModule
+        FileUploadModule,
+        FlexLayoutModule
     ],
   providers: [],
   bootstrap: [AppComponent]
