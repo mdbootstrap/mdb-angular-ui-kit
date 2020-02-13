@@ -110,6 +110,9 @@ export class MdbInput implements AfterViewChecked, AfterViewInit {
     if (this.isBrowser) {
       try {
         this.element = document.querySelector('.md-textarea-auto');
+        if (this.element) {
+          this.delayedResize();
+        }
       } catch (error) {}
     }
     const type = this.el.nativeElement.type;

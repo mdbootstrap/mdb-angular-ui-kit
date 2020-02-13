@@ -70,6 +70,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   @Input() public type: String = '';
   @Input() public animation: String = '';
   @Input() activeSlideIndex: number;
+  @Input() allowSwipe = true;
 
   @Output() public activeSlideChange: EventEmitter<any> = new EventEmitter<any>(false);
 
@@ -168,14 +169,16 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
   }
 
   swipe(action = this.SWIPE_ACTION.RIGHT) {
-    if (action === this.SWIPE_ACTION.RIGHT) {
-      this.previousSlide();
-      this.cdRef.markForCheck();
-    }
+    if (this.allowSwipe) {
+      if (action === this.SWIPE_ACTION.RIGHT) {
+        this.previousSlide();
+        this.cdRef.markForCheck();
+      }
 
-    if (action === this.SWIPE_ACTION.LEFT) {
-      this.nextSlide();
-      this.cdRef.markForCheck();
+      if (action === this.SWIPE_ACTION.LEFT) {
+        this.nextSlide();
+        this.cdRef.markForCheck();
+      }
     }
   }
 
@@ -357,6 +360,15 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
       if (index !== this.activeSlide) {
         this.fadeAnimation(index);
       }
+    } else if (!this.animation) {
+      setTimeout(() => {
+        const direction = index < this.activeSlide ? 'Prev' : 'Next';
+        this._select(index);
+        this.activeSlideChange.emit({
+          direction,
+          relatedTarget: this.activeSlide,
+        });
+      }, 0);
     }
     this.play();
   }

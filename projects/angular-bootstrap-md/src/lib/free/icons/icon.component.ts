@@ -22,6 +22,7 @@ export class MdbIconComponent implements OnInit {
   fab = false;
   far = false;
   fal = false;
+  fad = false;
   fas = true;
 
   sizeClass = '';
@@ -40,6 +41,7 @@ export class MdbIconComponent implements OnInit {
     this.far = classList.contains('far');
     this.fas = classList.contains('fas');
     this.fal = classList.contains('fal');
+    this.fad = classList.contains('fad');
 
     const formWrapper =
       this.utils.getClosestEl(this._el.nativeElement, '.md-form') ||

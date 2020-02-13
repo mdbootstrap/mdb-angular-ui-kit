@@ -1,3 +1,19 @@
+8.10.0
+In version 8.10.0 we added some bug fixes and new features for the existing components. Check what changed below:
+
+**Fixes:**
+
+* Carousel - selectSlide method will work correctly even if animation type is not specified,
+* Datepicker - resolved problem with setting disabled state in reactive forms (modal version),
+* Textarea - resolved problem with auto resize for default value,
+* Select/Multiselect - resolved problem with background color of highlighted option in colorful select,
+* Select/Multiselect - resolved problem with position of value text in outline mode.
+
+**New features:**
+
+* Carousel - added new allowSwipe input that allow to enable/disable swipe gestures,
+* Icon - added support for Font Awesome Pro Duotone Icons.
+
 8.9.0
 In version 8.9.0 we added some fixes and features for the existing components. Check what changed below:
 
