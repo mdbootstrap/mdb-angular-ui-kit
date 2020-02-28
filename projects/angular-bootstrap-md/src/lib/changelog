@@ -1,3 +1,15 @@
+8.10.1
+In version 8.10.1 we added bug fixes for WYSIWYG plugin and new guide for styles customization. Check what changed below:
+
+**Fixes:**
+
+* WYSIWYG plugin - resolved problem with "Cannot read property parentElement of null" error,
+* WYSIWYG plugin - resolved problem with resetting value in reactive forms.
+
+**Docs:**
+
+* Added new guide for styles customization.
+
 8.10.0
 In version 8.10.0 we added some bug fixes and new features for the existing components. Check what changed below:
 
