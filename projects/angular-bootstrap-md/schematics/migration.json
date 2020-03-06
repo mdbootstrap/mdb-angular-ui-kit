@@ -1,0 +1,13 @@
+{
+    "$schema": "./node_modules/@angular-devkit/schematics/collection-schema.json",
+    "schematics": {
+      "migration-v9": {
+        "version": "9.0.0-0",
+        "description": "Updates MDB Angular Pro to version 9",
+        "factory": "./ng-update/index#updateToV9"
+      }
+    },
+    "ng-update": {
+      "migrations": "./schematics/migration.json"
+    }
+  }

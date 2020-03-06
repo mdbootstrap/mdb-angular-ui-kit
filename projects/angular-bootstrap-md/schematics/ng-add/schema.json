@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "mdb-angular-ng-add",
+    "title": "MDB Angular ng-add schematic",
+    "type": "object",
+    "properties": {
+      "project": {
+        "type": "string",
+        "description": "Name of the project.",
+        "$default": {
+          "$source": "projectName"
+        }
+      },
+      "animations": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether to set up Angular animations.",
+        "x-prompt": "Set up Angular animations?"
+      },
+      "externalDependencies": {
+        "type": "boolean",
+        "default": false,
+        "description": "Whether to set up external dependencies.",
+        "x-prompt": "Set up external dependencies (chart.js, hammerjs, animate, font awesome)?"
+      }
+    },
+    "required": []
+  }
