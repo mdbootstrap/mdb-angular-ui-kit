@@ -13,8 +13,10 @@
     "pack-archive": "cd dist/angular-bootstrap-md && npm pack . && cp angular-bootstrap-md-9.*.tgz ../..",
     "remove-archive": "rm dist/angular-bootstrap-md/angular-bootstrap-md-9.*.tgz && cd ../..",
     "compile-lib": "ng build angular-bootstrap-md && npm run copy-scss && npm run copy-files && npm run schematics:build && npm run pack-archive && npm run remove-archive",
-    "schematics:build": "tsc -p projects/angular-bootstrap-md/tsconfig.schematics.json && npm run schematics:copy",
-    "schematics:copy": "cp projects/angular-bootstrap-md/schematics/collection.json dist/angular-bootstrap-md/schematics/ && cp projects/angular-bootstrap-md/schematics/ng-add/schema.json dist/angular-bootstrap-md/schematics/ng-add",
+    "schematics:build": "tsc -p projects/angular-bootstrap-md/tsconfig.schematics.json && npm run schematics:copy-schema && npm run schematics:copy-collection && npm run schematics:copy-migration",
+    "schematics:copy-schema": "cp projects/angular-bootstrap-md/schematics/ng-add/schema.json dist/angular-bootstrap-md/schematics/ng-add",
+    "schematics:copy-collection": "cp projects/angular-bootstrap-md/schematics/collection.json dist/angular-bootstrap-md/schematics/",
+    "schematics:copy-migration": "cp projects/angular-bootstrap-md/schematics/migration.json dist/angular-bootstrap-md/schematics/",
     "compile": "npm run compile-lib"
   },
   "private": true,
