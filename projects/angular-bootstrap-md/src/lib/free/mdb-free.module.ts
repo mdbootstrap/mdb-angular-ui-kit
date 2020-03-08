@@ -123,6 +123,7 @@ export {
   FarDirective,
   FasDirective,
   FabDirective,
+  FadDirective
 } from './icons/index';
 
 const MODULES = [

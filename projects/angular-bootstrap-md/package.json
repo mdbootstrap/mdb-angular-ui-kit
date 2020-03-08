@@ -3,11 +3,17 @@
   "repository": "https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design",
   "version": "8.10.1",
   "schematics": "./schematics/collection.json",
+  "ng-update": {
+    "migrations": "./schematics/migration.json"
+  },
   "files": [
     "**/*"
   ],
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0"
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@angular/animations": "^9.0.0",
+    "@angular/forms": "^9.0.0",
+    "@angular/cdk": "^9.0.0"
   }
 }
