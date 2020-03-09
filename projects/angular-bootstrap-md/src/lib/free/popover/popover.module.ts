@@ -11,13 +11,13 @@ import { PopoverContainerComponent } from './popover-container.component';
   imports: [CommonModule],
   declarations: [PopoverDirective, PopoverContainerComponent],
   exports: [PopoverDirective],
-  entryComponents: [PopoverContainerComponent]
+  entryComponents: [PopoverContainerComponent],
 })
 export class PopoverModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<PopoverModule> {
     return {
       ngModule: PopoverModule,
-      providers: [PopoverConfig, ComponentLoaderFactory, PositioningService]
+      providers: [PopoverConfig, ComponentLoaderFactory, PositioningService],
     };
   }
 }

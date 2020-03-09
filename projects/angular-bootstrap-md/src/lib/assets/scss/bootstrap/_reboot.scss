@@ -7,7 +7,6 @@
 //
 // Normalize is licensed MIT. https://github.com/necolas/normalize.css
 
-
 // Document
 //
 // 1. Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
@@ -32,7 +31,16 @@ html {
 // Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)
 // TODO: remove in v5
 // stylelint-disable-next-line selector-list-comma-newline-after
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
   display: block;
 }
 
@@ -54,15 +62,18 @@ body {
   background-color: $body-bg; // 2
 }
 
-// Suppress the focus outline on elements that cannot be accessed via keyboard.
-// This prevents an unwanted focus outline from appearing around elements that
-// might still respond to pointer events.
+// Future-proof rule: in browsers that support :focus-visible, suppress the focus outline
+// on elements that programmatically receive focus but wouldn't normally show a visible
+// focus outline. In general, this would mean that the outline is only applied if the
+// interaction that led to the element receiving programmatic focus was a keyboard interaction,
+// or the browser has somehow determined that the user is primarily a keyboard user and/or
+// wants focus outlines to always be presented.
 //
-// Credit: https://github.com/suitcss/base
-[tabindex="-1"]:focus {
+// See https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible
+// and https://developer.paciellogroup.com/blog/2018/03/focus-visible-and-backwards-compatibility/
+[tabindex='-1']:focus:not(:focus-visible) {
   outline: 0 !important;
 }
-
 
 // Content grouping
 //
@@ -75,7 +86,6 @@ hr {
   overflow: visible; // 2
 }
 
-
 //
 // Typography
 //
@@ -85,7 +95,12 @@ hr {
 // By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
 // margin for easier control within type scales as it avoids margin collapsing.
 // stylelint-disable-next-line selector-list-comma-newline-after
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-top: 0;
   margin-bottom: $headings-margin-bottom;
 }
@@ -108,7 +123,8 @@ p {
 // 5. Prevent the text-decoration to be skipped.
 
 abbr[title],
-abbr[data-original-title] { // 1
+abbr[data-original-title] {
+  // 1
   text-decoration: underline; // 2
   text-decoration: underline dotted; // 2
   cursor: help; // 3
@@ -141,7 +157,7 @@ dt {
 }
 
 dd {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   margin-left: 0; // Undo browser default
 }
 
@@ -171,9 +187,12 @@ sup {
   vertical-align: baseline;
 }
 
-sub { bottom: -.25em; }
-sup { top: -.5em; }
-
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
 
 //
 // Links
@@ -184,32 +203,26 @@ a {
   text-decoration: $link-decoration;
   background-color: transparent; // Remove the gray background on active links in IE 10.
 
-  @include hover {
+  @include hover() {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
   }
 }
 
-// And undo these styles for placeholder links/named anchors (without href)
-// which have not been made explicitly keyboard-focusable (without tabindex).
+// And undo these styles for placeholder links/named anchors (without href).
 // It would be more straightforward to just use a[href] in previous block, but that
 // causes specificity issues in many other styles that are too complex to fix.
 // See https://github.com/twbs/bootstrap/issues/19402
 
-a:not([href]):not([tabindex]) {
+a:not([href]) {
   color: inherit;
   text-decoration: none;
 
-  @include hover-focus {
+  @include hover() {
     color: inherit;
     text-decoration: none;
   }
-
-  &:focus {
-    outline: 0;
-  }
 }
-
 
 //
 // Code
@@ -232,7 +245,6 @@ pre {
   overflow: auto;
 }
 
-
 //
 // Figures
 //
@@ -241,7 +253,6 @@ figure {
   // Apply a consistent margin strategy (matches our type styles).
   margin: 0 0 1rem;
 }
-
 
 //
 // Images and content
@@ -258,7 +269,6 @@ svg {
   overflow: hidden;
   vertical-align: middle;
 }
-
 
 //
 // Tables
@@ -281,7 +291,6 @@ th {
   // closest parent with a set `text-align`.
   text-align: inherit;
 }
-
 
 //
 // Forms
@@ -338,7 +347,6 @@ select {
   word-wrap: normal;
 }
 
-
 // 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
 //    controls in Android 4.
 // 2. Correct the inability to style clickable types in iOS and Safari.
@@ -352,9 +360,9 @@ button,
 // Opinionated: add "hand" cursor to non-disabled button elements.
 @if $enable-pointer-cursor-for-buttons {
   button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
+  [type='button'],
+  [type='reset'],
+  [type='submit'] {
     &:not(:disabled) {
       cursor: pointer;
     }
@@ -363,24 +371,23 @@ button,
 
 // Remove inner border and padding from Firefox, but don't restore the outline like Normalize.
 button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner {
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
   padding: 0;
   border-style: none;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
+input[type='radio'],
+input[type='checkbox'] {
   box-sizing: border-box; // 1. Add the correct box sizing in IE 10-
   padding: 0; // 2. Remove the padding in IE 10-
 }
 
-
-input[type="date"],
-input[type="time"],
-input[type="datetime-local"],
-input[type="month"] {
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'],
+input[type='month'] {
   // Remove the default appearance of temporal inputs to avoid a Mobile Safari
   // bug where setting a custom line-height prevents text from being vertically
   // centered within the input.
@@ -415,7 +422,7 @@ legend {
   width: 100%;
   max-width: 100%; // 1
   padding: 0;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   @include font-size(1.5rem);
   line-height: inherit;
   color: inherit; // 2
@@ -427,12 +434,12 @@ progress {
 }
 
 // Correct the cursor style of increment and decrement buttons in Chrome.
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
   height: auto;
 }
 
-[type="search"] {
+[type='search'] {
   // This overrides the extra rounded corners on search inputs in iOS so that our
   // `.form-control` class can properly style them. Note that this cannot simply
   // be added to `.form-control` as it's not specific enough. For details, see
@@ -445,7 +452,7 @@ progress {
 // Remove the inner padding in Chrome and Safari on macOS.
 //
 
-[type="search"]::-webkit-search-decoration {
+[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 

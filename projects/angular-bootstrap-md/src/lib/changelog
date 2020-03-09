@@ -1,3 +1,22 @@
+9.0.0
+In version 9.0.0 we added support for Angular 9. This update introduces breaking changes, check what changed below:
+
+**Breaking changes:**
+
+* MDB Angular requires Angular v9, but it's still possible to opt-out of Ivy,
+* MDB Angular now requires @angular/cdk package,
+* Roboto font files are no longer included in the library files and should be loaded from external source.
+
+**Fixes:**
+
+* WYSIWYG plugin - resolved problem with bold/unbold methods and duplicated elements,
+* Calendar plugin - adding new events will be blocked if the 'editable' input is set to false.
+
+**New features:**
+
+* Updated Bootstrap to version 4.4.1,
+* Added Angular Schematics for version pro and resolved problems with Schematics in version free.
+
 8.10.1
 In version 8.10.1 we added bug fixes for WYSIWYG plugin and new guide for styles customization. Check what changed below:
 

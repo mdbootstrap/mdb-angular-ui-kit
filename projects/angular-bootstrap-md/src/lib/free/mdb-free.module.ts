@@ -123,7 +123,7 @@ export {
   FarDirective,
   FasDirective,
   FabDirective,
-  FadDirective
+  FadDirective,
 } from './icons/index';
 
 const MODULES = [
@@ -177,7 +177,7 @@ export class MDBRootModule {}
 
 @NgModule({ exports: MODULES })
 export class MDBBootstrapModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MDBRootModule> {
     return { ngModule: MDBRootModule };
   }
 }

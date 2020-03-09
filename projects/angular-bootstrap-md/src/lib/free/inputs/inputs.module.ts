@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, NO_ERRORS_SCHEMA} from '@angular/core';
+import { NgModule, ModuleWithProviders, NO_ERRORS_SCHEMA } from '@angular/core';
 import { EqualValidatorDirective } from './equal-validator.directive';
 import { MdbInputDirective } from './mdb-input.directive';
 import { MdbInput } from './input.directive';
@@ -8,9 +8,8 @@ import { MdbInput } from './input.directive';
   exports: [MdbInput, MdbInputDirective, EqualValidatorDirective],
   schemas: [NO_ERRORS_SCHEMA],
 })
-
 export class InputsModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<InputsModule> {
     return { ngModule: InputsModule, providers: [] };
   }
 }

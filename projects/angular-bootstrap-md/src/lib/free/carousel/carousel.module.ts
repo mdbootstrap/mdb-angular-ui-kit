@@ -13,7 +13,7 @@ import { ButtonsModule } from '../buttons/buttons.module';
   providers: [CarouselConfig],
 })
 export class CarouselModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<CarouselModule> {
     return { ngModule: CarouselModule, providers: [] };
   }
 }

@@ -11,10 +11,13 @@ import { MDBModalService } from './modal.service';
   declarations: [ModalBackdropComponent, ModalDirective, ModalContainerComponent],
   exports: [ModalBackdropComponent, ModalDirective],
   entryComponents: [ModalBackdropComponent, ModalContainerComponent],
-  schemas: [NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class ModalModule {
-  public static forRoot(): ModuleWithProviders {
-    return {ngModule: ModalModule, providers: [MDBModalService, ComponentLoaderFactory, PositioningService]};
+  public static forRoot(): ModuleWithProviders<ModalModule> {
+    return {
+      ngModule: ModalModule,
+      providers: [MDBModalService, ComponentLoaderFactory, PositioningService],
+    };
   }
 }

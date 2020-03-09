@@ -20,7 +20,7 @@ import { FixedButtonCaptionDirective } from './fixed-caption.directive';
   ],
 })
 export class ButtonsModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<ButtonsModule> {
     return { ngModule: ButtonsModule, providers: [] };
   }
 }

@@ -10,14 +10,22 @@
   font-weight: $btn-font-weight;
   color: $body-color;
   text-align: center;
+  white-space: $btn-white-space;
   vertical-align: middle;
+  cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
   user-select: none;
   background-color: transparent;
   border: $btn-border-width solid transparent;
-  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+  @include button-size(
+    $btn-padding-y,
+    $btn-padding-x,
+    $btn-font-size,
+    $btn-line-height,
+    $btn-border-radius
+  );
   @include transition($btn-transition);
 
-  @include hover {
+  @include hover() {
     color: $body-color;
     text-decoration: none;
   }
@@ -51,7 +59,6 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
-
 //
 // Alternate buttons
 //
@@ -68,7 +75,6 @@ fieldset:disabled a.btn {
   }
 }
 
-
 //
 // Link buttons
 //
@@ -79,7 +85,7 @@ fieldset:disabled a.btn {
   color: $link-color;
   text-decoration: $link-decoration;
 
-  @include hover {
+  @include hover() {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
   }
@@ -99,19 +105,29 @@ fieldset:disabled a.btn {
   // No need for an active state here
 }
 
-
 //
 // Button Sizes
 //
 
 .btn-lg {
-  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+  @include button-size(
+    $btn-padding-y-lg,
+    $btn-padding-x-lg,
+    $btn-font-size-lg,
+    $btn-line-height-lg,
+    $btn-border-radius-lg
+  );
 }
 
 .btn-sm {
-  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+  @include button-size(
+    $btn-padding-y-sm,
+    $btn-padding-x-sm,
+    $btn-font-size-sm,
+    $btn-line-height-sm,
+    $btn-border-radius-sm
+  );
 }
-
 
 //
 // Block button
@@ -128,9 +144,9 @@ fieldset:disabled a.btn {
 }
 
 // Specificity overrides
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
   &.btn-block {
     width: 100%;
   }

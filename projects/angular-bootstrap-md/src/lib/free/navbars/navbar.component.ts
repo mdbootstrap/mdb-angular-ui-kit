@@ -55,11 +55,11 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   ariaExpanded = false;
 
   @ViewChild('navbar', { static: true }) el: ElementRef;
-  @ViewChild('mobile', { static: false }) mobile: ElementRef;
+  @ViewChild('mobile') mobile: ElementRef;
   @ViewChild('nav', { static: true }) navbar: ElementRef;
   @ViewChild('container', { static: true }) container: ElementRef;
-  @ViewChild('toggler', { static: false }) toggler: ElementRef;
-  @ContentChild(LinksComponent, { static: false }) links: LinksComponent;
+  @ViewChild('toggler') toggler: ElementRef;
+  @ContentChild(LinksComponent) links: LinksComponent;
 
   constructor(
     public renderer: Renderer2,

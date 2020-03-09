@@ -12,27 +12,24 @@ import { BsDropdownState } from './dropdown.state';
 
 @NgModule({
   declarations: [
-  BsDropdownMenuDirective,
-  BsDropdownToggleDirective,
-  BsDropdownContainerComponent,
-  BsDropdownDirective
+    BsDropdownMenuDirective,
+    BsDropdownToggleDirective,
+    BsDropdownContainerComponent,
+    BsDropdownDirective,
   ],
-  exports: [
-  BsDropdownMenuDirective,
-  BsDropdownToggleDirective,
-  BsDropdownDirective
-  ],
-  entryComponents: [BsDropdownContainerComponent]
+  exports: [BsDropdownMenuDirective, BsDropdownToggleDirective, BsDropdownDirective],
+  entryComponents: [BsDropdownContainerComponent],
 })
 export class DropdownModule {
-  public static forRoot(config?: any): ModuleWithProviders {
+  public static forRoot(config?: any): ModuleWithProviders<DropdownModule> {
     return {
-      ngModule: DropdownModule, providers: [
-      ComponentLoaderFactory,
-      PositioningService,
-      BsDropdownState,
-      {provide: BsDropdownConfig, useValue: config ? config : {autoClose: true}}
-      ]
+      ngModule: DropdownModule,
+      providers: [
+        ComponentLoaderFactory,
+        PositioningService,
+        BsDropdownState,
+        { provide: BsDropdownConfig, useValue: config ? config : { autoClose: true } },
+      ],
     };
   }
 }

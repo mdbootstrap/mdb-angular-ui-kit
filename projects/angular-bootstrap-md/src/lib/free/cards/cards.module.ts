@@ -30,7 +30,7 @@ import { MdbCardHeaderComponent } from './mdb-card-header.component';
   ],
 })
 export class CardsModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<CardsModule> {
     return { ngModule: CardsModule, providers: [] };
   }
 }

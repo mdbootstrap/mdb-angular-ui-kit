@@ -3,7 +3,11 @@
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
-@mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+@mixin make-grid-columns(
+  $columns: $grid-columns,
+  $gutter: $grid-gutter-width,
+  $breakpoints: $grid-breakpoints
+) {
   // Common properties for all breakpoints
   %grid-column {
     position: relative;
@@ -33,10 +37,15 @@
         flex-grow: 1;
         max-width: 100%;
       }
+
+      @for $i from 1 through $grid-row-columns {
+        .row-cols#{$infix}-#{$i} {
+          @include row-cols($i);
+        }
+      }
+
       .col#{$infix}-auto {
-        flex: 0 0 auto;
-        width: auto;
-        max-width: 100%; // Reset earlier grid tiers
+        @include make-col-auto();
       }
 
       @for $i from 1 through $columns {
@@ -45,17 +54,24 @@
         }
       }
 
-      .order#{$infix}-first { order: -1; }
+      .order#{$infix}-first {
+        order: -1;
+      }
 
-      .order#{$infix}-last { order: $columns + 1; }
+      .order#{$infix}-last {
+        order: $columns + 1;
+      }
 
       @for $i from 0 through $columns {
-        .order#{$infix}-#{$i} { order: $i; }
+        .order#{$infix}-#{$i} {
+          order: $i;
+        }
       }
 
       // `$columns - 1` because offsetting by the width of an entire row isn't possible
       @for $i from 0 through ($columns - 1) {
-        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
+        @if not($infix == '' and $i == 0) {
+          // Avoid emitting useless .offset-0
           .offset#{$infix}-#{$i} {
             @include make-col-offset($i, $columns);
           }
