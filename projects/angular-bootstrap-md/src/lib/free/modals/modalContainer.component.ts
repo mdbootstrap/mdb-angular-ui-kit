@@ -22,7 +22,7 @@ import { MDBModalService } from './modal.service';
 export class ModalContainerComponent implements OnInit, OnDestroy {
   modalClass = 'modal';
   @HostBinding('tabindex') tabindex = -1;
-  @HostBinding('role') role = 'dialog';
+  @HostBinding('attr.role') role = 'dialog';
   @HostBinding('class.modal') modal = true;
 
   private mdbModalService: MDBModalService;

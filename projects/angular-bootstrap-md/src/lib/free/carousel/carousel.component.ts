@@ -495,7 +495,7 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  @HostListener('keyup', ['$event']) keyboardControl(event: KeyboardEvent) {
+  @HostListener('keyup', ['$event']) keyboardControl(event: any) {
     if (this.keyboard) {
       // tslint:disable-next-line: deprecation
       if (event.keyCode === RIGHT_ARROW) {

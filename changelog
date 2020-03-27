@@ -1,3 +1,17 @@
+9.0.1
+In version 9.0.1 we added some fixes for components and SSR, check what changed below:
+
+**Fixes:**
+
+* Dynamic modal - resolved problem with "Can't bind to 'role' since it isn't a known property of 'null'" warning,
+* Datepicker - resolved problem with footer dynamic position changes when switching between mohs,
+* Switch - resolved problem with overflow sles
+* Universal (server side rendering) - resoed problem with "KeyboardEvent is not defined error.
+
+**Docs:**
+
+* Added new guide on how to use Angular Universal in Angular 9 app.
+
 9.0.0
 In version 9.0.0 we added support for Angular 9. This update introduces breaking changes, check what changed below:
 

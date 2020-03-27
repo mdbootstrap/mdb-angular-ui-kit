@@ -237,6 +237,11 @@
     }
   }
 
+  .switch label {
+    text-overflow: unset;
+    overflow: unset;
+  }
+
   .prefix {
     position: absolute;
     transition: $input-prefix-transition;
