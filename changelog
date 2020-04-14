@@ -1,3 +1,22 @@
+9.1.0
+In version 9.1.0 we added some fixes for sidenav and new features for tables, check what changed below:
+
+**Fixes:**
+
+* Sidenav - component in fixed mode will not be closed when viewport height change,
+* Sidenav - resolved problem with backdrop animation transition when component is opened for the first time,
+* Table - added few fixes to the styles to better match the material design look.
+
+**New features:**
+
+* Table sort - added new [sortIcon] input. Set value of this input to true to automatically add sort icons to the component template,
+* Table sort - added new resetSortDirection input. When set to true, every third click on sort icon will reset sorting direction. This feature will be used as default sorting method in MDB Angular v10,
+* Table - added new [stickyFooter], [stickyFooterBgColor] and [stickyFooterColor] inputs that allow to create and customize sticky footer.
+
+**Docs:**
+
+* Table - added new example with checkboxes and row selection.
+
 9.0.1
 In version 9.0.1 we added some fixes for components and SSR, check what changed below:
 

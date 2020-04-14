@@ -45,8 +45,12 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
   responsive: boolean;
 
   @Input() stickyHeader = false;
-  @Input() stickyHeaderBgColor = '';
-  @Input() stickyHeaderTextColor = '';
+  @Input() stickyHeaderBgColor = '#f2f2f2';
+  @Input() stickyHeaderTextColor = '#000000';
+
+  @Input() stickyFooter = false;
+  @Input() stickyFooterBgColor = '#f2f2f2';
+  @Input() stickyFooterTextColor = '#000000';
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
@@ -66,10 +70,9 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
   }
 
   rowRemoved(): Observable<boolean> {
-    const rowRemoved = new Observable<boolean>((observer: any) => {
+    return new Observable<boolean>((observer: any) => {
       observer.next(true);
     });
-    return rowRemoved;
   }
 
   removeLastRow() {
@@ -116,6 +119,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       });
     });
   }
+
   filterLocalDataByMultipleFields(searchKey: string, keys?: string[]) {
     const items = searchKey.split(' ').map((x: { toLowerCase: () => void }) => x.toLowerCase());
     return this.getDataSource().filter((x: Array<any>) => {
@@ -124,7 +128,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
 
         if (keys !== undefined) {
           for (const prop in x) {
-            if (x[prop]) {
+            if (x[prop] && x.hasOwnProperty(prop)) {
               if (keys.includes(prop)) {
                 if (x[prop].toLowerCase().indexOf(item) !== -1) {
                   flag = true;
@@ -136,7 +140,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
         }
         if (keys === undefined) {
           for (const prop in x) {
-            if (x[prop].toLowerCase().indexOf(item) !== -1) {
+            if (x.hasOwnProperty(prop) && x[prop].toLowerCase().indexOf(item) !== -1) {
               flag = true;
               break;
             }
@@ -149,6 +153,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       return true;
     });
   }
+
   searchLocalDataBy(searchKey: string) {
     if (!searchKey) {
       return this.getDataSource();
@@ -171,6 +176,7 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       return this.filterLocalDataBy(searchKey.toLowerCase());
     }
   }
+
   searchLocalDataByMultipleFields(searchKey: string, keys?: string[]) {
     if (!searchKey) {
       return this.getDataSource();
@@ -179,11 +185,11 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
       return this.filterLocalDataByMultipleFields(searchKey.toLowerCase(), keys);
     }
   }
+
   searchDataObservable(searchKey: string): Observable<any> {
-    const observable = new Observable((observer: any) => {
+    return new Observable((observer: any) => {
       observer.next(this.searchLocalDataBy(searchKey));
     });
-    return observable;
   }
 
   ngOnInit() {
@@ -193,21 +199,29 @@ export class MdbTableDirective implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // Fix(stickyHeader): resolved problem with not working stickyHeader="true" on Chrome
     if (this.stickyHeader) {
-      const tableHead = this.el.nativeElement.querySelector('thead');
-
-      Array.from(tableHead.firstElementChild.children).forEach((child: any) => {
-        this.renderer.addClass(child, 'sticky-top');
-        if (this.stickyHeaderBgColor) {
-          this.renderer.setStyle(child, 'background-color', this.stickyHeaderBgColor);
-        } else {
-          this.renderer.setStyle(child, 'background-color', '#f2f2f2');
-        }
-        if (this.stickyHeaderTextColor) {
-          this.renderer.setStyle(child, 'color', this.stickyHeaderTextColor);
-        } else {
-          this.renderer.setStyle(child, 'color', '#000000');
-        }
-      });
+      this.makeSticky('thead', 'sticky-top', this.stickyHeaderBgColor, this.stickyHeaderTextColor);
     }
+
+    if (this.stickyFooter) {
+      this.makeSticky(
+        'tfoot',
+        'sticky-bottom',
+        this.stickyFooterBgColor,
+        this.stickyFooterTextColor
+      );
+    }
+  }
+
+  private makeSticky(query: string, elementClass: string, bgColor: string, color: string) {
+    const tableHead = this.el.nativeElement.querySelector(query);
+    Array.from(tableHead.firstElementChild.children).forEach((child: any) => {
+      this.renderer.addClass(child, elementClass);
+      if (bgColor) {
+        this.renderer.setStyle(child, 'background-color', bgColor);
+      }
+      if (color) {
+        this.renderer.setStyle(child, 'color', color);
+      }
+    });
   }
 }
