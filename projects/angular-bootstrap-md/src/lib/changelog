@@ -1,3 +1,15 @@
+9.2.0
+In version 9.2.0 we added some fixes and a new version of Timepicker component, check what changed below
+
+**Fixes:**
+
+* Select - resolved problem with documentElement in Angular Universal,
+* Outline input - resolved problem with styles of prefix icon.
+
+**New features:**
+
+* Added new version of Timepicker component, which includes new features and updated material design. The old version of this component is still available and will not be removed before the next major release.
+
 9.1.0
 In version 9.1.0 we added some fixes for sidenav and new features for tables, check what changed below:
 

@@ -1,6 +1,6 @@
 /*!
  * Material Design for Bootstrap 4
- * Version: MDB FREE 4.8.2
+ * Version: MDB PRO 4.8.2
  *
  *
  * Copyright: Material Design for Bootstrap
@@ -26,6 +26,9 @@
  */
 
 @charset "UTF-8";
+
+// CDK
+@import '~@angular/cdk/overlay-prebuilt.css';
 
 // Bootstrap
 @import 'core/bootstrap/functions';
