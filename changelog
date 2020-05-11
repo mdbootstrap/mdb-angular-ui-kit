@@ -1,3 +1,15 @@
+9.3.0
+In version 9.3.0 we added some fixes and a new version of Select component, check what changed below:
+
+**Fixes:**
+
+* Select - resolved problem with tabindex attribute,
+* Modals - resolved problems with focus trap.
+
+**New features:**
+
+* Added new version of Select component, which includes new mdb-option component, updated material design and modified HTML structure. The old version of this component is still available and will not be removed before the next major release.
+
 9.2.0
 In version 9.2.0 we added some fixes and a new version of Timepicker component, check what changed below
 

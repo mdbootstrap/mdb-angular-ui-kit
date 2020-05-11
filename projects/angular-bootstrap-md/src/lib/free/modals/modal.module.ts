@@ -6,9 +6,11 @@ import { PositioningService } from '../utils/positioning/positioning.service';
 import { ComponentLoaderFactory } from '../utils/component-loader/component-loader.factory';
 import { ModalContainerComponent } from './modalContainer.component';
 import { MDBModalService } from './modal.service';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
   declarations: [ModalBackdropComponent, ModalDirective, ModalContainerComponent],
+  imports: [A11yModule],
   exports: [ModalBackdropComponent, ModalDirective],
   entryComponents: [ModalBackdropComponent, ModalContainerComponent],
   schemas: [NO_ERRORS_SCHEMA],

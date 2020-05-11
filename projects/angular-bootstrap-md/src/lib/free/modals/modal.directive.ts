@@ -22,6 +22,7 @@ import { ModalBackdropComponent } from './modalBackdrop.component';
 import { ClassName, DISMISS_REASONS, modalConfigDefaults, ModalOptions } from './modal.options';
 import { ComponentLoader } from '../utils/component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../utils/component-loader/component-loader.factory';
+import { FocusTrap, ConfigurableFocusTrapFactory } from '@angular/cdk/a11y';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -87,6 +88,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
   // reference to backdrop component
   protected backdrop: ComponentRef<ModalBackdropComponent> | undefined;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
+
+  private _focusTrap: FocusTrap;
   // todo: implement _dialog
   _dialog: any;
 
@@ -94,10 +97,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
 
   utils: Utils = new Utils();
 
-  @HostListener('keydown', ['$event']) onKeyDown(event: any) {
+  /*   @HostListener('keydown', ['$event']) onKeyDown(event: any) {
     this.utils.focusTrapModal(event, this._element);
   }
-
+ */
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (
@@ -122,6 +125,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
 
   public constructor(
     protected _element: ElementRef,
+    private _focusTrapFactory: ConfigurableFocusTrapFactory,
     _viewContainerRef: ViewContainerRef,
     protected _renderer: Renderer2,
     clf: ComponentLoaderFactory
@@ -149,6 +153,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
         this.show();
       }
     }, 0);
+
+    this._createFocusTrap();
   }
 
   public ngOnChanges(): any {
@@ -289,6 +295,12 @@ export class ModalDirective implements AfterViewInit, OnDestroy, OnChanges {
       setTimeout(transitionComplete, TRANSITION_DURATION);
     } else {
       transitionComplete();
+    }
+  }
+
+  private _createFocusTrap() {
+    if (!this._focusTrap) {
+      this._focusTrap = this._focusTrapFactory.create(this._element.nativeElement);
     }
   }
 

@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { ClassName, DISMISS_REASONS, ModalOptions, TransitionDurations } from './modal.options';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
-import { Utils } from '../utils';
 import { MDBModalService } from './modal.service';
 
 @Component({
@@ -34,8 +33,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   protected _element: ElementRef;
   private isModalHiding = false;
 
-  private utils: Utils = new Utils();
-
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (
@@ -55,10 +52,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this.mdbModalService.setDismissReason(DISMISS_REASONS.ESC);
       this.hide();
     }
-  }
-
-  @HostListener('keydown', ['$event']) onKeyDown(event: any) {
-    this.utils.focusTrapModal(event, this._element);
   }
 
   public constructor(options: ModalOptions, _element: ElementRef, private _renderer: Renderer2) {
