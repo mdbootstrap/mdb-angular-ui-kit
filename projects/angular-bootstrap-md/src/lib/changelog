@@ -1,3 +1,13 @@
+9.3.1
+In version 9.3.1 we added some fixes for the existing components, check what changed below:
+
+**Fixes:**
+
+* Sidenav - resolved problem with SSR in Angular Universal,
+* Stepper - resolved problem with adding steps dynamically,
+* Multiselect- resolved problem with setting default value,
+* Select 2 - resolved problem with label position update when setting default value.
+
 9.3.0
 In version 9.3.0 we added some fixes and a new version of Select component, check what changed below:
 
