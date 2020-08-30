@@ -1,3 +1,32 @@
+9.4.0
+In version 9.4.0 we added some new features and fixes for the existing components, check what changed below:
+
+**Fixes:**
+
+* Datepicker - resolved problems with styles when component is opened inside accordion,
+* Datepicker - resolved problem with clearing input value with Angular form controls methods,
+* Datepicker - resolved problem with dynamic updates of year and month select values,
+* Sidenav - component should no longer close on viewport height change,
+* Select 2 - dropdown height will be correctly updated for specific visibleOptions value,
+* Select 2 - resolved problem with dropdown visibility when the component is opened inside a modal,
+* Select 2 - resolved problem with resetting value with Angular form controls methods,
+* Select 2 - adjusted styles to match other form controls,
+* Badge - color classes will be correctly assigned to the component,
+* Radio - native radio elements styles will no longer be overridden by MDB styles,
+* Autocomplete - resolved problem with setting component value when value is an object,
+* Tabs - resolved problem with active tab initialization for tabs created dynamically,
+* Textarea - component height will be correctly initialized when used inside tab,
+* Stepper - resolved problem with active step update after adding or removing steps dynamically,
+* Dropdown - resolved problems with performance,
+* Select - resolved problem with value changes when using form control methods,
+* Table Editor - first row will be now correctly highlighted,
+* Wysiwyg - resolved problem with editing url of the link.
+
+**New Features:**
+
+* Datepicker - added new inputIcon and inlineInputIcon options, which allow to show and hide toggle icons for specific display mode,
+* Autocomplete - added new dropdownPosition input, which allow to specify the dropdown position (below, above, auto). Default position is set to 'auto'.
+
 9.3.1
 In version 9.3.1 we added some fixes for the existing components, check what changed below:
 

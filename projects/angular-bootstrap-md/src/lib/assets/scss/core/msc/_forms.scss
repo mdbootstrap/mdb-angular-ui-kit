@@ -771,7 +771,7 @@ input.counter-success ~ span.text-success {
 .md-outline input.form-control.validate-success.ng-valid.ng-dirty + label,
 .md-outline input.form-control.validate-success.ng-valid.ng-touched + label,
 .md-outline.form-submitted input.form-control.validate-success.ng-valid + label {
-  color: inherit !important;
+  color: $input-success-color !important;
   font-weight: normal !important;
 }
 
@@ -785,7 +785,7 @@ input.counter-success ~ span.text-success {
 .md-outline input.form-control.validate-error.ng-invalid.ng-touched + label,
 .md-outline input.form-control.validate-error.ng-invalid.ng-dirty + label,
 .md-outline.form-submitted input.form-control.validate-error.ng-invalid + label {
-  color: inherit !important;
+  color: $input-error-color !important;
   font-weight: normal !important;
 }
 
