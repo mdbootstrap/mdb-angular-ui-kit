@@ -132,11 +132,14 @@ export class MdbInput implements AfterViewChecked, AfterViewInit {
   resize() {
     if (this.el.nativeElement.classList.contains('md-textarea-auto')) {
       this._renderer.setStyle(this.el.nativeElement, 'height', 'auto');
-      this._renderer.setStyle(
-        this.el.nativeElement,
-        'height',
-        this.el.nativeElement.scrollHeight + 'px'
-      );
+
+      if (this.el.nativeElement.scrollHeight) {
+        this._renderer.setStyle(
+          this.el.nativeElement,
+          'height',
+          this.el.nativeElement.scrollHeight + 'px'
+        );
+      }
     }
   }
 

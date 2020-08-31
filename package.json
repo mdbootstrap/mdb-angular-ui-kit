@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-md-lib",
-  "version": "9.3.1",
+  "version": "9.4.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

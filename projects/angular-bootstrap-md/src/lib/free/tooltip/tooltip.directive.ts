@@ -136,7 +136,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes['mdbTooltip'].isFirstChange()) {
+    if (changes['mdbTooltip'] && !changes['mdbTooltip'].isFirstChange()) {
       this.tooltipChange.emit(this.mdbTooltip);
     }
   }

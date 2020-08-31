@@ -38,7 +38,7 @@ export class MDBBadgeComponent implements OnInit {
       const customClassArr = this.color.split(' ');
 
       customClassArr.forEach((el: string) => {
-        this._renderer.addClass(this._el.nativeElement, el);
+        this._renderer.addClass(this._el.nativeElement, `badge-${el}`);
       });
     }
   }
