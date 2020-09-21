@@ -1,3 +1,20 @@
+10.0.0
+In version 10.0.0 we added support for Angular 10. This update introduces breaking changes, check what changed below:
+
+**Breaking changes:**
+
+* MDB Angular 10 requires Angular v10,
+* Tooltip - changed name of the isDisabled input to tooltipDisabled to avoid naming collisions with the inputs of other components,
+* Select, Autocomplete - adjusted appearance of arrow icon and clear buttons to maintain a consistent design in all form controls.
+
+**Fixes:**
+
+* Select 2 - resolved problem with setting initial value with ngModel
+
+**New features:**
+
+* Select 2 - added new label input for mdb-select-option component. If the input value is available, it will be displayed in the select input after option selection.
+
 9.4.0
 In version 9.4.0 we added some new features and fixes for the existing components, check what changed below:
 

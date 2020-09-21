@@ -72,7 +72,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Allows to disable tooltip
    */
-  @Input() public isDisabled: boolean;
+  @Input() public tooltipDisabled: boolean;
 
   @Input() dynamicPosition = true;
 
@@ -158,7 +158,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OnChanges {
    * the tooltip.
    */
   public show(): void {
-    if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.mdbTooltip) {
+    if (this.isOpen || this.tooltipDisabled || this._delayTimeoutId || !this.mdbTooltip) {
       return;
     }
 
