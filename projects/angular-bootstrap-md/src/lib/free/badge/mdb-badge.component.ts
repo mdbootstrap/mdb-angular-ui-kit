@@ -19,6 +19,7 @@ import {
 export class MDBBadgeComponent implements OnInit {
   @Input() @HostBinding('class.badge-default') default: boolean;
   @Input() @HostBinding('class.badge-primary') primary: boolean;
+  @Input() @HostBinding('class.badge-secondary') secondary: boolean;
   @Input() @HostBinding('class.badge-success') success: boolean;
   @Input() @HostBinding('class.badge-info') info: boolean;
   @Input() @HostBinding('class.badge-warning') warning: boolean;
@@ -38,7 +39,7 @@ export class MDBBadgeComponent implements OnInit {
       const customClassArr = this.color.split(' ');
 
       customClassArr.forEach((el: string) => {
-        this._renderer.addClass(this._el.nativeElement, `badge-${el}`);
+        this._renderer.addClass(this._el.nativeElement, el);
       });
     }
   }
