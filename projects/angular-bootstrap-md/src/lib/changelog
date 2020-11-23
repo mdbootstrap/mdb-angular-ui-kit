@@ -1,3 +1,14 @@
+10.0.1
+In version 10.0.1 we added some fixes for the existing components, check what changed below:
+
+**Fixes:**
+
+* Badge - resolved problem with input responsible for adding background color,
+* File Upload - added UploaderOptions to the exports list,
+* Accordion - fixed problem with input label position,
+* Range - resolved problem with value updates when using ngModel,
+* Timepicker - resolved problems with layout after change in HTML font size.
+
 10.0.0
 In version 10.0.0 we added support for Angular 10. This update introduces breaking changes, check what changed below:
 
