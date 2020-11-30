@@ -34,6 +34,10 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   /** Current value of radio component or group */
   @Input() public value: any;
 
+  @HostBinding('class.disabled')
+  @Input()
+  disabled = false;
+
   @HostBinding('class.active')
   public get isActive(): boolean {
     return this.mdbRadio === this.value;
@@ -41,6 +45,9 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
 
   @HostListener('click', ['$event'])
   public onClick(event?: any): void {
+    if (this.disabled) {
+      return;
+    }
     try {
       this.el.nativeElement.parentElement.childNodes.forEach((element: any) => {
         this.radioElementsArray.push(element);

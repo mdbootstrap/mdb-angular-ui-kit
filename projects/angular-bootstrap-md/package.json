@@ -1,7 +1,7 @@
 {
   "name": "angular-bootstrap-md",
   "repository": "https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design",
-  "version": "10.0.1",
+  "version": "10.1.1",
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json"

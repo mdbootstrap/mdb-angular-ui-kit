@@ -1,3 +1,17 @@
+10.1.1
+In version 10.1.1 we added some new features and fixes for the existing components, check what changed below:
+
+**Fixes:**
+
+* Input group - resolved problem with z-index of outline input label,
+* Accordion/Sidenav - resolved problem with auto expand on route change,
+* Textarea - fixed label validation styles in outline version,
+
+**New features:**
+
+* Radio - added new disabled input for mdbRadio directive.
+* Calendar plugin - added new startDate input that allow to set default date.
+
 10.0.1
 In version 10.0.1 we added some fixes for the existing components, check what changed below:
 
