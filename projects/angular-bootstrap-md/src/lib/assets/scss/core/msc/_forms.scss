@@ -761,6 +761,12 @@ input.counter-success ~ span.text-success {
   overflow-y: auto !important;
 }
 
+// Fix for outline input label inside option group
+// without z-index: 3 it is displayed under the border
+.input-group.md-form.md-outline label.active {
+  z-index: 3;
+}
+
 .md-outline input.form-control.validate-success.ng-valid.ng-dirty,
 .md-outline input.form-control.validate-success.ng-valid.ng-touched,
 .md-outline.form-submitted input.form-control.validate-success.ng-valid {
@@ -797,7 +803,7 @@ input.counter-success ~ span.text-success {
 
 .md-outline .md-textarea.validate-success.ng-valid.ng-dirty,
 .md-outline .md-textarea.validate-success.ng-valid.ng-touched + label {
-  color: inherit !important;
+  color: $input-success-color !important;
   font-weight: normal !important;
 }
 
@@ -811,7 +817,7 @@ input.counter-success ~ span.text-success {
 .md-outline .md-textarea.validate-error.ng-invalid.ng-touched + label,
 .md-outline .md-textarea.validate-error.ng-invalid.ng-dirty + label,
 .md-outline .form-submitted .md-textarea.validate-error.ng-invalid + label {
-  color: inherit !important;
+  color: $input-error-color !important;
   font-weight: normal !important;
 }
 
