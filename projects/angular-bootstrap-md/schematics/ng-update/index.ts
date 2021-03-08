@@ -10,7 +10,7 @@ export function updateToV9(): Rule {
   return (tree: Tree, context: SchematicContext) => {
 
     const fontUrl = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,600&display=swap';
-    const workspace = getWorkspace(tree);
+    const workspace: any = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace);
     const projectIndexFiles = getProjectIndexFiles(project);
     const logger = context.logger;

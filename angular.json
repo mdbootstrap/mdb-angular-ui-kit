@@ -156,14 +156,14 @@
       "prefix": "mdb",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/angular-bootstrap-md/tsconfig.lib.json",
             "project": "projects/angular-bootstrap-md/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng-uikit-pro-standard/tsconfig.lib.prod.json"
+              "tsConfig": "projects/angular-bootstrap-md/tsconfig.lib.prod.json"
             }
           }
         },
