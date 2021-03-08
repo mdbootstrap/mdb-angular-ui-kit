@@ -27,7 +27,7 @@ export default function(options: Schema): Rule {
 
 function addMdbFreeModuleImport(options: Schema) {
   return (tree: Tree) => {
-    const workspace = getWorkspace(tree);
+    const workspace: any =getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
     const mdbFreeModuleName = 'MDBBootstrapModule.forRoot()';
     const mdbFreeModulePath = 'angular-bootstrap-md';
@@ -41,7 +41,7 @@ function addMdbFreeModuleImport(options: Schema) {
 
 function addAngularAnimationsModule(options: Schema) {
   return (tree: Tree, context: SchematicContext) => {
-    const workspace = getWorkspace(tree);
+    const workspace: any =getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
     const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
     const browserAnimationModule = 'BrowserAnimationsModule';
@@ -68,7 +68,7 @@ function addAngularAnimationsModule(options: Schema) {
 function addRobotoFontToIndexHtml() {
   return (tree: Tree, context: SchematicContext) => {
     const fontUrl = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,600&display=swap';
-    const workspace = getWorkspace(tree);
+    const workspace: any =getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace);
     const projectIndexFiles = getProjectIndexFiles(project);
     const logger = context.logger;

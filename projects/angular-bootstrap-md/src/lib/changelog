@@ -1,3 +1,18 @@
+11.0.0
+In version 11.0.0 we added support for Angular 11. This update introduces breaking changes, check what changed below:
+
+**Breaking changes:**
+
+* MDB Angular 11 requires Angular v11,
+
+**Fixes:**
+
+* Select 2 - resolved problem with using false values as option values,
+* Autocomplete - resolved problem with disabled state in reactive forms,
+* Autocomplete - resolved problem with closing component dropdown on document click,
+* Range - resolved problem with thumb animations,
+* Multi-range - resolved problem with component styles in Firefox browser.
+
 10.1.1
 In version 10.1.1 we added some new features and fixes for the existing components, check what changed below:
 
