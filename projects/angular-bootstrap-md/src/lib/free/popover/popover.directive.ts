@@ -67,6 +67,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
   @Input() dynamicPosition = true;
   @Input() outsideClick = false;
+  @Input() popoverDisabled = false;
   /**
    * Emits an event when the popover is shown
    */
@@ -100,12 +101,20 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this.hidden = this._popover.onHidden;
   }
 
+  get hasContent(): boolean {
+    if (typeof this.mdbPopover === 'string') {
+      return this.mdbPopover.length > 0;
+    }
+
+    return true;
+  }
+
   /**
    * Opens an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
   public show(): void | any {
-    if (this._popover.isShown) {
+    if (this._popover.isShown || this.popoverDisabled || !this.hasContent) {
       return;
     }
 

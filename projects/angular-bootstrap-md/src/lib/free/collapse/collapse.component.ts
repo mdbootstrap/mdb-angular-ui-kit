@@ -48,11 +48,13 @@ export class CollapseComponent implements OnInit {
   onExpandBodyDone(event: any) {
     setTimeout(() => {
       if (event.toState === 'expanded') {
+        this.isCollapsed = false;
         this.shownBsCollapse.emit(this);
         this.expanded.emit(this);
         this.overflow = 'visible';
         this.showCaptions();
       } else {
+        this.isCollapsed = true;
         this.hiddenBsCollapse.emit(this);
         this.collapsed.emit(this);
       }
@@ -69,7 +71,6 @@ export class CollapseComponent implements OnInit {
 
   show() {
     this.expandAnimationState = 'expanded';
-    this.isCollapsed = false;
 
     this.showBsCollapse.emit(this);
     this._cdRef.markForCheck();
@@ -78,7 +79,6 @@ export class CollapseComponent implements OnInit {
   hide() {
     this.overflow = 'hidden';
     this.expandAnimationState = 'collapsed';
-    this.isCollapsed = true;
 
     this.hideBsCollapse.emit(this);
     this._cdRef.markForCheck();

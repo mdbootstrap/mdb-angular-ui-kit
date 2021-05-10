@@ -16,6 +16,8 @@ import {
   Inject,
   NgZone,
   OnDestroy,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { LinksComponent } from './links.component';
@@ -37,10 +39,13 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   @Input() scrollSensitivity = 120;
   @Input() scrollableNavbar = false;
 
+  @Output() shown: EventEmitter<any> = new EventEmitter();
+  @Output() hidden: EventEmitter<any> = new EventEmitter();
+
   private _destroy$: Subject<void> = new Subject();
 
   navbarLinkClicks: any;
-  shown = false;
+  isShown = false;
 
   public doubleNav: boolean;
   public height: number;
@@ -137,7 +142,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
 
   toggle() {
     if (!this.collapsing) {
-      if (this.shown) {
+      if (this.isShown) {
         this.hide();
       } else {
         this.show();
@@ -146,7 +151,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
   }
 
   show() {
-    this.shown = true;
+    this.isShown = true;
     this.collapse = false;
     this.collapsing = true;
     this.ariaExpanded = true;
@@ -160,14 +165,15 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
       this.collapsing = false;
       this.collapse = true;
       this.showClass = true;
+      this.shown.emit();
     }, this.duration);
 
     this._cdRef.markForCheck();
   }
 
   hide() {
-    if (this.shown) {
-      this.shown = false;
+    if (this.isShown) {
+      this.isShown = false;
       this.collapse = false;
       this.showClass = false;
       this.collapsing = true;
@@ -179,6 +185,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
       setTimeout(() => {
         this.collapsing = false;
         this.collapse = true;
+        this.hidden.emit();
       }, this.duration);
     }
 
@@ -209,7 +216,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
     }
 
     if (event.target.innerWidth < breakpoint) {
-      if (!this.shown) {
+      if (!this.isShown) {
         this.collapse = false;
         this.renderer.setStyle(this.el.nativeElement, 'height', '0px');
         this.renderer.setStyle(this.el.nativeElement, 'opacity', '0');
@@ -221,7 +228,7 @@ export class NavbarComponent implements AfterViewInit, OnInit, AfterContentCheck
       }
     } else {
       this.collapsing = false;
-      this.shown = false;
+      this.isShown = false;
       this.showClass = false;
       this.collapse = true;
       this.ariaExpanded = false;
