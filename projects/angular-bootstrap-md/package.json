@@ -1,7 +1,7 @@
 {
   "name": "angular-bootstrap-md",
   "repository": "https://github.com/mdbootstrap/Angular-Bootstrap-with-Material-Design",
-  "version": "11.1.0",
+  "version": "12.0.0",
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "migrations": "./schematics/migration.json"
@@ -13,10 +13,10 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0",
-    "@angular/animations": "^11.0.0",
-    "@angular/forms": "^11.0.0",
-    "@angular/cdk": "^11.0.0"
+    "@angular/common": "^12.0.0",
+    "@angular/core": "^12.0.0",
+    "@angular/animations": "^12.0.0",
+    "@angular/forms": "^12.0.0",
+    "@angular/cdk": "^12.0.0"
   }
 }

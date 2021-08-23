@@ -260,12 +260,10 @@ export class CarouselComponent implements OnDestroy, AfterViewInit {
         setTimeout(() => {
           const previous = this.slides[this._currentActiveSlide].el.nativeElement;
 
-          this.renderer.setStyle(previous, 'opacity', '0');
+          this.renderer.setStyle(previous, 'display', 'none');
           this.renderer.setStyle(previous, 'transition', 'all 600ms');
-          this.renderer.setStyle(previous, 'display', 'block');
 
           this.renderer.setStyle(goToSlide.el.nativeElement, 'display', 'block');
-          this.renderer.setStyle(goToSlide.el.nativeElement, 'opacity', '1');
           this.renderer.setStyle(goToSlide.el.nativeElement, 'transition', 'all 600ms');
 
           if (direction === 1) {

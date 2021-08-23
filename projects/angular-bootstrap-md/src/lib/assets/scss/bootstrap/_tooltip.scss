@@ -12,7 +12,9 @@
   word-wrap: break-word;
   opacity: 0;
 
-  &.show { opacity: $tooltip-opacity; }
+  &.show {
+    opacity: $tooltip-opacity;
+  }
 
   .arrow {
     position: absolute;
@@ -22,7 +24,7 @@
 
     &::before {
       position: absolute;
-      content: "";
+      content: '';
       border-color: transparent;
       border-style: solid;
     }
@@ -37,7 +39,7 @@
 
     &::before {
       top: 0;
-      border-width: $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-width: $tooltip-arrow-height ($tooltip-arrow-width * 0.5) 0;
       border-top-color: $tooltip-arrow-color;
     }
   }
@@ -53,7 +55,8 @@
 
     &::before {
       right: 0;
-      border-width: ($tooltip-arrow-width / 2) $tooltip-arrow-height ($tooltip-arrow-width / 2) 0;
+      border-width: ($tooltip-arrow-width * 0.5) $tooltip-arrow-height ($tooltip-arrow-width * 0.5)
+        0;
       border-right-color: $tooltip-arrow-color;
     }
   }
@@ -67,7 +70,7 @@
 
     &::before {
       bottom: 0;
-      border-width: 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+      border-width: 0 ($tooltip-arrow-width * 0.5) $tooltip-arrow-height;
       border-bottom-color: $tooltip-arrow-color;
     }
   }
@@ -83,23 +86,24 @@
 
     &::before {
       left: 0;
-      border-width: ($tooltip-arrow-width / 2) 0 ($tooltip-arrow-width / 2) $tooltip-arrow-height;
+      border-width: ($tooltip-arrow-width * 0.5) 0 ($tooltip-arrow-width * 0.5)
+        $tooltip-arrow-height;
       border-left-color: $tooltip-arrow-color;
     }
   }
 }
 
 .bs-tooltip-auto {
-  &[x-placement^="top"] {
+  &[x-placement^='top'] {
     @extend .bs-tooltip-top;
   }
-  &[x-placement^="right"] {
+  &[x-placement^='right'] {
     @extend .bs-tooltip-right;
   }
-  &[x-placement^="bottom"] {
+  &[x-placement^='bottom'] {
     @extend .bs-tooltip-bottom;
   }
-  &[x-placement^="left"] {
+  &[x-placement^='left'] {
     @extend .bs-tooltip-left;
   }
 }
