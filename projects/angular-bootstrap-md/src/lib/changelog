@@ -1,3 +1,26 @@
+12.0.0
+In version 12.0.0 we added support for Angular 12. This update introduces breaking changes, check what changed below:
+
+**Breaking changes:**
+
+* MDB Angular 12 requires Angular v12,
+
+**Fixes:**
+
+* Carousel - resolved problem with gap between thumbnail bar and image,
+* Autocomplete - resolved problem with type of option value input,
+* Timepicker - resolved problem with setting default value using Angular form controls,
+* Datepicker - resolved problem with display in inline mode when container has overlay: hidden styles,
+* Datepicker - focus on input with openOnFocus option will no longer remove body scroll,
+* Stepper - added possibility to jump to any step if previous steps are completed,
+* Lightbox - resolved problem with background scrolling when image is opened,
+* Multi-range - resolved problem with component styles in Firefox browser,
+* Spinner - removed unused selector to avoid naming collisions with other libraries.
+
+**New features:**
+
+* Table - input maxHeight will also accept values with different units (for example 80%).
+
 11.1.0
 In version 11.1.0 we added some fixes and new features for the existing components. Check what changed below:
 

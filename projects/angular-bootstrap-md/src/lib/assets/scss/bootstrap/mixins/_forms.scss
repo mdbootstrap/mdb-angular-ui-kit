@@ -10,6 +10,8 @@
 //
 // Example usage: change the default blue border and shadow to white for better
 // contrast against a dark gray background.
+@use "sass:list";
+
 @mixin form-control-focus($ignore-warning: false) {
   &:focus {
     color: $input-focus-color;
@@ -111,8 +113,7 @@
           escape-svg($icon)
             $custom-select-bg
             no-repeat
-            $custom-select-feedback-icon-position /
-            $custom-select-feedback-icon-size;
+            list.slash($custom-select-feedback-icon-position, $custom-select-feedback-icon-size);
       }
 
       &:focus {

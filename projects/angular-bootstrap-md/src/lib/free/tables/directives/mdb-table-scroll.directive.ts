@@ -5,28 +5,51 @@ import { Directive, ElementRef, Renderer2, OnInit, Input } from '@angular/core';
 })
 export class MdbTableScrollDirective implements OnInit {
   @Input() scrollY = false;
-  @Input() maxHeight: any = null;
+  @Input()
+  get maxHeight(): number | string | null {
+    return this._maxHeight;
+  }
+  set maxHeight(value: number | string | null) {
+    if (typeof value === 'number') {
+      this._maxHeight = `${value}px`;
+    } else {
+      this._maxHeight = value;
+    }
+  }
 
   @Input() scrollX = false;
-  @Input() maxWidth: any = null;
+  @Input()
+  get maxWidth(): number | string | null {
+    return this._maxWidth;
+  }
+  set maxWidth(value: number | string | null) {
+    if (typeof value === 'number') {
+      this._maxWidth = `${value}px`;
+    } else {
+      this._maxWidth = value;
+    }
+  }
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
+  _maxWidth: number | string | null;
+  _maxHeight: number | string | null;
+
   wrapTableWithVerticalScrollingWrapper(tableWrapper: ElementRef) {
-    this.renderer.setStyle(tableWrapper, 'max-height', this.maxHeight + 'px');
+    this.renderer.setStyle(tableWrapper, 'max-height', this.maxHeight);
     this.renderer.setStyle(tableWrapper, 'overflow-y', 'auto');
     this.renderer.setStyle(tableWrapper, 'display', 'block');
   }
 
   wrapTableWithHorizontalScrollingWrapper(tableWrapper: ElementRef) {
-    this.renderer.setStyle(tableWrapper, 'max-width', this.maxWidth + 'px');
+    this.renderer.setStyle(tableWrapper, 'max-width', this.maxWidth);
     this.renderer.setStyle(tableWrapper, 'overflow-x', 'auto');
     this.renderer.setStyle(tableWrapper, 'display', 'block');
   }
 
   wrapTableWithHorizontalAndVerticalScrollingWrapper(tableWrapper: ElementRef) {
-    this.renderer.setStyle(tableWrapper, 'max-height', this.maxHeight + 'px');
-    this.renderer.setStyle(tableWrapper, 'max-width', this.maxWidth + 'px');
+    this.renderer.setStyle(tableWrapper, 'max-height', this.maxHeight);
+    this.renderer.setStyle(tableWrapper, 'max-width', this.maxWidth);
     this.renderer.setStyle(tableWrapper, 'overflow-x', 'auto');
     this.renderer.setStyle(tableWrapper, 'display', 'block');
   }

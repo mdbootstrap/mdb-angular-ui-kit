@@ -26,6 +26,7 @@
       (click)="selectSlide(i)"
     ></li>
   </ol>
+  <div class="carousel-inner"><ng-content></ng-content></div>
   <ol class="carousel-indicators" *ngIf="slides.length > 1 && !checkDots() && isControls">
     <li
       *ngFor="let slidez of slides; let i = index"
@@ -35,7 +36,6 @@
       <img class="d-block w-100 img-fluid" src="{{ getImg(slidez) }}" />
     </li>
   </ol>
-  <div class="carousel-inner"><ng-content></ng-content></div>
   <a
     class="carousel-control-prev"
     [class.disabled]="activeSlide === 0 && noWrap"

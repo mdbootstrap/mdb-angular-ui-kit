@@ -8,7 +8,6 @@
     "declaration": true,
     "sourceMap": true,
     "inlineSources": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "types": [],
@@ -18,7 +17,6 @@
     ]
   },
   "angularCompilerOptions": {
-    "enableIvy": false,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,
