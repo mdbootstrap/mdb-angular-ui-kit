@@ -116,6 +116,10 @@ export class MdbCollapseDirective {
   }
 
   toggle(): void {
+    if (this._isTransitioning) {
+      return;
+    }
+
     this.collapsed = !this.collapsed;
     this.collapsed ? this.hide() : this.show();
   }

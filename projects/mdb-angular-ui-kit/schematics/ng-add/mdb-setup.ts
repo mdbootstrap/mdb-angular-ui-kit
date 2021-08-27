@@ -14,6 +14,7 @@ import {
 import { Schema } from './schema';
 
 const mdbModules = [
+  { name: 'MdbAccordionModule', path: 'mdb-angular-ui-kit/accordion'},
   { name: 'MdbCarouselModule', path: 'mdb-angular-ui-kit/carousel'},
   { name: 'MdbCheckboxModule', path: 'mdb-angular-ui-kit/checkbox'},
   { name: 'MdbCollapseModule', path: 'mdb-angular-ui-kit/collapse'},

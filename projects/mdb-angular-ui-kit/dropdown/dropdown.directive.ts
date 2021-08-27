@@ -230,10 +230,11 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     return fromEvent(document, 'click').pipe(
       filter((event: MouseEvent) => {
         const target = event.target as HTMLElement;
+        const notTogglerIcon = !this._dropdownToggle.nativeElement.contains(target);
         const notOrigin = target !== origin;
         const notValue = !this._dropdownMenu.nativeElement.contains(target);
         const notOverlay = !!overlayRef && overlayRef.overlayElement.contains(target) === false;
-        return notOrigin && notValue && notOverlay;
+        return notOrigin && notValue && notOverlay && notTogglerIcon;
       }),
       takeUntil(overlayRef.detachments())
     );

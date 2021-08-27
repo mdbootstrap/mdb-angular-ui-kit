@@ -17,3 +17,7 @@
 .parent-alert-relative {
   position: relative;
 }
+
+.notification-open .cdk-overlay-container {
+  z-index: $zindex-alert;
+}

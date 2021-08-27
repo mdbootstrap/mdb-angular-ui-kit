@@ -1,3 +1,35 @@
+## 1.0.0 (09.08.2021)
+
+In this version we introduced some breaking changes, please check `Breaking changes` section and update your application accordingly.
+
+### Breaking changes:
+
+- Inputs - removed `margin-bottom` styles from inputs with validation classes.
+
+### Fixes and improvements:
+
+- Select - dropdown will be correctly removed on component destroy,
+- Select - resolved problem with select-all option state on component initialization,
+- Select - resolved problem with selection of options with false values,
+- Dropdown - resolved problem with opening component on icon click,
+- Toasts/Alerts - resolved problem with z-index,
+- Popconfirm - resolved problem with `onClose` and `onConfirm` events,
+- Loading management - backdrop will be correctly removed on component destroy when fullscreen option is used,
+- Timepicker - resolved problem with setting default value using Angular form controls,
+- Datepicker - previous/next button disabled state will be now correctly updated on component initialization,
+- Datepicker/Timepicker - click on toggle button will no longer submit form,
+- Datepicker/Timepicker - resolved problems with `valueChanges` event and validation status updates,
+- Datatables - resolved problem with scroll position when component is rendered inside a tab.
+
+### New components:
+
+- [Accordion](https://mdbootstrap.com/docs/b5/angular/components/accordion/)
+- [Charts advanced](https://mdbootstrap.com/docs/b5/angular/data/charts-advanced/)
+- [Lightbox](https://mdbootstrap.com/docs/b5/angular/components/lightbox/)
+- [Smooth scroll](https://mdbootstrap.com/docs/b5/angular/methods/smooth-scroll/)
+
+---
+
 ## 1.0.0-beta8 (12.07.2021)
 
 In this version we introduced some breaking changes, please check `Breaking changes` section and update your application accordingly.

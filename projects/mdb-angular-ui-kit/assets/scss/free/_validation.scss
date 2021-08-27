@@ -26,11 +26,6 @@ textarea ~ .success-message {
   color: $success;
 }
 
-.form-control.validate-success,
-.form-control.validate-error {
-  margin-bottom: 1rem;
-}
-
 .form-outline .validate-success.ng-valid.ng-dirty,
 .form-outline .validate-success.ng-valid.ng-touched {
   ~ .form-label {

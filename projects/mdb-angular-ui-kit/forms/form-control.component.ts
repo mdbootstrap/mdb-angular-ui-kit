@@ -64,6 +64,14 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
         this._updateBorderGap();
       }
     });
+
+    // Workaround for problems with border top styles in
+    // inputs rendered inside a tab component
+    setTimeout(() => {
+      if (this._label) {
+        this._updateBorderGap();
+      }
+    }, 0);
   }
 
   ngOnDestroy(): void {

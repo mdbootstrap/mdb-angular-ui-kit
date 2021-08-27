@@ -1,0 +1,26 @@
+<h2 class="accordion-header" [id]="_headerId">
+  <button
+    class="accordion-button"
+    type="button"
+    [attr.aria-expanded]="!_collapsed"
+    [attr.aria-controls]="id"
+    [class.collapsed]="_addCollapsedClass"
+    (click)="toggle()"
+  >
+    {{ header }}
+    <ng-template *ngIf="_headerTemplate" [ngTemplateOutlet]="_headerTemplate"></ng-template>
+  </button>
+</h2>
+<div
+  mdbCollapse
+  (collapseShow)="onShow()"
+  (collapseHide)="onHide()"
+  (collapseShow)="onShown()"
+  (collapseHide)="onHidden()"
+  [attr.id]="id"
+  [attr.aria-labelledby]="_headerId"
+>
+  <div class="accordion-body">
+    <ng-template *ngIf="_bodyTemplate" [ngTemplateOutlet]="_bodyTemplate"></ng-template>
+  </div>
+</div>
