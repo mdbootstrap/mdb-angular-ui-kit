@@ -16,6 +16,10 @@ export function ngAdd(options: Schema): Rule {
       addPackageToPackageJson(tree, '@fortawesome/fontawesome-free', '^5.15.1');
     }
 
+    if (options.charts) {
+      addPackageToPackageJson(tree, 'chart.js', '^3.1.1');
+    }
+
     const installMainDependenciesTask = context.addTask(new NodePackageInstallTask());
 
     context.addTask(new RunSchematicTask('ng-add-mdb-setup', options), [

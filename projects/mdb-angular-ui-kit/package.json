@@ -3,7 +3,7 @@
   "repository": "https://github.com/mdbootstrap/mdb-angular-ui-kit",
   "author": "MDBootstrap",
   "license": "MIT",
-  "version": "1.0.0-beta3",
+  "version": "1.0.0-beta4",
   "peerDependencies": {
     "@angular/common": "^11.0.0",
     "@angular/core": "^11.0.0",

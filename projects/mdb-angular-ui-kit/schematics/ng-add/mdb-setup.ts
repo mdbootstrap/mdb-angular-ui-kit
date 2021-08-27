@@ -24,6 +24,7 @@ export default function (options: Schema): any {
         addMdbModuleImport(options),
         addAngularAnimationsModule(options),
         addStylesImports(options),
+        addChartsToScripts(options),
         addRobotoFontToIndexHtml(options),
         updateAppComponentContent(),
       ]);
@@ -141,6 +142,33 @@ function addStylesImports(options: Schema): any {
 
     recorder.insertLeft(fileContent.length, newContent);
     host.commitUpdate(recorder);
+  };
+}
+
+function addChartsToScripts(options: Schema): any {
+  return async (host: Tree, context: SchematicContext) => {
+    const logger = context.logger;
+
+    const chartsPath = 'node_modules/chart.js/dist/chart.js';
+
+    if (options.charts) {
+      const angularJsonFile = host.read('angular.json');
+
+      if (angularJsonFile) {
+        const angularJsonFileObject = JSON.parse(angularJsonFile.toString('utf-8'));
+        const project = options.project
+          ? options.project
+          : Object.keys(angularJsonFileObject.projects)[0];
+        const projectObject = angularJsonFileObject.projects[project];
+        const scripts = projectObject.architect.build.options.scripts;
+
+        scripts.push(chartsPath);
+
+        host.overwrite('angular.json', JSON.stringify(angularJsonFileObject, null, 2));
+      } else {
+        logger.error('Failed to add charts script to angular.json');
+      }
+    }
   };
 }
 

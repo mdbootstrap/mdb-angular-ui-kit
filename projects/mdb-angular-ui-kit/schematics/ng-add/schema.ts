@@ -3,4 +3,5 @@ export interface Schema {
   robotoFont: boolean;
   animations: boolean;
   fontAwesome: boolean;
+  charts: boolean;
 }

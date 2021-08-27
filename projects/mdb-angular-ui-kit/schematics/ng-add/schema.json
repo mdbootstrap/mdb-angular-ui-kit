@@ -28,6 +28,12 @@
       "default": true,
       "description": "Whether to install and configure Font Awesome.",
       "x-prompt": "Set up Font Awesome?"
+    },
+    "charts": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to install and configure Charts.",
+      "x-prompt": "Set up Charts?"
     }
   },
   "required": []

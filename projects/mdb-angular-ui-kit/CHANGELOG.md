@@ -1,3 +1,17 @@
+## 1.0.0-beta4 (04.05.2021)
+
+### New components:
+
+- [Charts](https://mdbootstrap.com/docs/b5/angular/data/charts/)
+
+### Bug fixes:
+
+- Animations - resolved problem with parameters in HTML template,
+- Sidenav - resolved problems with `mode` and `hidden` inputs,
+- Sidenav - resolved problem with `show` method.
+
+---
+
 ## 1.0.0-beta3 (19.04.2021)
 
 ### New components:
