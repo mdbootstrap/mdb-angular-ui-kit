@@ -1,3 +1,12 @@
+## 1.0.0-beta2 (06.04.2021)
+
+### New components:
+
+- [Datepicker](https://mdbootstrap.com/docs/b5/angular/forms/datepicker/)
+- [Timepicker](https://mdbootstrap.com/docs/b5/angular/forms/timepicker)
+
+---
+
 ## 1.0.0-beta1 (22.03.2021)
 
 ### New components:
