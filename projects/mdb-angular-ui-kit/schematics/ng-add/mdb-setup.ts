@@ -25,6 +25,7 @@ export default function (options: Schema): any {
         addAngularAnimationsModule(options),
         addStylesImports(options),
         addRobotoFontToIndexHtml(options),
+        updateAppComponentContent(),
       ]);
     }
     return;
@@ -139,6 +140,69 @@ function addStylesImports(options: Schema): any {
     const recorder = host.beginUpdate(styleFilePath);
 
     recorder.insertLeft(fileContent.length, newContent);
+    host.commitUpdate(recorder);
+  };
+}
+
+function updateAppComponentContent(): any {
+  return async (host: Tree, context: SchematicContext) => {
+    const filePath = './src/app/app.component.html';
+    const logger = context.logger;
+    const buffer = host.read(filePath);
+
+    if (!buffer) {
+      logger.error('No buffer');
+      return;
+    }
+
+    const fileContent = buffer.toString();
+
+    const defaultContent =
+    `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n` +
+    `<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n` +
+    `<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n` +
+    `<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\n` +
+    `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n` +
+    `<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\n` +
+    `<!-- * * * * * * * to get started with your project! * * * * * * * * -->\n` +
+    `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n`;
+
+    const newContent =
+      `<div class="container">\n` +
+      `  <div class="d-flex justify-content-center align-items-center" style="height: 100vh">\n` +
+      `    <div class="text-center">\n` +
+      `      <img\n` +
+      `        class="mb-4"\n` +
+      `        src="https://mdbootstrap.com/img/logo/mdb-transparent-250px.png"\n` +
+      `        style="width: 250px; height: 90px"\n` +
+      `      />\n` +
+      `      <h5 class="mb-3">Thank you for using our product. We're glad you're with us.</h5>\n` +
+      `      <p class="mb-3">MDB Team</p>\n` +
+      `      <p>\n` +
+      `        PS. We'll be releasing "How to build your first project with MDB 5 Angular" tutorial soon.\n` +
+      `      </p>\n` +
+      `      <a\n` +
+      `      class="btn btn-primary btn-lg"\n` +
+      `      href=" https://mdbootstrap.com/newsletter/"\n` +
+      `      target="_blank"\n` +
+      `      role="button"\n` +
+      `      >Join now</a\n` +
+      `      >\n` +
+      `    </div>\n` +
+      `  </div>\n` +
+      `</div>`;
+
+    const hasNewContent = fileContent.includes(newContent);
+    const hasDefaultContent = fileContent.includes(defaultContent);
+
+    if (hasNewContent || !hasDefaultContent) {
+      return;
+    }
+
+    const recorder = host.beginUpdate(filePath);
+
+    recorder.remove(0, fileContent.length);
+    recorder.insertLeft(0, newContent);
     host.commitUpdate(recorder);
   };
 }

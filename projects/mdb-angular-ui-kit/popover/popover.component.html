@@ -1,0 +1,14 @@
+<div
+  class="popover"
+  [@fade]="animationState"
+  (@fade.done)="onAnimationEnd($event)"
+  [@.disabled]="!animation"
+>
+  <div *ngIf="title" class="popover-header">
+    {{ title }}
+  </div>
+  <div *ngIf="template" [innerHTML]="content" class="popover-body"></div>
+  <div *ngIf="!template" class="popover-body">
+    {{ content }}
+  </div>
+</div>

@@ -1,0 +1,10 @@
+// Tooltip
+
+.tooltip-inner {
+  color: $tooltip-inner-color;
+  padding: $tooltip-inner-padding-y $tooltip-inner-padding-x;
+  font-size: $tooltip-inner-font-size;
+  background-color: $tooltip-inner-background-color;
+  border-radius: $tooltip-inner-border-radius;
+  opacity: 0;
+}

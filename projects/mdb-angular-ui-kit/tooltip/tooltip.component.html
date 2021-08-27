@@ -1,0 +1,17 @@
+<div
+  *ngIf="html"
+  [@fade]="animationState"
+  (@fade.done)="onAnimationEnd($event)"
+  [@.disabled]="!animation"
+  [innerHTML]="title"
+  class="tooltip-inner"
+></div>
+<div
+  *ngIf="!html"
+  [@fade]="animationState"
+  (@fade.done)="onAnimationEnd($event)"
+  [@.disabled]="!animation"
+  class="tooltip-inner"
+>
+  {{ title }}
+</div>

@@ -1,3 +1,13 @@
+## 1.0.0-alpha2 (25.01.2021)
+
+### New components:
+
+- [Popover](https://mdbootstrap.com/docs/b5/angular/components/popovers/)
+- [Tooltip](https://mdbootstrap.com/docs/b5/angular/components/tooltips/)
+- [Checkbox](https://mdbootstrap.com/docs/b5/angular/forms/checkbox/)
+- [Input](https://mdbootstrap.com/docs/b5/angular/forms/input-fields/)
+- [Radio](https://mdbootstrap.com/docs/b5/angular/forms/radio/)
+
 ## 1.0.0-alpha1 (11.01.2021)
 
 The initial release of MDB 5 Angular Alpha 1.

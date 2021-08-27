@@ -75,3 +75,11 @@
 @import './free/progress';
 @import './free/list-group';
 @import './free/close';
+@import './free/tooltip';
+@import './free/popover';
+
+// MDB FORMS
+@import './free/forms/form-check';
+@import './free/forms/form-control';
+
+@import '~@angular/cdk/overlay-prebuilt.css';
