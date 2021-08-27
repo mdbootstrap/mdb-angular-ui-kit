@@ -1,0 +1,5 @@
+<div #dialog [class]="'modal-dialog' + (_config.modalClass ? ' ' + _config.modalClass : '')">
+  <div class="modal-content">
+    <ng-template cdkPortalOutlet></ng-template>
+  </div>
+</div>

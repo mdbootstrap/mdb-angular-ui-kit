@@ -69,8 +69,12 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this._open) {
+      this.hide();
+    }
+
     this._destroy$.next();
-    this._destroy$.unsubscribe();
+    this._destroy$.complete();
   }
 
   private _bindTriggerEvents(): void {

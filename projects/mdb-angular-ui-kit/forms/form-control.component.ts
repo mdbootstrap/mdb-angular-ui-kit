@@ -44,19 +44,27 @@ export class MdbFormControlComponent implements AfterViewInit, AfterContentInit,
   ngAfterViewInit(): void {}
 
   ngAfterContentInit(): void {
-    this._updateBorderGap();
+    if (this._label) {
+      this._updateBorderGap();
+    } else {
+      this._renderer.addClass(this._input.nativeElement, 'placeholder-active');
+    }
     this._updateLabelActiveState();
 
-    this._contentObserver
-      .observe(this._label.nativeElement)
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(() => {
-        this._updateBorderGap();
-      });
+    if (this._label) {
+      this._contentObserver
+        .observe(this._label.nativeElement)
+        .pipe(takeUntil(this._destroy$))
+        .subscribe(() => {
+          this._updateBorderGap();
+        });
+    }
 
     this._formControl.stateChanges.pipe(takeUntil(this._destroy$)).subscribe(() => {
       this._updateLabelActiveState();
-      this._updateBorderGap();
+      if (this._label) {
+        this._updateBorderGap();
+      }
     });
   }
 

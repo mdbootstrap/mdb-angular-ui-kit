@@ -8,6 +8,8 @@ import { MdbRadioModule } from './radio/radio.module';
 import { MdbTooltipModule } from './tooltip/tooltip.module';
 import { MdbPopoverModule } from './popover/popover.module';
 import { MdbFormsModule } from './forms/forms.module';
+import { MdbModalModule } from './modal/modal.module';
+import { MdbDropdownModule } from './dropdown/dropdown.module';
 
 export { MdbCollapseDirective, MdbCollapseModule } from './collapse/index';
 export {
@@ -30,6 +32,19 @@ export {
   MdbLabelDirective,
   MdbFormsModule,
 } from './forms/index';
+export {
+  MdbModalContainerComponent,
+  MdbModalRef,
+  MdbModalService,
+  MdbModalConfig,
+  MdbModalModule,
+} from './modal/index';
+export {
+  MdbDropdownDirective,
+  MdbDropdownToggleDirective,
+  MdbDropdownMenuDirective,
+  MdbDropdownModule,
+} from './dropdown/index';
 
 const MDB_MODULES = [
   MdbCollapseModule,
@@ -38,6 +53,8 @@ const MDB_MODULES = [
   MdbTooltipModule,
   MdbPopoverModule,
   MdbFormsModule,
+  MdbModalModule,
+  MdbDropdownModule,
 ];
 
 @NgModule({

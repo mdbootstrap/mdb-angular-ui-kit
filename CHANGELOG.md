@@ -1,3 +1,12 @@
+## 1.0.0-alpha3 (22.02.2021)
+
+### New components:
+
+- [Dropdown](https://mdbootstrap.com/docs/b5/angular/components/dropdowns/)
+- [Modal](https://mdbootstrap.com/docs/b5/angular/components/modal/)
+- [Select](https://mdbootstrap.com/docs/b5/angular/forms/select/)
+- [Scrollbar](https://mdbootstrap.com/docs/b5/angular/methods/scrollbar/)
+
 ## 1.0.0-alpha2 (25.01.2021)
 
 ### New components:

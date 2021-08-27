@@ -77,9 +77,13 @@
 @import './free/close';
 @import './free/tooltip';
 @import './free/popover';
+@import './free/modal';
+@import './free/dropdown';
 
 // MDB FORMS
 @import './free/forms/form-check';
 @import './free/forms/form-control';
+@import './free/forms/form-select';
+@import './free/forms/input-group';
 
 @import '~@angular/cdk/overlay-prebuilt.css';

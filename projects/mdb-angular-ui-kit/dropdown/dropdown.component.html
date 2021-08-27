@@ -1,0 +1,7 @@
+<ng-content></ng-content>
+<ng-content select=".dropdown-toggle"></ng-content>
+<ng-template #dropdownTemplate>
+  <div [@fade]="_animationState" (@fade.done)="onAnimationEnd($event)" [@.disabled]="!animation">
+    <ng-content select=".dropdown-menu"></ng-content>
+  </div>
+</ng-template>
