@@ -1,3 +1,19 @@
+## 1.0.0-beta3 (19.04.2021)
+
+### New components:
+
+- [Alerts](https://mdbootstrap.com/docs/b5/angular/components/alerts/)
+- [Carousel](https://mdbootstrap.com/docs/b5/angular/components/carousel)
+- [Toasts](https://mdbootstrap.com/docs/b5/angular/components/toasts)
+
+### Bug fixes:
+
+- Datepicker - resolved problem with keyboard navigation when using `DownArrow` key,
+- Datepicker - resolved problem with selecting dates using `Enter/Space` keys in component with date filter,
+- Datepicker - added correct aria-labels to the previous/next buttons in the days view.
+
+---
+
 ## 1.0.0-beta2 (06.04.2021)
 
 ### New components:

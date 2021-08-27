@@ -1,0 +1,28 @@
+<div
+  class="carousel slide"
+  [class.carousel-fade]="animation === 'fade'"
+  [class.carousel-dark]="dark"
+>
+  <div class="carousel-indicators" *ngIf="indicators">
+    <button
+      *ngFor="let item of items; let i = index"
+      type="button"
+      [class.active]="i === activeSlide"
+      [attr.aria-current]="i === activeSlide"
+      (click)="to(i)"
+    ></button>
+  </div>
+
+  <div class="carousel-inner">
+    <ng-content></ng-content>
+  </div>
+
+  <button *ngIf="controls" class="carousel-control-prev" type="button" (click)="prev()">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button *ngIf="controls" class="carousel-control-next" type="button" (click)="next()">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

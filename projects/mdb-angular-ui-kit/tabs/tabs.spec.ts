@@ -25,7 +25,7 @@ export class TabsTestComponent {
   @ViewChildren(MdbTabComponent) tabComponents: QueryList<MdbTabComponent>;
 }
 
-describe('NbTabsetComponent', () => {
+describe('MDB Tabs', () => {
   let fixture: ComponentFixture<TabsTestComponent>;
   let component: TabsTestComponent;
   let tabsComponent: MdbTabsComponent;

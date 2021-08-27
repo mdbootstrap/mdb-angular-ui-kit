@@ -15,6 +15,7 @@ import { MdbValidationModule } from './validation/validation.module';
 import { MdbScrollspyModule } from './scrollspy/scrollspy.module';
 import { MdbRangeModule } from './range/range.module';
 import { MdbTabsModule } from './tabs/tabs.module';
+import { MdbCarouselModule } from './carousel/carousel.module';
 
 export { MdbCollapseDirective, MdbCollapseModule } from './collapse/index';
 export {
@@ -72,6 +73,11 @@ export {
   MdbTabsComponent,
   MdbTabsModule,
 } from './tabs/index';
+export {
+  MdbCarouselComponent,
+  MdbCarouselItemComponent,
+  MdbCarouselModule,
+} from './carousel/index';
 
 const MDB_MODULES = [
   MdbCollapseModule,
@@ -87,6 +93,7 @@ const MDB_MODULES = [
   MdbScrollspyModule,
   MdbRangeModule,
   MdbTabsModule,
+  MdbCarouselModule,
 ];
 
 @NgModule({
