@@ -1,0 +1,8 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/mdb-angular-ui-kit",
+  "lib": {
+    "entryFile": "index.ts"
+  },
+  "assets": ["./assets/**/*", "./CHANGELOG.md", "./License.pdf"]
+}

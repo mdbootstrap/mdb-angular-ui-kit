@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { MdbModule } from '../../projects/mdb-angular-ui-kit';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    MDBBootstrapModule.forRoot()
+    AppRoutingModule,
+    MdbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "Add MDB Angular Ui Kit to the application.",
+      "factory": "./ng-add/index#ngAdd",
+      "schema": "./ng-add/schema.json"
+    },
+    "ng-add-mdb-setup": {
+      "description": "Setup MDB Angular.",
+      "factory": "./ng-add/mdb-setup",
+      "schema": "./ng-add/schema.json"
+    }
+  }
+}

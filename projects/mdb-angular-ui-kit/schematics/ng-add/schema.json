@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "mdb-angular-ng-add",
+  "title": "MDB Angular ng-add schematic",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "robotoFont": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to add Roboto Font.",
+      "x-prompt": "Set up Roboto Font?"
+    },
+    "animations": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to set up browser animations.",
+      "x-prompt": "Set up Angular browser animations?"
+    },
+    "fontAwesome": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to install and configure Font Awesome.",
+      "x-prompt": "Set up Font Awesome?"
+    }
+  },
+  "required": []
+}
