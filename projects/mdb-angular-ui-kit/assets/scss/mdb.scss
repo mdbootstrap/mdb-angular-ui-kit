@@ -83,11 +83,14 @@
 @import './free/ripple';
 @import './free/validation';
 @import './free/scrollspy';
+@import './free/range';
 
 // MDB FORMS
 @import './free/forms/form-check';
 @import './free/forms/form-control';
 @import './free/forms/form-select';
+@import './free/forms/form-range';
 @import './free/forms/input-group';
+@import './free/forms/form-file';
 
 @import '~@angular/cdk/overlay-prebuilt.css';

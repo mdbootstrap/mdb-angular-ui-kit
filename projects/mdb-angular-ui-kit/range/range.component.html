@@ -1,0 +1,28 @@
+<label for="customRange2" class="form-label">Example range</label>
+<div class="range">
+  <input
+    #input
+    [name]="name"
+    type="range"
+    [disabled]="disabled"
+    [id]="id"
+    [min]="min"
+    [max]="max"
+    [step]="step"
+    [value]="value"
+    [(ngModel)]="value"
+    class="form-range"
+    min="0"
+    max="5"
+    [id]="id"
+    (input)="thumbPositionUpdate()"
+    (blur)="blurRangeInput()"
+    (mousedown)="focusRangeInput()"
+    (mouseup)="blurRangeInput()"
+    (touchstart)="focusRangeInput()"
+    (touchend)="blurRangeInput()"
+  />
+  <span #thumb class="thumb" [ngStyle]="thumbStyle" [ngClass]="{ 'thumb-active': this.visibility }">
+    <span #thumbValue class="thumb-value">{{ value }}</span>
+  </span>
+</div>

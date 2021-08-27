@@ -1,3 +1,30 @@
+## 1.0.0-beta1 (22.03.2021)
+
+### New components:
+
+- [Range](https://mdbootstrap.com/docs/b5/angular/forms/range/)
+- [File](https://mdbootstrap.com/docs/b5/angular/forms/file)
+- [Switch](https://mdbootstrap.com/docs/b5/angular/forms/switch/)
+- [Input group](https://mdbootstrap.com/docs/b5/angular/forms-input-group/)
+- [Pills](https://mdbootstrap.com/docs/b5/angular/navigation/pills/)
+- [Tabs](https://mdbootstrap.com/docs/b5/angular/navigation/tabs/)
+
+### Bug fixes:
+
+- Scrollspy - added `cursor: pointer` styles to scrollspy links,
+- Sidenav - resolved problem with errors when `RouterModule` is not imported,
+- Sidenav - component will be correctly updated on inputs changes,
+- Sidenav - resolved problem with scroll position,
+- Sidenav - added components and module exports to main library index.
+
+### New features:
+
+- Animations - added new animations: `slideLeft`, `slideRight`, `slideUp`, `slideDown`,
+- Sidenav - added focus trap,
+- Sidenav - escape button will now close the component.
+
+---
+
 ## 1.0.0-alpha4 (08.03.2021)
 
 ### New components:
@@ -9,13 +36,17 @@
 - [Validation](https://mdbootstrap.com/docs/b5/angular/forms/validation/)
 
 ### Bug fixes:
+
 - Select - `x options selected` text will be displayed correctly when more than 5 options have been selected,
 - Select - fixed clear button focusing issue.
 
 ### New features:
+
 - Select - added new `displayedLabels` input that allows to change maximum number of comma-separated options labels displayed in the multiselect input,
 - Select - added new `optionsSelectedLabel` input that allows to customize x options selected text,
 - Select - added new `filterDebounce` input that allows to add delay to the options list updates when using filter input
+
+---
 
 ## 1.0.0-alpha3 (22.02.2021)
 
@@ -26,6 +57,8 @@
 - [Select](https://mdbootstrap.com/docs/b5/angular/forms/select/)
 - [Scrollbar](https://mdbootstrap.com/docs/b5/angular/methods/scrollbar/)
 
+---
+
 ## 1.0.0-alpha2 (25.01.2021)
 
 ### New components:
@@ -35,6 +68,8 @@
 - [Checkbox](https://mdbootstrap.com/docs/b5/angular/forms/checkbox/)
 - [Input](https://mdbootstrap.com/docs/b5/angular/forms/input-fields/)
 - [Radio](https://mdbootstrap.com/docs/b5/angular/forms/radio/)
+
+---
 
 ## 1.0.0-alpha1 (11.01.2021)
 

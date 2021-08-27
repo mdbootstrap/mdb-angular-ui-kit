@@ -46,6 +46,9 @@ export class MdbScrollspyLinkDirective implements OnInit {
     }
   }
 
+  @HostBinding('class.scrollspy-link')
+  scrollspyLink = true;
+
   @HostBinding('class.active')
   active = false;
 

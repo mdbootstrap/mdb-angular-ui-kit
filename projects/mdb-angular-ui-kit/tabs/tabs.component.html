@@ -1,0 +1,54 @@
+<ul
+  class="nav mb-3 col-3 flex-column"
+  [ngClass]="{
+    'nav-pills': pills,
+    'nav-tabs': !pills,
+    'nav-fill': fill,
+    'nav-justified': justified,
+    'flex-column': vertical,
+    'col-3': vertical,
+    'text-center': vertical
+  }"
+  role="tablist"
+>
+  <li
+    *ngFor="let tab of tabs; let i = index"
+    (click)="setActiveTab(i)"
+    class="nav-item"
+    role="presentation"
+  >
+    <a
+      href="javascript:void(0)"
+      class="nav-link"
+      [class.active]="tab.active"
+      [class.disabled]="tab.disabled"
+      role="tab"
+    >
+      <ng-template [ngIf]="tab.titleContent">
+        <ng-template [cdkPortalOutlet]="tab.titleContent"></ng-template>
+      </ng-template>
+
+      <ng-template [ngIf]="!tab.titleContent">{{ tab.title }}</ng-template>
+    </a>
+  </li>
+</ul>
+
+<div
+  class="tab-content"
+  [ngClass]="{
+    'col-9': vertical
+  }"
+>
+  <!-- <ng-content select="mdb-tab"></ng-content> -->
+  <ng-container *ngFor="let tab of tabs">
+    <div
+      class="tab-pane fade"
+      [ngClass]="{
+        show: tab.active,
+        active: tab.active
+      }"
+    >
+      <ng-template mdbTabPortalOutlet [tab]="tab"></ng-template>
+    </div>
+  </ng-container>
+</div>

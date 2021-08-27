@@ -13,6 +13,8 @@ import { MdbDropdownModule } from './dropdown/dropdown.module';
 import { MdbRippleModule } from './ripple/ripple.module';
 import { MdbValidationModule } from './validation/validation.module';
 import { MdbScrollspyModule } from './scrollspy/scrollspy.module';
+import { MdbRangeModule } from './range/range.module';
+import { MdbTabsModule } from './tabs/tabs.module';
 
 export { MdbCollapseDirective, MdbCollapseModule } from './collapse/index';
 export {
@@ -62,6 +64,14 @@ export {
   MdbScrollspyService,
   MdbScrollspyModule,
 } from './scrollspy/index';
+export { MdbRangeComponent, MdbRangeModule } from './range/index';
+export {
+  MdbTabComponent,
+  MdbTabContentDirective,
+  MdbTabTitleDirective,
+  MdbTabsComponent,
+  MdbTabsModule,
+} from './tabs/index';
 
 const MDB_MODULES = [
   MdbCollapseModule,
@@ -75,6 +85,8 @@ const MDB_MODULES = [
   MdbRippleModule,
   MdbValidationModule,
   MdbScrollspyModule,
+  MdbRangeModule,
+  MdbTabsModule,
 ];
 
 @NgModule({

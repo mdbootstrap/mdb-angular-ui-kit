@@ -91,6 +91,7 @@ export class MdbCheckboxDirective {
     }
     this._checked = !this._checked;
     this.onChange(this.checked);
+    this.onCheckboxChange();
   }
 
   onCheckboxChange(): void {

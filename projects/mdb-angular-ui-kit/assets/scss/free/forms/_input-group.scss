@@ -79,3 +79,13 @@
 .input-group > [class*='btn-outline-'] + [class*='btn-outline-'] {
   border-left: 0;
 }
+
+.input-group div:not(:first-child).dropdown button.dropdown-toggle {
+  margin-left: -$input-border-width;
+  @include border-start-radius(0);
+}
+
+.input-group div:not(:last-child).dropdown button.dropdown-toggle {
+  margin-right: -$input-border-width;
+  @include border-end-radius(0);
+}
