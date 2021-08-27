@@ -49,8 +49,8 @@ describe('MDB Dropdown', () => {
         .query(By.directive(MdbDropdownDirective))
         .injector.get(MdbDropdownDirective) as MdbDropdownDirective;
 
-      const onOpen = spyOn(directive, 'show').and.callThrough();
-      const onClose = spyOn(directive, 'hide').and.callThrough();
+      const onOpen = jest.spyOn(directive, 'show');
+      const onClose = jest.spyOn(directive, 'hide');
 
       const buttonEl = debugElement.query(By.css('.dropdown-toggle')).nativeElement;
 

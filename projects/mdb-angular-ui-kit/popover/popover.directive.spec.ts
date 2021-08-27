@@ -40,8 +40,8 @@ describe('MDB Popover', () => {
         .query(By.directive(MdbPopoverDirective))
         .injector.get(MdbPopoverDirective) as MdbPopoverDirective;
 
-      const onOpen = spyOn(directive, 'show');
-      const onClose = spyOn(directive, 'hide');
+      const onOpen = jest.spyOn(directive, 'show');
+      const onClose = jest.spyOn(directive, 'hide');
 
       const buttonEl = element.querySelector('button');
 
@@ -113,8 +113,8 @@ describe('MDB Popover', () => {
         .query(By.directive(MdbPopoverDirective))
         .injector.get(MdbPopoverDirective) as MdbPopoverDirective;
 
-      const onOpen = spyOn(directive, 'show');
-      const onClose = spyOn(directive, 'hide');
+      const onOpen = jest.spyOn(directive, 'show');
+      const onClose = jest.spyOn(directive, 'hide');
 
       const buttonEl = fixture.nativeElement.querySelector('button');
 
@@ -153,7 +153,7 @@ describe('MDB Popover', () => {
         .query(By.directive(MdbPopoverDirective))
         .injector.get(MdbPopoverDirective) as MdbPopoverDirective;
 
-      const onOpen = spyOn(directive, 'show');
+      const onOpen = jest.spyOn(directive, 'show');
 
       const buttonEl = fixture.nativeElement.querySelector('button');
 

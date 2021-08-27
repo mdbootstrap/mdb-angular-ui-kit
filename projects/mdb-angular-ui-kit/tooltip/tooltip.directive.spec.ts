@@ -40,8 +40,8 @@ describe('MDB Tooltip', () => {
         .query(By.directive(MdbTooltipDirective))
         .injector.get(MdbTooltipDirective) as MdbTooltipDirective;
 
-      const onOpen = spyOn(directive, 'show');
-      const onClose = spyOn(directive, 'hide');
+      const onOpen = jest.spyOn(directive, 'show');
+      const onClose = jest.spyOn(directive, 'hide');
 
       const buttonEl = fixture.nativeElement.querySelector('button');
 
@@ -110,8 +110,8 @@ describe('MDB Tooltip', () => {
         .query(By.directive(MdbTooltipDirective))
         .injector.get(MdbTooltipDirective) as MdbTooltipDirective;
 
-      const onOpen = spyOn(directive, 'show');
-      const onClose = spyOn(directive, 'hide');
+      const onOpen = jest.spyOn(directive, 'show');
+      const onClose = jest.spyOn(directive, 'hide');
 
       const buttonEl = fixture.nativeElement.querySelector('button');
 
@@ -151,7 +151,7 @@ describe('MDB Tooltip', () => {
       .query(By.directive(MdbTooltipDirective))
       .injector.get(MdbTooltipDirective) as MdbTooltipDirective;
 
-    const onOpen = spyOn(directive, 'show');
+    const onOpen = jest.spyOn(directive, 'show');
 
     const buttonEl = fixture.nativeElement.querySelector('button');
 

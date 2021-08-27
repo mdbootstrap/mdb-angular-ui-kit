@@ -1,4 +1,12 @@
-import { Directive, ElementRef, HostBinding, HostListener, Input, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  DoCheck,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  Renderer2,
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { MdbAbstractFormControl } from './form-control';
 
@@ -9,12 +17,14 @@ import { MdbAbstractFormControl } from './form-control';
   providers: [{ provide: MdbAbstractFormControl, useExisting: MdbInputDirective }],
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
-export class MdbInputDirective implements MdbAbstractFormControl<any> {
+export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck {
   constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {}
 
   readonly stateChanges: Subject<void> = new Subject<void>();
 
   private _focused = false;
+
+  private _currentNativeValue: any;
 
   @HostBinding('disabled')
   @Input('disabled')
@@ -47,6 +57,7 @@ export class MdbInputDirective implements MdbAbstractFormControl<any> {
   set value(value: string) {
     if (value !== this.value) {
       this._elementRef.nativeElement.value = value;
+      this._value = value;
       this.stateChanges.next();
     }
   }
@@ -62,6 +73,15 @@ export class MdbInputDirective implements MdbAbstractFormControl<any> {
   _onBlur(): void {
     this._focused = false;
     this.stateChanges.next();
+  }
+
+  ngDoCheck(): void {
+    const value = this._elementRef.nativeElement.value;
+
+    if (this._currentNativeValue !== value) {
+      this._currentNativeValue = value;
+      this.stateChanges.next();
+    }
   }
 
   get hasValue(): boolean {

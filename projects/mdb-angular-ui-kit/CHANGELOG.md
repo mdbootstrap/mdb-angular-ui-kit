@@ -1,3 +1,32 @@
+## 1.0.0-beta7 (28.06.2021)
+
+In this version we introduced some breaking changes, please check `Breaking changes` section and update your application accordingly.
+
+### Breaking changes:
+
+- Changed `mdb-select-option` selector to `mdb-option`,
+- Removed `select-` prefix from option and option group class names,
+- Moved option and option group styles to individual file.
+
+### Fixes and improvements:
+
+- Sidenav - resolved problem with arrow icons in collapsed items,
+- Sidenav - resolved problem with z-index,
+- Select - resolved problem with dropdown toggle on arrow icon click,
+- Input - resolved problem with label position when setting value dynamically using Angular form controls.
+
+### New components:
+
+- [Autcomplete](https://mdbootstrap.com/docs/b5/angular/forms/autocomplete/)
+- [Infinite scroll](https://mdbootstrap.com/docs/b5/angular/methods/infinite-scroll/)
+- [Touch](https://mdbootstrap.com/docs/b5/angular/methods/touch/)
+
+### New features:
+
+- Select - added new `[filterPlaceholder]` input that allow to change filter input placeholder.
+
+---
+
 ## 1.0.0-beta6 (14.06.2021)
 
 In this version we introduced some breaking changes, please check `Breaking changes` section and update your application accordingly. The list of all individual modules and entry points can be found here:
@@ -44,6 +73,8 @@ In this version we introduced some breaking changes, please check `Breaking chan
 - List group - added a new `.list-group-numbered` variation to list groups that uses pseudo-elements for numbering list group items,
 - Shadows - added a new styles design: shadows soft, shadows standard, shadows strong,
 - Added color-scheme mixin.
+
+---
 
 ## 1.0.0-beta5 (31.05.2021)
 
