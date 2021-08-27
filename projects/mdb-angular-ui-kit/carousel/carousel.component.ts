@@ -23,7 +23,6 @@ export enum Direction {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'mdb-carousel',
   templateUrl: './carousel.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -106,7 +105,6 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
     if (this.keyboard) {
       fromEvent(this._elementRef.nativeElement, 'keydown')
         .pipe(takeUntil(this._destroy$))
-        // tslint:disable-next-line: deprecation
         .subscribe((event: KeyboardEvent) => {
           if (event.key === 'ArrowRight') {
             this.next();
@@ -247,7 +245,6 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
 
       fromEvent(currentEl, 'transitionend')
         .pipe(take(1))
-        // tslint:disable-next-line: deprecation
         .subscribe(() => {
           nextItem.next = false;
           nextItem.start = false;
@@ -275,7 +272,6 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
 
       fromEvent(currentEl, 'transitionend')
         .pipe(take(1))
-        // tslint:disable-next-line: deprecation
         .subscribe(() => {
           nextItem.prev = false;
           nextItem.end = false;
@@ -308,7 +304,6 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
 
     fromEvent(element, 'transitionend')
       .pipe(take(1))
-      // tslint:disable-next-line: deprecation
       .subscribe(() => {
         eventEmitted = true;
       });

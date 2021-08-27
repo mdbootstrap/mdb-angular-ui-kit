@@ -1,11 +1,11 @@
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[mdbLabel]',
   exportAs: 'mdbLabel',
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbLabelDirective {
   constructor() {}
 }

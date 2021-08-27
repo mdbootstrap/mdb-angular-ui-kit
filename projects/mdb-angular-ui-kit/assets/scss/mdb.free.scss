@@ -32,7 +32,6 @@
 @import './bootstrap/pagination';
 @import './bootstrap/badge';
 @import './bootstrap/alert';
-@import './bootstrap/accordion';
 @import './bootstrap/progress';
 @import './bootstrap/list-group';
 @import './bootstrap/close';
@@ -48,6 +47,7 @@
 @import './bootstrap/helpers';
 
 // Utilities
+@import './free/utilities';
 @import './bootstrap/utilities/api';
 
 // MDB CORE
@@ -70,6 +70,7 @@
 @import './free/nav';
 @import './free/navbar';
 @import './free/card';
+@import './free/carousel';
 @import './free/breadcrumb';
 @import './free/pagination';
 @import './free/badge';
@@ -78,7 +79,11 @@
 @import './free/close';
 @import './free/tooltip';
 @import './free/popover';
+@import './free/modal';
 @import './free/dropdown';
+@import './free/ripple';
+@import './free/validation';
+@import './free/scrollspy';
 @import './free/range';
 @import './free/alert';
 @import './free/toasts';
@@ -86,6 +91,9 @@
 // MDB FORMS
 @import './free/forms/form-check';
 @import './free/forms/form-control';
+@import './free/forms/form-select';
 @import './free/forms/form-range';
+@import './free/forms/input-group';
+@import './free/forms/form-file';
 
 @import '~@angular/cdk/overlay-prebuilt.css';

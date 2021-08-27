@@ -163,8 +163,7 @@ describe('MDB Tooltip', () => {
 });
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'test-tooltip',
+  selector: 'mdb-test-tooltip',
   template: ` <button
     [trigger]="testTrigger"
     [mdbTooltip]="testMdbTooltip"
@@ -174,7 +173,7 @@ describe('MDB Tooltip', () => {
     MDB Button
   </button>`,
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestTooltipComponent {
   testTrigger = 'hover';
   testMdbTooltip = 'tooltipTitle';
@@ -183,19 +182,17 @@ class TestTooltipComponent {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'test-tooltip2',
+  selector: 'mdb-test-tooltip2',
   template: ` <button mdbTooltip="testMdbTooltip" trigger="click">MDB Button</button>`,
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestTooltipComponent2 {}
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'test-tooltip2',
+  selector: 'mdb-test-tooltip2',
   template: ` <button mdbTooltip="testMdbTooltip" tooltipDisabled="true" trigger="click">
     MDB Button
   </button>`,
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestTooltipComponent3 {}

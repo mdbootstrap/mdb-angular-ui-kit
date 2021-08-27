@@ -176,7 +176,7 @@
   margin-left: $carousel-control-width;
   list-style: none;
 
-  button {
+  [data-bs-target] {
     box-sizing: content-box;
     flex: 0 1 auto;
     width: $carousel-indicator-width;
@@ -224,7 +224,7 @@
     filter: $carousel-dark-control-icon-filter;
   }
 
-  .carousel-indicators button {
+  .carousel-indicators [data-bs-target] {
     background-color: $carousel-dark-indicator-active-bg;
   }
 

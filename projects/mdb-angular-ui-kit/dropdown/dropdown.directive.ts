@@ -7,7 +7,6 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output,
   TemplateRef,
   ViewChild,
@@ -31,7 +30,7 @@ import { animate, state, style, transition, trigger, AnimationEvent } from '@ang
 import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbDropdown]',
   templateUrl: 'dropdown.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,8 +43,8 @@ import { BreakpointObserver } from '@angular/cdk/layout';
     ]),
   ],
 })
-// tslint:disable-next-line:component-class-suffix
-export class MdbDropdownDirective implements OnInit, OnDestroy, AfterContentInit {
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   @ViewChild('dropdownTemplate') _template: TemplateRef<any>;
   @ContentChild(MdbDropdownToggleDirective, { read: ElementRef }) _dropdownToggle: ElementRef;
   @ContentChild(MdbDropdownMenuDirective, { read: ElementRef }) _dropdownMenu: ElementRef;
@@ -88,8 +87,6 @@ export class MdbDropdownDirective implements OnInit, OnDestroy, AfterContentInit
     private _breakpointObserver: BreakpointObserver,
     private _cdRef: ChangeDetectorRef
   ) {}
-
-  ngOnInit(): void {}
 
   ngAfterContentInit(): void {
     this._bindDropdownToggleClick();

@@ -13,15 +13,32 @@ import {
 } from '@angular/cdk/schematics';
 import { Schema } from './schema';
 
+const mdbModules = [
+  { name: 'MdbCarouselModule', path: 'mdb-angular-ui-kit/carousel'},
+  { name: 'MdbCheckboxModule', path: 'mdb-angular-ui-kit/checkbox'},
+  { name: 'MdbCollapseModule', path: 'mdb-angular-ui-kit/collapse'},
+  { name: 'MdbDropdownModule', path: 'mdb-angular-ui-kit/dropdown'},
+  { name: 'MdbFormsModule', path: 'mdb-angular-ui-kit/forms'},
+  { name: 'MdbModalModule', path: 'mdb-angular-ui-kit/modal'},
+  { name: 'MdbPopoverModule', path: 'mdb-angular-ui-kit/popover'},
+  { name: 'MdbRadioModule', path: 'mdb-angular-ui-kit/radio'},
+  { name: 'MdbRangeModule', path: 'mdb-angular-ui-kit/range'},
+  { name: 'MdbRippleModule', path: 'mdb-angular-ui-kit/ripple'},
+  { name: 'MdbScrollspyModule', path: 'mdb-angular-ui-kit/scrollspy'},
+  { name: 'MdbTabsModule', path: 'mdb-angular-ui-kit/tabs'},
+  { name: 'MdbTooltipModule', path: 'mdb-angular-ui-kit/tooltip'},
+  { name: 'MdbValidationModule', path: 'mdb-angular-ui-kit/validation'},
+];
+
 // tslint:disable-next-line: space-before-function-paren
 export default function (options: Schema): any {
   return async (tree: Tree) => {
-    const workspace = await getWorkspace(tree);
+    const workspace: any = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
 
     if (project.extensions.projectType === ProjectType.Application) {
       return chain([
-        addMdbModuleImport(options),
+        addMdbModulesImports(options),
         addAngularAnimationsModule(options),
         addStylesImports(options),
         addChartsToScripts(options),
@@ -33,14 +50,16 @@ export default function (options: Schema): any {
   };
 }
 
-function addMdbModuleImport(options: Schema): any {
+function addMdbModulesImports(options: Schema): any {
   return async (tree: Tree) => {
     const workspace: any = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
-    const mdbModuleName = 'MdbModule';
-    const mdbModulePath = 'mdb-angular-ui-kit';
 
-    addModuleImportToRootModule(tree, mdbModuleName, mdbModulePath, project);
+    if (options.modules) {
+      mdbModules.forEach((module) => {
+        addModuleImportToRootModule(tree, module.name, module.path, project);
+      });
+    }
 
     return tree;
   };
@@ -98,7 +117,7 @@ function addRobotoFontToIndexHtml(options: Schema): any {
 
 function addStylesImports(options: Schema): any {
   return async (host: Tree, context: SchematicContext) => {
-    const workspace = await getWorkspace(host);
+    const workspace: any = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
     const logger = context.logger;
     const styleFilePath = getProjectStyleFile(project);

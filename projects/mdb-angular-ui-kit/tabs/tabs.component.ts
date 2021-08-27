@@ -19,7 +19,6 @@ export class MdbTabChange {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'mdb-tabs',
   templateUrl: './tabs.component.html',
 })
@@ -46,7 +45,6 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
     const firstActiveTabIndex = this.tabs.toArray().findIndex((tab) => !tab.disabled);
 
     this.setActiveTab(firstActiveTabIndex);
-    // tslint:disable-next-line: deprecation
     this.tabs.changes.pipe(takeUntil(this._destroy$)).subscribe(() => {
       const hasActiveTab = this.tabs.find((tab) => tab.active);
 

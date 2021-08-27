@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "mdb-angular-ng-add",
+  "$id": "mdb-angular-ng-add",
   "title": "MDB Angular ng-add schematic",
   "type": "object",
   "properties": {
@@ -10,6 +10,12 @@
       "$default": {
         "$source": "projectName"
       }
+    },
+    "modules": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to import all MDB modules.",
+      "x-prompt": "Import all MDB modules?"
     },
     "robotoFont": {
       "type": "boolean",

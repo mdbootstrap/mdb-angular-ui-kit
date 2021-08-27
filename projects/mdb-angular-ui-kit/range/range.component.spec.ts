@@ -10,8 +10,7 @@ const template = `
 `;
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'range-test',
+  selector: 'mdb-range-test',
   template,
 })
 class TestRangeComponent implements OnInit {

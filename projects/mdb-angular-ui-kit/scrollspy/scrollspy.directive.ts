@@ -15,11 +15,11 @@ import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbScrollspy]',
   template: '<ng-content></ng-content>',
 })
-// tslint:disable-next-line:component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbScrollspyDirective implements OnInit, AfterContentInit, OnDestroy {
   @ContentChildren(MdbScrollspyLinkDirective, { descendants: true })
   links: QueryList<MdbScrollspyLinkDirective>;

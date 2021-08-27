@@ -1,14 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { trigger, style, animate, transition, state, AnimationEvent } from '@angular/animations';
 import { Subject } from 'rxjs';
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'mdb-popover',
   templateUrl: 'popover.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,7 +14,7 @@ import { Subject } from 'rxjs';
     ]),
   ],
 })
-export class MdbPopoverComponent implements OnInit {
+export class MdbPopoverComponent {
   @Input() title: string;
   @Input() content: string;
   @Input() template: boolean;
@@ -32,8 +25,6 @@ export class MdbPopoverComponent implements OnInit {
   animationState = 'hidden';
 
   constructor(private _cdRef: ChangeDetectorRef) {}
-
-  ngOnInit(): void {}
 
   markForCheck(): void {
     this._cdRef.markForCheck();

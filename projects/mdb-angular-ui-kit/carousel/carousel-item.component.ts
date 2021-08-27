@@ -1,11 +1,10 @@
-import { Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input } from '@angular/core';
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'mdb-carousel-item',
   template: '<ng-content></ng-content>',
 })
-export class MdbCarouselItemComponent implements OnInit {
+export class MdbCarouselItemComponent {
   @Input() interval: number | null = null;
 
   @HostBinding('class.carousel-item')
@@ -23,6 +22,4 @@ export class MdbCarouselItemComponent implements OnInit {
   }
 
   constructor(private _elementRef: ElementRef) {}
-
-  ngOnInit(): void {}
 }

@@ -10,10 +10,10 @@ import {
 import { MdbScrollspyService } from './scrollspy.service';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[mdbScrollspyElement]',
 })
-// tslint:disable-next-line: directive-class-suffix
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class MdbScrollspyElementDirective implements OnInit, AfterViewInit {
   private id: string;
 

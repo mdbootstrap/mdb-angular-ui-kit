@@ -3,12 +3,12 @@ import { Subject } from 'rxjs';
 import { MdbAbstractFormControl } from './form-control';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[mdbInput]',
   exportAs: 'mdbInput',
   providers: [{ provide: MdbAbstractFormControl, useExisting: MdbInputDirective }],
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbInputDirective implements MdbAbstractFormControl<any> {
   constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {}
 
@@ -70,6 +70,10 @@ export class MdbInputDirective implements MdbAbstractFormControl<any> {
 
   get focused(): boolean {
     return this._focused;
+  }
+
+  get input(): HTMLInputElement {
+    return this._elementRef.nativeElement;
   }
 
   get labelActive(): boolean {

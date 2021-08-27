@@ -17,8 +17,7 @@ const template = `
 `;
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'ripple-test',
+  selector: 'mdb-ripple-test',
   template,
 })
 class TestRippleComponent {

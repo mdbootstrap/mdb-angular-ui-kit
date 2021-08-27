@@ -1,6 +1,6 @@
 import { ViewContainerRef } from '@angular/core';
 
-// tslint:disable: no-inferrable-types
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 export class MdbModalConfig<D = any> {
   animation?: boolean = true;
   backdrop?: boolean = true;
@@ -8,6 +8,6 @@ export class MdbModalConfig<D = any> {
   keyboard?: boolean = true;
   modalClass?: string = '';
   containerClass?: string = '';
-  data?: D | null = null;
   viewContainerRef?: ViewContainerRef;
+  data?: D | null = null;
 }

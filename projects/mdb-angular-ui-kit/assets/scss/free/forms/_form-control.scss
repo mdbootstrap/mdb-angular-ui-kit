@@ -8,9 +8,10 @@ mdb-form-control {
 
 .form-control {
   min-height: auto;
-  padding-top: 5.28px;
+  padding-top: 4px;
   padding-bottom: 3.28px;
   transition: all 0.1s linear;
+
   &:focus {
     box-shadow: none;
     transition: all 0.1s linear;
@@ -168,6 +169,30 @@ mdb-form-control {
 
 .form-outline {
   position: relative;
+
+  .form-helper {
+    width: 100%;
+    position: absolute;
+    font-size: 0.875em;
+    color: #757575;
+    .form-counter {
+      text-align: right;
+    }
+  }
+
+  .trailing {
+    position: absolute;
+    right: 10px;
+    left: initial;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .form-icon-trailing {
+    padding-right: 2rem !important;
+  }
+
   .form-control {
     min-height: auto;
     padding-top: $input-padding-top;
@@ -180,6 +205,10 @@ mdb-form-control {
     ~ .form-label {
       position: absolute;
       top: 0;
+      max-width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       left: $form-label-left;
       padding-top: $form-label-padding-top;
       pointer-events: none;
@@ -274,10 +303,9 @@ mdb-form-control {
       transition: $input-transition;
     }
     &:focus ~ .form-notch .form-notch-trailing {
-      border-top: $input-focus-border-width solid;
-      border-bottom: $input-focus-border-width solid;
-      border-right: $input-focus-border-width solid;
-      border-color: $input-focus-border-color;
+      border-top: $input-focus-border-width solid $input-focus-border-color;
+      border-bottom: $input-focus-border-width solid $input-focus-border-color;
+      border-right: $input-focus-border-width solid $input-focus-border-color;
     }
     &:disabled,
     &.disabled,

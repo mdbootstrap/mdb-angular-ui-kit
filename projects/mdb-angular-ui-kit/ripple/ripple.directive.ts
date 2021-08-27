@@ -17,7 +17,7 @@ const BOOTSTRAP_COLORS = [
 ];
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[mdbRipple]',
   exportAs: 'mdbRipple',
 })
@@ -172,7 +172,7 @@ export class MdbRippleDirective {
   }
 
   _colorToRGB(color: any): number[] {
-    // tslint:disable-next-line: no-shadowed-variable
+    // eslint-disable-next-line no-shadow,@typescript-eslint/no-shadow
     function hexToRgb(color: any): any {
       const HEX_COLOR_LENGTH = 7;
       const IS_SHORT_HEX = color.length < HEX_COLOR_LENGTH;
@@ -186,7 +186,7 @@ export class MdbRippleDirective {
       ];
     }
 
-    // tslint:disable-next-line: no-shadowed-variable
+    // eslint-disable-next-line no-shadow,@typescript-eslint/no-shadow
     function namedColorsToRgba(color: any): any {
       const tempElem = document.body.appendChild(document.createElement('fictum'));
       const flag = 'rgb(1, 2, 3)';
@@ -203,7 +203,7 @@ export class MdbRippleDirective {
       return color;
     }
 
-    // tslint:disable-next-line: no-shadowed-variable
+    // eslint-disable-next-line no-shadow, @typescript-eslint/no-shadow
     function rgbaToRgb(color: any): any {
       color = color.match(/[.\d]+/g).map((a) => +Number(a));
       color.length = 3;

@@ -47,11 +47,11 @@
 @import './bootstrap/helpers';
 
 // Utilities
+@import './free/utilities';
 @import './bootstrap/utilities/api';
 
 // MDB CORE
 @import './free/mixins';
-@import './free/mixins/ripple';
 
 // MDB CORE COMPONENTS
 @import './free/root';

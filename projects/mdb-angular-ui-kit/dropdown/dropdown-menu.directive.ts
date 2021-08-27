@@ -1,13 +1,11 @@
-import { Directive, OnInit } from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[mdbDropdownMenu]',
   exportAs: 'mdbDropdownMenu',
 })
-// tslint:disable-next-line:component-class-suffix
-export class MdbDropdownMenuDirective implements OnInit {
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+export class MdbDropdownMenuDirective {
   constructor() {}
-
-  ngOnInit(): void {}
 }

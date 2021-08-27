@@ -5,32 +5,32 @@ import {
   ViewChild,
   ContentChild,
   ElementRef,
-  AfterViewInit,
   AfterContentInit,
   Renderer2,
   OnDestroy,
 } from '@angular/core';
 import { MdbAbstractFormControl } from './form-control';
-import { MdbInputDirective } from './input.directive';
 import { MdbLabelDirective } from './label.directive';
 import { ContentObserver } from '@angular/cdk/observers';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'mdb-form-control',
   templateUrl: './form-control.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MdbFormControlComponent implements AfterViewInit, AfterContentInit, OnDestroy {
+export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
   @ViewChild('notchLeading', { static: true }) _notchLeading: ElementRef;
   @ViewChild('notchMiddle', { static: true }) _notchMiddle: ElementRef;
-  @ContentChild(MdbInputDirective, { static: true, read: ElementRef }) _input: ElementRef;
   @ContentChild(MdbAbstractFormControl, { static: true }) _formControl: MdbAbstractFormControl<any>;
   @ContentChild(MdbLabelDirective, { static: true, read: ElementRef }) _label: ElementRef;
 
   @HostBinding('class.form-outline') outline = true;
+
+  get input(): HTMLInputElement {
+    return this._formControl.input;
+  }
 
   constructor(private _renderer: Renderer2, private _contentObserver: ContentObserver) {}
 
@@ -41,13 +41,11 @@ export class MdbFormControlComponent implements AfterViewInit, AfterContentInit,
   private _labelGapPadding = 8;
   private _labelScale = 0.8;
 
-  ngAfterViewInit(): void {}
-
   ngAfterContentInit(): void {
     if (this._label) {
       this._updateBorderGap();
     } else {
-      this._renderer.addClass(this._input.nativeElement, 'placeholder-active');
+      this._renderer.addClass(this.input, 'placeholder-active');
     }
     this._updateLabelActiveState();
 
@@ -88,9 +86,9 @@ export class MdbFormControlComponent implements AfterViewInit, AfterContentInit,
 
   private _updateLabelActiveState(): void {
     if (this._isLabelActive()) {
-      this._renderer.addClass(this._input.nativeElement, 'active');
+      this._renderer.addClass(this.input, 'active');
     } else {
-      this._renderer.removeClass(this._input.nativeElement, 'active');
+      this._renderer.removeClass(this.input, 'active');
     }
   }
 

@@ -153,8 +153,7 @@ describe('MDB Dropdown', () => {
 });
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'dropdown-test',
+  selector: 'mdb-dropdown-test',
   template: `
     <div mdbDropdown class="dropdown" [ngClass]="positionClass">
       <button class="btn btn-primary dropdown-toggle" mdbDropdownToggle>Dropdown button</button>
@@ -169,7 +168,7 @@ describe('MDB Dropdown', () => {
     </div>
   `,
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestDropdownComponent {
   positionClass: string;
   menuEndClass: string;

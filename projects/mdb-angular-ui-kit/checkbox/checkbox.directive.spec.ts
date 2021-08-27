@@ -70,8 +70,7 @@ const basicTemplate = `
 `;
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'checkbox-test',
+  selector: 'mdb-checkbox-test',
   template: basicTemplate,
 })
 class BasicCheckboxComponent {

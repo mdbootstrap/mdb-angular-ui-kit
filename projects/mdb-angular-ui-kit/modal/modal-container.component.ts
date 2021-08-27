@@ -20,7 +20,6 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'mdb-modal-container',
   templateUrl: 'modal-container.component.html',
   changeDetection: ChangeDetectionStrategy.Default,

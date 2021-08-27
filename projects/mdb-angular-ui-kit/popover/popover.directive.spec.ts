@@ -166,8 +166,7 @@ describe('MDB Popover', () => {
 });
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'test-tooltip',
+  selector: 'mdb-test-tooltip',
   template: ` <button
     [trigger]="testTrigger"
     [mdbPopover]="testMdbPopover"
@@ -178,7 +177,7 @@ describe('MDB Popover', () => {
     MDB Button
   </button>`,
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestPopoverComponent {
   testTrigger = 'hover';
   testMdbPopover = 'popoverTitle';
@@ -188,19 +187,17 @@ class TestPopoverComponent {
 }
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'test-popover2',
+  selector: 'mdb-test-popover2',
   template: ` <button mdbPopover="testMdbPopover" trigger="click">MDB Button</button>`,
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestPopoverComponent2 {}
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'test-popover2',
+  selector: 'mdb-test-popover2',
   template: ` <button mdbPopover="testMdbPopover" popoverDisabled="true" trigger="click">
     MDB Button
   </button>`,
 })
-// tslint:disable-next-line: component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestPopoverComponent3 {}

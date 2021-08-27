@@ -1,3 +1,50 @@
+## 1.0.0-beta6 (14.06.2021)
+
+In this version we introduced some breaking changes, please check `Breaking changes` section and update your application accordingly. The list of all individual modules and entry points can be found here:
+
+[MDB Angular UI Kit Free Modules And Imports](https://mdbootstrap.com/docs/b5/angular/getting-started/modules-and-imports/)
+
+[MDB Angular UI Kit Pro Essential Modules And Imports](https://mdbootstrap.com/docs/b5/angular/pro/modules-and-imports/)
+
+### Breaking changes:
+
+- Updated Angular to v12 (this version is now required),
+- Components, modules and types can no longer be imported from `mdb-angular-ui-kit` entry point. Use the newly added secondary entry points, such as `mdb-angular-ui-kit/checkbox` to import individual elements,
+- Removed main `MdbModule`, import individual modules from its entry points, for example: `import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox'`,
+- Renamed `MdbTimePickerComponent` to `MdbTimepickerComponent`,
+- Renamed `MdbTimePickerDirective` to `MdbTimepickerDirective`,
+- Renamed `MdbTimePickerModule` to `MdbTimepickerModule`,
+- Updated Bootstrap styles to the latest stable version.
+
+### Components redesign:
+
+- Redesigned shadows for components: Cards, Dropdowns, Modal, Popover, Toasts, Buttons, Button Group, Navbar, Pagination, Pills, Sidenav,
+- Redesigned padding for components: Alerts, Cards, List Group,
+- Redesigned border radius to 0.5rem for components: Alerts, Cards, Dropdowns, Modal, List group, Popover, Toasts, Dateipcker, Timepicker.
+
+### Fixes and improvements:
+
+- Sidenav - resolved problem with height of the element with `.sidenav-menu` class,
+- Range - resolved problem with a hardcoded `Example label` text,
+- Datepicker - `dateChanged` event will be now correctly emited on date change,
+- Datepicker - resolved problem with components updates on Angular form control changes,
+- File input - updated styles to Material Design styles,
+- Pills - fixed width of pills when they're filled or justified,
+- Checkbox/Switch/Radio - fix margin styles and positioning.
+
+### New components:
+
+- [Stepper](https://mdbootstrap.com/docs/b5/angular/components/stepper/)
+- [Sticky](https://mdbootstrap.com/docs/b5/angular/components/sticky/)
+
+### New features:
+
+- Navbar - added a new `.navbar-nav-scroll` class to enable vertical scrolling when a collapsed navbar is opened,
+- Navbar - re-added `flex-grow` to the `.navbar-collapse` to restore the flexbox behaviors from v4 and prevent some content from being inadvertently squished,
+- List group - added a new `.list-group-numbered` variation to list groups that uses pseudo-elements for numbering list group items,
+- Shadows - added a new styles design: shadows soft, shadows standard, shadows strong,
+- Added color-scheme mixin.
+
 ## 1.0.0-beta5 (31.05.2021)
 
 ### New components:

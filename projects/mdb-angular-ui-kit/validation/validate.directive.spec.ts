@@ -7,8 +7,7 @@ const template = `
 `;
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'collapse-test',
+  selector: 'mdb-collapse-test',
   template,
 })
 class TestValidateComponent {

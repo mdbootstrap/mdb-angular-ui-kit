@@ -14,13 +14,13 @@ import { MdbRadioDirective } from './radio-button.directive';
 
 export const MDB_RADIO_GROUP_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line: no-use-before-declare
+  // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-use-before-define
   useExisting: forwardRef(() => MdbRadioGroupDirective),
   multi: true,
 };
 
 @Directive({
-  // tslint:disable-next-line: directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[mdbRadioGroup]',
   providers: [MDB_RADIO_GROUP_VALUE_ACCESSOR],
 })

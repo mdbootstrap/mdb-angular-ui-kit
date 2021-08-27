@@ -1,14 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { trigger, style, animate, transition, state, AnimationEvent } from '@angular/animations';
 import { Subject } from 'rxjs';
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'mdb-tooltip',
   templateUrl: 'tooltip.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,7 +14,7 @@ import { Subject } from 'rxjs';
     ]),
   ],
 })
-export class MdbTooltipComponent implements OnInit {
+export class MdbTooltipComponent {
   @Input() title: string;
   @Input() html: boolean;
   @Input() animation: boolean;
@@ -31,8 +24,6 @@ export class MdbTooltipComponent implements OnInit {
   animationState = 'hidden';
 
   constructor(private _cdRef: ChangeDetectorRef) {}
-
-  ngOnInit(): void {}
 
   markForCheck(): void {
     this._cdRef.markForCheck();

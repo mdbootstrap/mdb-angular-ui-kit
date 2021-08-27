@@ -15,7 +15,6 @@ import { MDB_TAB_CONTENT } from './tab-content.directive';
 import { MDB_TAB_TITLE } from './tab-title.directive';
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'mdb-tab',
   templateUrl: './tab.component.html',
 })
@@ -52,7 +51,7 @@ export class MdbTabComponent implements OnInit {
   private _contentPortal: TemplatePortal | null = null;
   private _titlePortal: TemplatePortal | null = null;
 
-  // tslint:disable-next-line: adjacent-overload-signatures
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   set active(value: boolean) {
     if (value) {
       this._renderer.addClass(this._elementRef.nativeElement, 'show');

@@ -61,8 +61,7 @@ const basicTemplate = `
 `;
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'radio-test',
+  selector: 'mdb-radio-test',
   template: basicTemplate,
 })
 class BasicRadioComponent {

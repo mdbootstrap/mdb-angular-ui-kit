@@ -37,8 +37,7 @@ const basicTemplate = `
 `;
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'input-test',
+  selector: 'mdb-input-test',
   template: basicTemplate,
 })
 class BasicInputComponent {

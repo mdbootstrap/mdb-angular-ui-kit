@@ -64,8 +64,7 @@ const basicTemplate = `
 `;
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'radio-group-test',
+  selector: 'mdb-radio-group-test',
   template: basicTemplate,
 })
 class BasicRadioGroupComponent {

@@ -42,8 +42,7 @@ const basicTemplate = `
 `;
 
 @Component({
-  // tslint:disable-next-line: component-selector
-  selector: 'form-control-test',
+  selector: 'mdb-form-control-test',
   template: basicTemplate,
 })
 class BasicFormControlComponent {
