@@ -7,8 +7,10 @@
   <div *ngIf="title" class="popover-header">
     {{ title }}
   </div>
-  <div *ngIf="template" [innerHTML]="content" class="popover-body"></div>
-  <div *ngIf="!template" class="popover-body">
+  <div *ngIf="isContentTemplate" class="popover-body">
+    <ng-container [ngTemplateOutlet]="content"></ng-container>
+  </div>
+  <div *ngIf="!isContentTemplate" class="popover-body">
     {{ content }}
   </div>
 </div>

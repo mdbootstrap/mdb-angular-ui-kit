@@ -93,6 +93,11 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   }
 
   ngOnDestroy(): void {
+    if (this._overlayRef) {
+      this._overlayRef.detach();
+      this._overlayRef.dispose();
+    }
+
     this._destroy$.next();
     this._destroy$.complete();
   }
@@ -128,9 +133,8 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     this._isDropUp = this._elementRef.nativeElement.classList.contains('dropup');
     this._isDropStart = this._elementRef.nativeElement.classList.contains('dropstart');
     this._isDropEnd = this._elementRef.nativeElement.classList.contains('dropend');
-    this._isDropdownMenuEnd = this._dropdownMenu.nativeElement.classList.contains(
-      'dropdown-menu-end'
-    );
+    this._isDropdownMenuEnd =
+      this._dropdownMenu.nativeElement.classList.contains('dropdown-menu-end');
     this._xPosition = this._isDropdownMenuEnd ? 'end' : 'start';
 
     const regex = new RegExp(/dropdown-menu-(sm|md|lg|xl|xxl)-(start|end)/, 'g');

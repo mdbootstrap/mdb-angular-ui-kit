@@ -7,6 +7,8 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  TemplateRef,
+  ViewContainerRef,
 } from '@angular/core';
 import {
   ConnectedPosition,
@@ -15,7 +17,7 @@ import {
   OverlayPositionBuilder,
   OverlayRef,
 } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
+import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { MdbPopoverComponent } from './popover.component';
 import { fromEvent, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
@@ -31,7 +33,7 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
   @Input() mdbPopoverTitle = '';
   @Input() popoverDisabled = false;
   @Input() placement = 'top';
-  @Input() template = false;
+  @Input() template: TemplateRef<any>;
   @Input() animation = true;
   @Input() trigger = 'click';
   @Input() delayShow = 0;
@@ -186,12 +188,11 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
       this._open = true;
 
       this._tooltipRef = this._overlayRef.attach(tooltipPortal);
-      this._tooltipRef.instance.content = this.mdbPopover;
+
+      this._tooltipRef.instance.content = this.template || this.mdbPopover;
       this._tooltipRef.instance.title = this.mdbPopoverTitle;
-      this._tooltipRef.instance.template = this.template;
       this._tooltipRef.instance.animation = this.animation;
       this._tooltipRef.instance.animationState = 'visible';
-
       this._tooltipRef.instance.markForCheck();
 
       this.popoverShown.emit(this);

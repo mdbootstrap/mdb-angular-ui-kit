@@ -1,3 +1,31 @@
+## 1.0.0-beta8 (12.07.2021)
+
+In this version we introduced some breaking changes, please check `Breaking changes` section and update your application accordingly.
+
+### Breaking changes:
+
+- Popover - `[template]` input will now accept value of type `TemplateRef` and can be used to display `ng-template` content.
+
+### Fixes and improvements:
+
+- Toast - component will no longer throw error after reopening,
+- Toast - stacked components will now slide up automatically,
+- Sidenav - resolved problem with auto expand when route has route parameters,
+- Dropdown - opened menu will be now correctly destroyed on route change,
+- Table pagination - resolved problem with data automatic updates after change in `[entryOptions]` input.
+
+### New components:
+
+- [Popconfirm](https://mdbootstrap.com/docs/b5/angular/components/popconfirm/)
+- [Lazy loading](https://mdbootstrap.com/docs/b5/angular/methods/lazy-loading/)
+- [Loading management](https://mdbootstrap.com/docs/b5/angular/methods/loading-management/)
+
+### New features:
+
+- Popover - `[template]` input will now accept value of type `TemplateRef` and can be used to display `ng-template` content.
+
+---
+
 ## 1.0.0-beta7 (28.06.2021)
 
 In this version we introduced some breaking changes, please check `Breaking changes` section and update your application accordingly.

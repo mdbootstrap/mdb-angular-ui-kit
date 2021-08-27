@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  TemplateRef,
+} from '@angular/core';
 import { trigger, style, animate, transition, state, AnimationEvent } from '@angular/animations';
 import { Subject } from 'rxjs';
 @Component({
@@ -16,9 +22,12 @@ import { Subject } from 'rxjs';
 })
 export class MdbPopoverComponent {
   @Input() title: string;
-  @Input() content: string;
-  @Input() template: boolean;
+  @Input() content: string | TemplateRef<any>;
   @Input() animation: boolean;
+
+  get isContentTemplate(): boolean {
+    return this.content instanceof TemplateRef;
+  }
 
   readonly _hidden: Subject<void> = new Subject();
 
