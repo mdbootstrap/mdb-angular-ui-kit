@@ -158,14 +158,14 @@ function updateAppComponentContent(): any {
     const fileContent = buffer.toString();
 
     const defaultContent =
-    `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n` +
-    `<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n` +
-    `<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n` +
-    `<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\n` +
-    `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n` +
-    `<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\n` +
-    `<!-- * * * * * * * to get started with your project! * * * * * * * * -->\n` +
-    `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n`;
+      `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n` +
+      `<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n` +
+      `<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n` +
+      `<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\n` +
+      `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n` +
+      `<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\n` +
+      `<!-- * * * * * * * to get started with your project! * * * * * * * * -->\n` +
+      `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n`;
 
     const newContent =
       `<div class="container">\n` +

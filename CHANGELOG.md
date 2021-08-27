@@ -1,3 +1,22 @@
+## 1.0.0-alpha4 (08.03.2021)
+
+### New components:
+
+- [Animations](https://mdbootstrap.com/docs/b5/angular/content-styles/animations/)
+- [Ripple](https://mdbootstrap.com/docs/b5/angular/methods/ripple/)
+- [Sidenav](https://mdbootstrap.com/docs/b5/angular/navigation/sidenav/)
+- [Scrollspy](https://mdbootstrap.com/docs/b5/angular/navigation/scrollbar/)
+- [Validation](https://mdbootstrap.com/docs/b5/angular/forms/validation/)
+
+### Bug fixes:
+- Select - `x options selected` text will be displayed correctly when more than 5 options have been selected,
+- Select - fixed clear button focusing issue.
+
+### New features:
+- Select - added new `displayedLabels` input that allows to change maximum number of comma-separated options labels displayed in the multiselect input,
+- Select - added new `optionsSelectedLabel` input that allows to customize x options selected text,
+- Select - added new `filterDebounce` input that allows to add delay to the options list updates when using filter input
+
 ## 1.0.0-alpha3 (22.02.2021)
 
 ### New components:

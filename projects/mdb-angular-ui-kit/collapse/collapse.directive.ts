@@ -66,6 +66,7 @@ export class MdbCollapseDirective {
       .pipe(take(1))
       .subscribe(() => {
         this._isTransitioning = false;
+        this.collapsed = false;
         this._renderer.removeClass(this.host, 'collapsing');
         this._renderer.addClass(this.host, 'collapse');
         this._renderer.addClass(this.host, 'show');
@@ -105,6 +106,7 @@ export class MdbCollapseDirective {
         this._renderer.removeClass(this.host, 'collapsing');
         this._renderer.addClass(this.host, 'collapse');
         this._isTransitioning = false;
+        this.collapsed = true;
 
         this.collapseHidden.emit(this);
       });

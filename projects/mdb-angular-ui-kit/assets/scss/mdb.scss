@@ -51,6 +51,7 @@
 
 // MDB CORE
 @import './free/mixins';
+@import './free/mixins/ripple';
 
 // MDB CORE COMPONENTS
 @import './free/root';
@@ -79,6 +80,9 @@
 @import './free/popover';
 @import './free/modal';
 @import './free/dropdown';
+@import './free/ripple';
+@import './free/validation';
+@import './free/scrollspy';
 
 // MDB FORMS
 @import './free/forms/form-check';

@@ -10,6 +10,9 @@ import { MdbPopoverModule } from './popover/popover.module';
 import { MdbFormsModule } from './forms/forms.module';
 import { MdbModalModule } from './modal/modal.module';
 import { MdbDropdownModule } from './dropdown/dropdown.module';
+import { MdbRippleModule } from './ripple/ripple.module';
+import { MdbValidationModule } from './validation/validation.module';
+import { MdbScrollspyModule } from './scrollspy/scrollspy.module';
 
 export { MdbCollapseDirective, MdbCollapseModule } from './collapse/index';
 export {
@@ -45,6 +48,20 @@ export {
   MdbDropdownMenuDirective,
   MdbDropdownModule,
 } from './dropdown/index';
+export { MdbRippleDirective, MdbRippleModule } from './ripple/index';
+export {
+  MdbValidateDirective,
+  MdbErrorDirective,
+  MdbSuccessDirective,
+  MdbValidationModule,
+} from './validation/index';
+export {
+  MdbScrollspyDirective,
+  MdbScrollspyLinkDirective,
+  MdbScrollspyElementDirective,
+  MdbScrollspyService,
+  MdbScrollspyModule,
+} from './scrollspy/index';
 
 const MDB_MODULES = [
   MdbCollapseModule,
@@ -55,6 +72,9 @@ const MDB_MODULES = [
   MdbFormsModule,
   MdbModalModule,
   MdbDropdownModule,
+  MdbRippleModule,
+  MdbValidationModule,
+  MdbScrollspyModule,
 ];
 
 @NgModule({
