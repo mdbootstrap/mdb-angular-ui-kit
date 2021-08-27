@@ -1,3 +1,12 @@
+## 1.0.0-beta5 (31.05.2021)
+
+### New components:
+
+- [Datatables](https://mdbootstrap.com/docs/b5/angular/data/datatables/)
+- [Rating](https://mdbootstrap.com/docs/b5/angular/components/rating/)
+
+---
+
 ## 1.0.0-beta4 (04.05.2021)
 
 ### New components:

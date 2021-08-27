@@ -1,6 +1,6 @@
 {
   "name": "mdb-angular-ui-kit-free",
-  "version": "1.0.0-beta4",
+  "version": "1.0.0-beta5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
