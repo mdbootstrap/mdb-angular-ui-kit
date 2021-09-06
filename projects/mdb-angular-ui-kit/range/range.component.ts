@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -34,12 +35,30 @@ export class MdbRangeComponent implements ControlValueAccessor, AfterViewInit {
   @Input() required: boolean;
   @Input() name: string;
   @Input() value: string;
-  @Input() disabled: boolean;
+
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value: boolean) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+  private _disabled: boolean;
+
   @Input() label: string;
   @Input() min = 0;
   @Input() max = 100;
   @Input() step: number;
-  @Input() default: boolean;
+
+  @Input()
+  get default(): boolean {
+    return this._default;
+  }
+  set default(value: boolean) {
+    this._default = value;
+  }
+  private _default: boolean;
+
   @Input() defaultRangeCounterClass: string;
 
   @Output() rangeValueChange = new EventEmitter<any>();
@@ -108,4 +127,7 @@ export class MdbRangeComponent implements ControlValueAccessor, AfterViewInit {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
+
+  static ngAcceptInputType_default: BooleanInput;
+  static ngAcceptInputType_disabled: BooleanInput;
 }

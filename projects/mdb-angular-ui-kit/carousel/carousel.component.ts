@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -34,10 +35,42 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   @Input() animation: 'slide' | 'fade' = 'slide';
-  @Input() controls = false;
-  @Input() dark = false;
-  @Input() indicators = false;
-  @Input() ride = true;
+
+  @Input()
+  get controls(): boolean {
+    return this._controls;
+  }
+  set controls(value: boolean) {
+    this._controls = coerceBooleanProperty(value);
+  }
+  private _controls = false;
+
+  @Input()
+  get dark(): boolean {
+    return this._dark;
+  }
+  set dark(value: boolean) {
+    this._dark = coerceBooleanProperty(value);
+  }
+  private _dark = false;
+
+  @Input()
+  get indicators(): boolean {
+    return this._indicators;
+  }
+  set indicators(value: boolean) {
+    this._indicators = coerceBooleanProperty(value);
+  }
+  private _indicators = false;
+
+  @Input()
+  get ride(): boolean {
+    return this._ride;
+  }
+  set ride(value: boolean) {
+    this._ride = coerceBooleanProperty(value);
+  }
+  private _ride = true;
 
   @Input()
   get interval(): number {
@@ -352,4 +385,9 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
       return this._activeSlide;
     }
   }
+
+  static ngAcceptInputType_controls: BooleanInput;
+  static ngAcceptInputType_dark: BooleanInput;
+  static ngAcceptInputType_indicators: BooleanInput;
+  static ngAcceptInputType_ride: BooleanInput;
 }

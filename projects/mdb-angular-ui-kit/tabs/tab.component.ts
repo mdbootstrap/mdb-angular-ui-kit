@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
   Component,
@@ -29,7 +30,15 @@ export class MdbTabComponent implements OnInit {
 
   readonly activeStateChange$: Subject<boolean> = new Subject<boolean>();
 
-  @Input() disabled = false;
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value: boolean) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+  private _disabled = false;
+
   @Input() title: string;
 
   get active(): boolean {
@@ -88,4 +97,6 @@ export class MdbTabComponent implements OnInit {
   private _createTitlePortal(): void {
     this._titlePortal = new TemplatePortal(this._titleContent, this._vcr);
   }
+
+  static ngAcceptInputType_disabled: BooleanInput;
 }

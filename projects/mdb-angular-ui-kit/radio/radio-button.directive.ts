@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Directive, HostBinding, Input } from '@angular/core';
 
 @Directive({
@@ -19,7 +20,7 @@ export class MdbRadioDirective {
     return this._checked;
   }
   set checked(value: boolean) {
-    this._checked = value;
+    this._checked = coerceBooleanProperty(value);
   }
   private _checked = false;
 
@@ -37,7 +38,7 @@ export class MdbRadioDirective {
     return this._disabled;
   }
   set disabled(value: boolean) {
-    this._disabled = value;
+    this._disabled = coerceBooleanProperty(value);
   }
   private _disabled = false;
 
@@ -69,4 +70,7 @@ export class MdbRadioDirective {
   _updateDisabledState(value: boolean): void {
     this._disabled = value;
   }
+
+  static ngAcceptInputType_checked: BooleanInput;
+  static ngAcceptInputType_disabled: BooleanInput;
 }

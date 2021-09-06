@@ -1,3 +1,27 @@
+## 1.1.0 (06.09.2021)
+
+### Fixes and improvements:
+
+- Table pagination - resolved problem with disabled state of next button,
+- Input - resolved problem with disabled state updates using Angular form control methods,
+- Table - resolved problem with default filter function,
+- Datepicker - resolved problem with disabled state of toggle button,
+- Timepicker - resolved problem with setting default value in component with 24h format,
+- Sidenav - resolved problem with `Cannot read property destroy of undefined` error,
+- Select - resolved problem with disabled state of checkboxes in options,
+- Select - resolved problem with closing modal on clear button click,
+- Dropdown - menu will be now closed correctly on item click.
+
+### New components:
+
+- [Theming](https://mdbootstrap.com/docs/b5/angular/content-styles/theme)
+
+### New features:
+
+- Table pagination - added new `rowsPerPageText` input that allow to change default 'Rows per page' text
+
+---
+
 ## 1.0.0 (09.08.2021)
 
 In this version we introduced some breaking changes, please check `Breaking changes` section and update your application accordingly.

@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
@@ -9,13 +10,21 @@ export class MdbValidateDirective implements OnInit {
   private _validateSuccess = true;
   private _validateError = true;
 
-  @Input() mdbValidate: boolean;
+  @Input()
+  get mdbValidate(): boolean {
+    return this._mdbValidate;
+  }
+  set mdbValidate(value: boolean) {
+    this._mdbValidate = coerceBooleanProperty(value);
+  }
+  private _mdbValidate: boolean;
+
   @Input()
   get validate(): boolean {
     return this._validate;
   }
   set validate(value: boolean) {
-    this._validate = value;
+    this._validate = coerceBooleanProperty(value);
     this.updateErrorClass();
     this.updateSuccessClass();
   }
@@ -25,7 +34,7 @@ export class MdbValidateDirective implements OnInit {
     return this._validateSuccess;
   }
   set validateSuccess(value: boolean) {
-    this._validateSuccess = value;
+    this._validateSuccess = coerceBooleanProperty(value);
     this.updateSuccessClass();
   }
 
@@ -34,7 +43,7 @@ export class MdbValidateDirective implements OnInit {
     return this._validateError;
   }
   set validateError(value: boolean) {
-    this._validateError = value;
+    this._validateError = coerceBooleanProperty(value);
     this.updateErrorClass();
     this.updateSuccessClass();
   }
@@ -61,4 +70,9 @@ export class MdbValidateDirective implements OnInit {
     this.updateSuccessClass();
     this.updateErrorClass();
   }
+
+  static ngAcceptInputType_mdbValidate: BooleanInput;
+  static ngAcceptInputType_validate: BooleanInput;
+  static ngAcceptInputType_validateSuccess: BooleanInput;
+  static ngAcceptInputType_validateError: BooleanInput;
 }

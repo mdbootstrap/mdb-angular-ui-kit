@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   EventEmitter,
   forwardRef,
@@ -32,7 +33,7 @@ export class MdbCheckboxDirective {
     return this._checked;
   }
   set checked(value: boolean) {
-    this._checked = value;
+    this._checked = coerceBooleanProperty(value);
   }
   private _checked = false;
 
@@ -50,7 +51,7 @@ export class MdbCheckboxDirective {
     return this._disabled;
   }
   set disabled(value: boolean) {
-    this._disabled = value;
+    this._disabled = coerceBooleanProperty(value);
   }
   private _disabled = false;
 
@@ -118,4 +119,7 @@ export class MdbCheckboxDirective {
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
+
+  static ngAcceptInputType_checked: BooleanInput;
+  static ngAcceptInputType_disabled: BooleanInput;
 }

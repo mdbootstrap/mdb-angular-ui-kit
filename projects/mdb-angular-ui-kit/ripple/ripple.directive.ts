@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Directive, ElementRef, HostBinding, HostListener, Input, Renderer2 } from '@angular/core';
 
 const TRANSITION_BREAK_OPACITY = 0.5;
@@ -22,11 +23,27 @@ const BOOTSTRAP_COLORS = [
   exportAs: 'mdbRipple',
 })
 export class MdbRippleDirective {
-  @Input() rippleCentered = false;
+  @Input()
+  get rippleCentered(): boolean {
+    return this._rippleCentered;
+  }
+  set rippleCentered(value: boolean) {
+    this._rippleCentered = coerceBooleanProperty(value);
+  }
+  private _rippleCentered = false;
+
   @Input() rippleColor = '';
   @Input() rippleDuration = '500ms';
   @Input() rippleRadius = 0;
-  @Input() rippleUnbound = false;
+
+  @Input()
+  get rippleUnbound(): boolean {
+    return this._rippleUnbound;
+  }
+  set rippleUnbound(value: boolean) {
+    this._rippleUnbound = coerceBooleanProperty(value);
+  }
+  private _rippleUnbound = false;
 
   constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {}
 
@@ -225,4 +242,7 @@ export class MdbRippleDirective {
 
     return DEFAULT_RIPPLE_COLOR;
   }
+
+  static ngAcceptInputType_rippleCentered: BooleanInput;
+  static ngAcceptInputType_rippleUnbound: BooleanInput;
 }

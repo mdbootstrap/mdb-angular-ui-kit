@@ -21,6 +21,7 @@ import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 import { MdbPopoverComponent } from './popover.component';
 import { fromEvent, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -31,10 +32,28 @@ import { first, takeUntil } from 'rxjs/operators';
 export class MdbPopoverDirective implements OnInit, OnDestroy {
   @Input() mdbPopover = '';
   @Input() mdbPopoverTitle = '';
-  @Input() popoverDisabled = false;
+
+  @Input()
+  get popoverDisabled(): boolean {
+    return this._popoverDisabled;
+  }
+  set popoverDisabled(value: boolean) {
+    this._popoverDisabled = coerceBooleanProperty(value);
+  }
+  private _popoverDisabled = false;
+
   @Input() placement = 'top';
   @Input() template: TemplateRef<any>;
-  @Input() animation = true;
+
+  @Input()
+  get animation(): boolean {
+    return this._animation;
+  }
+  set animation(value: boolean) {
+    this._animation = coerceBooleanProperty(value);
+  }
+  private _animation = false;
+
   @Input() trigger = 'click';
   @Input() delayShow = 0;
   @Input() delayHide = 0;
@@ -228,4 +247,7 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
       this.show();
     }
   }
+
+  static ngAcceptInputType_animation: BooleanInput;
+  static ngAcceptInputType_popoverDisabled: BooleanInput;
 }

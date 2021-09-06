@@ -10,6 +10,7 @@ import {
 import { startWith, switchMap } from 'rxjs/operators';
 import { merge } from 'rxjs';
 import { MdbAccordionItemComponent } from './accordion-item.component';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'mdb-accordion',
@@ -19,8 +20,23 @@ import { MdbAccordionItemComponent } from './accordion-item.component';
 export class MdbAccordionComponent implements AfterContentInit {
   @ContentChildren(MdbAccordionItemComponent) items: QueryList<MdbAccordionItemComponent>;
 
-  @Input() flush = false;
-  @Input() multiple = false;
+  @Input()
+  get flush(): boolean {
+    return this._flush;
+  }
+  set flush(value: boolean) {
+    this._flush = coerceBooleanProperty(value);
+  }
+  private _flush = false;
+
+  @Input()
+  get multiple(): boolean {
+    return this._multiple;
+  }
+  set multiple(value: boolean) {
+    this._multiple = coerceBooleanProperty(value);
+  }
+  private _multiple = false;
 
   @HostBinding('class.accordion') accordion = true;
   @HostBinding('class.accordion-flush')
@@ -52,4 +68,7 @@ export class MdbAccordionComponent implements AfterContentInit {
       itemsToClose.forEach((item: MdbAccordionItemComponent) => item.hide());
     }
   }
+
+  static ngAcceptInputType_flush: BooleanInput;
+  static ngAcceptInputType_multiple: BooleanInput;
 }

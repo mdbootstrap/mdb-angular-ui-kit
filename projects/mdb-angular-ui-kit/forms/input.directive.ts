@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Directive,
   DoCheck,
@@ -5,8 +6,11 @@ import {
   HostBinding,
   HostListener,
   Input,
+  Optional,
   Renderer2,
+  Self,
 } from '@angular/core';
+import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { MdbAbstractFormControl } from './form-control';
 
@@ -18,7 +22,11 @@ import { MdbAbstractFormControl } from './form-control';
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck {
-  constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {}
+  constructor(
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    @Optional() @Self() private _ngControl: NgControl
+  ) {}
 
   readonly stateChanges: Subject<void> = new Subject<void>();
 
@@ -29,10 +37,13 @@ export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck {
   @HostBinding('disabled')
   @Input('disabled')
   get disabled(): boolean {
+    if (this._ngControl && this._ngControl.disabled !== null) {
+      return this._ngControl.disabled;
+    }
     return this._disabled;
   }
   set disabled(value: boolean) {
-    this._disabled = value;
+    this._disabled = coerceBooleanProperty(value);
   }
   private _disabled = false;
 
@@ -46,7 +57,7 @@ export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck {
     } else {
       this._renderer.removeAttribute(this._elementRef.nativeElement, 'readonly');
     }
-    this._readonly = value;
+    this._readonly = coerceBooleanProperty(value);
   }
   private _readonly = false;
 
@@ -99,4 +110,7 @@ export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck {
   get labelActive(): boolean {
     return this.focused || this.hasValue;
   }
+
+  static ngAcceptInputType_disabled: BooleanInput;
+  static ngAcceptInputType_readonly: BooleanInput;
 }

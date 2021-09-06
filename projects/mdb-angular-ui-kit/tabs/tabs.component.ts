@@ -1,3 +1,4 @@
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
   Component,
@@ -27,13 +28,42 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
 
   readonly _destroy$: Subject<void> = new Subject<void>();
 
-  @Input() fill = false;
-  @Input() justified = false;
-  @Input() pills = false;
+  @Input()
+  get fill(): boolean {
+    return this._fill;
+  }
+  set fill(value: boolean) {
+    this._fill = coerceBooleanProperty(value);
+  }
+  private _fill = false;
+
+  @Input()
+  get justified(): boolean {
+    return this._justified;
+  }
+  set justified(value: boolean) {
+    this._justified = coerceBooleanProperty(value);
+  }
+  private _justified = false;
+
+  @Input()
+  get pills(): boolean {
+    return this._pills;
+  }
+  set pills(value: boolean) {
+    this._pills = coerceBooleanProperty(value);
+  }
+  private _pills = false;
 
   @HostBinding('class.row')
   @Input()
-  vertical = false;
+  get vertical(): boolean {
+    return this._vertical;
+  }
+  set vertical(value: boolean) {
+    this._vertical = coerceBooleanProperty(value);
+  }
+  private _vertical = false;
 
   private _selectedIndex: number;
 
@@ -104,4 +134,9 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
     this._destroy$.next();
     this._destroy$.complete();
   }
+
+  static ngAcceptInputType_fill: BooleanInput;
+  static ngAcceptInputType_justified: BooleanInput;
+  static ngAcceptInputType_pills: BooleanInput;
+  static ngAcceptInputType_vertical: BooleanInput;
 }

@@ -28,6 +28,7 @@ import { MdbDropdownToggleDirective } from './dropdown-toggle.directive';
 import { MdbDropdownMenuDirective } from './dropdown-menu.directive';
 import { animate, state, style, transition, trigger, AnimationEvent } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -49,7 +50,15 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   @ContentChild(MdbDropdownToggleDirective, { read: ElementRef }) _dropdownToggle: ElementRef;
   @ContentChild(MdbDropdownMenuDirective, { read: ElementRef }) _dropdownMenu: ElementRef;
 
-  @Input() animation = true;
+  @Input()
+  get animation(): boolean {
+    return this._animation;
+  }
+  set animation(value: boolean) {
+    this._animation = coerceBooleanProperty(value);
+  }
+  private _animation = true;
+
   @Input() offset = 0;
 
   @Output() dropdownShow: EventEmitter<MdbDropdownDirective> = new EventEmitter();
@@ -230,11 +239,11 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     return fromEvent(document, 'click').pipe(
       filter((event: MouseEvent) => {
         const target = event.target as HTMLElement;
+        const isInsideMenu = this._dropdownMenu.nativeElement.contains(target);
         const notTogglerIcon = !this._dropdownToggle.nativeElement.contains(target);
+        const notCustomContent = !isInsideMenu || (target.classList && target.classList.contains('dropdown-item'));
         const notOrigin = target !== origin;
-        const notValue = !this._dropdownMenu.nativeElement.contains(target);
-        const notOverlay = !!overlayRef && overlayRef.overlayElement.contains(target) === false;
-        return notOrigin && notValue && notOverlay && notTogglerIcon;
+        return notOrigin && notTogglerIcon && notCustomContent;
       }),
       takeUntil(overlayRef.detachments())
     );
@@ -329,4 +338,6 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
       this.show();
     }
   }
+
+  static ngAcceptInputType_animation: BooleanInput;
 }
