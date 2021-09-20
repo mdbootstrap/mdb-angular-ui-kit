@@ -1,3 +1,12 @@
+## 1.2.0 (20.09.2021)
+
+### New
+
+- [Calendar](https://mdbootstrap.com/docs/b5/angular/plugins/calendar)
+- [Table Editor](https://mdbootstrap.com/docs/b5/angular/plugins/table-editor)
+
+---
+
 ## 1.1.0 (06.09.2021)
 
 ### Fixes and improvements:

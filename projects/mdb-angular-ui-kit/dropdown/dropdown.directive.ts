@@ -241,7 +241,8 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
         const target = event.target as HTMLElement;
         const isInsideMenu = this._dropdownMenu.nativeElement.contains(target);
         const notTogglerIcon = !this._dropdownToggle.nativeElement.contains(target);
-        const notCustomContent = !isInsideMenu || (target.classList && target.classList.contains('dropdown-item'));
+        const notCustomContent =
+          !isInsideMenu || (target.classList && target.classList.contains('dropdown-item'));
         const notOrigin = target !== origin;
         return notOrigin && notTogglerIcon && notCustomContent;
       }),
