@@ -84,7 +84,6 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
     }
 
     this._bindTriggerEvents();
-    this._createOverlay();
   }
 
   ngOnDestroy(): void {
@@ -191,9 +190,13 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
   }
 
   show(): void {
-    if (this._open) {
+    if (this._hideTimeout) {
       this._overlayRef.detach();
+      clearTimeout(this._hideTimeout);
+      this._hideTimeout = null;
     }
+
+    this._createOverlay();
 
     if (this._hideTimeout) {
       clearTimeout(this._hideTimeout);
@@ -219,24 +222,28 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
   }
 
   hide(): void {
-    if (!this._open) {
-      return;
-    }
-
     if (this._showTimeout) {
       clearTimeout(this._showTimeout);
       this._showTimeout = null;
+    } else {
+      return;
     }
 
     this._hideTimeout = setTimeout(() => {
       this.popoverHide.emit(this);
-      this._tooltipRef.instance._hidden.pipe(first()).subscribe(() => {
+      if (!this._tooltipRef) {
         this._overlayRef.detach();
         this._open = false;
-        this.popoverShown.emit(this);
-      });
-      this._tooltipRef.instance.animationState = 'hidden';
-      this._tooltipRef.instance.markForCheck();
+        this.popoverHidden.emit(this);
+      } else {
+        this._tooltipRef.instance._hidden.pipe(first()).subscribe(() => {
+          this._overlayRef.detach();
+          this._open = false;
+          this.popoverHidden.emit(this);
+        });
+        this._tooltipRef.instance.animationState = 'hidden';
+        this._tooltipRef.instance.markForCheck();
+      }
     }, this.delayHide);
   }
 

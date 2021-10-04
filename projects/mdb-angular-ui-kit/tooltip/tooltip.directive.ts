@@ -55,8 +55,7 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
   constructor(
     private _overlay: Overlay,
     private _overlayPositionBuilder: OverlayPositionBuilder,
-    private _elementRef: ElementRef,
-    private _renderer: Renderer2
+    private _elementRef: ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -65,11 +64,10 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
     }
 
     this._bindTriggerEvents();
-    this._createOverlay();
   }
 
   ngOnDestroy(): void {
-    if (this._open) {
+    if (this._open || this._showTimeout) {
       this.hide();
     }
 
@@ -172,14 +170,13 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
   }
 
   show(): void {
-    if (this._open) {
+    if (this._hideTimeout || this._open) {
       this._overlayRef.detach();
-    }
-
-    if (this._hideTimeout) {
       clearTimeout(this._hideTimeout);
       this._hideTimeout = null;
     }
+
+    this._createOverlay();
 
     this._showTimeout = setTimeout(() => {
       const tooltipPortal = new ComponentPortal(MdbTooltipComponent);
@@ -200,24 +197,29 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
   }
 
   hide(): void {
-    if (!this._open) {
-      return;
-    }
-
     if (this._showTimeout) {
       clearTimeout(this._showTimeout);
       this._showTimeout = null;
+    } else {
+      return;
     }
 
     this._hideTimeout = setTimeout(() => {
       this.tooltipHide.emit(this);
-      this._tooltipRef.instance._hidden.pipe(first()).subscribe(() => {
+
+      if (!this._tooltipRef) {
         this._overlayRef.detach();
         this._open = false;
-        this.tooltipShown.emit(this);
-      });
-      this._tooltipRef.instance.animationState = 'hidden';
-      this._tooltipRef.instance.markForCheck();
+        this.tooltipHidden.emit(this);
+      } else {
+        this._tooltipRef.instance._hidden.pipe(first()).subscribe(() => {
+          this._overlayRef.detach();
+          this._open = false;
+          this.tooltipHidden.emit(this);
+        });
+        this._tooltipRef.instance.animationState = 'hidden';
+        this._tooltipRef.instance.markForCheck();
+      }
     }, this.delayHide);
   }
 

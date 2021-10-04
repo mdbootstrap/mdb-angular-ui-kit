@@ -1,3 +1,15 @@
+## 1.3.0 (04.10.2021)
+
+### New
+
+- [Wysiwyg](https://mdbootstrap.com/docs/b5/angular/plugins/wysiwyg-editor)
+
+### Fixes and improvements:
+
+- Popover/Tooltip - resolved problem with closing component when quickly moving mouse over trigger element
+
+---
+
 ## 1.2.0 (20.09.2021)
 
 ### New
