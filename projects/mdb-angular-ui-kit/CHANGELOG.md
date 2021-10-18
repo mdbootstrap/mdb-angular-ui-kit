@@ -1,3 +1,16 @@
+## 1.4.0 (18.10.2021)
+
+### New
+
+- [Drag and drop](https://mdbootstrap.com/docs/b5/angular/plugins/drag-and-drop)
+- [Vector maps](https://mdbootstrap.com/docs/b5/angular/plugins/vector-maps)
+
+### Fixes and improvements:
+
+- Popover/Tooltip - resolved problem with closing component when quickly moving mouse over trigger element
+
+---
+
 ## 1.3.0 (04.10.2021)
 
 ### New
