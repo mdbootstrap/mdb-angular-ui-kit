@@ -1,13 +1,18 @@
+## 1.5.0 (02.11.2021)
+
+### New
+
+- [File upload](https://mdbootstrap.com/docs/b5/angular/plugins/file-upload)
+- [Treeview](https://mdbootstrap.com/docs/b5/angular/plugins/tree-view)
+
+---
+
 ## 1.4.0 (18.10.2021)
 
 ### New
 
 - [Drag and drop](https://mdbootstrap.com/docs/b5/angular/plugins/drag-and-drop)
 - [Vector maps](https://mdbootstrap.com/docs/b5/angular/plugins/vector-maps)
-
-### Fixes and improvements:
-
-- Popover/Tooltip - resolved problem with closing component when quickly moving mouse over trigger element
 
 ---
 
