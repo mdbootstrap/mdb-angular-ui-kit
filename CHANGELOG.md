@@ -1,3 +1,25 @@
+## 1.5.1 (22.11.2021)
+
+### Fixes and improvements
+
+- Toast/Alert - resolved problem with stacking and close animation,
+- Modal - resolved problem with closing when mouseup event is detected outside the component,
+- Sidenav - setting `hidden` input to `false` will no longer trigger component animation,
+- Sidenav - resolved problem with arrow rotation update when `[collapsed]="false"` is used,
+- Sidenav - removed focus trap in side and push modes,
+- Sidenav - default position will be now correctly set to `fixed`,
+- Input - resolved problem with border top gap recalculation when used inside a dynamically loaded component (such as tabs),
+- Overlay - resolved problem with z-index in components using overlay (e.g. modal, popconfirm, tooltip, components with dropdown menus). The components will be correctly displayed above the elements with sticky/fixed styles,
+- Charts - fixed default options and resolved problem with custom options merge.
+
+### Vector maps 1.1.0:
+
+- resolved problem with automatic updates of colors defined in `colorMap`,
+- resolved problem with tooltip display when `[hover]="false"` is used,
+- added possibility to display custom tooltips.
+
+---
+
 ## 1.5.0 (02.11.2021)
 
 ### New

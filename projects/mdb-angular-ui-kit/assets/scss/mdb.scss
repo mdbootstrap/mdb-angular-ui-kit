@@ -62,6 +62,7 @@
 @import './free/shadows';
 @import './free/flag';
 @import './free/images';
+@import './free/overlay';
 
 // MDB COMPONENTS
 @import './free/accordion';
@@ -97,5 +98,6 @@
 @import './free/forms/form-range';
 @import './free/forms/input-group';
 @import './free/forms/form-file';
+
 
 @import '~@angular/cdk/overlay-prebuilt.css';

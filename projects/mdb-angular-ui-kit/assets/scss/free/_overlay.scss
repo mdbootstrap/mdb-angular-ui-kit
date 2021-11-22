@@ -1,0 +1,17 @@
+// Owerride default overlay z-index. Change required to allow elements inside the overlay to have z-index value ​​up to 1200.
+
+div.cdk-overlay-container {
+  z-index: 1200;
+  .cdk-overlay-backdrop {
+    z-index: 1200;
+  }
+  .cdk-global-overlay-wrapper {
+    z-index: 1200
+  }
+  .cdk-overlay-pane {
+    z-index: 1200;
+  }
+  .cdk-overlay-connected-position-bounding-box {
+    z-index: 1200;
+  }
+}

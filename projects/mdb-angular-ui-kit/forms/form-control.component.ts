@@ -8,6 +8,7 @@ import {
   AfterContentInit,
   Renderer2,
   OnDestroy,
+  NgZone,
 } from '@angular/core';
 import { MdbAbstractFormControl } from './form-control';
 import { MdbLabelDirective } from './label.directive';
@@ -32,7 +33,12 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
     return this._formControl.input;
   }
 
-  constructor(private _renderer: Renderer2, private _contentObserver: ContentObserver) {}
+  constructor(
+    private _renderer: Renderer2,
+    private _contentObserver: ContentObserver,
+    private _elementRef: ElementRef,
+    private _ngZone: NgZone
+  ) {}
 
   readonly _destroy$: Subject<void> = new Subject<void>();
 
@@ -40,6 +46,7 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
   private _labelMarginLeft = 0;
   private _labelGapPadding = 8;
   private _labelScale = 0.8;
+  private _recalculateGapWhenVisible = false;
 
   ngAfterContentInit(): void {
     if (this._label) {
@@ -65,13 +72,13 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
       }
     });
 
-    // Workaround for problems with border top styles in
-    // inputs rendered inside a tab component
-    setTimeout(() => {
-      if (this._label) {
-        this._updateBorderGap();
-      }
-    }, 0);
+    this._ngZone.runOutsideAngular(() => {
+      this._ngZone.onStable.pipe(takeUntil(this._destroy$)).subscribe(() => {
+        if (this._label && this._recalculateGapWhenVisible) {
+          this._updateBorderGap();
+        }
+      });
+    });
   }
 
   ngOnDestroy(): void {
@@ -84,12 +91,23 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
   }
 
   private _updateBorderGap(): void {
+    // Element is in DOM but is not visible, we need to recalculate the gap when element
+    // is displayed. This problem may occur in components such as tabs where content of
+    // inactive tabs has display:none styles
+
+    if (this._isHidden()) {
+      this._recalculateGapWhenVisible = true;
+      return;
+    }
+
     const notchLeadingWidth = `${this._labelMarginLeft + this._notchLeadingLength}px`;
     const notchMiddleWidth = `${this._getLabelWidth()}px`;
 
-    this._renderer.setStyle(this._notchLeading.nativeElement, 'width', notchLeadingWidth);
-    this._renderer.setStyle(this._notchMiddle.nativeElement, 'width', notchMiddleWidth);
-    this._renderer.setStyle(this._label.nativeElement, 'margin-left', `${this._labelMarginLeft}px`);
+    this._notchLeading.nativeElement.style.width = notchLeadingWidth;
+    this._notchMiddle.nativeElement.style.width = notchMiddleWidth;
+    this._label.nativeElement.style.marginLeft = `${this._labelMarginLeft}px`;
+
+    this._recalculateGapWhenVisible = false;
   }
 
   private _updateLabelActiveState(): void {
@@ -102,5 +120,11 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
 
   private _isLabelActive(): boolean {
     return this._formControl && this._formControl.labelActive;
+  }
+
+  private _isHidden(): boolean {
+    const el = this._elementRef.nativeElement;
+
+    return !el.offsetHeight && !el.offsetWidth;
   }
 }

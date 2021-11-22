@@ -75,7 +75,7 @@ export class MdbModalContainerComponent implements OnInit, AfterViewInit, OnDest
 
   ngAfterViewInit(): void {
     if (!this._config.ignoreBackdropClick) {
-      fromEvent(this._elementRef.nativeElement, 'click')
+      fromEvent(this._elementRef.nativeElement, 'mousedown')
         .pipe(
           filter((event: MouseEvent) => {
             const target = event.target as HTMLElement;
