@@ -1,3 +1,26 @@
+## 1.6.0 (27.12.2021)
+
+### Dependencies:
+
+- Updated Bootstrap to 5.1.3 version.
+
+### Fixes and improvements:
+
+- Charts - resolved problem with `chartjs-plugin-datalabels` configuration,
+- Carousel - component should now work correctly inside components with `OnPush` change detection strategy,
+- Table - updated `dataSource` type to resolve problem with asynchronous data and async pipe,
+- File upload plugin - resolved problem with extensions handled by the `acceptedExtensions` input,
+- Popconfirm - target element will be now optional in modal display mode,
+- Sidenav - resolved problem with `child.querySelector is not a function` error when using `ngFor` directive to render sidenav items,
+- Popover - `mdbPopover` input will now correctly accept value with `TemplateRef` type.
+
+### New:
+
+- Dropdown - added new `closeOnOutsideClick`, `closeOnItemClick`, `closeOnEsc` inputs that allow to configure menu closing actions,
+- File upload plugin - added a new `reset` method that allow to reset component state to default settings.
+
+---
+
 ## 1.5.1 (22.11.2021)
 
 ### Fixes and improvements

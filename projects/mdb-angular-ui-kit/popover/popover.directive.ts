@@ -30,7 +30,7 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbPopoverDirective implements OnInit, OnDestroy {
-  @Input() mdbPopover = '';
+  @Input() mdbPopover: TemplateRef<any> | string = '';
   @Input() mdbPopoverTitle = '';
 
   @Input()

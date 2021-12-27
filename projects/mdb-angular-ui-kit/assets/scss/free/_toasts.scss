@@ -9,6 +9,10 @@
   .btn-close {
     width: 1.3em;
   }
+
+  &:not(.show) {
+    display: block;
+  }
 }
 
 .toast-header {

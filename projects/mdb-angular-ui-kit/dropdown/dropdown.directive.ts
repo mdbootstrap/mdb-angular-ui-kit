@@ -5,6 +5,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   OnDestroy,
   Output,
@@ -60,6 +61,9 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   private _animation = true;
 
   @Input() offset = 0;
+  @Input() closeOnOutsideClick = true;
+  @Input() closeOnItemClick = true;
+  @Input() closeOnEsc = true;
 
   @Output() dropdownShow: EventEmitter<MdbDropdownDirective> = new EventEmitter();
   @Output() dropdownShown: EventEmitter<MdbDropdownDirective> = new EventEmitter();
@@ -232,10 +236,14 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     return position;
   }
 
-  private _listenToOutSideCick(
-    overlayRef: OverlayRef,
-    origin: HTMLElement
-  ): Observable<MouseEvent> {
+  private _listenToEscKeyup(overlayRef: OverlayRef): Observable<KeyboardEvent> {
+    return fromEvent(document, 'keyup').pipe(
+      filter((event: KeyboardEvent) => event.key === 'Escape'),
+      takeUntil(overlayRef.detachments())
+    );
+  }
+
+  private _listenToClick(overlayRef: OverlayRef, origin: HTMLElement): Observable<MouseEvent> {
     return fromEvent(document, 'click').pipe(
       filter((event: MouseEvent) => {
         const target = event.target as HTMLElement;
@@ -311,9 +319,25 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     this._open = true;
     this._overlayRef.attach(this._portal);
 
-    this._listenToOutSideCick(this._overlayRef, this._dropdownToggle.nativeElement).subscribe(() =>
-      this.hide()
-    );
+    this._listenToEscKeyup(this._overlayRef).subscribe((isEsc) => {
+      if (isEsc && this.closeOnEsc) {
+        this.hide();
+      }
+    });
+
+    this._listenToClick(this._overlayRef, this._dropdownToggle.nativeElement).subscribe((event) => {
+      const target = event.target as HTMLElement;
+      const isDropdownItem = target.classList && target.classList.contains('dropdown-item');
+
+      if (this.closeOnItemClick && isDropdownItem) {
+        this.hide();
+        return;
+      }
+      if (this.closeOnOutsideClick && !isDropdownItem) {
+        this.hide();
+        return;
+      }
+    });
 
     this._animationState = 'visible';
   }

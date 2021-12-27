@@ -133,6 +133,7 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
       if (this.interval > 0 && this.ride) {
         this.play();
       }
+      this._cdRef.markForCheck();
     });
 
     if (this.keyboard) {
@@ -215,24 +216,18 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
 
     this._animateSlides(direction, this.activeSlide, index);
     this.activeSlide = index;
-
-    this._cdRef.markForCheck();
   }
 
   next(): void {
     if (!this._isSliding) {
       this._slide(Direction.NEXT);
     }
-
-    this._cdRef.markForCheck();
   }
 
   prev(): void {
     if (!this._isSliding) {
       this._slide(Direction.PREV);
     }
-
-    this._cdRef.markForCheck();
   }
 
   private _slide(direction: Direction): void {
@@ -272,6 +267,7 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
         this._reflow(nextEl);
         currentItem.start = true;
         nextItem.start = true;
+        this._cdRef.markForCheck();
       }, 0);
 
       const transitionDuration = 600;
@@ -299,6 +295,7 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
         this._reflow(nextEl);
         currentItem.end = true;
         nextItem.end = true;
+        this._cdRef.markForCheck();
       }, 0);
 
       const transitionDuration = 600;
