@@ -15,12 +15,6 @@
 
 ---
 
- <a href="https://mdbootstrap.com/bf/sale/" alt="BF Waiting List" rel="dofollow">
-          		<img src="https://mdbcdn.b-cdn.net/img/Marketing/campaigns/bf2021/black-friday-sale.gif">
-          </a>
-          
----
-
 <table>
   <tbody>
     <tr>
@@ -68,7 +62,7 @@ Trusted by <b>2 000 000+</b> developers & designers. Used by companies like
 
 ###### Tutorial for the latest Bootstrap v.5 Alpha. In this video we'll learn about the changes implemented into v.5.
 
-**[>> Click here for a written tutorial](https://mdbootstrap.com/docs/b5/angular/getting-started/quick-start/)**
+**[>> Click here for a written tutorial](https://mdbootstrap.com/docs/b5/angular/getting-started/installation/)**
 
 <table>
   <tbody>
@@ -78,7 +72,7 @@ Trusted by <b>2 000 000+</b> developers & designers. Used by companies like
           </a>
       </td>
       <td>
-          <a href="https://mdbootstrap.com/docs/b5/angular/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
+          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/" alt="Bootstrap 5" rel="dofollow">
           		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/cover-bootstrap-5-1.png">
           </a>
       </td>
