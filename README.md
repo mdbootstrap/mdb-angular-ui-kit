@@ -1,34 +1,65 @@
-![MDB Logo](https://mdbootstrap.com/img/Marketing/general/logo/medium/mdb-angular.png)
+Bootstrap 5 & React 12 UI KIT - 700+ components, MIT license, simple installation.
 
-# MDB 5 Angular
-
-### Angular 12 & Bootstrap 5 & Material Design 2.0 UI KIT
-
-**[>> Get Started in 4 steps](https://mdbootstrap.com/docs/b5/angular/getting-started/installation/)**
-
-**[>> MDBAngular 5 Demo](https://mdbootstrap.com/docs/b5/angular#demo)**
-
-<a href="https://npmcharts.com/compare/mdb-angular-ui-kit?minimal=true"> <img src="https://img.shields.io/npm/dw/mdb-angular-ui-kit" alt="Downloads"></a>
-<a href="https://github.com/mdbootstrap/mdb-angular-ui-kit/License.pdf"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
-<a href="https://twitter.com/intent/tweet/?text=Thanks+@mdbootstrap+for+creating+amazing+and+free+Material+Design+for+Bootstrap+4+UI+KIT%20https://mdbootstrap.com/docs/jquery/&hashtags=javascript,code,webdesign,bootstrap"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Let%20us%20know%20you%20were%20here%21&"></a>
-<a href="https://www.youtube.com/watch?v=c9B4TPnak1A&t=6s"><img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/c9B4TPnak1A?label=Bootstrap%205%20Tutorial%20Views&style=social"></a>
+MDB is a collection of free Bootstrap templates, themes, design tools & resources.
 
 ---
+
+# Get started
+
+### [>> Get Started in 1 minute](https://mdbootstrap.com/docs/b5/angular/getting-started/installation/)
+Simple installation via .zip, npm or cdnjs.
+ 
+### [>> Install with MDBGO](https://mdbgo.com/) 
+ Free Hosting, WordPress support, custom domains, SSL support, free database, frontend & backend templates, webpack starter included, git repostiory, FTP & jenkins support.
+ 
+### [>> Install with MDBGO + e-commerce shop integration](https://mdbgo.com/wordpress-shop/)
+One click setup! MDB GO allows you to create a WordPress page with a single click.
+Regardless whether you want to create a Travel Blog or an e-commerce shop to sell your product you can easily do that. You can even combine both into single page.
+
+
+## About Material Design for Bootstrap 5 & Vanilla JavaScript
+
+<p>Created by <a href="https://mdbootstrap.com"><img height="30" src="https://mdbootstrap.com/img/Marketing/general/logo/medium/mdb-angular-r.png"></a>  
+<a href="https://npmcharts.com/compare/angular-bootstrap-md?minimal=true"> <img src="https://img.shields.io/npm/dm/mdbootstrap.svg?label=NPM%20Downloads" alt="Downloads"></a>
+<a href="https://github.com/mdbootstrap/mdb-angular-ui-kit/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
+<a href="https://twitter.com/intent/tweet/?text=Thanks+@mdbootstrap+for+creating+amazing+and+free+Material+Design+for+Bootstrap+5+UI+KIT%20https://mdbootstrap.com/docs/b5/angular/&hashtags=javascript,code,webdesign,bootstrap"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Let%20us%20know%20you%20were%20here%21&"></a>
+<a href="https://www.youtube.com/watch?v=c9B4TPnak1A"><img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/c9B4TPnak1A?label=Bootstrap%205%20Tutorial%20Views&style=social"></a></p>
+
+Trusted by <b>2 000 000+</b> developers & designers. Used by companies & institutions like
+<table>
+  <tbody>
+    <tr>
+      <td><img width="300" src="https://mdbootstrap.com/img/logo/brands/nasa.png"></td>
+      <td><img src="https://mdbootstrap.com/img/logo/brands/nike.png"></td>
+      <td><img src="https://mdbootstrap.com/img/logo/brands/amazon.png"></td>
+      <td><img src="https://mdbootstrap.com/img/logo/brands/sony.png"></td>
+      <td><img src="https://mdbootstrap.com/img/logo/brands/samsung.png">
+      <td><img src="https://mdbootstrap.com/img/logo/brands/airbus.png">
+      <td><img src="https://mdbootstrap.com/img/logo/brands/yahoo.png">
+      <td><img src="https://mdbootstrap.com/img/logo/brands/deloitte.png">
+      <td><img src="https://mdbootstrap.com/img/logo/brands/ge.png">
+      <td><img src="https://mdbootstrap.com/img/logo/brands/kpmg.png">
+      <td><img src="https://mdbootstrap.com/img/logo/brands/unity.png">
+      <td><img src="https://mdbootstrap.com/img/logo/brands/ikea.png">
+      <td><img src="https://mdbootstrap.com/img/logo/brands/aegon.png">
+    </tr>
+   </tbody>
+</table>
 
 <table>
   <tbody>
     <tr>
       <td>
           <a href="https://mdbootstrap.com/docs/b5/angular/" alt="Bootstrap 5" rel="dofollow">
-          		<img src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/content/en/_mdb5/standard/about/assets/mdb5-about.jpg">
+          		<img src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/content/en/_mdb5/angular/about/assets/mdb5-angular.jpg">
           </a>
       </td>
       <td>
         <ul>
-        <li><b>500+ material UI components</b></li>
+        <li><b><a href="https://mdbootstrap.com/docs/b5/angular/">700+ UI components</a></b></li>          
          <li>Super simple, 1 minute installation</li>
-         <li>Detailed docs & multiple practical examples</li>
-         <li>Angular 11</li>
+         <li>Detailed docs & practical examples</li>
+         <li>Lots of tutorials</li>
          <li>Huge and active community</li>
          <li><b>MIT license - free for personal & commercial use</b></li>
         </ul>
@@ -37,50 +68,35 @@
    </tbody>
 </table>
 
-Trusted by <b>2 000 000+</b> developers & designers. Used by companies like
+___
 
-<table>
-  <tbody>
-    <tr>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/nike.png" style="width: 10px;"></td>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/amazon.png" style="width: 10px;"></td>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/sony.png" style="width: 10px;"></td>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/samsung.png"  style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/airbus.png" style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/yahoo.png"  style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/deloitte.png" style="height: 40px"></div>
-      <td><img src="https://mdbootstrap.com/img/logo/brands/ge.png" style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/kpmg.png" style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/unity.png" style="height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/ikea.png" style="max-height: 40px">
-      <td><img src="https://mdbootstrap.com/img/logo/brands/aegon.png" style="height: 40px">
-    </tr>
-   </tbody>
-</table>
+# Bootstrap 5 tutorial
 
----
+**[>> Learn more about Bootstrap 5](https://mdbootstrap.com/docs/standard/bootstrap-5/)**
 
-###### Tutorial for the latest Bootstrap v.5 Alpha. In this video we'll learn about the changes implemented into v.5.
 
-**[>> Click here for a written tutorial](https://mdbootstrap.com/docs/b5/angular/getting-started/installation/)**
+**[>> Bootstrap 5 Tutorial](https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/)**
+
+**[>> Subscribe to our YouTube channel with dozens of Bootstrap tutorials](https://www.youtube.com/c/Mdbootstrap?sub_confirmation=1)**
 
 <table>
   <tbody>
     <tr>
       <td align="center">
+         <a href="https://mdbootstrap.com/docs/b5/angular/getting-started/" alt="Bootstrap Tutorials" rel="dofollow">
           		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/learnmore-1.png">
           </a>
       </td>
       <td>
-          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/" alt="Bootstrap 5" rel="dofollow">
+          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
           		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/cover-bootstrap-5-1.png">
           </a>
       </td>
     </tr>
      <tr>
         <td align="center">
-          <p align="center"><b>Start to Code</b></p>
-          <a href="https://mdbootstrap.com/docs/standard/bootstrap-5-tutorial/#section-beginner" alt="Bootstrap 5" rel="dofollow">
+          <p align="center"><b>Start learning from Basics</b></p>
+          <a href="https://mdbootstrap.com/docs/b5/angular/getting-started/" alt="Bootstrap 5" rel="dofollow">
           		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/Screenshot_26.png">
           </a>
          </td>
@@ -192,4 +208,53 @@ Trusted by <b>2 000 000+</b> developers & designers. Used by companies like
 
 </table>
 
-and more.
+___
+
+# Extended documentation
+
+<ul>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/bootstrap-address-form/">Bootstrap Address Form</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/avatar/">Bootstrap Avatar</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/back-to-top/">Bootstrap Back To Top Button</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/carousel-with-thumbnails/">Bootstrap Carousel Slider with Thumbnails</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/chat/">Bootstrap Chat</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/code/">Bootstrap Code Blocks</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/comments/">Bootstrap Comments</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/bootstrap-comparison-table/">Bootstrap Comparison Table</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/credit-card/">Bootstrap Credit Card Form</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/drawer/">Bootstrap Drawer</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/">Bootstrap Nested Dropdown</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/faq/">Bootstrap FAQ component / section</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/gallery/">Bootstrap Gallery</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/hamburger-menu/">Bootstrap Hamburger Menu</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/bootstrap-invoice/">Bootstrap Invoice</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/jumbotron/">Bootstrap Jumbotron</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/login/">Bootstrap Login Form</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/maps/">Bootstrap Maps</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/media-object/">Bootstrap Media Object</a></li>
+<li><a href="https://mdbootstrap.com/docs/standard/extended/mega-menu/">Bootstrap Mega Menu</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/multiselect/">Bootstrap Multiselect</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/news-feed/">Bootstrap News Feed</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/offcanvas/">Bootstrap Offcanvas</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/order-details/">Bootstrap Order Details</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/page-transitions/">Bootstrap Page Transitions</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/payment-forms/">Bootstrap Payment Forms</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/product-cards/">Bootstrap Product Cards</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/profiles/">Bootstrap Profiles</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/quotes/">Bootstrap Quotes</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/registration/">Bootstrap Registration Form</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/search-expanding/">Bootstrap Expanding Search Bar</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/shopping-carts/">Bootstrap Shopping Carts</a></li> 
+<li><a href="https://mdbootstrap.com/docs/standard/extended/side-navbar/">Bootstrap Side Navbar</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/sidebar/">Bootstrap Sidebar</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/social-media/">Bootstrap Social Media Icons & Buttons</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/square-buttons/">Bootstrap Square Buttons</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/bootstrap-survey-form/">Bootstrap Survey Form</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/testimonial-slider/">Bootstrap Testimonial Slider</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/testimonials/">Bootstrap Testimonials</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/textarea/">Bootstrap Textarea</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/timeline/">Bootstrap Timeline</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/to-do-list/">Bootstrap To Do List</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/video-carousel/">Bootstrap Video Carousel / Gallery</a></li>  
+<li><a href="https://mdbootstrap.com/docs/standard/extended/weather/">Bootstrap Weather</a></li>  
+</ul>
