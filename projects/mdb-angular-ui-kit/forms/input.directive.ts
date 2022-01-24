@@ -1,5 +1,6 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
+  AfterViewInit,
   Directive,
   DoCheck,
   ElementRef,
@@ -21,7 +22,7 @@ import { MdbAbstractFormControl } from './form-control';
   providers: [{ provide: MdbAbstractFormControl, useExisting: MdbInputDirective }],
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
-export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck {
+export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck, AfterViewInit {
   constructor(
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
@@ -31,6 +32,14 @@ export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck {
   readonly stateChanges: Subject<void> = new Subject<void>();
 
   private _focused = false;
+  private _color = '';
+
+  ngAfterViewInit() {
+    this._color = getComputedStyle(this._elementRef.nativeElement).color;
+    if (this._elementRef.nativeElement.type === 'date') {
+      this._updateTextColorForDateType();
+    }
+  }
 
   private _currentNativeValue: any;
 
@@ -74,21 +83,35 @@ export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck {
   }
   private _value: any;
 
+  private _updateTextColorForDateType() {
+    const actualColor = getComputedStyle(this._elementRef.nativeElement).color;
+    this._color = actualColor !== 'rgba(0, 0, 0, 0)' ? actualColor : this._color;
+
+    const color = this.labelActive ? this._color : `transparent`;
+
+    this._renderer.setStyle(this._elementRef.nativeElement, 'color', color);
+  }
+
   @HostListener('focus')
   _onFocus(): void {
     this._focused = true;
+    if (this._elementRef.nativeElement.type === 'date') {
+      this._updateTextColorForDateType();
+    }
     this.stateChanges.next();
   }
 
   @HostListener('blur')
   _onBlur(): void {
     this._focused = false;
+    if (this._elementRef.nativeElement.type === 'date') {
+      this._updateTextColorForDateType();
+    }
     this.stateChanges.next();
   }
 
   ngDoCheck(): void {
     const value = this._elementRef.nativeElement.value;
-
     if (this._currentNativeValue !== value) {
       this._currentNativeValue = value;
       this.stateChanges.next();

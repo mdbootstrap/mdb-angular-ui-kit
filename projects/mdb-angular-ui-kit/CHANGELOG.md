@@ -1,3 +1,22 @@
+## 1.6.1 (24.01.2022)
+
+### Optimization:
+
+- Documentation migration from Wordpress to Hugo,
+- Updated code in snippets in documentation to work properly with tsconfig strict settings.
+
+### Fixes and improvements:
+
+- Input - resolved problem with label position in input with type="date",
+- Datepicker/Timepicker - improved backdrop animation (removed unnecessary delay),
+- Datepicker - resolved problem with navigation using previous/next arrows when min and max date is specified,
+- Sidenav - animation of the collapsed item in slim mode will be now in sync with animation of the menu (previously there was unnecessary delay)
+- Select - list of filtered options will be now correctly reset after the dropdown menu is closed,
+- Treeview plugin - click on checkbox will no longer change collapsed state of the node,
+- Treeview plugin - checked state of the checkox in parent node will be now in sync with the checkboxes in child nodes.
+
+---
+
 ## 1.6.0 (27.12.2021)
 
 ### Dependencies:
