@@ -22,9 +22,10 @@ describe('MDB Collapse', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestValidateComponent],
-      imports: [MdbValidationModule],
-    });
+    declarations: [TestValidateComponent],
+    imports: [MdbValidationModule],
+    teardown: { destroyAfterEach: false }
+});
     fixture = TestBed.createComponent(TestValidateComponent);
     fixture.detectChanges();
     component = fixture.componentInstance;

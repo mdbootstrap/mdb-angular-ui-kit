@@ -16,9 +16,10 @@ describe('MDB Tooltip', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [MdbTooltipModule, BrowserAnimationsModule],
-        declarations: [TestTooltipComponent],
-      }).overrideModule(BrowserDynamicTestingModule, {
+    imports: [MdbTooltipModule, BrowserAnimationsModule],
+    declarations: [TestTooltipComponent],
+    teardown: { destroyAfterEach: false }
+}).overrideModule(BrowserDynamicTestingModule, {
         set: {
           entryComponents: [MdbTooltipComponent],
         },
@@ -94,9 +95,10 @@ describe('MDB Tooltip', () => {
       let element: any;
 
       TestBed.configureTestingModule({
-        imports: [MdbTooltipModule],
-        declarations: [TestTooltipComponent2],
-      }).overrideModule(BrowserDynamicTestingModule, {
+    imports: [MdbTooltipModule],
+    declarations: [TestTooltipComponent2],
+    teardown: { destroyAfterEach: false }
+}).overrideModule(BrowserDynamicTestingModule, {
         set: {
           entryComponents: [MdbTooltipComponent],
         },
@@ -135,9 +137,10 @@ describe('MDB Tooltip', () => {
     let element: any;
 
     TestBed.configureTestingModule({
-      imports: [MdbTooltipModule],
-      declarations: [TestTooltipComponent3],
-    }).overrideModule(BrowserDynamicTestingModule, {
+    imports: [MdbTooltipModule],
+    declarations: [TestTooltipComponent3],
+    teardown: { destroyAfterEach: false }
+}).overrideModule(BrowserDynamicTestingModule, {
       set: {
         entryComponents: [MdbTooltipComponent],
       },

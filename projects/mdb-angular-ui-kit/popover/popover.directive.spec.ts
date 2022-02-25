@@ -16,9 +16,10 @@ describe('MDB Popover', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [MdbPopoverModule, BrowserAnimationsModule],
-        declarations: [TestPopoverComponent],
-      }).overrideModule(BrowserDynamicTestingModule, {
+    imports: [MdbPopoverModule, BrowserAnimationsModule],
+    declarations: [TestPopoverComponent],
+    teardown: { destroyAfterEach: false }
+}).overrideModule(BrowserDynamicTestingModule, {
         set: {
           entryComponents: [MdbPopoverComponent],
         },
@@ -97,9 +98,10 @@ describe('MDB Popover', () => {
       let element: any;
 
       TestBed.configureTestingModule({
-        imports: [MdbPopoverModule, BrowserAnimationsModule],
-        declarations: [TestPopoverComponent2],
-      }).overrideModule(BrowserDynamicTestingModule, {
+    imports: [MdbPopoverModule, BrowserAnimationsModule],
+    declarations: [TestPopoverComponent2],
+    teardown: { destroyAfterEach: false }
+}).overrideModule(BrowserDynamicTestingModule, {
         set: {
           entryComponents: [MdbPopoverComponent],
         },
@@ -137,9 +139,10 @@ describe('MDB Popover', () => {
       let element: any;
 
       TestBed.configureTestingModule({
-        imports: [MdbPopoverModule, BrowserAnimationsModule],
-        declarations: [TestPopoverComponent3],
-      }).overrideModule(BrowserDynamicTestingModule, {
+    imports: [MdbPopoverModule, BrowserAnimationsModule],
+    declarations: [TestPopoverComponent3],
+    teardown: { destroyAfterEach: false }
+}).overrideModule(BrowserDynamicTestingModule, {
         set: {
           entryComponents: [MdbPopoverComponent],
         },

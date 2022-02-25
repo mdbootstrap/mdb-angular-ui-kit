@@ -10,9 +10,10 @@ describe('MDB Checkbox', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BasicInputComponent],
-      imports: [MdbFormsModule],
-    });
+    declarations: [BasicInputComponent],
+    imports: [MdbFormsModule],
+    teardown: { destroyAfterEach: false }
+});
 
     fixture = TestBed.createComponent(BasicInputComponent);
     component = fixture.componentInstance;

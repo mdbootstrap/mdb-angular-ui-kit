@@ -18,9 +18,10 @@ describe('MDB Dropdown', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [MdbDropdownModule, BrowserAnimationsModule],
-        declarations: [TestDropdownComponent],
-      });
+    imports: [MdbDropdownModule, BrowserAnimationsModule],
+    declarations: [TestDropdownComponent],
+    teardown: { destroyAfterEach: false }
+});
 
       inject([OverlayContainer], (container: OverlayContainer) => {
         overlayContainer = container;

@@ -9,8 +9,9 @@ describe('ScrollspyService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MdbScrollspyService],
-    });
+    providers: [MdbScrollspyService],
+    teardown: { destroyAfterEach: false }
+});
 
     inject([MdbScrollspyService], (service: MdbScrollspyService) => {
       scrollspyService = service;
