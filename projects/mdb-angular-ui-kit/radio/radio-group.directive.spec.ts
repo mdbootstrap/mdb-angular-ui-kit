@@ -9,10 +9,10 @@ describe('MDB Checkbox', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [BasicRadioGroupComponent],
-    imports: [MdbRadioModule],
-    teardown: { destroyAfterEach: false }
-});
+      declarations: [BasicRadioGroupComponent],
+      imports: [MdbRadioModule],
+      teardown: { destroyAfterEach: false },
+    });
 
     fixture = TestBed.createComponent(BasicRadioGroupComponent);
     component = fixture.componentInstance;

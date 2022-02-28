@@ -64,10 +64,10 @@ describe('MDB Accordion', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestAccordionComponent],
-    imports: [MdbAccordionModule],
-    teardown: { destroyAfterEach: false }
-});
+      declarations: [TestAccordionComponent],
+      imports: [MdbAccordionModule],
+      teardown: { destroyAfterEach: false },
+    });
     fixture = TestBed.createComponent(TestAccordionComponent);
     fixture.detectChanges();
     component = fixture.componentInstance;

@@ -57,10 +57,10 @@ describe('MDB Carousel', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [CarouselTestComponent],
-    imports: [MdbCarouselModule],
-    teardown: { destroyAfterEach: false }
-});
+      declarations: [CarouselTestComponent],
+      imports: [MdbCarouselModule],
+      teardown: { destroyAfterEach: false },
+    });
 
     fixture = TestBed.createComponent(CarouselTestComponent);
     component = fixture.componentInstance;

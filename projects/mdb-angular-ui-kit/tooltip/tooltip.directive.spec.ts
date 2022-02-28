@@ -5,7 +5,7 @@ import { MdbTooltipDirective } from './tooltip.directive';
 import { MdbTooltipComponent } from './tooltip.component';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MDB Tooltip', () => {
   describe('after init', () => {
@@ -16,10 +16,10 @@ describe('MDB Tooltip', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-    imports: [MdbTooltipModule, BrowserAnimationsModule],
-    declarations: [TestTooltipComponent],
-    teardown: { destroyAfterEach: false }
-}).overrideModule(BrowserDynamicTestingModule, {
+        imports: [MdbTooltipModule, NoopAnimationsModule],
+        declarations: [TestTooltipComponent],
+        teardown: { destroyAfterEach: false },
+      }).overrideModule(BrowserDynamicTestingModule, {
         set: {
           entryComponents: [MdbTooltipComponent],
         },
@@ -95,10 +95,10 @@ describe('MDB Tooltip', () => {
       let element: any;
 
       TestBed.configureTestingModule({
-    imports: [MdbTooltipModule],
-    declarations: [TestTooltipComponent2],
-    teardown: { destroyAfterEach: false }
-}).overrideModule(BrowserDynamicTestingModule, {
+        imports: [MdbTooltipModule],
+        declarations: [TestTooltipComponent2],
+        teardown: { destroyAfterEach: false },
+      }).overrideModule(BrowserDynamicTestingModule, {
         set: {
           entryComponents: [MdbTooltipComponent],
         },
@@ -137,10 +137,10 @@ describe('MDB Tooltip', () => {
     let element: any;
 
     TestBed.configureTestingModule({
-    imports: [MdbTooltipModule],
-    declarations: [TestTooltipComponent3],
-    teardown: { destroyAfterEach: false }
-}).overrideModule(BrowserDynamicTestingModule, {
+      imports: [MdbTooltipModule],
+      declarations: [TestTooltipComponent3],
+      teardown: { destroyAfterEach: false },
+    }).overrideModule(BrowserDynamicTestingModule, {
       set: {
         entryComponents: [MdbTooltipComponent],
       },

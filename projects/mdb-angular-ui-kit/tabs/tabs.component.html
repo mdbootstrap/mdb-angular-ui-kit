@@ -1,12 +1,11 @@
 <ul
-  class="nav mb-3 col-3 flex-column"
+  class="nav mb-3 flex-column {{ navColClass }}"
   [ngClass]="{
     'nav-pills': pills,
     'nav-tabs': !pills,
     'nav-fill': fill,
     'nav-justified': justified,
     'flex-column': vertical,
-    'col-3': vertical,
     'text-center': vertical
   }"
   role="tablist"
@@ -34,10 +33,7 @@
 </ul>
 
 <div
-  class="tab-content"
-  [ngClass]="{
-    'col-9': vertical
-  }"
+  class="tab-content {{ contentColClass }}"
 >
   <!-- <ng-content select="mdb-tab"></ng-content> -->
   <ng-container *ngFor="let tab of tabs">

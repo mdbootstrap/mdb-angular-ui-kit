@@ -32,10 +32,10 @@ describe('MDB Tabs', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [TabsTestComponent],
-    imports: [MdbTabsModule],
-    teardown: { destroyAfterEach: false }
-});
+      declarations: [TabsTestComponent],
+      imports: [MdbTabsModule],
+      teardown: { destroyAfterEach: false },
+    });
 
     fixture = TestBed.createComponent(TabsTestComponent);
     component = fixture.componentInstance;

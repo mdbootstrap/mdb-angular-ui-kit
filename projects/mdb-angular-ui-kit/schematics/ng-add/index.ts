@@ -6,14 +6,14 @@ import { addPackageToPackageJson } from './package';
 // Just return the tree
 export function ngAdd(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const angularDependencyVersion = '^12.0.0';
+    const angularDependencyVersion = '^13.0.0';
 
     addPackageToPackageJson(tree, '@angular/cdk', angularDependencyVersion);
     addPackageToPackageJson(tree, '@angular/forms', angularDependencyVersion);
     addPackageToPackageJson(tree, '@angular/animations', angularDependencyVersion);
 
     if (options.fontAwesome) {
-      addPackageToPackageJson(tree, '@fortawesome/fontawesome-free', '^5.15.1');
+      addPackageToPackageJson(tree, '@fortawesome/fontawesome-free', '^6.0.0');
     }
 
     if (options.charts) {

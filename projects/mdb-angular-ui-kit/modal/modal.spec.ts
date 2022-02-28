@@ -40,8 +40,8 @@ class BasicModalComponent {
 }
 
 @NgModule({
-    declarations: [BasicModalComponent],
-    imports: [BrowserModule]
+  declarations: [BasicModalComponent],
+  imports: [BrowserModule],
 })
 class TestModalModule {}
 
@@ -53,9 +53,9 @@ describe('MDB Modal', () => {
 
   beforeEach(fakeAsync(() => {
     const module = TestBed.configureTestingModule({
-    imports: [MdbModalModule, TestModalModule],
-    teardown: { destroyAfterEach: false }
-});
+      imports: [MdbModalModule, TestModalModule],
+      teardown: { destroyAfterEach: false },
+    });
 
     TestBed.compileComponents();
     fixture = module.createComponent(BasicModalComponent);

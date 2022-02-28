@@ -3,7 +3,7 @@ import { Component, DebugElement } from '@angular/core';
 import { MdbDropdownModule } from './index';
 import { MdbDropdownDirective } from './index';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
 describe('MDB Dropdown', () => {
@@ -18,10 +18,10 @@ describe('MDB Dropdown', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-    imports: [MdbDropdownModule, BrowserAnimationsModule],
-    declarations: [TestDropdownComponent],
-    teardown: { destroyAfterEach: false }
-});
+        imports: [MdbDropdownModule, NoopAnimationsModule],
+        declarations: [TestDropdownComponent],
+        teardown: { destroyAfterEach: false },
+      });
 
       inject([OverlayContainer], (container: OverlayContainer) => {
         overlayContainer = container;

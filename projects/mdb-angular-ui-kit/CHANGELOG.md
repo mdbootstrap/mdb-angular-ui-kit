@@ -1,3 +1,27 @@
+## 2.0.0 (28.02.2022)
+
+### Breaking changes:
+
+- Added support for Angular 13, this Angular version is now required,
+- Sidenav - removed support for automatic item expansion based on an active link ([in our documentation](https://mdbootstrap.com/docs/b5/angular/navigation/sidenav/) you can find information on how to achieve this effect using methods provided by Angular Router).
+
+### Dependencies:
+
+- Updated Font Awesome to v6.0.0
+
+### Fixes and improvements:
+
+- Toasts/Alerts - resolved problem with positioning when stacking and position bottom options are used,
+- Select/Datepicker - resolved problems with input, label and icons styles when `form-white` class is used on `mdb-form-control` component,
+- Select - resolved problem with selection when multiple options have the same label (in some cases component incorrectly displayed option value instead of option label in input),
+- Datatable pagination - component will now display correct information when data source is empty.
+
+### New features:
+
+- Tabs - added new `[navColumnClass]` and `[contentColumnClass]` inputs that allow to customize width of the navigation and content sections in vertical mode.
+
+---
+
 ## 1.6.1 (24.01.2022)
 
 ### Optimization:

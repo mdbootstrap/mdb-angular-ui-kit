@@ -35,10 +35,10 @@ describe('MDB Ripple', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestRippleComponent],
-    imports: [MdbRippleModule],
-    teardown: { destroyAfterEach: false }
-});
+      declarations: [TestRippleComponent],
+      imports: [MdbRippleModule],
+      teardown: { destroyAfterEach: false },
+    });
     fixture = TestBed.createComponent(TestRippleComponent);
     fixture.detectChanges();
     component = fixture.componentInstance;

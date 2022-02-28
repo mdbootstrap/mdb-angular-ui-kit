@@ -65,6 +65,17 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
   }
   private _vertical = false;
 
+  @Input() navColumnClass = 'col-3';
+  @Input() contentColumnClass = 'col-9';
+
+  get navColClass(): string {
+    return this.vertical ? this.navColumnClass : '';
+  }
+
+  get contentColClass(): string {
+    return this.vertical ? this.contentColumnClass : '';
+  }
+
   private _selectedIndex: number;
 
   @Output() activeTabChange: EventEmitter<MdbTabChange> = new EventEmitter<MdbTabChange>();

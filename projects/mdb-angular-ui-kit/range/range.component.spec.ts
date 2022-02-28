@@ -32,10 +32,10 @@ describe('MDB Range', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    declarations: [TestRangeComponent],
-    imports: [MdbRangeModule, ReactiveFormsModule],
-    teardown: { destroyAfterEach: false }
-});
+      declarations: [TestRangeComponent],
+      imports: [MdbRangeModule, ReactiveFormsModule],
+      teardown: { destroyAfterEach: false },
+    });
     fixture = TestBed.createComponent(TestRangeComponent);
     fixture.detectChanges();
     component = fixture.componentInstance;
