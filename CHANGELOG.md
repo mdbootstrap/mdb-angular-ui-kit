@@ -1,3 +1,19 @@
+## 2.1.0 (11.04.2022)
+
+### Fixes and improvements:
+
+- Datepicker - resolved problem with validation of date typed into input,
+- Sidenav - removed unnecessary transition animation on initialization in slim mode,
+- File upload plugin - fixed typo in main error message,
+- Carousel/Lightbox - updated icons styles for Font Awesome v6.
+
+### New:
+
+- [Cookies management](https://mdbootstrap.com/docs/b5/angular/plugins/cookies-management/)
+- [Storage management](https://mdbootstrap.com/docs/b5/angular/plugins/storage-management/)
+- [Mention](https://mdbootstrap.com/docs/b5/angular/plugins/mention/)
+- [Transfer](https://mdbootstrap.com/docs/b5/angular/plugins/transfer/)
+
 ## 2.0.0 (28.02.2022)
 
 ### Breaking changes:
