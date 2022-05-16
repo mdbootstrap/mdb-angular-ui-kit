@@ -1,3 +1,20 @@
+## 2.2.0 (16.05.2022)
+
+### Fixes and improvements:
+
+- Datepicker - resolved problem with returned month value when `m` format is used,
+- Treeview - resolved problem with `(selected)` event emit when selecting checkbox,
+- Select - resolved problem with keyboard navigation and option highlight after filter input is used.
+- Charts - resolved problem with chart options being overriden by options defined for other charts,
+- Range - resolved problem with thumb position update after change in `ngModel` or `formControl`
+
+### New:
+
+- [Added filter plugin](https://mdbootstrap.com/docs/b5/angular/plugins/filters/)
+- Dropdown - added keyboard navigation
+
+---
+
 ## 2.1.0 (11.04.2022)
 
 ### Fixes and improvements:
@@ -13,6 +30,8 @@
 - [Storage management](https://mdbootstrap.com/docs/b5/angular/plugins/storage-management/)
 - [Mention](https://mdbootstrap.com/docs/b5/angular/plugins/mention/)
 - [Transfer](https://mdbootstrap.com/docs/b5/angular/plugins/transfer/)
+
+---
 
 ## 2.0.0 (28.02.2022)
 

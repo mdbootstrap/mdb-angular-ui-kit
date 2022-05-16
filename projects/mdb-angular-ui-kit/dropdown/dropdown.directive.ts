@@ -5,7 +5,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
   OnDestroy,
   Output,
@@ -325,6 +324,13 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
       }
     });
 
+    this._overlayRef
+      .keydownEvents()
+      .pipe(takeUntil(this._overlayRef.detachments()))
+      .subscribe((event: KeyboardEvent) => {
+        this._handleKeyboardNavigation(event);
+      });
+
     this._listenToClick(this._overlayRef, this._dropdownToggle.nativeElement).subscribe((event) => {
       const target = event.target as HTMLElement;
       const isDropdownItem = target.classList && target.classList.contains('dropdown-item');
@@ -340,6 +346,43 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     });
 
     this._animationState = 'visible';
+  }
+
+  private _handleKeyboardNavigation(event: KeyboardEvent) {
+    const items: HTMLElement[] = Array.from(
+      this._dropdownMenu.nativeElement.querySelectorAll('.dropdown-item')
+    );
+    const key = event.key;
+    const activeElement = this._dropdownMenu.nativeElement.ownerDocument.activeElement;
+
+    if (items.length === 0) {
+      return;
+    }
+
+    let index = items.indexOf(activeElement);
+
+    switch (key) {
+      case 'ArrowDown':
+        event.preventDefault();
+
+        index = Math.min(index + 1, items.length - 1);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+
+        if (index === -1) {
+          index = items.length - 1;
+          break;
+        }
+        index = Math.max(index - 1, 0);
+        break;
+    }
+
+    const nextActiveElement: HTMLElement = items[index];
+
+    if (nextActiveElement) {
+      nextActiveElement.focus();
+    }
   }
 
   hide(): void {

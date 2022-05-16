@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, Directive } from '@angular/core';
 import { MdbDropdownModule } from './index';
 import { MdbDropdownDirective } from './index';
 import { By } from '@angular/platform-browser';
@@ -7,40 +7,40 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
 describe('MDB Dropdown', () => {
-  describe('after init', () => {
-    let fixture: ComponentFixture<TestDropdownComponent>;
-    let element: any;
-    let component: TestDropdownComponent;
-    let directive: any;
-    let debugElement: DebugElement;
-    let overlayContainer: OverlayContainer;
-    let overlayContainerElement: HTMLElement;
+  let fixture: ComponentFixture<TestDropdownComponent>;
+  let element: any;
+  let component: TestDropdownComponent;
+  let directive: any;
+  let debugElement: DebugElement;
+  let overlayContainer: OverlayContainer;
+  let overlayContainerElement: HTMLElement;
 
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        imports: [MdbDropdownModule, NoopAnimationsModule],
-        declarations: [TestDropdownComponent],
-        teardown: { destroyAfterEach: false },
-      });
-
-      inject([OverlayContainer], (container: OverlayContainer) => {
-        overlayContainer = container;
-        overlayContainerElement = container.getContainerElement();
-      })();
-
-      fixture = TestBed.createComponent(TestDropdownComponent);
-      component = fixture.componentInstance;
-      element = fixture.nativeElement;
-      debugElement = fixture.debugElement;
-
-      fixture.detectChanges();
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [MdbDropdownModule, NoopAnimationsModule],
+      declarations: [TestDropdownComponent],
+      teardown: { destroyAfterEach: false },
     });
 
-    afterEach(inject([OverlayContainer], (currentOverlayContainer: OverlayContainer) => {
-      currentOverlayContainer.ngOnDestroy();
-      overlayContainer.ngOnDestroy();
-    }));
+    inject([OverlayContainer], (container: OverlayContainer) => {
+      overlayContainer = container;
+      overlayContainerElement = container.getContainerElement();
+    })();
 
+    fixture = TestBed.createComponent(TestDropdownComponent);
+    component = fixture.componentInstance;
+    element = fixture.nativeElement;
+    debugElement = fixture.debugElement;
+
+    fixture.detectChanges();
+  });
+
+  afterEach(inject([OverlayContainer], (currentOverlayContainer: OverlayContainer) => {
+    currentOverlayContainer.ngOnDestroy();
+    overlayContainer.ngOnDestroy();
+  }));
+
+  describe('after init', () => {
     it('should create the component', () => {
       expect(component).toBeTruthy();
     });
@@ -151,6 +151,54 @@ describe('MDB Dropdown', () => {
       expect(directive._xPosition).toBe('end');
     });
   });
+
+  describe('Keyboard navigation', () => {
+    it('should correctly focus dropdown items when ArrowUp or ArrowDown key is used', fakeAsync(() => {
+      directive = fixture.debugElement
+        .query(By.directive(MdbDropdownDirective))
+        .injector.get(MdbDropdownDirective) as MdbDropdownDirective;
+
+      directive.show();
+      fixture.detectChanges();
+      flush();
+
+      const menu = document.querySelector('.dropdown-menu');
+      const items = menu.querySelectorAll('.dropdown-item');
+
+      document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+      fixture.detectChanges();
+
+      expect(document.activeElement).toBe(items[0]);
+
+      document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+      fixture.detectChanges();
+
+      expect(document.activeElement).toBe(items[1]);
+
+      document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+      fixture.detectChanges();
+
+      expect(document.activeElement).toBe(items[0]);
+    }));
+
+    it('should focus last option if ArrowUp is used and no item is selected', fakeAsync(() => {
+      directive = fixture.debugElement
+        .query(By.directive(MdbDropdownDirective))
+        .injector.get(MdbDropdownDirective) as MdbDropdownDirective;
+
+      directive.show();
+      fixture.detectChanges();
+      flush();
+
+      const menu = document.querySelector('.dropdown-menu');
+      const items = menu.querySelectorAll('.dropdown-item');
+
+      document.body.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
+      fixture.detectChanges();
+
+      expect(document.activeElement).toBe(items[items.length - 1]);
+    }));
+  });
 });
 
 @Component({
@@ -165,6 +213,8 @@ describe('MDB Dropdown', () => {
         aria-labelledby="dropdownMenuButton"
       >
         <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
       </ul>
     </div>
   `,
