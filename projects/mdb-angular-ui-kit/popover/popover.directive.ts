@@ -8,7 +8,6 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewContainerRef,
 } from '@angular/core';
 import {
   ConnectedPosition,
@@ -17,7 +16,7 @@ import {
   OverlayPositionBuilder,
   OverlayRef,
 } from '@angular/cdk/overlay';
-import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { MdbPopoverComponent } from './popover.component';
 import { fromEvent, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
@@ -79,7 +78,7 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (this.popoverDisabled) {
+    if (this.popoverDisabled || (this.mdbPopover === '' && this.mdbPopoverTitle === '')) {
       return;
     }
 

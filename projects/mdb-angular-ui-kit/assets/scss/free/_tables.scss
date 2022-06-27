@@ -42,3 +42,12 @@
     background-color: var(--#{$variable-prefix}table-hover-bg);
   }
 }
+
+.table-group-divider {
+  border-top: (2 * $table-border-width) solid;
+  border-top-color: inherit;
+}
+
+.table-divider-color {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { MdbRippleModule } from './ripple.module';
 
 const template = `
@@ -91,4 +91,47 @@ describe('MDB Ripple', () => {
 
     expect(helper).toBe(undefined);
   }));
+
+  it('should accept Bootstrap colors', () => {
+    fixture.componentInstance.rippleColor = 'primary';
+    fixture.detectChanges();
+
+    button.click();
+    fixture.detectChanges();
+
+    expect(button.classList).toContain('ripple-surface-primary');
+  });
+
+  it('should add new colors class and remove previous color classes', fakeAsync(() => {
+    fixture.componentInstance.rippleColor = 'primary';
+    fixture.detectChanges();
+
+    button.click();
+    fixture.detectChanges();
+
+    expect(button.classList).toContain('ripple-surface-primary');
+
+    fixture.componentInstance.rippleColor = 'secondary';
+    fixture.detectChanges();
+
+    button.click();
+    fixture.detectChanges();
+
+    flush();
+
+    expect(button.classList).not.toContain('ripple-surface-primary');
+    expect(button.classList).toContain('ripple-surface-secondary');
+  }));
+
+  it('should add ripple-surface-color class only if Bootstrap color type is used', () => {
+    const REGEXP_CLASS_COLOR = new RegExp(`${'ripple-surface'}-[a-z]+`, 'gi');
+
+    fixture.componentInstance.rippleColor = '#c953d6';
+    fixture.detectChanges();
+
+    button.click();
+    fixture.detectChanges();
+
+    expect(REGEXP_CLASS_COLOR.test(button.classList)).toBe(false);
+  });
 });

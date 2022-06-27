@@ -7,7 +7,6 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  Renderer2,
 } from '@angular/core';
 import {
   ConnectedPosition,
@@ -59,7 +58,7 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (this.tooltipDisabled) {
+    if (this.tooltipDisabled || this.mdbTooltip === '') {
       return;
     }
 

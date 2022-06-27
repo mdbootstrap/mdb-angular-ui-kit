@@ -1,3 +1,34 @@
+## 2.3.0 (27.06.2022)
+
+### Fixes and improvements
+
+- [Sidenav](https://mdbootstrap.com/docs/b5/angular/navigation/sidenav/)
+  - Resolved problems with arrow position updates in slim mode and accordion mode
+  - Resolved problem with initialization of component with `[right]="true"` and `[hidden]="false"` options
+  - Fixed problem with long content display in component with `[right]="true"` option
+- Fixed problems with long label positioning in [checkbox](https://mdbootstrap.com/docs/b5/angular/forms/checkbox/), [switch](https://mdbootstrap.com/docs/b5/angular/forms/switch/) and [radio](https://mdbootstrap.com/docs/b5/angular/forms/radio/)
+- Resolved problem with multiple `paginationChange` events emitted on [datatable](https://mdbootstrap.com/docs/b5/angular/data/datatables/) initialization
+- Resolved problems with [pagination](https://mdbootstrap.com/docs/b5/angular/navigation/pagination/) and [accordion](https://mdbootstrap.com/docs/b5/angular/components/accordion/) styles when using [theme](https://mdbootstrap.com/docs/b5/angular/content-styles/theme/)
+- Fixed problem with max file quantity in [file upload](https://mdbootstrap.com/docs/b5/angular/plugins/file-upload/) plugin with `multiple` mode
+- Resolved problem with first option highlight in [select](https://mdbootstrap.com/docs/b5/angular/forms/select/) with a `[highlightFirst]="false"` option
+- Added `type="button"` to the 'insert horizontal line' button in [WYSIWYG](https://mdbootstrap.com/docs/b5/angular/plugins/wysiwyg-editor/) to resolve problem with form submit
+- Zero-length [tooltip](https://mdbootstrap.com/docs/b5/angular/components/tooltips/) and [popover](https://mdbootstrap.com/docs/b5/angular/components/popovers/) will no longer be displayed
+- Fixed problem with multiple `(selected)` events emitted after click on [autocomplete](https://mdbootstrap.com/docs/b5/angular/forms/autocomplete/) option
+
+### New
+
+- Addew new [onboarding plugin](https://mdbootstrap.com/docs/b5/angular/plugins/onboarding/)
+- [Stepper](https://mdbootstrap.com/docs/b5/angular/components/stepper/)
+  - Added possibility to block step navigation on step header click
+  - Added possibility to edit buttons and header text in mobile mode
+- Added new `--mdb-bg-opacity` CSS variable
+- Added optional auto select on tab-out in [select](https://mdbootstrap.com/docs/b5/angular/forms/select/) and [autocomplete](https://mdbootstrap.com/docs/b5/angular/forms/autocomplete/)
+- Added list group new variant with `.list-group-light` class
+- Added `.table-group-divider` and `.table-divider-color` classes to emphasize the separation of thead from tbody
+- Added new `.divider-horizontal`, `.divider-vertical`, `.divider-horizontal-blurry` and `.divider-vertical-blurry` classes
+
+---
+
 ## 2.2.0 (16.05.2022)
 
 ### Fixes and improvements:

@@ -37,4 +37,46 @@ describe('ScrollspyService', () => {
 
     expect(scrollspyService.scrollSpys).toEqual([]);
   });
+
+  it('should correctly set and remove link active state', () => {
+    const links = [
+      {
+        id: 'test-link',
+        active: false,
+        section: 'test-section',
+        detectChanges: () => {},
+      },
+    ];
+
+    scrollspyService.scrollSpys = <any>[{ id: 'test-scrollspy', links }];
+
+    expect(links[0].active).toBe(false);
+
+    scrollspyService.updateActiveState('test-scrollspy', 'test-link');
+
+    expect(links[0].active).toBe(true);
+
+    scrollspyService.removeActiveState('test-scrollspy', 'test-link');
+  });
+
+  it('should correctly remove active state from all links in specific scrollspy', () => {
+    const links = [
+      {
+        id: 'test-link-1',
+        active: true,
+        section: 'test-section-1',
+        detectChanges: () => {},
+      },
+      {
+        id: 'test-link-2',
+        active: true,
+        section: 'test-section-2',
+        detectChanges: () => {},
+      },
+    ];
+
+    scrollspyService.scrollSpys = <any>[{ id: 'test-scrollspy', links }];
+
+    scrollspyService.removeActiveLinks('test-scrollspy');
+  });
 });

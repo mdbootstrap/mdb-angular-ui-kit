@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { MdbCollapseDirective } from '.';
 import { MdbCollapseModule } from './collapse.module';
 
 const template = `
   <button id="button" (click)="collapse.toggle()">Button</button>
-  <div mdbCollapse #collapse="mdbCollapse" class="collapse" [collapsed]="collapsed" (collapseShown)="onShown()" (collapseHidden)="onHidden()">
+  <div mdbCollapse #collapse="mdbCollapse" class="collapse" [collapsed]="collapsed">
     Collapse directive content
   </div>
 `;
@@ -14,12 +15,13 @@ const template = `
   template,
 })
 class TestCollapseComponent {
+  @ViewChild('collapse') collapse: MdbCollapseDirective;
+
   collapsed = true;
-  onShown = () => {};
-  onHidden = () => {};
 }
 
 describe('MDB Collapse', () => {
+  const ANIMATION_TIME = 355;
   let fixture: ComponentFixture<TestCollapseComponent>;
   let element: any;
   let component: any;
@@ -42,28 +44,68 @@ describe('MDB Collapse', () => {
     expect(collapse.classList.contains('show')).toBe(false);
   });
 
-  it('should have content expanded if collapsed input is set to false', () => {
-    // const onShownSpy = jest.spyOn(component, 'onShown');
-    // component.collapsed = false;
-    // fixture.detectChanges();
-    // onShownSpy.and.callFake(() => {
-    //   expect(collapse.classList.contains('show')).toBe(true);
-    // });
-  });
+  it('should be expanded if collapsed input is set to false', fakeAsync(() => {
+    component.collapsed = false;
+    fixture.detectChanges();
 
-  it('should allow toggling component by clicking on another element', () => {
-    // const onShownSpy = jest.spyOn(component, 'onShown');
-    // const onHiddenSpy = jest.spyOn(component, 'onHidden');
-    // const buttonEl = fixture.nativeElement.querySelector('#button');
-    // buttonEl.click();
-    // fixture.detectChanges();
-    // onShownSpy.and.callFake(() => {
-    //   expect(collapse.classList.contains('show')).toBe(true);
-    // });
-    // buttonEl.click();
-    // fixture.detectChanges();
-    // onHiddenSpy.and.callFake(() => {
-    //   expect(collapse.classList.contains('show')).toBe(false);
-    // });
-  });
+    tick(ANIMATION_TIME);
+    flush();
+    fixture.detectChanges();
+
+    expect(collapse.classList).toContain('show');
+  }));
+
+  it('should allow toggling component by clicking on another element', fakeAsync(() => {
+    const button = fixture.nativeElement.querySelector('button');
+
+    expect(collapse.classList).not.toContain('show');
+
+    button.click();
+    fixture.detectChanges();
+
+    tick(ANIMATION_TIME);
+    flush();
+    fixture.detectChanges();
+
+    expect(collapse.classList).toContain('show');
+
+    button.click();
+    fixture.detectChanges();
+
+    tick(ANIMATION_TIME);
+    flush();
+    fixture.detectChanges();
+
+    expect(collapse.classList).not.toContain('show');
+  }));
+
+  it('should emit events on collapse and expand', fakeAsync(() => {
+    const button = fixture.nativeElement.querySelector('button');
+    const showSpy = jest.spyOn(component.collapse.collapseShow, 'emit');
+    const shownSpy = jest.spyOn(component.collapse.collapseShown, 'emit');
+    const hideSpy = jest.spyOn(component.collapse.collapseHide, 'emit');
+    const hiddenSpy = jest.spyOn(component.collapse.collapseHidden, 'emit');
+
+    button.click();
+    fixture.detectChanges();
+
+    expect(showSpy).toHaveBeenCalled();
+
+    tick(ANIMATION_TIME);
+    flush();
+    fixture.detectChanges();
+
+    expect(shownSpy).toHaveBeenCalled();
+
+    button.click();
+    fixture.detectChanges();
+
+    expect(hideSpy).toHaveBeenCalled();
+
+    tick(ANIMATION_TIME);
+    flush();
+    fixture.detectChanges();
+
+    expect(hiddenSpy).toHaveBeenCalled();
+  }));
 });
