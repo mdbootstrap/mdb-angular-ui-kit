@@ -227,7 +227,7 @@ ___
 <li><a href="https://mdbootstrap.com/docs/angular/extended/table-search/">Bootstrap Angular Table Search</a></li>  
 <li><a href="https://mdbootstrap.com/docs/angular/extended/table-scroll/">Bootstrap Angular Table Scroll</a></li>  
 <li><a href="https://mdbootstrap.com/docs/angular/extended/table-responsive/">Bootstrap Angular Table Responsive</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/table-sort/">BootstrapAngular Table Sort</a></li>  
+<li><a href="https://mdbootstrap.com/docs/angular/extended/table-sort/">Bootstrap Angular Table Sort</a></li>  
 <li><a href="https://mdbootstrap.com/docs/angular/extended/panels/">Bootstrap Angular Panels</a></li> 
 <li><a href="https://mdbootstrap.com/docs/angular/extended/masonry/">Bootstrap Angular Masonry</a></li>  
 <li><a href="https://mdbootstrap.com/docs/angular/extended/contact/">Bootstrap Angular Contact</a></li>  
