@@ -1,4 +1,4 @@
-Bootstrap 5 & Angular 12 UI KIT - 700+ components, MIT license, simple installation.
+Bootstrap 5 & Angular 14 UI KIT - 700+ components, MIT license, simple installation.
 
 MDB is a collection of free Bootstrap templates, themes, design tools & resources.
 
@@ -8,18 +8,18 @@ MDB is a collection of free Bootstrap templates, themes, design tools & resource
 
 ### [>> Get Started in 1 minute](https://mdbootstrap.com/docs/b5/angular/getting-started/installation/)
 Simple installation via .zip, npm or cdnjs.
- 
-### [>> Install with MDBGO](https://mdbgo.com/) 
+
+### [>> Install with MDBGO](https://mdbgo.com/)
  Free Hosting, WordPress support, custom domains, SSL support, free database, frontend & backend templates, webpack starter included, git repostiory, FTP & jenkins support.
- 
+
 ### [>> Install with MDBGO + e-commerce shop integration](https://mdbgo.com/wordpress-shop/)
 One click setup! MDB GO allows you to create a WordPress page with a single click.
 Regardless whether you want to create a Travel Blog or an e-commerce shop to sell your product you can easily do that. You can even combine both into single page.
 
 
-## About Material Design for Bootstrap 5 & Angular 12
+## About Material Design for Bootstrap 5 & Angular 14
 
-<p>Created by <a href="https://mdbootstrap.com"><img height="30" src="https://mdbootstrap.com/img/Marketing/general/logo/medium/mdb-angular-r.png"></a>  
+<p>Created by <a href="https://mdbootstrap.com"><img height="30" src="https://mdbootstrap.com/img/Marketing/general/logo/medium/mdb-angular-r.png"></a>
 <a href="https://npmcharts.com/compare/angular-bootstrap-md?minimal=true"> <img src="https://img.shields.io/npm/dm/mdbootstrap.svg?label=NPM%20Downloads" alt="Downloads"></a>
 <a href="https://github.com/mdbootstrap/mdb-angular-ui-kit/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
 <a href="https://twitter.com/intent/tweet/?text=Thanks+@mdbootstrap+for+creating+amazing+and+free+Material+Design+for+Bootstrap+5+UI+KIT%20https://mdbootstrap.com/docs/b5/angular/&hashtags=javascript,code,webdesign,bootstrap"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Let%20us%20know%20you%20were%20here%21&"></a>
@@ -56,7 +56,7 @@ Trusted by <b>2 000 000+</b> developers & designers. Used by companies & institu
       </td>
       <td>
         <ul>
-        <li><b><a href="https://mdbootstrap.com/docs/b5/angular/">700+ UI components</a></b></li>          
+        <li><b><a href="https://mdbootstrap.com/docs/b5/angular/">700+ UI components</a></b></li>
          <li>Super simple, 1 minute installation</li>
          <li>Detailed docs & practical examples</li>
          <li>Lots of tutorials</li>
@@ -220,19 +220,19 @@ ___
 <li><a href="https://mdbootstrap.com/docs/angular/extended/jumbotron/">Bootstrap Angular Jumbotron</a></li>
 <li><a href="https://mdbootstrap.com/docs/angular/extended/maps/">Bootstrap Angular Maps</a></li>
 <li><a href="https://mdbootstrap.com/docs/angular/extended/media-object/">Bootstrap Angular Media Object</a></li>
-<li><a href="https://mdbootstrap.com/docs/angular/extended/mega-menu/">Bootstrap Angular Mega Menu</a></li> 
-<li><a href="https://mdbootstrap.com/docs/angular/extended/multiselect/">Bootstrap Angular Multiselect</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/social-media/">Bootstrap Angular Social Media Icons & Buttons</a></li>    
-<li><a href="https://mdbootstrap.com/docs/angular/extended/textarea/">Bootstrap Angular Textarea</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/table-search/">Bootstrap Angular Table Search</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/table-scroll/">Bootstrap Angular Table Scroll</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/table-responsive/">Bootstrap Angular Table Responsive</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/table-sort/">Bootstrap Angular Table Sort</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/panels/">Bootstrap Angular Panels</a></li> 
-<li><a href="https://mdbootstrap.com/docs/angular/extended/masonry/">Bootstrap Angular Masonry</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/contact/">Bootstrap Angular Contact</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/gradients/">Bootstrap Angular Gradients</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/pagination/">Bootstrap Angular Pagination</a></li>  
-<li><a href="https://mdbootstrap.com/docs/angular/extended/search/">Bootstrap Angular Search</a></li>  
+<li><a href="https://mdbootstrap.com/docs/angular/extended/mega-menu/">Bootstrap Angular Mega Menu</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/multiselect/">Bootstrap Angular Multiselect</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/social-media/">Bootstrap Angular Social Media Icons & Buttons</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/textarea/">Bootstrap Angular Textarea</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/table-search/">Bootstrap Angular Table Search</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/table-scroll/">Bootstrap Angular Table Scroll</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/table-responsive/">Bootstrap Angular Table Responsive</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/table-sort/">Bootstrap Angular Table Sort</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/panels/">Bootstrap Angular Panels</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/masonry/">Bootstrap Angular Masonry</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/contact/">Bootstrap Angular Contact</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/gradients/">Bootstrap Angular Gradients</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/pagination/">Bootstrap Angular Pagination</a></li>
+<li><a href="https://mdbootstrap.com/docs/angular/extended/search/">Bootstrap Angular Search</a></li>
 
 </ul>

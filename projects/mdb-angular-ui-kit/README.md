@@ -2,7 +2,7 @@
 
 # MDB 5 Angular
 
-### Angular 12 & Bootstrap 5 & Material Design 2.0 UI KIT
+### Angular 14 & Bootstrap 5 & Material Design 2.0 UI KIT
 
 **[>> Get Started in 4 steps](https://mdbootstrap.com/docs/b5/angular/getting-started/installation/)**
 

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { MdbRangeModule } from './range.module';
 import { MdbRangeComponent } from './range.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 const template = `
@@ -16,7 +16,7 @@ const template = `
 class TestRangeComponent implements OnInit {
   @ViewChild(MdbRangeComponent) _range: MdbRangeComponent;
 
-  rangeControl = new FormControl(50);
+  rangeControl = new UntypedFormControl(50);
   ngOnInit(): void {
     this.rangeControl.valueChanges.subscribe((val) => console.log(val));
   }
@@ -79,7 +79,7 @@ describe('MDB Range', () => {
   });
 
   it('should update value after set new FormControl', () => {
-    component.rangeControl = new FormControl(60);
+    component.rangeControl = new UntypedFormControl(60);
     fixture.detectChanges();
 
     expect(valueThumb.nativeElement.textContent).toBe('60');
@@ -89,7 +89,7 @@ describe('MDB Range', () => {
   it('should update thumb position', fakeAsync(() => {
     const initialThumbStyle = { ...component._range.thumbStyle };
 
-    component.rangeControl = new FormControl(70);
+    component.rangeControl = new UntypedFormControl(70);
 
     fixture.detectChanges();
     flush();
