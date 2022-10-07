@@ -119,7 +119,8 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
   private _createOverlayConfig(): OverlayConfig {
     const positionStrategy = this._overlayPositionBuilder
       .flexibleConnectedTo(this._elementRef)
-      .withPositions(this._getPosition());
+      .withPositions(this._getPosition())
+      .withPush(false);
     const overlayConfig = new OverlayConfig({
       hasBackdrop: false,
       scrollStrategy: this._overlay.scrollStrategies.reposition(),

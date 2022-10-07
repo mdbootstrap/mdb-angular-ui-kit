@@ -17,6 +17,12 @@
 
 .toast-header {
   background-color: $toast-header-background-color;
+  border-bottom-width: 2px;
+
+  .btn-close {
+    margin-right: -0.375rem;
+    margin-left: 0.75rem;
+  }
 }
 
 .parent-toast-relative {
@@ -34,4 +40,12 @@
 
 .toast:not(.showing):not(.show) {
   opacity: 1;
+}
+
+@each $name, $color in $toasts {
+  .toast-#{$name} {
+    background-color: map-get($color, background-color);
+    color: map-get($color, text-color);
+    border-color: map-get($color, border-color);
+  }
 }

@@ -173,6 +173,7 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
         const nInterval = +interval;
         if (this._isPlaying && !isNaN(nInterval) && nInterval > 0) {
           this.next();
+          this._cdRef.markForCheck();
         } else {
           this.stop();
         }

@@ -94,3 +94,46 @@
 .input-group > .btn {
   padding-top: 0.59rem;
 }
+
+.input-group {
+  &.input-group-lg {
+    .input-group-text { 
+      height: $input-group-lg-height;
+    }
+  }
+}
+
+.input-group {
+  .input-group-text {
+    height: $input-group-height;
+  }
+  .btn {
+    line-height: 1;
+  }
+}
+
+.input-group {
+  &.input-group-sm {
+    .input-group-text {
+      height: $input-group-sm-height;
+    }
+  }
+}
+
+// In angular we have a different HTML code structure for dropdown.
+// Dropdown has to be inside a div, this requires border radius style
+// inheritance and height adjustments for dropdown toggler.
+
+.input-group {
+  .dropdown .dropdown-toggle {
+    height: 100%;
+  }
+  .dropdown:not(:last-child) .dropdown-toggle {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+  .dropdown:not(:first-child) .dropdown-toggle {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+  }
+}

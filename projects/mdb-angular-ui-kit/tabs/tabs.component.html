@@ -38,7 +38,9 @@
   <!-- <ng-content select="mdb-tab"></ng-content> -->
   <ng-container *ngFor="let tab of tabs">
     <div
-      class="tab-pane fade"
+      [@fadeIn]="animationState"
+      (@fadeIn.done)="onAnimationDone()"
+      class="tab-pane"
       [ngClass]="{
         show: tab.active,
         active: tab.active

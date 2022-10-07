@@ -1,6 +1,7 @@
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbTabComponent } from './tab.component';
 import { MdbTabsComponent } from './tabs.component';
 import { MdbTabsModule } from './tabs.module';
@@ -47,7 +48,7 @@ describe('MDB Tabs', () => {
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       declarations: [TabsTestComponent],
-      imports: [MdbTabsModule],
+      imports: [MdbTabsModule, NoopAnimationsModule],
       teardown: { destroyAfterEach: false },
     });
 

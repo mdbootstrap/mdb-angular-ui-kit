@@ -136,7 +136,8 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     const positionStrategy = this._overlayPositionBuilder
       .flexibleConnectedTo(this._dropdownToggle)
       .withPositions(this._getPosition())
-      .withFlexibleDimensions(false);
+      .withFlexibleDimensions(false)
+      .withPush(false);
 
     return positionStrategy;
   }

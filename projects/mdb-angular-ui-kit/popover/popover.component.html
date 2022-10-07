@@ -4,9 +4,9 @@
   (@fade.done)="onAnimationEnd($event)"
   [@.disabled]="!animation"
 >
-  <div *ngIf="title" class="popover-header">
+  <h3 *ngIf="title" class="popover-header">
     {{ title }}
-  </div>
+  </h3>
   <div *ngIf="isContentTemplate" class="popover-body">
     <ng-container [ngTemplateOutlet]="$any(content)"></ng-container>
   </div>

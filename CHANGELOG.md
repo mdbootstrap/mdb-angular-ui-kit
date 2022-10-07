@@ -1,3 +1,79 @@
+## 3.0.0 (10.10.2022)
+
+This version requires Angular v14 and Node 14.15.0 (or later). Follow the [Angular update guide](https://update.angular.io/?l=3&v=13.0-14.0) to migrate your project to Angular 14:
+
+### Breaking changes:
+
+- Added support for Angular 14, this Angular version is now required,
+- Removed `~` from styles imports, this syntax is now deprecated
+- Updated [calendar](https://mdbootstrap.com/docs/angular/plugins/calendar/) plugin:
+  - redesigned toolbar, events, views and modals
+  - replaced view toggle buttons with select
+  - created an `Add event` button
+  - added [blur](https://mdbootstrap.com/docs/angular/plugins/calendar/#section-blur/) option to style past events
+  - improved long events styling
+  - improved responsiveness
+- Design changes:
+  - Changed shadows for components such as [card](https://mdbootstrap.com/docs/angular/components/cards/), [popover](https://mdbootstrap.com/docs/angular/components/popovers/), [toast](https://mdbootstrap.com/docs/angular/components/toasts/), [modal](https://mdbootstrap.com/docs/angular/components/modal/), [image hoverable](https://mdbootstrap.com/docs/angular/content-styles/images/), [dropdown menu](https://mdbootstrap.com/docs/angular/components/dropdowns/), [popconfirm](https://mdbootstrap.com/docs/angular/components/popconfirm/)
+  - Changed styling of border for [card](https://mdbootstrap.com/docs/angular/components/cards/), [modal](https://mdbootstrap.com/docs/angular/components/modal/), header and footer
+  - Changed [table](https://mdbootstrap.com/docs/angular/data/tables/) font weight and text color
+  - Changed [checkbox](https://mdbootstrap.com/docs/angular/forms/checkbox/) and [radio](https://mdbootstrap.com/docs/angular/forms/radio/) border color
+  - Changed [switch](https://mdbootstrap.com/docs/angular/forms/switch/) background color
+  - Changed [checkbox](https://mdbootstrap.com/docs/angular/forms/checkbox/) border radius size
+  - Changed [list group](https://mdbootstrap.com/docs/angular/components/list-group/), [pagination](https://mdbootstrap.com/docs/angular/navigation/pagination/) and [dropdown](https://mdbootstrap.com/docs/angular/components/dropdowns/) text color as it is in the body
+  - Changed [toast](https://mdbootstrap.com/docs/angular/components/toasts/) color palette
+  - Changed [datatables](https://mdbootstrap.com/docs/angular/data/datatables/) striped and hover background color as it is in the usual table
+  - Changed [select](https://mdbootstrap.com/docs/angular/forms/select/) states background colors
+  - Changed [sidenav](https://mdbootstrap.com/docs/angular/navigation/sidenav/) icons colors and width of the slim version
+  - Added new [toast](https://mdbootstrap.com/docs/angular/components/toasts/) color classes that replaced background color classes. Old: `toast bg-primary`. New: `toast toast-primary`
+
+### Fixes and improvements:
+
+- [Lightbox](https://mdbootstrap.com/docs/angular/components/lightbox/)
+  - Resolved problems with zoom
+  - Resolved problems with swipe on mobile devices
+  - Resolved problem with display of smaller images
+  - Fixed image position in fullscreen mode
+  - Disabled elements will no longer be displayed inside the component modal
+- Fixed problems with `rebuild` method in [charts](https://mdbootstrap.com/docs/angular/data/charts/)
+- Replaced hardcoded color values with SCSS variables in [autocomplete](https://mdbootstrap.com/docs/angular/forms/autocomplete/) and [select](https://mdbootstrap.com/docs/angular/forms/select/)
+- Resolved problem with [carousel](https://mdbootstrap.com/docs/angular/components/carousel/) animations inside a component with OnPush change detection strategy
+- Position of dropdown menus in all components will be now correctly updated on scroll event
+- Resolved problem with fade animation in [tabs](https://mdbootstrap.com/docs/angular/components/tabs/)
+- Label values in [select](https://mdbootstrap.com/docs/angular/forms/select/) will be now dynamically updated on option label change
+- All event listeners in the [WYSIWYG](https://mdbootstrap.com/docs/angular/plugins/wysiwyg-editor/) plugin will be now correctly removed when component is destroyed
+- Resolved problem with [input](https://mdbootstrap.com/docs/angular/forms/input-fields/) label position when browser autofill is used
+
+### New:
+
+- Addew new [countdown plugin](https://mdbootstrap.com/docs/angular/plugins/countdown/)</a>
+- Addew new [input mask plugin](https://mdbootstrap.com/docs/angular/plugins/input-mask/)
+- Addew new [parallax plugin](https://mdbootstrap.com/docs/angular/plugins/parallax/)
+- Addew new [multi range component](https://mdbootstrap.com/docs/angular/components/multi-range-slider/)
+- Added new `[fade]` input that allow to toggle fade animations in [tabs](https://mdbootstrap.com/docs/angular/components/tabs/)
+
+### Design updates:
+
+- Updated icon colors of basic light navbar and footer with secondary color
+- Added new horizontal dividers classes `.hr` and `.hr-blurry`
+- Updated styles of vertical divider class `.vr` and add new class `.vr-blurry`
+- Added new sidenav with menu categories and class `.sidenav-sm`
+- Added new `object-fit` and `object-position` utilities
+
+### Removed:
+
+- Deprecated button close classes. Old: `.close`. New: `.btn-close` and `.btn-close-white`
+- Deprecated embed classes. Old: `.embed`. New: `.ratio`
+- Deprecated flag classes. Check [flags](https://mdbootstrap.com/docs/angular/content-styles/flags/) docs
+- Deprecated utils
+
+### Deprecated:
+
+- `.divider-horizontal` and `.divider-horizontal-blurry`
+- `.divider-vertical` and `.divider-vertical-blurry`
+
+---
+
 ## 2.3.0 (27.06.2022)
 
 ### Fixes and improvements

@@ -39,6 +39,15 @@ export class MdbTabComponent implements OnInit {
   }
   private _disabled = false;
 
+  @Input()
+  get fade(): boolean {
+    return this._fade;
+  }
+  set fade(value: boolean) {
+    this._fade = coerceBooleanProperty(value);
+  }
+  private _fade = true;
+
   @Input() title: string;
 
   get active(): boolean {

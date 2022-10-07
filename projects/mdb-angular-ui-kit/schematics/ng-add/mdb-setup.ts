@@ -96,7 +96,7 @@ function addRobotoFontToIndexHtml(options: Schema): any {
   return async (tree: Tree, context: SchematicContext) => {
     const fontUrl = 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,600&display=swap';
     const workspace: any = await getWorkspace(tree);
-    const project: any = getProjectFromWorkspace(workspace);
+    const project: any = getProjectFromWorkspace(workspace, options.project);
     const projectIndexFiles = getProjectIndexFiles(project);
     const logger = context.logger;
 

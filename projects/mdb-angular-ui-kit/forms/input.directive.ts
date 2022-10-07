@@ -7,6 +7,7 @@ import {
   HostBinding,
   HostListener,
   Input,
+  OnDestroy,
   Optional,
   Renderer2,
   Self,
@@ -14,6 +15,7 @@ import {
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { MdbAbstractFormControl } from './form-control';
+import { AutofillEvent, AutofillMonitor } from '@angular/cdk/text-field';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -22,16 +24,20 @@ import { MdbAbstractFormControl } from './form-control';
   providers: [{ provide: MdbAbstractFormControl, useExisting: MdbInputDirective }],
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
-export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck, AfterViewInit {
+export class MdbInputDirective
+  implements MdbAbstractFormControl<any>, DoCheck, AfterViewInit, OnDestroy
+{
   constructor(
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
-    @Optional() @Self() private _ngControl: NgControl
+    @Optional() @Self() private _ngControl: NgControl,
+    private _autofill: AutofillMonitor
   ) {}
 
   readonly stateChanges: Subject<void> = new Subject<void>();
 
   private _focused = false;
+  private _autofilled = false;
   private _color = '';
 
   ngAfterViewInit() {
@@ -39,6 +45,11 @@ export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck, 
     if (this._elementRef.nativeElement.type === 'date') {
       this._updateTextColorForDateType();
     }
+
+    this._autofill.monitor(this.input).subscribe((event: AutofillEvent) => {
+      this._autofilled = event.isAutofilled;
+      this.stateChanges.next();
+    });
   }
 
   private _currentNativeValue: any;
@@ -126,14 +137,22 @@ export class MdbInputDirective implements MdbAbstractFormControl<any>, DoCheck, 
     return this._focused;
   }
 
+  get autofilled(): boolean {
+    return this._autofilled;
+  }
+
   get input(): HTMLInputElement {
     return this._elementRef.nativeElement;
   }
 
   get labelActive(): boolean {
-    return this.focused || this.hasValue;
+    return this.focused || this.hasValue || this.autofilled;
   }
 
   static ngAcceptInputType_disabled: BooleanInput;
   static ngAcceptInputType_readonly: BooleanInput;
+
+  ngOnDestroy(): void {
+    this._autofill.stopMonitoring(this.input);
+  }
 }

@@ -1,0 +1,97 @@
+.error-message,
+.success-message {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: 0.875rem;
+}
+
+.form-check .error-message,
+.form-check .success-message {
+  top: 29px;
+  left: 26px;
+}
+
+textarea ~ .error-message,
+textarea ~ .success-message {
+  top: unset;
+  bottom: -26px;
+}
+
+.error-message {
+  color: $danger;
+}
+
+.success-message {
+  color: $success;
+}
+
+.form-outline .validate-success.ng-valid.ng-dirty,
+.form-outline .validate-success.ng-valid.ng-touched {
+  ~ .form-label {
+    color: $success;
+  }
+  ~ .form-notch .form-notch-leading,
+  ~ .form-notch .form-notch-middle,
+  ~ .form-notch .form-notch-trailing {
+    border-color: $success;
+  }
+}
+
+.form-outline .validate-error.ng-invalid.ng-dirty,
+.form-outline .validate-error.ng-invalid.ng-touched {
+  ~ .form-label {
+    color: $danger;
+  }
+  ~ .form-notch .form-notch-leading,
+  ~ .form-notch .form-notch-middle,
+  ~ .form-notch .form-notch-trailing {
+    border-color: $danger;
+  }
+}
+
+.select.validate-success.ng-valid.ng-dirty,
+.select.validate-success.ng-valid.ng-touched {
+  ~ .form-label {
+    color: $success;
+  }
+  ~ .form-notch .form-notch-leading,
+  ~ .form-notch .form-notch-middle,
+  ~ .form-notch .form-notch-trailing {
+    border-color: $success;
+  }
+}
+
+.select.validate-error.ng-invalid.ng-dirty,
+.select.validate-error.ng-invalid.ng-touched {
+  ~ .form-label {
+    color: $danger;
+  }
+  ~ .form-notch .form-notch-leading,
+  ~ .form-notch .form-notch-middle,
+  ~ .form-notch .form-notch-trailing {
+    border-color: $danger;
+  }
+}
+
+.form-check .validate-success.ng-valid.ng-dirty,
+.form-check .validate-success.ng-valid.ng-touched {
+  border-color: $success;
+
+  &:checked {
+    background-color: $success;
+  }
+
+  ~ .form-check-label {
+    color: $success;
+  }
+}
+
+.form-check .validate-error.ng-invalid.ng-dirty,
+.form-check .validate-error.ng-invalid.ng-touched {
+  border-color: $danger;
+
+  ~ .form-check-label {
+    color: $danger;
+  }
+}

@@ -19,7 +19,6 @@
 @import './bootstrap/grid';
 
 // BOOTSTRAP COMPONENTS
-@import './bootstrap/accordion';
 @import './bootstrap/tables';
 @import './bootstrap/forms';
 @import './bootstrap/buttons';
@@ -33,13 +32,13 @@
 @import './bootstrap/pagination';
 @import './bootstrap/badge';
 @import './bootstrap/alert';
+@import './bootstrap/accordion';
 @import './bootstrap/progress';
 @import './bootstrap/placeholders';
 @import './bootstrap/list-group';
 @import './bootstrap/close';
 @import './bootstrap/toasts';
 @import './bootstrap/modal';
-@import './bootstrap/tooltip';
 @import './bootstrap/popover';
 @import './bootstrap/carousel';
 @import './bootstrap/spinners';
@@ -66,40 +65,41 @@
 @import './free/images';
 @import './free/overlay';
 
+// MDB FORMS
+@import './free/forms/form-control';
+@import './free/forms/form-select';
+@import './free/forms/form-check';
+@import './free/forms/form-file';
+@import './free/forms/input-group';
+@import './free/forms/validation';
+@import './free/forms/form-range';
+
 // MDB COMPONENTS
-@import './free/accordion';
 @import './free/tables';
 @import './free/buttons';
 @import './free/deprecated';
+@import './free/dropdown';
 @import './free/button-group';
 @import './free/nav';
 @import './free/navbar';
 @import './free/card';
-@import './free/carousel';
 @import './free/breadcrumb';
 @import './free/pagination';
 @import './free/badge';
+@import './free/alert';
 @import './free/progress';
 @import './free/list-group';
 @import './free/close';
+@import './free/modal';
+@import './free/toasts';
 @import './free/tooltip';
 @import './free/popover';
-@import './free/modal';
-@import './free/dropdown';
-@import './free/ripple';
-@import './free/validation';
 @import './free/scrollspy';
+@import './free/ripple';
 @import './free/range';
-@import './free/alert';
-@import './free/toasts';
-
-// MDB FORMS
-@import './free/forms/form-check';
-@import './free/forms/form-control';
-@import './free/forms/form-select';
-@import './free/forms/form-range';
-@import './free/forms/input-group';
-@import './free/forms/form-file';
+@import './free/accordion';
+@import './free/carousel';
 
 
 @import '~@angular/cdk/overlay-prebuilt.css';
+@import '~@angular/cdk/text-field-prebuilt.css';

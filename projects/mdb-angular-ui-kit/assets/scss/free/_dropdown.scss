@@ -68,3 +68,8 @@
     display: none;
   }
 }
+
+.dropdown-divider {
+  border-top: 2px solid $dropdown-divider-bg;
+  opacity: 1;
+}
