@@ -6,7 +6,7 @@ MDB is a collection of free Bootstrap templates, themes, design tools & resource
 
 # Get started
 
-### [>> Get Started in 1 minute](https://mdbootstrap.com/docs/b5/angular/getting-started/installation/)
+### [>> Get Started in 1 minute](https://mdbootstrap.com/docs/angular/getting-started/installation/)
 Simple installation via .zip, npm or cdnjs.
 
 ### [>> Install with MDBGO](https://mdbgo.com/)
@@ -50,13 +50,13 @@ Trusted by <b>2 000 000+</b> developers & designers. Used by companies & institu
   <tbody>
     <tr>
       <td>
-          <a href="https://mdbootstrap.com/docs/b5/angular/" alt="Bootstrap 5" rel="dofollow">
+          <a href="https://mdbootstrap.com/docs/angular/" alt="Bootstrap 5" rel="dofollow">
           		<img src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/content/en/_mdb5/angular/about/assets/mdb5-angular.jpg">
           </a>
       </td>
       <td>
         <ul>
-        <li><b><a href="https://mdbootstrap.com/docs/b5/angular/">700+ UI components</a></b></li>
+        <li><b><a href="https://mdbootstrap.com/docs/angular/">700+ UI components</a></b></li>
          <li>Super simple, 1 minute installation</li>
          <li>Detailed docs & practical examples</li>
          <li>Lots of tutorials</li>
@@ -83,7 +83,7 @@ ___
   <tbody>
     <tr>
       <td align="center">
-         <a href="https://mdbootstrap.com/docs/b5/angular/getting-started/" alt="Bootstrap Tutorials" rel="dofollow">
+         <a href="https://mdbootstrap.com/docs/angular/getting-started/" alt="Bootstrap Tutorials" rel="dofollow">
           		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/learnmore-1.png">
           </a>
       </td>
@@ -96,7 +96,7 @@ ___
      <tr>
         <td align="center">
           <p align="center"><b>Start learning from Basics</b></p>
-          <a href="https://mdbootstrap.com/docs/b5/angular/getting-started/" alt="Bootstrap 5" rel="dofollow">
+          <a href="https://mdbootstrap.com/docs/angular/getting-started/" alt="Bootstrap 5" rel="dofollow">
           		<img src="https://mdbootstrap.com/wp-content/uploads/2020/12/Screenshot_26.png">
           </a>
          </td>
@@ -120,25 +120,25 @@ ___
 
 <p>Use MDB custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-buttons.gif">
   </p>
 </a>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-social-buttons.png">
   </p>
 </a>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-buttons2.png">
   </p>
 </a>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/components/buttons/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-buttons-outline.gif">
   </p>
@@ -148,13 +148,13 @@ ___
 
 <p>Indicate the loading state of a component or page with MDB spinners, built entirely with HTML, CSS, and no JavaScript.</p>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/spinners/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/components/spinners/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-loader.gif">
   </p>
 </a>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/spinners/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/components/spinners/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-color-spinners.gif">
   </p>
@@ -164,7 +164,7 @@ ___
 
 <p>A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.</p>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/components/cards/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/components/cards/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-cards.png">
   </p>
@@ -174,7 +174,7 @@ ___
 
 <p>A footer is an additional navigation component. It can hold links, buttons, company info, copyrights, forms, and many other elements.</p>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/navigation/footer/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/navigation/footer/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-footer.png">
   </p>
@@ -184,13 +184,13 @@ ___
 
 <p>MDB hover effect appears when the user positions the computer cursor over an element without activating it. Hover effects make a website more interactive.</p>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/content-styles/hover-effects/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/content-styles/hover-effects/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-hover.gif">
   </p>
 </a>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/content-styles/hover-effects/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/content-styles/hover-effects/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-hover2.png">
   </p>
@@ -200,7 +200,7 @@ ___
 
 <p>Notes are small components very helpful in inserting an additional piece of information.</p>
 
-<a href="https://mdbootstrap.com/docs/b5/angular/content-styles/typography/" alt="Bootstrap 5" rel="dofollow">
+<a href="https://mdbootstrap.com/docs/angular/content-styles/typography/" alt="Bootstrap 5" rel="dofollow">
   <p align="center">
     <img src="https://mdbootstrap.com/img/Marketing/campaigns/demo-alerts.png">
   </p>
