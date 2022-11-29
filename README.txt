@@ -3,13 +3,13 @@ MDB 5 Angular
 Version: FREE 3.0.0
 
 Documentation:
-https://mdbootstrap.com/docs/b5/angular/
+https://mdbootstrap.com/docs/angular/
 
 Installation:
-https://mdbootstrap.com/docs/b5/angular/getting-started/installation/
+https://mdbootstrap.com/docs/angular/getting-started/installation/
 
 CLI & hosting:
-https://mdbootstrap.com/docs/standard/cli/
+https://mdbgo.com/
 
 Support:
 https://mdbootstrap.com/support/cat/angular/
