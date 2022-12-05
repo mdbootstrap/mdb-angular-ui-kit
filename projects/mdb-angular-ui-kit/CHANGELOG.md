@@ -1,3 +1,28 @@
+## 3.0.1 (05.12.2022)
+
+### Fixes and improvements:
+
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/)
+  - Removed border styles displayed on focused elements
+  - Resolved problems with keyboard navigation
+- It will be now possible to jump to any step in [linear stepper](https://mdbootstrap.com/docs/angular/components/stepper/#section-linear-stepper-example/), as long as all previous steps are completed
+- Resolved problems with `acceptedExtensions` in [file upload plugin](https://mdbootstrap.com/docs/angular/plugins/file-upload/)
+- Select all option will now select/deselect only filtered options when used inside a [select component with filter](https://mdbootstrap.com/docs/angular/forms/select/#section-search/)
+- Events `itemShown` and `itemHidden` in [accordion](https://mdbootstrap.com/docs/angular/components/accordion/) will be now correctly emitted after animation end
+- Resolved problem with close animation in [popconfirm](https://mdbootstrap.com/docs/angular/components/popconfirm/)
+- Resolved problem with value returned to [autocomplete](https://mdbootstrap.com/docs/angular/forms/autocomplete/) form control on option selection
+- Resolved problem with wrong page value returned by `(paginationChange)` event in [datatable](https://mdbootstrap.com/docs/angular/data/datatables/)
+- Increased backdrop z-index in [onboarding plugin](https://mdbootstrap.com/docs/angular/plugins/onboarding/)
+- Resolved problem with `autohide` option in [toast](https://mdbootstrap.com/docs/angular/components/toasts/), notification will be removed only if it is not hovered
+- Added default padding to the content container in [WYSIWYG editor plugin](https://mdbootstrap.com/docs/angular/plugins/wysiwyg-editor/)
+- Resolved problem with Angular dependencies versions in schematics installation
+
+### New:
+
+- Addew new [scroll status plugin](https://mdbootstrap.com/docs/angular/plugins/scroll-status/)
+
+---
+
 ## 3.0.0 (10.10.2022)
 
 This version requires Angular v14 and Node 14.15.0 (or later). Follow the [Angular update guide](https://update.angular.io/?l=3&v=13.0-14.0) to migrate your project to Angular 14:

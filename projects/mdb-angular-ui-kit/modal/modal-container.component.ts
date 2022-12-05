@@ -54,8 +54,6 @@ export class MdbModalContainerComponent implements OnInit, AfterViewInit, OnDest
 
   ngOnInit(): void {
     this._updateContainerClass();
-    this._renderer.addClass(this._document.body, 'modal-open');
-    this._renderer.setStyle(this._document.body, 'padding-right', '15px');
     this._renderer.setStyle(this._elementRef.nativeElement, 'display', 'block');
     this._previouslyFocusedElement = this._document.activeElement as HTMLElement;
     this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
@@ -74,6 +72,15 @@ export class MdbModalContainerComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngAfterViewInit(): void {
+    const widthWithVerticalScroll = this._document.body.offsetWidth;
+    this._renderer.addClass(this._document.body, 'modal-open');
+    const widthWithoutVerticalScroll = this._document.body.offsetWidth;
+    this._renderer.setStyle(
+      this._document.body,
+      'padding-right',
+      `${widthWithoutVerticalScroll - widthWithVerticalScroll}px`
+    );
+
     if (!this._config.ignoreBackdropClick) {
       fromEvent(this._elementRef.nativeElement, 'mousedown')
         .pipe(

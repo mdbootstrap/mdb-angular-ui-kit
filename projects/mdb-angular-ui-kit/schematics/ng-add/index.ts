@@ -6,7 +6,7 @@ import { addPackageToPackageJson } from './package';
 // Just return the tree
 export function ngAdd(options: Schema): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    const angularDependencyVersion = '^13.0.0';
+    const angularDependencyVersion = '^14.0.0';
 
     addPackageToPackageJson(tree, '@angular/cdk', angularDependencyVersion);
     addPackageToPackageJson(tree, '@angular/forms', angularDependencyVersion);

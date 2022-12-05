@@ -3,6 +3,8 @@ import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core
 import { MdbAccordionItemComponent } from './accordion-item.component';
 import { MdbAccordionModule } from './accordion.module';
 
+const ANIMATION_TIME = 350; // animation time from collapse directive
+
 const template = `
 <mdb-accordion [multiple]="multiple" [flush]="flush">
     <mdb-accordion-item>
@@ -169,4 +171,37 @@ describe('MDB Accordion', () => {
 
     expect(accordion.classList).toContain('accordion-flush');
   });
+
+  it('should emit correct events on item collapse and expand', fakeAsync(() => {
+    const item = component.accordionItems[0];
+
+    const showSpy = jest.spyOn(item.itemShow, 'emit');
+    const shownSpy = jest.spyOn(item.itemShown, 'emit');
+    const hideSpy = jest.spyOn(item.itemHide, 'emit');
+    const hiddenSpy = jest.spyOn(item.itemHidden, 'emit');
+
+    item.show();
+    fixture.detectChanges();
+
+    expect(showSpy).toHaveBeenCalled();
+    expect(shownSpy).not.toHaveBeenCalled();
+
+    tick(ANIMATION_TIME);
+    flush();
+    fixture.detectChanges();
+
+    expect(shownSpy).toHaveBeenCalled();
+
+    item.hide();
+    fixture.detectChanges();
+
+    expect(hideSpy).toHaveBeenCalled();
+    expect(hiddenSpy).not.toHaveBeenCalled();
+
+    tick(ANIMATION_TIME);
+    flush();
+    fixture.detectChanges();
+
+    expect(hiddenSpy).toHaveBeenCalled();
+  }));
 });
