@@ -28,6 +28,7 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
   @ContentChild(MdbLabelDirective, { static: true, read: ElementRef }) _label: ElementRef;
 
   @HostBinding('class.form-outline') outline = true;
+  @HostBinding('class.d-block') display = true;
 
   get input(): HTMLInputElement {
     return this._formControl.input;
@@ -50,7 +51,9 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit(): void {
     if (this._label) {
-      this._updateBorderGap();
+      setTimeout(() => {
+        this._updateBorderGap();
+      }, 0);
     } else {
       this._renderer.addClass(this.input, 'placeholder-active');
     }

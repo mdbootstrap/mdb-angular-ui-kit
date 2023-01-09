@@ -63,6 +63,7 @@ export class MdbAccordionItemComponent implements OnInit {
   @Output() itemHidden: EventEmitter<MdbAccordionItemComponent> = new EventEmitter();
 
   @HostBinding('class.accordion-item') accordionItem = true;
+  @HostBinding('class.d-block') accordionItemDisplayBlock = true;
 
   ngOnInit(): void {
     this._isInitialized = true;

@@ -36,6 +36,19 @@ textarea ~ .success-message {
   ~ .form-notch .form-notch-trailing {
     border-color: $success;
   }
+  &:focus ~ .form-notch .form-notch-middle,
+  &.active ~ .form-notch .form-notch-middle {
+    border-top: 1px solid transparent;
+  }
+  &:focus ~ .form-notch .form-notch-middle {
+    box-shadow: 0 1px 0 0 $success;
+  }
+  &:focus ~ .form-notch .form-notch-leading {
+    box-shadow: -1px 0 0 0 $success, 0 1px 0 0 $success, 0 -1px 0 0 $success;
+  }
+  &:focus ~ .form-notch .form-notch-trailing {
+    box-shadow: 1px 0 0 0 $success, 0 -1px 0 0 $success, 0 1px 0 0 $success;
+  }
 }
 
 .form-outline .validate-error.ng-invalid.ng-dirty,
@@ -47,6 +60,19 @@ textarea ~ .success-message {
   ~ .form-notch .form-notch-middle,
   ~ .form-notch .form-notch-trailing {
     border-color: $danger;
+  }
+  &:focus ~ .form-notch .form-notch-middle,
+  &.active ~ .form-notch .form-notch-middle {
+    border-top: 1px solid transparent;
+  }
+  &:focus ~ .form-notch .form-notch-middle {
+    box-shadow: 0 1px 0 0 $danger;
+  }
+  &:focus ~ .form-notch .form-notch-leading {
+    box-shadow: -1px 0 0 0 $danger, 0 1px 0 0 $danger, 0 -1px 0 0 $danger;
+  }
+  &:focus ~ .form-notch .form-notch-trailing {
+    box-shadow: 1px 0 0 0 $danger, 0 -1px 0 0 $danger, 0 1px 0 0 $danger;
   }
 }
 
@@ -60,6 +86,19 @@ textarea ~ .success-message {
   ~ .form-notch .form-notch-trailing {
     border-color: $success;
   }
+  &.focused ~ .form-notch .form-notch-middle,
+  &.active ~ .form-notch .form-notch-middle {
+    border-top: 1px solid transparent;
+  }
+  &.focused ~ .form-notch .form-notch-middle {
+    box-shadow: 0 1px 0 0 $success;
+  }
+  &.focused ~ .form-notch .form-notch-leading {
+    box-shadow: -1px 0 0 0 $success, 0 1px 0 0 $success, 0 -1px 0 0 $success;
+  }
+  &.focused ~ .form-notch .form-notch-trailing {
+    box-shadow: 1px 0 0 0 $success, 0 -1px 0 0 $success, 0 1px 0 0 $success;
+  }
 }
 
 .select.validate-error.ng-invalid.ng-dirty,
@@ -71,6 +110,19 @@ textarea ~ .success-message {
   ~ .form-notch .form-notch-middle,
   ~ .form-notch .form-notch-trailing {
     border-color: $danger;
+  }
+  &.focused ~ .form-notch .form-notch-middle,
+  &.active ~ .form-notch .form-notch-middle {
+    border-top: 1px solid transparent;
+  }
+  &.focused ~ .form-notch .form-notch-middle {
+    box-shadow: 0 1px 0 0 $danger;
+  }
+  &.focused ~ .form-notch .form-notch-leading {
+    box-shadow: -1px 0 0 0 $danger, 0 1px 0 0 $danger, 0 -1px 0 0 $danger;
+  }
+  &.focused ~ .form-notch .form-notch-trailing {
+    box-shadow: 1px 0 0 0 $danger, 0 -1px 0 0 $danger, 0 1px 0 0 $danger;
   }
 }
 

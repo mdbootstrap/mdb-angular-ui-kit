@@ -3,8 +3,14 @@
 .popover {
   border: 0;
   box-shadow: $popover-box-shadow;
+  // Additional MDB Angular styles
   position: unset;
   opacity: 0;
+  // Additional MDB Angular styles
+  
+  // .popover-arrow {
+  //   display: none;
+  // }
 }
 
 .popover-header {

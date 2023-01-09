@@ -6,7 +6,7 @@ import { MdbAccordionModule } from './accordion.module';
 const ANIMATION_TIME = 350; // animation time from collapse directive
 
 const template = `
-<mdb-accordion [multiple]="multiple" [flush]="flush">
+<mdb-accordion [multiple]="multiple" [flush]="flush" [borderless]="borderless">
     <mdb-accordion-item>
         <ng-template mdbAccordionItemHeader>Accordion Item #1</ng-template>
         <ng-template mdbAccordionItemBody>
@@ -53,6 +53,7 @@ class TestAccordionComponent {
   @ViewChildren(MdbAccordionItemComponent) _accordionItems: QueryList<MdbAccordionItemComponent>;
   multiple = false;
   flush = false;
+  borderless = false;
 
   get accordionItems(): MdbAccordionItemComponent[] {
     return this._accordionItems.toArray();
@@ -170,6 +171,17 @@ describe('MDB Accordion', () => {
     const accordion = document.querySelector('.accordion');
 
     expect(accordion.classList).toContain('accordion-flush');
+  });
+
+  it('should add accordion-borderless class if borderless is set to true', () => {
+    const accordion = document.querySelector('.accordion');
+
+    expect(accordion.classList).not.toContain('accordion-borderless');
+
+    component.borderless = true;
+    fixture.detectChanges();
+
+    expect(accordion.classList).toContain('accordion-borderless');
   });
 
   it('should emit correct events on item collapse and expand', fakeAsync(() => {

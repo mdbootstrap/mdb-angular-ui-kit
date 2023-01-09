@@ -1,3 +1,50 @@
+## 4.0.0 (09.01.2023)
+
+### Design updates:
+
+Our basic color palette has been updated. We toned down our colors to be less flashy and more elegant and subtle. This affects virtually all of our components, so be aware of this before upgrading your project to v4.0.0.
+
+Read [colors docs](https://mdbootstrap.com/docs/angular/content-styles/colors/) to learn more about new palette.
+
+### Breaking changes:
+
+- Added support for Angular 15, this Angular version is now required,
+- Improved [buttons](https://mdbootstrap.com/docs/angular/components/buttons/)
+- Improved existing [accordion](https://mdbootstrap.com/docs/angular/components/accordion/) and added new examples
+- Improved [stepper](https://mdbootstrap.com/docs/angular/components/stepper/) design
+- Improved [badges](https://mdbootstrap.com/docs/angular/components/badges/) design and added new examples
+- Improved [popovers](https://mdbootstrap.com/docs/angular/components/popovers/) and [popconfirm](https://mdbootstrap.com/docs/angular/components/popconfirm/) design
+- Removed default configuration of `chartjs-plugin-datalabels` from [charts](https://mdbootstrap.com/docs/angular/data/charts/), all plugins must be now registered before use
+
+### Fixes and improvements:
+
+- Resolved problem with [scrollbar](https://mdbootstrap.com/docs/angular/methods/scrollbar/) initialization on element with a `mdbScrollbar` directive
+- Removed unnecessary border animation on initialization of `mdb-form-control` component
+- Resolved problem with global registration of controllers and plugins in [charts](https://mdbootstrap.com/docs/angular/data/charts/)
+- Improved types in `mdbChart` directive inputs
+- Added some fixes to the [transfer plugin](https://mdbootstrap.com/docs/angular/plugins/transfer/)
+  - Improved 'select all' option implementation
+  - Resolved problems with value updates in search bar input
+  - Resolved problems with component view updates when using pagination
+- Improved theme styles in the following components:
+  - List group
+  - Pagination
+  - Datepicker
+
+### New:
+
+- Addew new [color picker plugin](https://mdbootstrap.com/docs/angular/plugins/color-picker/) plugin
+- Addew new [multi item carousel plugin](https://mdbootstrap.com/docs/angular/plugins/multi-item-carousel/)
+- Addew new [ecommerce gallery plugin](https://mdbootstrap.com/docs/angular/plugins/ecommerce-gallery/)
+- Addew new `[borderless]` input to [accordion](https://mdbootstrap.com/docs/angular/components/accordion/)
+- Added new `[withPush]` input to [dropdown](https://mdbootstrap.com/docs/angular/components/dropdown/)
+- Added new `[plugins]` input to [charts](https://mdbootstrap.com/docs/angular/data/charts/)
+- Added public access to the chart instance in `mdbChart` directive
+- Added new `[ofText]` input to [datatables](https://mdbootstrap.com/docs/angular/data/datatables/)
+- Added new `[titleSource]` and `[titleTarget]` inputs to [transfer plugin](https://mdbootstrap.com/docs/angular/plugins/transfer/)
+
+---
+
 ## 3.0.1 (05.12.2022)
 
 ### Fixes and improvements:
@@ -19,6 +66,7 @@
 
 ### New:
 
+- Addew new [color picker plugin](https://mdbootstrap.com/docs/angular/plugins/color-picker/)
 - Addew new [scroll status plugin](https://mdbootstrap.com/docs/angular/plugins/scroll-status/)
 
 ---

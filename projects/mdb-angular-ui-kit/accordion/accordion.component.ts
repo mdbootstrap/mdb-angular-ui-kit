@@ -21,6 +21,15 @@ export class MdbAccordionComponent implements AfterContentInit {
   @ContentChildren(MdbAccordionItemComponent) items: QueryList<MdbAccordionItemComponent>;
 
   @Input()
+  get borderless(): boolean {
+    return this._borderless;
+  }
+  set borderless(value: boolean) {
+    this._borderless = coerceBooleanProperty(value);
+  }
+  private _borderless = false;
+
+  @Input()
   get flush(): boolean {
     return this._flush;
   }
@@ -39,6 +48,12 @@ export class MdbAccordionComponent implements AfterContentInit {
   private _multiple = false;
 
   @HostBinding('class.accordion') accordion = true;
+
+  @HostBinding('class.accordion-borderless')
+  get addBorderlessClass(): boolean {
+    return this.borderless;
+  }
+
   @HostBinding('class.accordion-flush')
   get addFlushClass(): boolean {
     return this.flush;
@@ -69,6 +84,7 @@ export class MdbAccordionComponent implements AfterContentInit {
     }
   }
 
+  static ngAcceptInputType_borderless: BooleanInput;
   static ngAcceptInputType_flush: BooleanInput;
   static ngAcceptInputType_multiple: BooleanInput;
 }

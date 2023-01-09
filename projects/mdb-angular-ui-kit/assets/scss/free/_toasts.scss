@@ -4,15 +4,19 @@
   background-color: $toast-background-color;
   border: 0;
   box-shadow: $toast-box-shadow;
+  // Additional MDB Angular styles
   margin-bottom: 10px;
+  // Additional MDB Angular styles
 
   .btn-close {
     width: 1.3em;
   }
 
+  // Additional MDB Angular styles
   &:not(.show) {
     display: block;
   }
+  // Additional MDB Angular styles
 }
 
 .toast-header {
@@ -38,14 +42,16 @@
   z-index: $zindex-toast;
 }
 
+// Additional MDB Angular styles
 .toast:not(.showing):not(.show) {
   opacity: 1;
 }
+// Additional MDB Angular styles
 
-@each $name, $color in $toasts {
-  .toast-#{$name} {
-    background-color: map-get($color, background-color);
-    color: map-get($color, text-color);
-    border-color: map-get($color, border-color);
+@each $color, $value in $toasts {
+  .toast-#{$color} {
+    background-color: map-get($value, background-color);
+    color: map-get($value, text-color);
+    border-color: map-get($value, border-color);
   }
 }

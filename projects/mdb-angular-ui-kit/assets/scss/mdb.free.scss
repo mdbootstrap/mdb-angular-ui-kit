@@ -54,7 +54,6 @@
 
 // MDB CORE
 @import './free/mixins';
-@import './free/utilities';
 
 // MDB CORE COMPONENTS
 @import './free/root';
@@ -64,6 +63,8 @@
 @import './free/shadows';
 @import './free/flag';
 @import './free/images';
+
+// MDB ANGULAR OVERLAY Z-INDEX
 @import './free/overlay';
 
 // MDB FORMS

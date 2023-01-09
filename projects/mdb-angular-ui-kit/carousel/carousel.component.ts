@@ -7,6 +7,7 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  HostBinding,
   HostListener,
   Input,
   OnDestroy,
@@ -123,6 +124,8 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
       this.play();
     }
   }
+
+  @HostBinding('class.d-block') display = true;
 
   constructor(private _elementRef: ElementRef, private _cdRef: ChangeDetectorRef) {}
 

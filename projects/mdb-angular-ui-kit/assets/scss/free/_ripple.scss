@@ -31,7 +31,11 @@
   @include ripple-variant(white);
 }
 
-@each $color, $value in $theme-colors {
+// .input-wrapper .ripple-wave {
+//   @include ripple-variant(white);
+// }
+
+@each $color, $value in $ripple {
   .ripple-surface-#{$color} {
     .ripple-wave {
       @include ripple-variant($value);

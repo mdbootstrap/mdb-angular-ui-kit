@@ -4,13 +4,13 @@
   "homepage": "https://mdbootstrap.com/docs/b5/angular/",
   "author": "MDBootstrap",
   "license": "MIT",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "peerDependencies": {
-    "@angular/common": "^14.0.0",
-    "@angular/core": "^14.0.0",
-    "@angular/animations": "^14.0.0",
-    "@angular/forms": "^14.0.0",
-    "@angular/cdk": "^14.0.0"
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "@angular/animations": "^15.0.0",
+    "@angular/forms": "^15.0.0",
+    "@angular/cdk": "^15.0.0"
   },
   "schematics": "./schematics/collection.json",
   "dependencies": {
