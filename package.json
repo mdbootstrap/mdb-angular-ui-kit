@@ -40,7 +40,7 @@
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
-    "jest": "27.5.1",
+    "jest": "^28.0.0",
     "karma-coverage": "~2.0.3",
     "ng-packagr": "^15.0.1",
     "protractor": "~7.0.0",
