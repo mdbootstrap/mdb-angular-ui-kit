@@ -4,11 +4,6 @@
   box-shadow: $modal-box-shadow;
 }
 
-// Additional MDB Angular styles
-.modal-open {
-  overflow: hidden;
-}
-
 .mdb-backdrop {
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.15s linear;
@@ -21,8 +16,6 @@
 }
 
 .modal-dialog-scrollable {
-  height: subtract(100%, $modal-dialog-margin * 2);
-
   .modal-content,
   .modal-content > :first-child {
     max-height: 100%;

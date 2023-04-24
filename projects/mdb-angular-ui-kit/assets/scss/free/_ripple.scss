@@ -27,13 +27,13 @@
   }
 }
 
-.btn .ripple-wave {
+.input-wrapper .ripple-wave {
   @include ripple-variant(white);
 }
 
-// .input-wrapper .ripple-wave {
-//   @include ripple-variant(white);
-// }
+.btn .ripple-wave {
+  @include ripple-variant(white);
+}
 
 @each $color, $value in $ripple {
   .ripple-surface-#{$color} {

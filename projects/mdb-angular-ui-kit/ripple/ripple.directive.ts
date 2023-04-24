@@ -45,6 +45,10 @@ export class MdbRippleDirective {
   }
   private _rippleUnbound = false;
 
+  private _rippleInSpan = false;
+
+  private _rippleTimer = null;
+
   constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {}
 
   get host(): HTMLElement {
@@ -86,8 +90,44 @@ export class MdbRippleDirective {
 
     const rippleHTML = this._renderer.createElement('div');
 
+    if (this.host.tagName.toLowerCase() === 'input') {
+      this._createWrapperSpan();
+    }
+
     this._createHTMLRipple(this.host, rippleHTML, styles);
     this._removeHTMLRipple(rippleHTML, duration);
+  }
+
+  private _createWrapperSpan(): void {
+    const parent = this._renderer.parentNode(this.host);
+    this._rippleInSpan = true;
+    if (parent.tagName.toLowerCase() === 'span' && parent.classList.contains('ripple-surface')) {
+      this._elementRef.nativeElement = parent;
+    } else {
+      const wrapper = this._renderer.createElement('span');
+
+      this._renderer.addClass(wrapper, 'ripple-surface');
+      this._renderer.addClass(wrapper, 'input-wrapper');
+
+      this._renderer.setStyle(wrapper, 'border', 0);
+
+      const shadow = getComputedStyle(this.host).boxShadow;
+      this._renderer.setStyle(wrapper, 'box-shadow', shadow);
+
+      // Put element as child
+      parent.replaceChild(wrapper, this.host);
+      wrapper.appendChild(this.host);
+      this._elementRef.nativeElement = wrapper;
+    }
+    this.host.focus();
+  }
+
+  _removeWrapperSpan() {
+    const child = this.host.firstChild;
+    this.host.replaceWith(child);
+    this._elementRef.nativeElement = child;
+    this.host.focus();
+    this._rippleInSpan = false;
   }
 
   private _createHTMLRipple(wrapper: HTMLElement, ripple: HTMLElement, styles: any): void {
@@ -104,9 +144,19 @@ export class MdbRippleDirective {
   }
 
   private _removeHTMLRipple(ripple: HTMLElement, duration: number): void {
-    setTimeout(() => {
+    if (this._rippleTimer) {
+      clearTimeout(this._rippleTimer);
+      this._rippleTimer = null;
+    }
+    this._rippleTimer = setTimeout(() => {
       if (ripple) {
         ripple.remove();
+        this.host.querySelectorAll('.ripple-wave').forEach((rippleEl) => {
+          rippleEl.remove();
+        });
+        if (this._rippleInSpan && this.host.classList.contains('input-wrapper')) {
+          this._removeWrapperSpan();
+        }
       }
     }, duration);
   }

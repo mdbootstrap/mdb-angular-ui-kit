@@ -10,4 +10,5 @@ export class MdbModalConfig<D = any> {
   containerClass?: string = '';
   viewContainerRef?: ViewContainerRef;
   data?: D | null = null;
+  nonInvasive?: boolean = false;
 }

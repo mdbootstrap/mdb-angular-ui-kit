@@ -49,7 +49,7 @@ export class MdbModalService {
     const config = new OverlayConfig({
       positionStrategy: this._overlay.position().global(),
       scrollStrategy: this._overlay.scrollStrategies.noop(),
-      hasBackdrop: modalConfig.backdrop,
+      hasBackdrop: modalConfig.nonInvasive ? false : modalConfig.backdrop,
       backdropClass: 'mdb-backdrop',
     });
 

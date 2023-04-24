@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MdbFormsModule } from './index';
@@ -50,13 +50,18 @@ describe('MDB Form Control', () => {
     expect(input.classList).toContain('placeholder-active');
   });
 
-  it('should set top border gap on component init if label is defined', () => {
+  it('should set top border gap on component init if label is defined', fakeAsync(() => {
+    const fixture = TestBed.createComponent(BasicFormControlComponent);
+    fixture.detectChanges();
+
+    flush();
+    fixture.detectChanges();
     const labelWidth = fixture.nativeElement.querySelector('label').clientWidth;
     const middleNotch = fixture.nativeElement.querySelector('.form-notch-middle');
     const expectedBorderGap = labelWidth * labelScale + labelGapPadding + 'px';
 
     expect(middleNotch.style.width).toEqual(expectedBorderGap);
-  });
+  }));
 });
 
 const basicTemplate = `

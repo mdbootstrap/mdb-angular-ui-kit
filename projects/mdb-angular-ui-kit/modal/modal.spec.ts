@@ -130,7 +130,7 @@ describe('MDB Modal', () => {
     expect(modalContainer).toBe(null);
   }));
 
-  it('should dont close the modal on mousedown inside modal, move mouse outside modal and mouseup', fakeAsync(() => {
+  it('should not close the modal on mousedown inside modal, move mouse outside modal and mouseup', fakeAsync(() => {
     modal.open(BasicModalComponent);
 
     fixture.detectChanges();
@@ -257,5 +257,61 @@ describe('MDB Modal', () => {
     expect(notMainView).not.toBe(null);
     expect(mainViewToggler).toBe(null);
     expect(notMainViewToggler).not.toBe(null);
+  }));
+});
+
+describe('MDB Non-invasive Modal', () => {
+  let modal: MdbModalService;
+  let overlayContainer: OverlayContainer;
+  let overlayContainerElement: HTMLElement;
+  let fixture: ComponentFixture<BasicModalComponent>;
+
+  beforeEach(fakeAsync(() => {
+    const module = TestBed.configureTestingModule({
+      imports: [MdbModalModule, TestModalModule],
+      teardown: { destroyAfterEach: false },
+    });
+
+    TestBed.compileComponents();
+    fixture = module.createComponent(BasicModalComponent);
+  }));
+
+  beforeEach(inject(
+    [MdbModalService, OverlayContainer],
+    (mdbModal: MdbModalService, oc: OverlayContainer) => {
+      modal = mdbModal;
+      overlayContainer = oc;
+      overlayContainerElement = oc.getContainerElement();
+    }
+  ));
+
+  afterEach(() => {
+    overlayContainer.ngOnDestroy();
+  });
+
+  it('should add non-invasive class', fakeAsync(() => {
+    modal.open(BasicModalComponent, {
+      nonInvasive: true,
+    });
+
+    fixture.detectChanges();
+    tick(350);
+
+    const body = document.body;
+    const modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
+    expect(body.classList.contains('modal-non-invasive-open')).toBe(true);
+    expect(modalContainer.classList.contains('modal-non-invasive-show')).toBe(true);
+  }));
+
+  it('should not apply padding-right style to document body', fakeAsync(() => {
+    modal.open(BasicModalComponent, {
+      nonInvasive: true,
+    });
+
+    fixture.detectChanges();
+    tick(350);
+
+    const body = document.body;
+    expect(body.style.paddingRight).toBe('0px');
   }));
 });

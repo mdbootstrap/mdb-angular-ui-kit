@@ -12,6 +12,9 @@ export class MdbModalRef<T> {
     this._container._close();
 
     setTimeout(() => {
+      if (this._container._config.nonInvasive) {
+        this._container._onNonInvasiveModalHidden();
+      }
       this._container._restoreScrollbar();
       this.onClose$.next(message);
       this.onClose$.complete();

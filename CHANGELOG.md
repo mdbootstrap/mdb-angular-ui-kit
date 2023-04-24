@@ -1,3 +1,44 @@
+## 4.1.0 (24.01.2023)
+
+### Fixes and improvements:
+
+- Fixed default value display in [Autocomplete](https://mdbootstrap.com//docs/angular/forms/autocomplete/) when the value is an object
+- [Timepicker](https://mdbootstrap.com//docs/angular/forms/timepicker/)
+  - Fixed focus trap
+  - Fixed keyboard navigation in inline mode
+  - Fixed the problem with minTime and maxTime range
+- Fixed [Ripple effect](https://mdbootstrap.com//docs/angular/methods/ripple/) on inputs styled as buttons
+- Fixed background colors of [Toasts](https://mdbootstrap.com//docs/angular/components/toasts/) and [Alerts](https://mdbootstrap.com//docs/angular/components/alerts/) in MDB theme
+- [Modal](https://mdbootstrap.com//docs/angular/components/modal/)
+  - Fixed the problem with scrollbar on bottom frame modal init
+  - Removed rounded corners from frame modals
+  - Removed unnecessary body scroll when using `scrollable` modal
+- [Datatable](https://mdbootstrap.com//docs/angular/data/datatables/)
+  - Removed ability to focus disabled buttons in pagination
+  - Fixed the problem with case-sensitive sorting
+- Fixed the problem with hiding buttons in the [Wysiwyg](https://mdbootstrap.com//docs/angular/plugins/wysiwyg-editor/) toolbar
+- Fixed problem with event types in [Select](https://mdbootstrap.com//docs/angular/forms/select/)
+- Fixed problem with `Rxjs operators` import paths in all the components and plugins
+
+### New:
+
+- Added new [Data Parser](https://mdbootstrap.com//docs/angular/plugins/data-parser/) plugin
+- Added new [Organization Chart](https://mdbootstrap.com//docs/angular/plugins/organization-chart/) plugin
+- Added new [Captcha](https://mdbootstrap.com//docs/angular/plugins/captcha/) plugin
+- Added new [Chips](https://mdbootstrap.com//docs/angular/components/chips/) component
+- Added new `[collapsible]` input to [Scrollspy](https://mdbootstrap.com//docs/angular/navigation/scrollspy/)
+- Added new `[disableWindowScroll]` input to the [Sidenav](https://mdbootstrap.com//docs/angular/navigation/sidenav/)
+- Added new [non-invasive Modal](https://mdbootstrap.com//docs/angular/components/modal/#section-non-invasive-modal)
+- [Datatable](https://mdbootstrap.com//docs/angular/data/datatables/)
+  - Added new `[forceSort]` input that allow to disable sort reset on third click
+  - Added new `[disableSort]` input that allow to disable a specific sort header
+  - Added new `[disabled]` input to pagination component
+- [Datepicker](https://mdbootstrap.com//docs/angular/forms/datepicker/)
+- Added new `[removeOkBtn]`, `[removeCancelBtn]` and `[removeClearBtn]` inputs that allow to remove specific buttons from the component footer
+- Addew new `[confirmDateOnSelect]` input that allow to select date without a confirmation by click on `Ok` button
+
+---
+
 ## 4.0.0 (09.01.2023)
 
 ### Design updates:

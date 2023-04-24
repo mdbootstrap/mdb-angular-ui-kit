@@ -1,5 +1,9 @@
 <div #dialog [class]="'modal-dialog' + (_config.modalClass ? ' ' + _config.modalClass : '')">
-  <div class="modal-content">
+  <div
+    #content
+    class="modal-content"
+    [ngClass]="{ 'rounded-0': _config.modalClass.includes('modal-frame') }"
+  >
     <ng-template cdkPortalOutlet></ng-template>
   </div>
 </div>
