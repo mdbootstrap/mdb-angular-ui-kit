@@ -1,19 +1,21 @@
 // Popover
 
 .popover {
-  border: 0;
-  box-shadow: $popover-box-shadow;
+  // scss-docs-start popover-css-vars
+  --#{$prefix}popover-border-bottom-width: #{$popover-border-bottom-width};
+  // scss-docs-end popover-css-vars
+
   // Additional MDB Angular styles
   position: unset;
   opacity: 0;
   // Additional MDB Angular styles
-  
+
   // .popover-arrow {
   //   display: none;
   // }
 }
 
 .popover-header {
-  background-color: $popover-background-color;
-  border-bottom: $popover-border-width solid $popover-border-color;
+  border-bottom: var(--#{$prefix}popover-border-bottom-width) solid
+    var(--#{$prefix}popover-border-color);
 }

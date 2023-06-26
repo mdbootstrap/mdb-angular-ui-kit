@@ -42,7 +42,6 @@
   display: block;
 }
 
-/* rtl:begin:ignore */
 .carousel-item-next:not(.carousel-item-start),
 .active.carousel-item-end {
   transform: translateX(100%);
@@ -53,7 +52,6 @@
   transform: translateX(-100%);
 }
 
-/* rtl:end:ignore */
 
 //
 // Alternate transitions
@@ -80,6 +78,7 @@
     @include transition(opacity 0s $carousel-transition-duration);
   }
 }
+
 
 //
 // Left/right controls for nav
@@ -115,19 +114,11 @@
 }
 .carousel-control-prev {
   left: 0;
-  background-image: if(
-    $enable-gradients,
-    linear-gradient(90deg, rgba($black, 0.25), rgba($black, 0.001)),
-    null
-  );
+  background-image: if($enable-gradients, linear-gradient(90deg, rgba($black, .25), rgba($black, .001)), null);
 }
 .carousel-control-next {
   right: 0;
-  background-image: if(
-    $enable-gradients,
-    linear-gradient(270deg, rgba($black, 0.25), rgba($black, 0.001)),
-    null
-  );
+  background-image: if($enable-gradients, linear-gradient(270deg, rgba($black, .25), rgba($black, .001)), null);
 }
 
 // Icons for within
@@ -201,15 +192,16 @@
   }
 }
 
+
 // Optional captions
 //
 //
 
 .carousel-caption {
   position: absolute;
-  right: (100% - $carousel-caption-width) * 0.5;
+  right: (100% - $carousel-caption-width) * .5;
   bottom: $carousel-caption-spacer;
-  left: (100% - $carousel-caption-width) * 0.5;
+  left: (100% - $carousel-caption-width) * .5;
   padding-top: $carousel-caption-padding-y;
   padding-bottom: $carousel-caption-padding-y;
   color: $carousel-caption-color;

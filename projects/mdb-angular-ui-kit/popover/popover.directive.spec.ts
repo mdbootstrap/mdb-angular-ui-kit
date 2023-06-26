@@ -2,9 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { MdbPopoverModule } from './index';
 import { MdbPopoverDirective } from './popover.directive';
-import { MdbPopoverComponent } from './popover.component';
 import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MDB Popover', () => {
@@ -14,15 +12,11 @@ describe('MDB Popover', () => {
     let component: any;
     let directive: any;
 
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
+    beforeEach(() => {
+      TestBed.configureTestingModule({
         imports: [MdbPopoverModule, NoopAnimationsModule],
         declarations: [TestPopoverComponent],
         teardown: { destroyAfterEach: false },
-      }).overrideModule(BrowserDynamicTestingModule, {
-        set: {
-          entryComponents: [MdbPopoverComponent],
-        },
       });
       fixture = TestBed.createComponent(TestPopoverComponent);
       component = fixture.componentInstance;
@@ -101,10 +95,6 @@ describe('MDB Popover', () => {
         imports: [MdbPopoverModule, NoopAnimationsModule],
         declarations: [TestPopoverComponent2],
         teardown: { destroyAfterEach: false },
-      }).overrideModule(BrowserDynamicTestingModule, {
-        set: {
-          entryComponents: [MdbPopoverComponent],
-        },
       });
       fixture = TestBed.createComponent(TestPopoverComponent2);
       component = fixture.componentInstance;
@@ -142,10 +132,6 @@ describe('MDB Popover', () => {
         imports: [MdbPopoverModule, NoopAnimationsModule],
         declarations: [TestPopoverComponent3],
         teardown: { destroyAfterEach: false },
-      }).overrideModule(BrowserDynamicTestingModule, {
-        set: {
-          entryComponents: [MdbPopoverComponent],
-        },
       });
       fixture = TestBed.createComponent(TestPopoverComponent3);
       component = fixture.componentInstance;

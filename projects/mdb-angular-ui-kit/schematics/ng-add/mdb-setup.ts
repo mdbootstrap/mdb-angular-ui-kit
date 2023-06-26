@@ -145,13 +145,13 @@ function addStylesImports(options: Schema): any {
 
     if (options.fontAwesome) {
       newContent =
-        `@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';\n` +
-        `@import '~@fortawesome/fontawesome-free/scss/solid.scss';\n` +
-        `@import '~@fortawesome/fontawesome-free/scss/regular.scss';\n` +
-        `@import '~@fortawesome/fontawesome-free/scss/brands.scss';\n \n` +
-        `@import '~mdb-angular-ui-kit/assets/scss/mdb.scss';\n`;
+        `@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';\n` +
+        `@import '@fortawesome/fontawesome-free/scss/solid.scss';\n` +
+        `@import '@fortawesome/fontawesome-free/scss/regular.scss';\n` +
+        `@import '@fortawesome/fontawesome-free/scss/brands.scss';\n \n` +
+        `@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';\n`;
     } else {
-      newContent = `@import '~mdb-angular-ui-kit/assets/scss/mdb.scss';\n`;
+      newContent = `@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';\n`;
     }
 
     if (fileContent.includes(newContent)) {

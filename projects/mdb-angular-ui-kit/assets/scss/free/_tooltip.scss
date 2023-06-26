@@ -1,21 +1,24 @@
 // Tooltip
 
-// .tooltip {
-//   &.show {
-//     opacity: 1;
-//   }
-// 
-//   .tooltip-arrow {
-//     display: none;
-//   }
-// }
+.tooltip {
+  --#{$prefix}tooltip-font-size: #{$tooltip-font-size};
+
+  // &.show {
+  //   opacity: 1;
+  // }
+
+  // .tooltip-arrow {
+  //   display: none;
+  // }
+
+  // Additional MDB Angular styles
+  opacity: 1;
+  // Additional MDB Angular styles
+}
 
 .tooltip-inner {
-  color: $tooltip-inner-color;
-  padding: $tooltip-inner-padding-y $tooltip-inner-padding-x;
-  font-size: $tooltip-inner-font-size;
-  background-color: $tooltip-inner-background-color;
-  border-radius: $tooltip-inner-border-radius;
+  font-size: var(--#{$prefix}tooltip-font-size);
+
   // Additional MDB Angular styles
   opacity: 0;
   // Additional MDB Angular styles

@@ -7,6 +7,7 @@
   padding-top: 4px;
   padding-bottom: 3.28px;
   transition: all 0.1s linear;
+  box-shadow: none;
 
   &:focus {
     box-shadow: none;
@@ -133,8 +134,8 @@
   &.form-control-lg {
     font-size: $input-font-size-lg;
     line-height: $input-line-height-lg;
-    padding-left: $input-padding-left-lg;
-    padding-right: $input-padding-right-lg;
+    // padding-left: $input-padding-left-lg;
+    // padding-right: $input-padding-right-lg;
     ~ .form-label {
       padding-top: $form-label-padding-top-lg;
     }
@@ -144,8 +145,8 @@
     }
   }
   &.form-control-sm {
-    padding-left: $input-padding-left-sm;
-    padding-right: $input-padding-right-sm;
+    // padding-left: $input-padding-left-sm;
+    // padding-right: $input-padding-right-sm;
     padding-top: $input-padding-top-sm;
     padding-bottom: $input-padding-bottom-sm;
     font-size: $input-font-size-sm;
@@ -308,8 +309,8 @@
     &.form-control-lg {
       font-size: $input-font-size-lg;
       line-height: $input-line-height-lg;
-      padding-left: $input-padding-left-lg;
-      padding-right: $input-padding-right-lg;
+      // padding-left: $input-padding-left-lg;
+      // padding-right: $input-padding-right-lg;
       ~ .form-label {
         padding-top: $form-label-padding-top-lg;
       }
@@ -319,8 +320,8 @@
       }
     }
     &.form-control-sm {
-      padding-left: $input-padding-left-sm;
-      padding-right: $input-padding-right-sm;
+      // padding-left: $input-padding-left-sm;
+      // padding-right: $input-padding-right-sm;
       padding-top: $input-padding-top-sm;
       padding-bottom: $input-padding-bottom-sm;
       font-size: $input-font-size-sm;

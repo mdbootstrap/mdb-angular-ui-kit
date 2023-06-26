@@ -78,14 +78,7 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   private _isDropEnd: boolean;
   private _isDropdownMenuEnd: boolean;
   private _xPosition: string;
-
-  private _breakpoints = {
-    isSm: this._breakpointObserver.isMatched('(min-width: 576px)'),
-    isMd: this._breakpointObserver.isMatched('(min-width: 768px)'),
-    isLg: this._breakpointObserver.isMatched('(min-width: 992px)'),
-    isXl: this._breakpointObserver.isMatched('(min-width: 1200px)'),
-    isXxl: this._breakpointObserver.isMatched('(min-width: 1400px)'),
-  };
+  private _breakpoints: any;
 
   readonly _destroy$: Subject<void> = new Subject<void>();
 
@@ -99,7 +92,16 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     private _vcr: ViewContainerRef,
     private _breakpointObserver: BreakpointObserver,
     private _cdRef: ChangeDetectorRef
-  ) {}
+  ) {
+     this._breakpoints = {
+      isSm: this._breakpointObserver.isMatched('(min-width: 576px)'),
+      isMd: this._breakpointObserver.isMatched('(min-width: 768px)'),
+      isLg: this._breakpointObserver.isMatched('(min-width: 992px)'),
+      isXl: this._breakpointObserver.isMatched('(min-width: 1200px)'),
+      isXxl: this._breakpointObserver.isMatched('(min-width: 1400px)'),
+    };
+  }
+
 
   ngAfterContentInit(): void {
     this._bindDropdownToggleClick();

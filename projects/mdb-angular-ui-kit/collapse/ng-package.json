@@ -3,5 +3,5 @@
   "lib": {
     "entryFile": "index.ts"
   },
-  "dest": "../../dist/animations"
+  "dest": "../../dist/collapse"
 }

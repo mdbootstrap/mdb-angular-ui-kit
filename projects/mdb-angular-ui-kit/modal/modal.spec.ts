@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { MdbModalModule } from './modal.module';
@@ -295,6 +295,9 @@ describe('MDB Non-invasive Modal', () => {
     });
 
     fixture.detectChanges();
+    flush();
+
+    fixture.detectChanges();
     tick(350);
 
     const body = document.body;
@@ -307,6 +310,9 @@ describe('MDB Non-invasive Modal', () => {
     modal.open(BasicModalComponent, {
       nonInvasive: true,
     });
+
+    fixture.detectChanges();
+    flush();
 
     fixture.detectChanges();
     tick(350);

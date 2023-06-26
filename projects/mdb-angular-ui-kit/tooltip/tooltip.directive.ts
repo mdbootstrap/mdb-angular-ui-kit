@@ -36,7 +36,7 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
   @Input() trigger = 'hover focus';
   @Input() delayShow = 0;
   @Input() delayHide = 0;
-  @Input() offset = 4;
+  @Input() offset = 0;
 
   @Output() tooltipShow: EventEmitter<MdbTooltipDirective> = new EventEmitter();
   @Output() tooltipShown: EventEmitter<MdbTooltipDirective> = new EventEmitter();

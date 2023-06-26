@@ -5,6 +5,8 @@ import { MdbModalContainerComponent } from './modal-container.component';
 export class MdbModalRef<T> {
   constructor(protected _overlayRef: OverlayRef, private _container: MdbModalContainerComponent) {}
 
+  component: T;
+
   private readonly onClose$: Subject<any> = new Subject();
   readonly onClose: Observable<any> = this.onClose$.asObservable();
 

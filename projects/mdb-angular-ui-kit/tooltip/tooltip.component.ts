@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 import { trigger, style, animate, transition, state, AnimationEvent } from '@angular/animations';
 import { Subject } from 'rxjs';
 @Component({
@@ -18,6 +24,8 @@ export class MdbTooltipComponent {
   @Input() title: string;
   @Input() html: boolean;
   @Input() animation: boolean;
+
+  @HostBinding('class.tooltip') tooltip = true;
 
   readonly _hidden: Subject<void> = new Subject();
 

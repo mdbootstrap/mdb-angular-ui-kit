@@ -72,7 +72,7 @@ export class MdbModalService {
     overlayRef: OverlayRef,
     config: MdbModalConfig
   ): MdbModalRef<T> {
-    const modalRef = new MdbModalRef(overlayRef, container);
+    const modalRef: MdbModalRef<T> = new MdbModalRef(overlayRef, container);
 
     if (componentOrTemplate instanceof TemplateRef) {
       container.attachTemplatePortal(
@@ -90,6 +90,8 @@ export class MdbModalService {
       if (config.data) {
         Object.assign(contentRef.instance, { ...config.data });
       }
+
+      modalRef.component = contentRef.instance;
     }
 
     return modalRef;

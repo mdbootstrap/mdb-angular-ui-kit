@@ -2,9 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { MdbTooltipModule } from './index';
 import { MdbTooltipDirective } from './tooltip.directive';
-import { MdbTooltipComponent } from './tooltip.component';
 import { By } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MDB Tooltip', () => {
@@ -14,15 +12,11 @@ describe('MDB Tooltip', () => {
     let component: any;
     let directive: any;
 
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
+    beforeEach(() => {
+      TestBed.configureTestingModule({
         imports: [MdbTooltipModule, NoopAnimationsModule],
         declarations: [TestTooltipComponent],
         teardown: { destroyAfterEach: false },
-      }).overrideModule(BrowserDynamicTestingModule, {
-        set: {
-          entryComponents: [MdbTooltipComponent],
-        },
       });
       fixture = TestBed.createComponent(TestTooltipComponent);
       component = fixture.componentInstance;
@@ -98,10 +92,6 @@ describe('MDB Tooltip', () => {
         imports: [MdbTooltipModule],
         declarations: [TestTooltipComponent2],
         teardown: { destroyAfterEach: false },
-      }).overrideModule(BrowserDynamicTestingModule, {
-        set: {
-          entryComponents: [MdbTooltipComponent],
-        },
       });
       fixture = TestBed.createComponent(TestTooltipComponent2);
       component = fixture.componentInstance;
@@ -140,10 +130,6 @@ describe('MDB Tooltip', () => {
       imports: [MdbTooltipModule],
       declarations: [TestTooltipComponent3],
       teardown: { destroyAfterEach: false },
-    }).overrideModule(BrowserDynamicTestingModule, {
-      set: {
-        entryComponents: [MdbTooltipComponent],
-      },
     });
     fixture = TestBed.createComponent(TestTooltipComponent3);
     component = fixture.componentInstance;
