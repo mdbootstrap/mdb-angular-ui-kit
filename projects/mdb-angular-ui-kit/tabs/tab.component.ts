@@ -3,10 +3,8 @@ import { TemplatePortal } from '@angular/cdk/portal';
 import {
   Component,
   ContentChild,
-  ElementRef,
   Input,
   OnInit,
-  Renderer2,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -14,6 +12,9 @@ import {
 import { Subject } from 'rxjs';
 import { MDB_TAB_CONTENT } from './tab-content.directive';
 import { MDB_TAB_TITLE } from './tab-title.directive';
+
+const SHOW_TRANSITION_DELAY = 150; // Time of transition taken from styles
+const TRANSITION_PADDING = 5; // Value from standard added via executeAfterTransition function
 
 @Component({
   selector: 'mdb-tab',
@@ -50,10 +51,6 @@ export class MdbTabComponent implements OnInit {
 
   @Input() title: string;
 
-  get active(): boolean {
-    return this._active;
-  }
-
   get content(): TemplatePortal | null {
     return this._contentPortal;
   }
@@ -69,26 +66,34 @@ export class MdbTabComponent implements OnInit {
   private _contentPortal: TemplatePortal | null = null;
   private _titlePortal: TemplatePortal | null = null;
 
-  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
-  set active(value: boolean) {
-    if (value) {
-      this._renderer.addClass(this._elementRef.nativeElement, 'show');
-      this._renderer.addClass(this._elementRef.nativeElement, 'active');
-    } else {
-      this._renderer.removeClass(this._elementRef.nativeElement, 'show');
-      this._renderer.removeClass(this._elementRef.nativeElement, 'active');
-    }
+  get active(): boolean {
+    return this._active;
+  }
 
-    this._active = value;
+  set active(value: boolean) {
+    this._active = coerceBooleanProperty(value);
     this.activeStateChange$.next(value);
   }
+
   private _active = false;
 
-  constructor(
-    private _elementRef: ElementRef,
-    private _renderer: Renderer2,
-    private _vcr: ViewContainerRef
-  ) {}
+  get show(): boolean {
+    return this._show;
+  }
+
+  set show(value: boolean) {
+    // We use setTimeout to apply delay for setting show class to reproduce standard library where
+    // show class is applied after a delay to newly activated item via usage of _queueCallback and
+    // executeAfterTransition functions which introduce delay equal to transition time taken from
+    // element styles
+    setTimeout(() => {
+      this._show = coerceBooleanProperty(value);
+    }, SHOW_TRANSITION_DELAY + TRANSITION_PADDING);
+  }
+
+  private _show = true;
+
+  constructor(private _vcr: ViewContainerRef) {}
 
   ngOnInit(): void {
     this._createContentPortal();

@@ -4,6 +4,7 @@
     type="button"
     [attr.aria-expanded]="!_collapsed"
     [attr.aria-controls]="id"
+    [attr.disabled]="disabled ? '' : null"
     [class.collapsed]="_addCollapsedClass"
     (click)="toggle()"
   >

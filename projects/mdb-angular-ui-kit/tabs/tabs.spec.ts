@@ -1,5 +1,5 @@
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbTabComponent } from './tab.component';
@@ -57,6 +57,7 @@ describe('MDB Tabs', () => {
 
     fixture.detectChanges();
     tick();
+    flush();
 
     tabsComponent = component.tabsComponent;
   }));
@@ -68,6 +69,20 @@ describe('MDB Tabs', () => {
 
     expect(tabs[0].active).toBe(false);
     expect(tabs[1].active).toBe(true);
+  });
+
+  it('should set show to true and apply show class on first available tab', () => {
+    fixture.detectChanges();
+
+    const tabs = component.tabComponents.toArray();
+    const tabPanes = fixture.debugElement.queryAll(By.css('.tab-pane'));
+
+    expect(tabs[0].show).toBe(false);
+    expect(tabs[1].show).toBe(true);
+    expect(tabs[2].show).toBe(false);
+    expect(tabPanes[0].nativeElement.classList.contains('show')).toBe(false);
+    expect(tabPanes[1].nativeElement.classList.contains('show')).toBe(true);
+    expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(false);
   });
 
   it('should change active tab on tab button click', () => {
@@ -83,6 +98,42 @@ describe('MDB Tabs', () => {
 
     expect(tabs[2].active).toBe(true);
   });
+
+  it('should apply show class after 155ms delay on tab button click', fakeAsync(() => {
+    fixture.detectChanges();
+    flush();
+
+    const tabs = component.tabComponents.toArray();
+    const tabLinks = fixture.debugElement.queryAll(By.css('.nav-link'));
+    const tabPanes = fixture.debugElement.queryAll(By.css('.tab-pane'));
+
+    expect(tabs[1].active).toBe(true);
+    expect(tabs[1].show).toBe(true);
+    expect(tabPanes[1].nativeElement.classList.contains('show')).toBe(true);
+    expect(tabs[2].active).toBe(false);
+    expect(tabs[2].show).toBe(false);
+    expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(false);
+
+    tabLinks[2].nativeElement.click();
+    fixture.detectChanges();
+
+    expect(tabs[1].active).toBe(false);
+    expect(tabs[1].show).toBe(true);
+    expect(tabPanes[1].nativeElement.classList.contains('show')).toBe(true);
+    expect(tabs[2].active).toBe(true);
+    expect(tabs[2].show).toBe(false);
+    expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(false);
+
+    tick(155);
+    fixture.detectChanges();
+
+    expect(tabs[1].active).toBe(false);
+    expect(tabs[1].show).toBe(false);
+    expect(tabPanes[1].nativeElement.classList.contains('show')).toBe(false);
+    expect(tabs[2].active).toBe(true);
+    expect(tabs[2].show).toBe(true);
+    expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(true);
+  }));
 
   it('should add active class to active tab link', () => {
     fixture.detectChanges();

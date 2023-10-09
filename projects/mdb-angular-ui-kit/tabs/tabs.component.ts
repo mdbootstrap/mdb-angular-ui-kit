@@ -13,7 +13,6 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MdbTabComponent } from './tab.component';
-import { fadeInAnimation } from './tabs.animations';
 
 export class MdbTabChange {
   index: number;
@@ -23,7 +22,6 @@ export class MdbTabChange {
 @Component({
   selector: 'mdb-tabs',
   templateUrl: './tabs.component.html',
-  animations: [fadeInAnimation()],
 })
 export class MdbTabsComponent implements AfterContentInit, OnDestroy {
   @ContentChildren(MdbTabComponent) tabs: QueryList<MdbTabComponent>;
@@ -80,15 +78,9 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
 
   private _selectedIndex: number;
 
-  animationState = false;
-
   @Output() activeTabChange: EventEmitter<MdbTabChange> = new EventEmitter<MdbTabChange>();
 
   constructor() {}
-
-  onAnimationDone(): void {
-    this.animationState = false;
-  }
 
   ngAfterContentInit(): void {
     const firstActiveTabIndex = this.tabs.toArray().findIndex((tab) => !tab.disabled);
@@ -107,14 +99,6 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
     });
   }
 
-  private _runAnimation(): void {
-    this.animationState = false;
-
-    setTimeout(() => {
-      this.animationState = true;
-    }, 0);
-  }
-
   setActiveTab(index: number): void {
     const activeTab = this.tabs.toArray()[index];
 
@@ -123,10 +107,7 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
     }
 
     this.tabs.forEach((tab) => (tab.active = tab === activeTab));
-
-    if (activeTab.fade && this._selectedIndex !== index) {
-      this._runAnimation();
-    }
+    this.tabs.forEach((tab) => (tab.show = tab === activeTab));
 
     this._selectedIndex = index;
 

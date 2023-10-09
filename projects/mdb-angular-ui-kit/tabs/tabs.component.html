@@ -32,18 +32,15 @@
   </li>
 </ul>
 
-<div
-  class="tab-content {{ contentColClass }}"
->
+<div class="tab-content {{ contentColClass }}">
   <!-- <ng-content select="mdb-tab"></ng-content> -->
   <ng-container *ngFor="let tab of tabs">
     <div
-      [@fadeIn]="animationState"
-      (@fadeIn.done)="onAnimationDone()"
       class="tab-pane"
       [ngClass]="{
-        show: tab.active,
-        active: tab.active
+        fade: tab.fade,
+        active: tab.active,
+        show: tab.show
       }"
     >
       <ng-template mdbTabPortalOutlet [tab]="tab"></ng-template>

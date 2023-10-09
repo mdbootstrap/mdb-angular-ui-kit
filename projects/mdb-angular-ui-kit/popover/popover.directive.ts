@@ -31,6 +31,7 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 export class MdbPopoverDirective implements OnInit, OnDestroy {
   @Input() mdbPopover: TemplateRef<any> | string = '';
   @Input() mdbPopoverTitle = '';
+  @Input() mdbPopoverData: any;
 
   @Input()
   get popoverDisabled(): boolean {
@@ -214,6 +215,7 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
       this._tooltipRef.instance.content = this.template || this.mdbPopover;
       this._tooltipRef.instance.title = this.mdbPopoverTitle;
       this._tooltipRef.instance.animation = this.animation;
+      this._tooltipRef.instance.context = this.mdbPopoverData;
       this._tooltipRef.instance.animationState = 'visible';
       this._tooltipRef.instance.markForCheck();
 

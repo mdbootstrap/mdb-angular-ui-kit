@@ -15,6 +15,7 @@ import { MdbCollapseDirective } from 'mdb-angular-ui-kit/collapse';
 import { Subject } from 'rxjs';
 import { MDB_ACCORDION_ITEM_BODY } from './accordion-item-content.directive';
 import { MDB_ACCORDION_ITEM_HEADER } from './accordion-item-header.directive';
+import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 let uniqueHeaderId = 0;
 let uniqueId = 0;
@@ -32,6 +33,15 @@ export class MdbAccordionItemComponent implements OnInit {
   _bodyTemplate: TemplateRef<any>;
 
   @ViewChild(MdbCollapseDirective, { static: true }) collapse: MdbCollapseDirective;
+
+  @Input()
+  get disabled(): boolean {
+    return this._disabled;
+  }
+  set disabled(value: boolean) {
+    this._disabled = coerceBooleanProperty(value);
+  }
+  private _disabled = false;
 
   @Input() header: string;
   @Input()
@@ -81,6 +91,10 @@ export class MdbAccordionItemComponent implements OnInit {
   constructor(private _cdRef: ChangeDetectorRef) {}
 
   toggle(): void {
+    if (this.disabled) {
+      return;
+    }
+
     this.collapse.toggle();
   }
 
@@ -115,4 +129,6 @@ export class MdbAccordionItemComponent implements OnInit {
     this._collapsed = true;
     this.itemHidden.emit(this);
   }
+
+  static ngAcceptInputType_disabled: BooleanInput;
 }

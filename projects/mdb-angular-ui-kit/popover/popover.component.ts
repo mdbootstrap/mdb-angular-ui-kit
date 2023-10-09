@@ -24,6 +24,7 @@ export class MdbPopoverComponent {
   @Input() title: string;
   @Input() content: string | TemplateRef<any>;
   @Input() animation: boolean;
+  @Input() context: any;
 
   get isContentTemplate(): boolean {
     return this.content instanceof TemplateRef;

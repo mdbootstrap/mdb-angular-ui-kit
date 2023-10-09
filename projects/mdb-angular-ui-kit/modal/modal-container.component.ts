@@ -227,6 +227,10 @@ export class MdbModalContainerComponent implements OnInit, AfterViewInit, OnDest
         this._renderer.setStyle(this.host, 'overflowX', 'auto');
       }
     }
+
+    if (!isAboveBreakpoint) {
+      this.host.style.height = '';
+    }
   }
 
   _onNonInvasiveModalHidden() {

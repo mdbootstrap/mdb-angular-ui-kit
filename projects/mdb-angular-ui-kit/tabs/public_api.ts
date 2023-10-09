@@ -4,3 +4,4 @@ export { MdbTabTitleDirective } from './tab-title.directive';
 export { MdbTabsComponent } from './tabs.component';
 export { MdbTabsModule } from './tabs.module';
 export { MdbTabPortalOutlet } from './tab-outlet.directive';
+export { MdbTabChange } from './tabs.component';

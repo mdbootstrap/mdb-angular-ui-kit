@@ -7,7 +7,7 @@ const ANIMATION_TIME = 350; // animation time from collapse directive
 
 const template = `
 <mdb-accordion [multiple]="multiple" [flush]="flush" [borderless]="borderless">
-    <mdb-accordion-item>
+    <mdb-accordion-item [disabled]="disabled">
         <ng-template mdbAccordionItemHeader>Accordion Item #1</ng-template>
         <ng-template mdbAccordionItemBody>
             <strong>This is the first item's accordion body.</strong> It is hidden by default,
@@ -54,6 +54,7 @@ class TestAccordionComponent {
   multiple = false;
   flush = false;
   borderless = false;
+  disabled = false;
 
   get accordionItems(): MdbAccordionItemComponent[] {
     return this._accordionItems.toArray();
@@ -215,5 +216,25 @@ describe('MDB Accordion', () => {
     fixture.detectChanges();
 
     expect(hiddenSpy).toHaveBeenCalled();
+  }));
+
+  it('should not toggle item on click when disabled input is set to true', fakeAsync(() => {
+    component.disabled = true;
+    fixture.detectChanges();
+
+    const item = document.querySelector('.accordion-item') as HTMLElement;
+    const button = item.querySelector('.accordion-button') as HTMLButtonElement;
+    const itemCollapse = item.querySelector('.collapse') as HTMLDivElement;
+
+    expect(button.hasAttribute('disabled')).toBe(true);
+    expect(button.classList).toContain('collapsed');
+    expect(itemCollapse.classList).not.toContain('show');
+
+    button.click();
+    fixture.detectChanges();
+    flush();
+
+    expect(button.classList).toContain('collapsed');
+    expect(itemCollapse.classList).not.toContain('show');
   }));
 });

@@ -5,9 +5,11 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   Output,
+  Renderer2,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -30,6 +32,8 @@ import { animate, state, style, transition, trigger, AnimationEvent } from '@ang
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
+export type MdbDropdownPositionClass = 'dropdown' | 'dropup' | 'dropstart' | 'dropend';
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbDropdown]',
@@ -48,7 +52,28 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   @ViewChild('dropdownTemplate') _template: TemplateRef<any>;
   @ContentChild(MdbDropdownToggleDirective, { read: ElementRef }) _dropdownToggle: ElementRef;
-  @ContentChild(MdbDropdownMenuDirective, { read: ElementRef }) _dropdownMenu: ElementRef;
+  @ContentChild(MdbDropdownMenuDirective) _dropdownMenu: MdbDropdownMenuDirective;
+
+  @Input()
+  get positionClass(): MdbDropdownPositionClass {
+    return this._positionClass;
+  }
+
+  set positionClass(newClass: MdbDropdownPositionClass) {
+    const isSameClass = this.host.classList.contains(newClass);
+    if (this._positionClass !== newClass && !isSameClass) {
+      const positionClasses = ['dropdown', 'dropup', 'dropstart', 'dropend'];
+      positionClasses.forEach((className) => {
+        this._renderer.removeClass(this.host, className);
+      });
+      this._renderer.addClass(this.host, newClass);
+    }
+
+    if (this._overlayRef) {
+      this._updateOverlay();
+    }
+  }
+  private _positionClass: MdbDropdownPositionClass;
 
   @Input()
   get animation(): boolean {
@@ -82,6 +107,10 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
 
   readonly _destroy$: Subject<void> = new Subject<void>();
 
+  get host(): HTMLElement {
+    return this._elementRef.nativeElement;
+  }
+
   _breakpointSubscription: any;
   _animationState = 'hidden';
 
@@ -91,9 +120,10 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     private _elementRef: ElementRef,
     private _vcr: ViewContainerRef,
     private _breakpointObserver: BreakpointObserver,
-    private _cdRef: ChangeDetectorRef
+    private _cdRef: ChangeDetectorRef,
+    private _renderer: Renderer2
   ) {
-     this._breakpoints = {
+    this._breakpoints = {
       isSm: this._breakpointObserver.isMatched('(min-width: 576px)'),
       isMd: this._breakpointObserver.isMatched('(min-width: 768px)'),
       isLg: this._breakpointObserver.isMatched('(min-width: 992px)'),
@@ -102,9 +132,9 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     };
   }
 
-
   ngAfterContentInit(): void {
     this._bindDropdownToggleClick();
+    this._listenToMenuPositionClassChange();
   }
 
   ngOnDestroy(): void {
@@ -121,6 +151,16 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     fromEvent(this._dropdownToggle.nativeElement, 'click')
       .pipe(takeUntil(this._destroy$))
       .subscribe(() => this.toggle());
+  }
+
+  private _listenToMenuPositionClassChange(): void {
+    this._dropdownMenu.menuPositionClassChanged
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(() => this._updateOverlay());
+  }
+
+  private _updateOverlay() {
+    this._overlayRef.updatePositionStrategy(this._createPositionStrategy());
   }
 
   private _createOverlayConfig(): OverlayConfig {
@@ -146,16 +186,16 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   }
 
   private _getPosition(): ConnectedPosition[] {
-    this._isDropUp = this._elementRef.nativeElement.classList.contains('dropup');
-    this._isDropStart = this._elementRef.nativeElement.classList.contains('dropstart');
-    this._isDropEnd = this._elementRef.nativeElement.classList.contains('dropend');
+    this._isDropUp = this.host.classList.contains('dropup');
+    this._isDropStart = this.host.classList.contains('dropstart');
+    this._isDropEnd = this.host.classList.contains('dropend');
     this._isDropdownMenuEnd =
-      this._dropdownMenu.nativeElement.classList.contains('dropdown-menu-end');
+      this._dropdownMenu.elementRef.nativeElement.classList.contains('dropdown-menu-end');
     this._xPosition = this._isDropdownMenuEnd ? 'end' : 'start';
 
     const regex = new RegExp(/dropdown-menu-(sm|md|lg|xl|xxl)-(start|end)/, 'g');
 
-    const responsiveClass = this._dropdownMenu.nativeElement.className.match(regex);
+    const responsiveClass = this._dropdownMenu.elementRef.nativeElement.className.match(regex);
 
     if (responsiveClass) {
       this._subscribeBrakpoints();
@@ -250,7 +290,7 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     return fromEvent(document, 'click').pipe(
       filter((event: MouseEvent) => {
         const target = event.target as HTMLElement;
-        const isInsideMenu = this._dropdownMenu.nativeElement.contains(target);
+        const isInsideMenu = this._dropdownMenu.elementRef.nativeElement.contains(target);
         const notTogglerIcon = !this._dropdownToggle.nativeElement.contains(target);
         const notCustomContent =
           !isInsideMenu || (target.classList && target.classList.contains('dropdown-item'));
@@ -354,10 +394,10 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
 
   private _handleKeyboardNavigation(event: KeyboardEvent) {
     const items: HTMLElement[] = Array.from(
-      this._dropdownMenu.nativeElement.querySelectorAll('.dropdown-item')
+      this._dropdownMenu.elementRef.nativeElement.querySelectorAll('.dropdown-item')
     );
     const key = event.key;
-    const activeElement = this._dropdownMenu.nativeElement.ownerDocument.activeElement;
+    const activeElement = this._dropdownMenu.elementRef.nativeElement.ownerDocument.activeElement;
 
     if (items.length === 0) {
       return;

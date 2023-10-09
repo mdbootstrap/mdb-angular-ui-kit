@@ -1,3 +1,72 @@
+## 5.1.0 (09.10.2023)
+
+### Fixes and improvements:
+
+- [Datatable](https://mdbootstrap.com/docs/angular/data/datatables/)
+  - Added missing `cursor: pointer` styles to clickable rows
+  - Resolved problems with pagination width styles
+  - Resolved problems with page number calculation in pagination
+- [Sidenav](https://mdbootstrap.com/docs/angular/navigation/sidenav/)
+  - Resolved problems with accessibility
+  - Removed the need to define template variables in HTML template
+  - Adjusted padding in slim version to correctly display link icon and arrow
+- [Tabs](https://mdbootstrap.com/docs/angular/navigation/tabs/)
+  - Improved animation smoothness
+  - Added `MdbTabChange` event type to public exports
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/)
+  - Resolved problem with `disabled` input
+  - Resolved problem with disabling and enabling component via Reactive Forms methods
+  - Removed border styles from focused buttons
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/)
+  - Resolved problem with border radius styles
+  - Resolved problem with disabling and enabling component via Reactive Forms methods
+- [Autocomplete](https://mdbootstrap.com/docs/angular/forms/autocomplete/)
+  - Removed auto highlight from first option
+  - Resolved problems with input and dropdown keyboard navigation when using `HOME` and `END` keys
+- [Multi range](https://mdbootstrap.com/docs/angular/forms/multi-range-slider/)
+  - Resolved problem with component render in apps using Angular 16
+  - Resolved problem with unhandled `endDrag` event
+- [Onboarding](https://mdbootstrap.com/docs/angular/plugins/onboarding/)
+  - Resolved problem with component render in apps using Angular 16
+  - Resolved problems with popover styles
+  - Fixed event types
+  - Fixed event emitted when jumping to next step
+- [Treeview](/docs/angular/plugins/tree-view/)
+  - Improved animation smoothness
+  - Added correct types to public events
+  - Resolved problem with `accordion` option
+  - Resolved problem with `openOnClick` option
+  - Improved accessibility
+- Resolved problem with styles of anchor elements used as [floating buttons](https://mdbootstrap.com/docs/angular/components/buttons/#section-floating)
+- Resolved problem with adding new [Chips](https://mdbootstrap.com/docs/angular/components/chips/) on blur event
+- Resolved problem with [Dropdown](https://mdbootstrap.com/docs/angular/components/dropdowns/) menu position
+- Fixed focus styles in [Select](https://mdbootstrap.com/docs/angular/forms/select/) with `form-white` class
+- Resolved problem with position of bottom frame [non-invasive Modal](https://mdbootstrap.com/docs/angular/components/modal/#section-non-invasive-modal)
+- Fixed type of `infiniteScrollCompleted` event in [Infinite scroll](https://mdbootstrap.com/docs/angular/methods/infinite-scroll/)
+- Added mechanism to handle dynamic updates in [Input mask](https://mdbootstrap.com/docs/angular/plugins/input-mask/) plugin
+- Resolved problems with [Color picker](https://mdbootstrap.com/docs/angular/plugins/color-picker/) plugin styles and slider in Firefox browser
+- Resolved problem with [Parallax](https://mdbootstrap.com/docs/angular/plugins/parallax/) plugin render in apps using Angular 16</li>
+- Fixed event types and unhandled events in [Drag and drop](https://mdbootstrap.com/docs/angular/plugins/drag-and-drop/) plugin
+- Resolved problem with reverting lists transformation in [WYSIWYG editor](https://mdbootstrap.com/docs/angular/plugins/wysiwyg-editor/) plugin
+- Resolved problem with `changeView` method in [Calendar](https://mdbootstrap.com/docs/angular/plugins/calendar/) plugin
+- Added types to public exports in [Data parser](https://mdbootstrap.com/docs/angular/plugins/data-parser/) plugin
+
+### New:
+
+- Added new [Treetable](https://mdbootstrap.com/docs/angular/plugins/treetable/) plugin
+- Added mechanism that allow to add context for `ng-template` template in [Popover](https://mdbootstrap.com/docs/angular/components/popovers/)
+- Added new `showAllEntries` option to [Datatable pagination](https://mdbootstrap.com/docs/angular/data/datatables/)
+- Added new `filterFn` option to [Select](https://mdbootstrap.com/docs/angular/forms/select/)
+- Added new directive that allow to create a custom header in [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/)
+- Added new `positionClass` and `menuPositionClass` options to [Dropdown](https://mdbootstrap.com/docs/angular/components/dropdowns/)
+- Added new `disabled` input that allow to disable [Accordion](https://mdbootstrap.com/docs/angular/components/accordion/)Accordion</a> items
+- Added mechanism that allow to define custom icon template with `ng-template` in [Datepicker](/docs/angular/forms/datepicker/) and [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/)
+- Added mechanism that allow to define custom header template with `ng-template` in [Stepper](https://mdbootstrap.com/docs/angular/components/stepper/)
+- Added new `$link-decoration` and `--mdb-link-decoration` variables to make it easier to customize `text-decoration` styles for anchor elements
+- Added new inputs for disabling specific features in [Calendar](https://mdbootstrap.com/docs/angular/plugins/calendar/) plugin
+
+---
+
 ## 5.0.0 (26.06.2023)
 
 This version requires Angular v16. Follow the [Angular update guide](https://update.angular.io/?l=3&v=15.0-16.0) to migrate your project to Angular 16.

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { MdbPopoverModule } from './index';
 import { MdbPopoverDirective } from './popover.directive';
@@ -152,6 +152,33 @@ describe('MDB Popover', () => {
       expect(directive.show).not.toHaveBeenCalled();
     });
   });
+
+  describe('custom template', () => {
+    let fixture: ComponentFixture<TestPopoverComponent4>;
+    let element: any;
+    let component: any;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [MdbPopoverModule, NoopAnimationsModule],
+        declarations: [TestPopoverComponent4],
+        teardown: { destroyAfterEach: false },
+      });
+      fixture = TestBed.createComponent(TestPopoverComponent4);
+      component = fixture.componentInstance;
+      element = fixture.nativeElement;
+      fixture.detectChanges();
+    });
+
+    it('should set custom content with context data', fakeAsync(() => {
+      const buttonEl = element.querySelector('button');
+      buttonEl.click();
+      fixture.detectChanges();
+      flush();
+      const popoverBody = document.querySelector('.popover-body');
+      expect(popoverBody.textContent).toBe('Current user: John Doe');
+    }));
+  });
 });
 
 @Component({
@@ -190,3 +217,21 @@ class TestPopoverComponent2 {}
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestPopoverComponent3 {}
+
+@Component({
+  selector: 'mdb-test-popover4',
+  template: `<button
+      type="button"
+      class="btn btn-lg btn-danger"
+      [mdbPopover]="template"
+      mdbPopoverTitle="Popover custom template"
+      [mdbPopoverData]="{ person: { name: 'John', surname: 'Doe' } }"
+    >
+      Click to toggle popover
+    </button>
+    <ng-template #template let-person="person"
+      >Current user: {{ person.name }} {{ person.surname }}</ng-template
+    >`,
+})
+// eslint-disable-next-line @angular-eslint/component-class-suffix
+class TestPopoverComponent4 {}
