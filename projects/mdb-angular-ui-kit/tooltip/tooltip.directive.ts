@@ -178,20 +178,22 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
     this._createOverlay();
 
     this._showTimeout = setTimeout(() => {
-      const tooltipPortal = new ComponentPortal(MdbTooltipComponent);
+      if (!this._overlayRef.hasAttached()) {
+        const tooltipPortal = new ComponentPortal(MdbTooltipComponent);
 
-      this.tooltipShow.emit(this);
-      this._open = true;
+        this.tooltipShow.emit(this);
+        this._open = true;
 
-      this._tooltipRef = this._overlayRef.attach(tooltipPortal);
-      this._tooltipRef.instance.title = this.mdbTooltip;
-      this._tooltipRef.instance.html = this.html;
-      this._tooltipRef.instance.animation = this.animation;
-      this._tooltipRef.instance.animationState = 'visible';
+        this._tooltipRef = this._overlayRef.attach(tooltipPortal);
+        this._tooltipRef.instance.title = this.mdbTooltip;
+        this._tooltipRef.instance.html = this.html;
+        this._tooltipRef.instance.animation = this.animation;
+        this._tooltipRef.instance.animationState = 'visible';
 
-      this._tooltipRef.instance.markForCheck();
+        this._tooltipRef.instance.markForCheck();
 
-      this.tooltipShown.emit(this);
+        this.tooltipShown.emit(this);
+      }
     }, this.delayShow);
   }
 

@@ -4,10 +4,12 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
+  Inject,
   Input,
   OnDestroy,
   OnInit,
   Output,
+  PLATFORM_ID,
   QueryList,
   Renderer2,
 } from '@angular/core';
@@ -16,6 +18,7 @@ import { MdbScrollspyService } from './scrollspy.service';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -52,6 +55,8 @@ export class MdbScrollspyDirective implements OnInit, AfterContentInit, OnDestro
 
   private _collapsible = false;
 
+  private _isBrowser: boolean;
+
   @Output() activeLinkChange: EventEmitter<any> = new EventEmitter<any>();
 
   activeSub: Subscription;
@@ -59,8 +64,11 @@ export class MdbScrollspyDirective implements OnInit, AfterContentInit, OnDestro
   constructor(
     private scrollSpyService: MdbScrollspyService,
     private _elementRef: ElementRef,
-    private _renderer: Renderer2
-  ) {}
+    private _renderer: Renderer2,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this._isBrowser = isPlatformBrowser(platformId);
+  }
 
   get host(): HTMLElement {
     return this._elementRef.nativeElement;
@@ -69,7 +77,10 @@ export class MdbScrollspyDirective implements OnInit, AfterContentInit, OnDestro
   collapsibleElementHeight = 0;
 
   ngOnInit(): void {
-    this.collapsibleElementHeight = this.host.getBoundingClientRect().height;
+    if (this._isBrowser) {
+      this.collapsibleElementHeight = this.host.getBoundingClientRect().height;
+    }
+
     this.activeSub = this.scrollSpyService.active$
       .pipe(takeUntil(this._destroy$), distinctUntilChanged())
       .subscribe((activeLink) => {

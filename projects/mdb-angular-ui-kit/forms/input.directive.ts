@@ -41,9 +41,12 @@ export class MdbInputDirective
   private _color = '';
 
   ngAfterViewInit() {
-    this._color = getComputedStyle(this._elementRef.nativeElement).color;
-    if (this._elementRef.nativeElement.type === 'date') {
-      this._updateTextColorForDateType();
+    if (typeof getComputedStyle === 'function') {
+      this._color = getComputedStyle(this._elementRef.nativeElement).color;
+
+      if (this._elementRef.nativeElement.type === 'date') {
+        this._updateTextColorForDateType();
+      }
     }
 
     this._autofill.monitor(this.input).subscribe((event: AutofillEvent) => {

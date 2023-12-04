@@ -337,6 +337,15 @@
     }
   }
 
+  .select-lg ~ .form-label {
+    padding-top: $form-label-padding-top-lg;
+  }
+
+  .select-sm ~ .form-label {
+    padding-top: $form-label-padding-top-sm;
+    font-size: $form-label-font-size-sm;
+  }
+
   &.form-white {
     .form-control {
       color: $form-white-input-color;

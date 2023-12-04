@@ -5,7 +5,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   OnDestroy,
   Output,
@@ -13,6 +12,8 @@ import {
   TemplateRef,
   ViewChild,
   ViewContainerRef,
+  booleanAttribute,
+  numberAttribute,
 } from '@angular/core';
 import {
   ConnectedPosition,
@@ -30,7 +31,6 @@ import { MdbDropdownToggleDirective } from './dropdown-toggle.directive';
 import { MdbDropdownMenuDirective } from './dropdown-menu.directive';
 import { animate, state, style, transition, trigger, AnimationEvent } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 export type MdbDropdownPositionClass = 'dropdown' | 'dropup' | 'dropstart' | 'dropend';
 
@@ -54,11 +54,15 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   @ContentChild(MdbDropdownToggleDirective, { read: ElementRef }) _dropdownToggle: ElementRef;
   @ContentChild(MdbDropdownMenuDirective) _dropdownMenu: MdbDropdownMenuDirective;
 
+  @Input({ transform: booleanAttribute }) animation = true;
+  @Input({ transform: booleanAttribute }) closeOnEsc = true;
+  @Input({ transform: booleanAttribute }) closeOnItemClick = true;
+  @Input({ transform: booleanAttribute }) closeOnOutsideClick = true;
+  @Input({ transform: numberAttribute }) offset = 0;
   @Input()
   get positionClass(): MdbDropdownPositionClass {
     return this._positionClass;
   }
-
   set positionClass(newClass: MdbDropdownPositionClass) {
     const isSameClass = this.host.classList.contains(newClass);
     if (this._positionClass !== newClass && !isSameClass) {
@@ -68,27 +72,10 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
       });
       this._renderer.addClass(this.host, newClass);
     }
-
-    if (this._overlayRef) {
-      this._updateOverlay();
-    }
+    this._updateOverlay();
   }
   private _positionClass: MdbDropdownPositionClass;
-
-  @Input()
-  get animation(): boolean {
-    return this._animation;
-  }
-  set animation(value: boolean) {
-    this._animation = coerceBooleanProperty(value);
-  }
-  private _animation = true;
-
-  @Input() offset = 0;
-  @Input() closeOnOutsideClick = true;
-  @Input() closeOnItemClick = true;
-  @Input() closeOnEsc = true;
-  @Input() withPush = false;
+  @Input({ transform: booleanAttribute }) withPush = false;
 
   @Output() dropdownShow: EventEmitter<MdbDropdownDirective> = new EventEmitter();
   @Output() dropdownShown: EventEmitter<MdbDropdownDirective> = new EventEmitter();
@@ -160,7 +147,7 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   }
 
   private _updateOverlay() {
-    this._overlayRef.updatePositionStrategy(this._createPositionStrategy());
+    this._overlayRef?.updatePositionStrategy(this._createPositionStrategy());
   }
 
   private _createOverlayConfig(): OverlayConfig {
@@ -338,7 +325,7 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
           this._breakpoints[key] = newBreakpoint;
 
           if (this._open) {
-            this._overlayRef.updatePositionStrategy(this._createPositionStrategy());
+            this._updateOverlay();
           }
         });
       });
@@ -450,6 +437,4 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
       this.show();
     }
   }
-
-  static ngAcceptInputType_animation: BooleanInput;
 }

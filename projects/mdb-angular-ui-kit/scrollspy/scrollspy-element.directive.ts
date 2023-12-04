@@ -6,8 +6,10 @@ import {
   NgZone,
   Input,
   AfterViewInit,
+  Inject,
 } from '@angular/core';
 import { MdbScrollspyService } from './scrollspy.service';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -40,7 +42,8 @@ export class MdbScrollspyElementDirective implements OnInit, AfterViewInit {
     private _elementRef: ElementRef,
     private renderer: Renderer2,
     private ngZone: NgZone,
-    private scrollSpyService: MdbScrollspyService
+    private scrollSpyService: MdbScrollspyService,
+    @Inject(DOCUMENT) private _document: any
   ) {}
 
   isElementInViewport(): boolean {
@@ -87,7 +90,7 @@ export class MdbScrollspyElementDirective implements OnInit, AfterViewInit {
   }
 
   private _getClosestEl(el: any, selector: string): HTMLElement | null {
-    for (; el && el !== document; el = el.parentNode) {
+    for (; el && el !== this._document; el = el.parentNode) {
       if (el.matches && el.matches(selector)) {
         return el;
       }

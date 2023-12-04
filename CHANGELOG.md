@@ -1,3 +1,28 @@
+## 5.2.0 (04.12.2023)
+
+### Fixes and improvements:
+
+- Resolved problem with components rendering when using Server Side Rendering
+- Resolved problem with overlay when using `menuPositionClass` in [Datatable](https://mdbootstrap.com/docs/angular/components/dropdowns/)
+- Replaced hardcoded `padding-left` value in [Sidenav](https://mdbootstrap.com/docs/angular/navigation/sidenav/) link with a value from CSS variable
+- Replaced hardcoded `box-shadow`, `border-color` and `background-color` values in [Buttons](https://mdbootstrap.com/docs/angular/components/buttons/) with a values from CSS variables
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/)
+  - Fixed the button press behavior to consider the duration of the press
+  - Removed the default scroll effect from the arrow keydown events in inline mode
+- Fixed events types for `opened` and `closed` events in [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/)
+- Resolved problem with initial value in [Rating](https://mdbootstrap.com/docs/angular/components/rating)
+- [Multi Range Slider](https://mdbootstrap.com/docs/angular/forms/multi-range-slider/)
+  - Resolved problem with thumbs position updates on `ngModel` or `formControl` value changes
+  - Added thumbs position constraints so that the position of a given thumb is limited by its counterpart
+- Resolved problem with the `Host already has a portal attached` error in [Wysiwyg](https://mdbootstrap.com/docs/angular/plugins/wysiwyg-editor/)
+
+### New:
+
+- A new `MdbSidenavMenuDirective` directive has been added to [Sidenav](https://mdbootstrap.com/docs/angular/navigation/sidenav/) allowing to create multiple menus within one component
+- A new `size` input has been added to [Select](https://mdbootstrap.com/docs/angular/orms/select/) allowing to change input size to `sm` or `lg`
+
+---
+
 ## 5.1.0 (09.10.2023)
 
 ### Fixes and improvements:
@@ -45,7 +70,7 @@
 - Fixed type of `infiniteScrollCompleted` event in [Infinite scroll](https://mdbootstrap.com/docs/angular/methods/infinite-scroll/)
 - Added mechanism to handle dynamic updates in [Input mask](https://mdbootstrap.com/docs/angular/plugins/input-mask/) plugin
 - Resolved problems with [Color picker](https://mdbootstrap.com/docs/angular/plugins/color-picker/) plugin styles and slider in Firefox browser
-- Resolved problem with [Parallax](https://mdbootstrap.com/docs/angular/plugins/parallax/) plugin render in apps using Angular 16</li>
+- Resolved problem with [Parallax](https://mdbootstrap.com/docs/angular/plugins/parallax/) plugin render in apps using Angular 16
 - Fixed event types and unhandled events in [Drag and drop](https://mdbootstrap.com/docs/angular/plugins/drag-and-drop/) plugin
 - Resolved problem with reverting lists transformation in [WYSIWYG editor](https://mdbootstrap.com/docs/angular/plugins/wysiwyg-editor/) plugin
 - Resolved problem with `changeView` method in [Calendar](https://mdbootstrap.com/docs/angular/plugins/calendar/) plugin
