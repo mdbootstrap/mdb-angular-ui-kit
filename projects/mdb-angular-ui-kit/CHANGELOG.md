@@ -1,3 +1,40 @@
+## 6.0.0 (15.01.2024)
+
+This version requires Angular v17. Follow the [Angular Update Guide](https://update.angular.io/?l=3&v=16.0-17.0) to migrate your project to Angular 17.
+
+### Breaking changes:
+  
+- Updated Angular to v17, this version is required in MDB Angular v6
+- [Calendar](https://mdbootstrap.com/docs/angular/plugins/calendar/) - changed type of `defaultView` input from `string` to `MdbCalendarView`
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/) - changed type of `options` input from `any` to `MdbDatepickerOptions`
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/)
+  - Changed type of `options` input from `Options` to `MdbTimepickerOptions` and made all parameters optional
+  - Changed `SelectedTime` type name to `MdbTimepickerSelectedTime` and added this type to public exports
+- [Popover](https://mdbootstrap.com/docs/angular/components/popover/) - removed unused `template` input
+- [Sidenav](https://mdbootstrap.com/docs/angular/navigation/sidenav/)
+  - Changed return type of all events from `MdbSidenavComponent` to `void`
+  - Removed redundant `li` element from `MdbSidenavItemComponent` template
+- [Transfer](https://mdbootstrap.com/docs/angular/plugins/transfer/)
+  - Changed `onSearchOutput` event name to `searchOutput`
+  - Changed `selectOutput` event name to `selectOutput`
+  - Changed `onChange` event name to `listChange`
+  - Changed `onSearch` event name to `itemSearch`
+  - Changed `onSelect` event name to `itemSelect`
+        
+### Fixes and improvements:
+  
+- [Sidenav](https://mdbootstrap.com/docs/angular/navigation/sidenav/) - removed height animation transition
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/) - blocked input clearing in disabled component
+- [Input fields](https://mdbootstrap.com/docs/angular/forms/input-fields/) - resolved problem with default label position in all inputs with built-in placeholder (like `datetime-local` or `time`)
+- [Lightbox](https://mdbootstrap.com/docs/angular/components/lightbox/) - resolved problem with component removal from DOM after using browser's back button
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/) - resolved problem with font size in landscape view
+
+### New fetures:
+  
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/) - added new `inputId` and `inputFilterId` inputs that allow to declare ids for input elements
+
+---
+  
 ## 5.2.0 (04.12.2023)
 
 ### Fixes and improvements:

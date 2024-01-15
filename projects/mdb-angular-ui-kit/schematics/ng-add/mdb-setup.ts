@@ -2,7 +2,6 @@ import { SchematicContext, Tree, chain } from '@angular-devkit/schematics';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 import {
-  getAppModulePath,
   getProjectMainFile,
   hasNgModuleImport,
   addModuleImportToRootModule,
@@ -10,7 +9,14 @@ import {
   getProjectIndexFiles,
   appendHtmlElementToHead,
   getProjectStyleFile,
+  isStandaloneApp,
+  getAppModulePath,
 } from '@angular/cdk/schematics';
+import {
+  addFunctionalProvidersToStandaloneBootstrap,
+  callsProvidersFunction,
+  importsProvidersFrom,
+} from '@schematics/angular/private/components';
 import { Schema } from './schema';
 
 const mdbModules = [
@@ -31,7 +37,7 @@ const mdbModules = [
   { name: 'MdbValidationModule', path: 'mdb-angular-ui-kit/validation'},
 ];
 
-// tslint:disable-next-line: space-before-function-paren
+// eslint-disable-next-line space-before-function-paren
 export default function (options: Schema): any {
   return async (tree: Tree) => {
     const workspace: any = await getWorkspace(tree);
@@ -55,6 +61,11 @@ function addMdbModulesImports(options: Schema): any {
   return async (tree: Tree) => {
     const workspace: any = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
+    const mainFile = getProjectMainFile(project);
+
+    if (isStandaloneApp(tree, mainFile)) {
+      return;
+    }
 
     if (options.modules) {
       mdbModules.forEach((module) => {
@@ -70,26 +81,76 @@ function addAngularAnimationsModule(options: Schema): any {
   return async (tree: Tree, context: SchematicContext) => {
     const workspace: any = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace, options.project);
-    const appModulePath = getAppModulePath(tree, getProjectMainFile(project));
-    const browserAnimationModule = 'BrowserAnimationsModule';
-    const animationsModulePath = '@angular/platform-browser/animations';
-    const noopAnimationModule = 'NoopAnimationsModule';
+    const mainFile = getProjectMainFile(project);
 
-    if (options.animations) {
-      if (hasNgModuleImport(tree, appModulePath, noopAnimationModule)) {
-        context.logger.error(
-          `Could not add ${browserAnimationModule} because ${noopAnimationModule} is already added`
-        );
-        return;
-      }
-
-      addModuleImportToRootModule(tree, browserAnimationModule, animationsModulePath, project);
-    } else if (!hasNgModuleImport(tree, appModulePath, noopAnimationModule)) {
-      addModuleImportToRootModule(tree, noopAnimationModule, animationsModulePath, project);
+    if (isStandaloneApp(tree, mainFile)) {
+      addAngularAnimationsForStandaloneApp(options, tree, context, mainFile);
+    } else {
+      addAngularAnimationsForNonStandaloneApp(options, tree, context, mainFile, project);
     }
 
     return tree;
   };
+}
+
+function addAngularAnimationsForStandaloneApp(
+  options: Schema,
+  tree: Tree,
+  context: SchematicContext,
+  mainFile: string
+): any {
+  const animationsProvider = 'provideAnimations';
+  const noopAnimationsProvider = 'provideNoopAnimations';
+  const animationsProvidersPath = '@angular/platform-browser/animations';
+
+  if (options.animations) {
+    if (callsProvidersFunction(tree, mainFile, noopAnimationsProvider)) {
+      context.logger.error(
+        `Could not add ${animationsProvider} because ${noopAnimationsProvider} is already added`
+      );
+      return;
+    } else {
+      addFunctionalProvidersToStandaloneBootstrap(
+        tree,
+        mainFile,
+        animationsProvider,
+        animationsProvidersPath
+      );
+    }
+  } else if (!options.animations && !importsProvidersFrom(tree, mainFile, animationsProvider)) {
+    addFunctionalProvidersToStandaloneBootstrap(
+      tree,
+      mainFile,
+      noopAnimationsProvider,
+      animationsProvidersPath
+    );
+  }
+}
+
+function addAngularAnimationsForNonStandaloneApp(
+  options: Schema,
+  tree: Tree,
+  context: SchematicContext,
+  mainFile: string,
+  project: any
+): any {
+  const browserAnimationModule = 'BrowserAnimationsModule';
+  const noopAnimationModule = 'NoopAnimationsModule';
+  const animationsModulePath = '@angular/platform-browser/animations';
+  const appModule = getAppModulePath(tree, mainFile);
+
+  if (options.animations) {
+    if (hasNgModuleImport(tree, appModule, noopAnimationModule)) {
+      context.logger.error(
+        `Could not add ${browserAnimationModule} because ${noopAnimationModule} is already added`
+      );
+      return;
+    }
+
+    addModuleImportToRootModule(tree, browserAnimationModule, animationsModulePath, project);
+  } else if (!options.animations && !hasNgModuleImport(tree, appModule, noopAnimationModule)) {
+    addModuleImportToRootModule(tree, noopAnimationModule, animationsModulePath, project);
+  }
 }
 
 function addRobotoFontToIndexHtml(options: Schema): any {
@@ -145,10 +206,7 @@ function addStylesImports(options: Schema): any {
 
     if (options.fontAwesome) {
       newContent =
-        `@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';\n` +
-        `@import '@fortawesome/fontawesome-free/scss/solid.scss';\n` +
-        `@import '@fortawesome/fontawesome-free/scss/regular.scss';\n` +
-        `@import '@fortawesome/fontawesome-free/scss/brands.scss';\n \n` +
+        `@import '@fortawesome/fontawesome-free/css/all.css';\n` +
         `@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';\n`;
     } else {
       newContent = `@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';\n`;
@@ -205,16 +263,6 @@ function updateAppComponentContent(): any {
 
     const fileContent = buffer.toString();
 
-    const defaultContent =
-      `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n` +
-      `<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\n` +
-      `<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\n` +
-      `<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->\n` +
-      `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n` +
-      `<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->\n` +
-      `<!-- * * * * * * * to get started with your project! * * * * * * * * -->\n` +
-      `<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\n`;
-
     const newContent =
       `<div class="container">\n` +
       `  <div class="d-flex justify-content-center align-items-center" style="height: 100vh">\n` +
@@ -241,7 +289,10 @@ function updateAppComponentContent(): any {
       `</div>`;
 
     const hasNewContent = fileContent.includes(newContent);
-    const hasDefaultContent = fileContent.includes(defaultContent);
+    const hasDefaultContent =
+      fileContent.includes('Delete the template below') &&
+      fileContent.includes('to get started with your project!') &&
+      fileContent.includes('Congratulations! Your app is running.');
 
     if (hasNewContent || !hasDefaultContent) {
       return;

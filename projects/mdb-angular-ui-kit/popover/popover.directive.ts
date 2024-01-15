@@ -8,6 +8,8 @@ import {
   OnInit,
   Output,
   TemplateRef,
+  booleanAttribute,
+  numberAttribute,
 } from '@angular/core';
 import {
   ConnectedPosition,
@@ -20,7 +22,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { MdbPopoverComponent } from './popover.component';
 import { fromEvent, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
-import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { MdbPopoverPosition } from './popover.types';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -29,40 +31,21 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbPopoverDirective implements OnInit, OnDestroy {
+  @Input({ transform: booleanAttribute }) animation = true;
+  @Input({ transform: numberAttribute }) delayHide = 0;
+  @Input({ transform: numberAttribute }) delayShow = 0;
   @Input() mdbPopover: TemplateRef<any> | string = '';
-  @Input() mdbPopoverTitle = '';
   @Input() mdbPopoverData: any;
-
-  @Input()
-  get popoverDisabled(): boolean {
-    return this._popoverDisabled;
-  }
-  set popoverDisabled(value: boolean) {
-    this._popoverDisabled = coerceBooleanProperty(value);
-  }
-  private _popoverDisabled = false;
-
-  @Input() placement = 'top';
-  @Input() template: TemplateRef<any>;
-
-  @Input()
-  get animation(): boolean {
-    return this._animation;
-  }
-  set animation(value: boolean) {
-    this._animation = coerceBooleanProperty(value);
-  }
-  private _animation = false;
-
+  @Input() mdbPopoverTitle = '';
+  @Input({ transform: numberAttribute }) offset = 4;
+  @Input() placement: MdbPopoverPosition = 'top';
+  @Input({ transform: booleanAttribute }) popoverDisabled = false;
   @Input() trigger = 'click';
-  @Input() delayShow = 0;
-  @Input() delayHide = 0;
-  @Input() offset = 4;
 
-  @Output() popoverShow: EventEmitter<MdbPopoverDirective> = new EventEmitter();
-  @Output() popoverShown: EventEmitter<MdbPopoverDirective> = new EventEmitter();
-  @Output() popoverHide: EventEmitter<MdbPopoverDirective> = new EventEmitter();
-  @Output() popoverHidden: EventEmitter<MdbPopoverDirective> = new EventEmitter();
+  @Output() popoverShow = new EventEmitter<MdbPopoverDirective>();
+  @Output() popoverShown = new EventEmitter<MdbPopoverDirective>();
+  @Output() popoverHide = new EventEmitter<MdbPopoverDirective>();
+  @Output() popoverHidden = new EventEmitter<MdbPopoverDirective>();
 
   private _overlayRef: OverlayRef;
   private _tooltipRef: ComponentRef<MdbPopoverComponent>;
@@ -212,7 +195,7 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
 
       this._tooltipRef = this._overlayRef.attach(tooltipPortal);
 
-      this._tooltipRef.instance.content = this.template || this.mdbPopover;
+      this._tooltipRef.instance.content = this.mdbPopover;
       this._tooltipRef.instance.title = this.mdbPopoverTitle;
       this._tooltipRef.instance.animation = this.animation;
       this._tooltipRef.instance.context = this.mdbPopoverData;
@@ -256,7 +239,4 @@ export class MdbPopoverDirective implements OnInit, OnDestroy {
       this.show();
     }
   }
-
-  static ngAcceptInputType_animation: BooleanInput;
-  static ngAcceptInputType_popoverDisabled: BooleanInput;
 }

@@ -4,6 +4,7 @@ import {
   Component,
   Input,
   TemplateRef,
+  booleanAttribute,
 } from '@angular/core';
 import { trigger, style, animate, transition, state, AnimationEvent } from '@angular/animations';
 import { Subject } from 'rxjs';
@@ -21,10 +22,10 @@ import { Subject } from 'rxjs';
   ],
 })
 export class MdbPopoverComponent {
-  @Input() title: string;
+  @Input({ transform: booleanAttribute }) animation: boolean;
   @Input() content: string | TemplateRef<any>;
-  @Input() animation: boolean;
   @Input() context: any;
+  @Input() title: string;
 
   get isContentTemplate(): boolean {
     return this.content instanceof TemplateRef;

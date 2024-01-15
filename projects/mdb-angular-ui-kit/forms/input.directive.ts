@@ -44,7 +44,7 @@ export class MdbInputDirective
     if (typeof getComputedStyle === 'function') {
       this._color = getComputedStyle(this._elementRef.nativeElement).color;
 
-      if (this._elementRef.nativeElement.type === 'date') {
+      if (this._hasTypeInterferingPlaceholder()) {
         this._updateTextColorForDateType();
       }
     }
@@ -109,7 +109,7 @@ export class MdbInputDirective
   @HostListener('focus')
   _onFocus(): void {
     this._focused = true;
-    if (this._elementRef.nativeElement.type === 'date') {
+    if (this._hasTypeInterferingPlaceholder()) {
       this._updateTextColorForDateType();
     }
     this.stateChanges.next();
@@ -118,7 +118,7 @@ export class MdbInputDirective
   @HostListener('blur')
   _onBlur(): void {
     this._focused = false;
-    if (this._elementRef.nativeElement.type === 'date') {
+    if (this._hasTypeInterferingPlaceholder()) {
       this._updateTextColorForDateType();
     }
     this.stateChanges.next();
@@ -150,6 +150,11 @@ export class MdbInputDirective
 
   get labelActive(): boolean {
     return this.focused || this.hasValue || this.autofilled;
+  }
+
+  private _hasTypeInterferingPlaceholder() {
+    const typesArray = ['date', 'datetime-local', 'time', 'month', 'week'];
+    return typesArray.includes(this._elementRef.nativeElement.type);
   }
 
   static ngAcceptInputType_disabled: BooleanInput;

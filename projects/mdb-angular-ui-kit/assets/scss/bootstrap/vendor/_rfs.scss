@@ -7,7 +7,7 @@
 // Licensed under MIT (https://github.com/twbs/rfs/blob/main/LICENSE)
 
 // Configuration
-
+@use 'sass:math';
 // Base value
 $rfs-base-value: 1.25rem !default;
 $rfs-unit: rem !default;
@@ -54,8 +54,8 @@ $rfs-base-value-unit: unit($rfs-base-value);
 
 @function divide($dividend, $divisor, $precision: 10) {
   $sign: if($dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0, 1, -1);
-  $dividend: abs($dividend);
-  $divisor: abs($divisor);
+  $dividend: math.abs($dividend);
+  $divisor: math.abs($divisor);
   @if $dividend == 0 {
     @return 0;
   }
