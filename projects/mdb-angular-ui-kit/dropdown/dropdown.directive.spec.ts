@@ -1,15 +1,15 @@
-import { ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-import { MdbDropdownModule } from './index';
+import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { MdbDropdownMenuDirective, MdbDropdownModule } from './index';
 import { MdbDropdownDirective } from './index';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { first } from 'rxjs';
 
 describe('MDB Dropdown', () => {
   let fixture: ComponentFixture<TestDropdownComponent>;
-  let element: any;
-  let component: TestDropdownComponent;
+  let testComponent: TestDropdownComponent;
   let directive: MdbDropdownDirective;
   let overlayContainer: OverlayContainer;
   let overlayContainerElement: HTMLElement;
@@ -27,12 +27,10 @@ describe('MDB Dropdown', () => {
     })();
 
     fixture = TestBed.createComponent(TestDropdownComponent);
-    component = fixture.componentInstance;
-    element = fixture.nativeElement;
+    testComponent = fixture.componentInstance;
     directive = fixture.debugElement
       .query(By.directive(MdbDropdownDirective))
       .injector.get<MdbDropdownDirective>(MdbDropdownDirective);
-
     fixture.detectChanges();
   });
 
@@ -46,7 +44,7 @@ describe('MDB Dropdown', () => {
       jest.spyOn(directive, 'show');
       jest.spyOn(directive, 'hide');
 
-      const buttonEl: HTMLButtonElement = element.querySelector('.dropdown-toggle');
+      const buttonEl: HTMLButtonElement = fixture.nativeElement.querySelector('.dropdown-toggle');
 
       buttonEl.click();
       fixture.detectChanges();
@@ -77,20 +75,6 @@ describe('MDB Dropdown', () => {
       expect(overlayContainerElement.textContent).toEqual('');
     }));
 
-    it('should not close dropdown on outside click if closeOnOutsideClick is set to false', fakeAsync(() => {
-      component.closeOnOutsideClick = false;
-      directive.show();
-      fixture.detectChanges();
-
-      document.body.click();
-      fixture.detectChanges();
-
-      flush();
-      fixture.detectChanges();
-
-      expect(overlayContainerElement.textContent).toContain('Action');
-    }));
-
     it('should close dropdown on dropdown item click', fakeAsync(() => {
       directive.show();
       fixture.detectChanges();
@@ -104,22 +88,6 @@ describe('MDB Dropdown', () => {
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toEqual('');
-    }));
-
-    it('should not close dropdown on dropdown item click if closeOnItemClick is set to false', fakeAsync(() => {
-      component.closeOnItemClick = false;
-      directive.show();
-      fixture.detectChanges();
-
-      const item: HTMLElement = document.querySelector('.dropdown-item');
-
-      item.click();
-      fixture.detectChanges();
-
-      flush();
-      fixture.detectChanges();
-
-      expect(overlayContainerElement.textContent).toContain('Action');
     }));
   });
 
@@ -172,11 +140,15 @@ describe('MDB Dropdown', () => {
 
       expect(overlayContainerElement.textContent).toEqual('');
     }));
+  });
 
-    it('should not close dropdown on ESC keyup if closeOnEsc is set to false', fakeAsync(() => {
-      component.closeOnEsc = false;
+  describe('Inputs', () => {
+    it('should not close dropdown on ESC keyup if closeOnEsc input is set to false', fakeAsync(() => {
+      testComponent.closeOnEsc = false;
       directive.show();
       fixture.detectChanges();
+
+      expect(overlayContainerElement.textContent).toContain('Action');
 
       document.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape' }));
       fixture.detectChanges();
@@ -185,6 +157,166 @@ describe('MDB Dropdown', () => {
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toContain('Action');
+    }));
+
+    it('should not close dropdown on dropdown item click if closeOnItemClick input is set to false', fakeAsync(() => {
+      testComponent.closeOnItemClick = false;
+      directive.show();
+      fixture.detectChanges();
+
+      expect(overlayContainerElement.textContent).toContain('Action');
+
+      const item: HTMLElement = document.querySelector('.dropdown-item');
+
+      item.click();
+      fixture.detectChanges();
+
+      flush();
+      fixture.detectChanges();
+
+      expect(overlayContainerElement.textContent).toContain('Action');
+    }));
+
+    it('should not close dropdown on outside click if closeOnOutsideClick input is set to false', fakeAsync(() => {
+      testComponent.closeOnOutsideClick = false;
+      directive.show();
+      fixture.detectChanges();
+
+      expect(overlayContainerElement.textContent).toContain('Action');
+
+      document.body.click();
+      fixture.detectChanges();
+
+      flush();
+      fixture.detectChanges();
+
+      expect(overlayContainerElement.textContent).toContain('Action');
+    }));
+
+    it('should apply appropriate transform style when offset input is set', () => {
+      testComponent.offset = 43;
+      fixture.detectChanges();
+
+      directive.show();
+      fixture.detectChanges();
+
+      let overlayPane: HTMLDivElement = overlayContainerElement.querySelector('.cdk-overlay-pane');
+      expect(overlayPane.style.transform).toBe('translateY(43px)');
+    });
+
+    it('should apply appropriate class when positionClass input is set', () => {
+      expect(directive.host.classList).toContain('dropdown');
+      expect(directive.host.classList).not.toContain('dropup');
+
+      directive.positionClass = 'dropup';
+
+      expect(directive.host.classList).not.toContain('dropdown');
+      expect(directive.host.classList).toContain('dropup');
+    });
+
+    it('should apply appropriate class when menuPositionClass input is set', () => {
+      const dropdownMenuDirective: MdbDropdownMenuDirective = directive._dropdownMenu;
+      expect(dropdownMenuDirective.elementRef.nativeElement.classList).toContain(
+        'dropdown-menu-start'
+      );
+      expect(dropdownMenuDirective.elementRef.nativeElement.classList).not.toContain(
+        'dropdown-menu-end'
+      );
+
+      dropdownMenuDirective.menuPositionClass = 'dropdown-menu-end';
+
+      expect(dropdownMenuDirective.elementRef.nativeElement.classList).not.toContain(
+        'dropdown-menu-start'
+      );
+      expect(dropdownMenuDirective.elementRef.nativeElement.classList).toContain(
+        'dropdown-menu-end'
+      );
+    });
+  });
+
+  describe('Outputs', () => {
+    it('should emit events on show and hide', fakeAsync(() => {
+      let showDropdown: MdbDropdownDirective | undefined;
+      let shownDropdown: MdbDropdownDirective | undefined;
+      let hideDropdown: MdbDropdownDirective | undefined;
+      let hiddenDropdown: MdbDropdownDirective | undefined;
+
+      const showSpy = jest.spyOn(directive.dropdownShow, 'emit');
+      const shownSpy = jest.spyOn(directive.dropdownShown, 'emit');
+      const hideSpy = jest.spyOn(directive.dropdownHide, 'emit');
+      const hiddenSpy = jest.spyOn(directive.dropdownHidden, 'emit');
+
+      directive.dropdownShow.pipe(first()).subscribe((event) => (showDropdown = event));
+      directive.dropdownShown.pipe(first()).subscribe((event) => (shownDropdown = event));
+      directive.dropdownHide.pipe(first()).subscribe((event) => (hideDropdown = event));
+      directive.dropdownHidden.pipe(first()).subscribe((event) => (hiddenDropdown = event));
+
+      directive.show();
+      fixture.detectChanges();
+
+      expect(showSpy).toHaveBeenCalledTimes(1);
+      expect(showDropdown).toEqual(directive);
+
+      tick();
+
+      expect(shownSpy).toHaveBeenCalledTimes(1);
+      expect(shownDropdown).toEqual(directive);
+
+      directive.hide();
+      fixture.detectChanges();
+
+      expect(hideSpy).toHaveBeenCalledTimes(1);
+      expect(hideDropdown).toEqual(directive);
+
+      tick();
+
+      expect(hiddenSpy).toHaveBeenCalledTimes(1);
+      expect(hiddenDropdown).toEqual(directive);
+    }));
+  });
+
+  describe('Public methods', () => {
+    it('should show dropdown when show method is called', fakeAsync(() => {
+      expect(overlayContainerElement.textContent).not.toContain('Action');
+
+      directive.show();
+      fixture.detectChanges();
+      flush();
+
+      expect(overlayContainerElement.textContent).toContain('Action');
+    }));
+
+    it('should hide dropdown when hide method is called', fakeAsync(() => {
+      expect(overlayContainerElement.textContent).not.toContain('Action');
+
+      directive.show();
+      fixture.detectChanges();
+      flush();
+
+      expect(overlayContainerElement.textContent).toContain('Action');
+
+      directive.hide();
+      fixture.detectChanges();
+      flush();
+      fixture.detectChanges();
+
+      expect(overlayContainerElement.textContent).toEqual('');
+    }));
+
+    it('should toggle dropdown when toggle method is called', fakeAsync(() => {
+      expect(overlayContainerElement.textContent).not.toContain('Action');
+
+      directive.toggle();
+      fixture.detectChanges();
+
+      expect(overlayContainerElement.textContent).toContain('Action');
+
+      directive.toggle();
+      fixture.detectChanges();
+      flush();
+      fixture.detectChanges();
+
+      expect(overlayContainerElement.textContent).toEqual('');
     }));
   });
 });
@@ -198,9 +330,14 @@ describe('MDB Dropdown', () => {
       [closeOnOutsideClick]="closeOnOutsideClick"
       [closeOnItemClick]="closeOnItemClick"
       [closeOnEsc]="closeOnEsc"
+      [offset]="offset"
     >
       <button class="btn btn-primary dropdown-toggle" mdbDropdownToggle>Dropdown button</button>
-      <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <ul
+        mdbDropdownMenu
+        class="dropdown-menu dropdown-menu-start"
+        aria-labelledby="dropdownMenuButton"
+      >
         <li><a class="dropdown-item" href="#">Action</a></li>
         <li><a class="dropdown-item" href="#">Another action</a></li>
         <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -208,9 +345,9 @@ describe('MDB Dropdown', () => {
     </div>
   `,
 })
-// eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestDropdownComponent {
   closeOnOutsideClick = true;
   closeOnItemClick = true;
   closeOnEsc = true;
+  offset = 0;
 }
