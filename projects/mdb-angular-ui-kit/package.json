@@ -4,7 +4,7 @@
   "homepage": "https://mdbootstrap.com/docs/b5/angular/",
   "author": "MDBootstrap",
   "license": "MIT",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0",

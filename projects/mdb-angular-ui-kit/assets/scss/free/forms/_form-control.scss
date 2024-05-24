@@ -25,6 +25,7 @@
   }
 }
 
+// Additional MDB Angular styles
 .select {
   ~ .form-label {
     position: absolute;
@@ -161,9 +162,13 @@
     }
   }
 }
+// Additional MDB Angular styles
 
 .form-outline {
   position: relative;
+  // width: 100%; // This change introduces big layout differences
+  // and should be treated as a breaking change.
+  // It should be revised and checked.
 
   .form-helper {
     width: 100%;
@@ -337,6 +342,7 @@
     }
   }
 
+  // Additional MDB Angular styles
   .select-lg ~ .form-label {
     padding-top: $form-label-padding-top-lg;
   }
@@ -345,6 +351,7 @@
     padding-top: $form-label-padding-top-sm;
     font-size: $form-label-font-size-sm;
   }
+  // Additional MDB Angular styles
 
   &.form-white {
     .form-control {

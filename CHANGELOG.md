@@ -1,3 +1,22 @@
+## 6.1.0 (27.05.2024)
+
+### Fixes and improvements:
+
+- [Multi range](https://mdbootstrap.com/docs/angular/forms/multi-range-slider/)
+  - Fixed problem with thumb limiting logic when using custom step
+  - Fixed problem with updating thumb positions via form controls
+- [Popconfirm](https://mdbootstrap.com/docs/angular/components/popconfirm/) - added focus trap
+- [Autocomplete](https://mdbootstrap.com/docs/angular/forms/autocomplete/) - restored native `shift + home` and `shift + end` keys behavior (open/close dropdown)
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/) - added support for opening and closing dropdown with `alt + arrow-up` and `alt + arrow-down` keys
+  
+### New:
+
+- [Table pagination](https://mdbootstrap.com/docs/angular/data/datatables/) - added new `page` input that allows to set page number
+- [Multi range](https://mdbootstrap.com/docs/angular/forms/multi-range-slider/) - added new `highlightRange` input that allows to highlight range
+- [Parallax](https://mdbootstrap.com/docs/angular/plugins/parallax/) - added new `container` input that allows to set wrapper element for parallax effect
+  
+---
+
 ## 6.0.0 (15.01.2024)
 
 This version requires Angular v17. Follow the [Angular Update Guide](https://update.angular.io/?l=3&v=16.0-17.0) to migrate your project to Angular 17.
