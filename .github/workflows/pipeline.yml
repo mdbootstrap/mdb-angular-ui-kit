@@ -1,0 +1,31 @@
+name: Branch Pipeline
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Test & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      - name: Install Dependencies
+        run: npm ci --cache .npm
+      # - name: Lint Codebase
+      #   run: npm run lint
+      - name: Run Unit-Tests
+        run: npm run test -- --coverage
+      - name: Build Library
+        run: npm run build
