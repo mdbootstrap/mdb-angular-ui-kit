@@ -31,6 +31,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('mdb-angular-ui-kit-free app is running!');
+    expect(compiled.querySelector('h5').textContent).toContain('This is MDB');
   });
 });
