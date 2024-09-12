@@ -3,20 +3,14 @@ import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 import {
   getProjectMainFile,
-  hasNgModuleImport,
   addModuleImportToRootModule,
   getProjectFromWorkspace,
   getProjectIndexFiles,
   appendHtmlElementToHead,
   getProjectStyleFile,
   isStandaloneApp,
-  getAppModulePath,
 } from '@angular/cdk/schematics';
-import {
-  addFunctionalProvidersToStandaloneBootstrap,
-  callsProvidersFunction,
-  importsProvidersFrom,
-} from '@schematics/angular/private/components';
+import { addRootProvider } from '@schematics/angular/utility';
 import { Schema } from './schema';
 
 const mdbModules = [
@@ -78,79 +72,13 @@ function addMdbModulesImports(options: Schema): any {
 }
 
 function addAngularAnimationsModule(options: Schema): any {
-  return async (tree: Tree, context: SchematicContext) => {
-    const workspace: any = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace, options.project);
-    const mainFile = getProjectMainFile(project);
-
-    if (isStandaloneApp(tree, mainFile)) {
-      addAngularAnimationsForStandaloneApp(options, tree, context, mainFile);
-    } else {
-      addAngularAnimationsForNonStandaloneApp(options, tree, context, mainFile, project);
-    }
-
-    return tree;
+  return () => {
+    return addRootProvider(options.project, ({ code, external }) => {
+      return code`${external('provideAnimations', '@angular/platform-browser/animations')}(${
+        options.animations ? '' : `'noop'`
+      })`;
+    });
   };
-}
-
-function addAngularAnimationsForStandaloneApp(
-  options: Schema,
-  tree: Tree,
-  context: SchematicContext,
-  mainFile: string
-): any {
-  const animationsProvider = 'provideAnimations';
-  const noopAnimationsProvider = 'provideNoopAnimations';
-  const animationsProvidersPath = '@angular/platform-browser/animations';
-
-  if (options.animations) {
-    if (callsProvidersFunction(tree, mainFile, noopAnimationsProvider)) {
-      context.logger.error(
-        `Could not add ${animationsProvider} because ${noopAnimationsProvider} is already added`
-      );
-      return;
-    } else {
-      addFunctionalProvidersToStandaloneBootstrap(
-        tree,
-        mainFile,
-        animationsProvider,
-        animationsProvidersPath
-      );
-    }
-  } else if (!options.animations && !importsProvidersFrom(tree, mainFile, animationsProvider)) {
-    addFunctionalProvidersToStandaloneBootstrap(
-      tree,
-      mainFile,
-      noopAnimationsProvider,
-      animationsProvidersPath
-    );
-  }
-}
-
-function addAngularAnimationsForNonStandaloneApp(
-  options: Schema,
-  tree: Tree,
-  context: SchematicContext,
-  mainFile: string,
-  project: any
-): any {
-  const browserAnimationModule = 'BrowserAnimationsModule';
-  const noopAnimationModule = 'NoopAnimationsModule';
-  const animationsModulePath = '@angular/platform-browser/animations';
-  const appModule = getAppModulePath(tree, mainFile);
-
-  if (options.animations) {
-    if (hasNgModuleImport(tree, appModule, noopAnimationModule)) {
-      context.logger.error(
-        `Could not add ${browserAnimationModule} because ${noopAnimationModule} is already added`
-      );
-      return;
-    }
-
-    addModuleImportToRootModule(tree, browserAnimationModule, animationsModulePath, project);
-  } else if (!options.animations && !hasNgModuleImport(tree, appModule, noopAnimationModule)) {
-    addModuleImportToRootModule(tree, noopAnimationModule, animationsModulePath, project);
-  }
 }
 
 function addRobotoFontToIndexHtml(options: Schema): any {
