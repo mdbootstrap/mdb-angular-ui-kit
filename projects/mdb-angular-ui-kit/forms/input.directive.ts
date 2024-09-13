@@ -1,6 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
+  DestroyRef,
   Directive,
   DoCheck,
   ElementRef,
@@ -16,7 +17,7 @@ import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { MdbAbstractFormControl } from './form-control';
 import { AutofillEvent, AutofillMonitor } from '@angular/cdk/text-field';
-
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[mdbInput]',
@@ -31,7 +32,8 @@ export class MdbInputDirective
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
     @Optional() @Self() private _ngControl: NgControl,
-    private _autofill: AutofillMonitor
+    private _autofill: AutofillMonitor,
+    private _destroyRef: DestroyRef
   ) {}
 
   readonly stateChanges: Subject<void> = new Subject<void>();
@@ -52,6 +54,12 @@ export class MdbInputDirective
     this._autofill.monitor(this.input).subscribe((event: AutofillEvent) => {
       this._autofilled = event.isAutofilled;
       this.stateChanges.next();
+    });
+
+    this.stateChanges.pipe(takeUntilDestroyed(this._destroyRef)).subscribe(() => {
+      if (this._hasTypeInterferingPlaceholder()) {
+        this._updateTextColorForDateType();
+      }
     });
   }
 
@@ -109,18 +117,12 @@ export class MdbInputDirective
   @HostListener('focus')
   _onFocus(): void {
     this._focused = true;
-    if (this._hasTypeInterferingPlaceholder()) {
-      this._updateTextColorForDateType();
-    }
     this.stateChanges.next();
   }
 
   @HostListener('blur')
   _onBlur(): void {
     this._focused = false;
-    if (this._hasTypeInterferingPlaceholder()) {
-      this._updateTextColorForDateType();
-    }
     this.stateChanges.next();
   }
 

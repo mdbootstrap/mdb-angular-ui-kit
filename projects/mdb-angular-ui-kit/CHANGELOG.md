@@ -1,3 +1,62 @@
+## 7.0.0 (16.09.2024)
+
+This version requires Angular v18. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 18.
+
+### Breaking changes:
+
+- Updated Angular to v18, this version is required in MDB Angular v7.
+- [Checkbox](https://mdbootstrap.com/docs/angular/forms/checkbox/) - changed `margin-right` style from `4px` to `6px` in `.form-check-input` element.
+- [Forms](https://mdbootstrap.com/docs/angular/forms/overview/) - added `padding-left: 0.15rem` style to `.form-check-label` element.
+- [Switch](https://mdbootstrap.com/docs/angular/forms/switch/) - changed `margin-right` style from `4px` to `8px` in `.form-check-input` element.
+- [Progress](https://mdbootstrap.com/docs/angular/components/progress/) - added `box-shadow: none` style to `.progress` element.
+- [Input group](https://mdbootstrap.com/docs/angular/forms/input-group/) - added `flex-wrap: nowrap` style to `.input-group` element.
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/) - changed SCSS variable `$datepicker-small-cell-content-width` value from `36px` to `40px`.
+- [Range](https://mdbootstrap.com/docs/angular/forms/range/):
+  - Added `box-shadow: none` style to `.form-range ::-webkit-slider-runnable-track` element.
+  - Added `box-shadow: none` style to `.form-range ::-moz-range-track` element.
+- [Captcha](https://mdbootstrap.com/docs/angular/plugins/captcha/):
+  - Changed `error` event name to `captchaError`.
+  - Changed `expire` event name to `captchaExpire`.
+  - Changed `success` event name to `captchaSuccess`.
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/):
+  - Redesigned clock's page HTML structure and styles.
+  - Arrow icons are now displayed when hour/minute buttons are hovered in inline mode.
+- [Treeview](https://mdbootstrap.com/docs/angular/plugins/tree-view/):
+  - Redesigned entire HTML structure.
+  - Replaced `li` element with `mdb-treeview-item`.
+  - Removed the `<div class="treeview">` wrapper element from the entire component.
+  - Removed the `checkboxesField` input.
+  - Added a public `MdbTreeviewColor` type for the color input.
+  - Added a new mechanism for setting the arrow icon with the `collapseIcon` property.
+  - Added keyboard navigation handling.
+
+### Fixes and improvements:
+
+- [Multi range](https://mdbootstrap.com/docs/angular/forms/multi-range-slider/) - resolved the issue with `TouchEvent` in Firefox.
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/) - resolved the issue with unhandled `tabindex` input.
+- [Onboarding](https://mdbootstrap.com/docs/angular/plugins/onboarding/) - resolved the issue with initializing onboarding with a delay after navigating to another page.
+- [Input fields](https://mdbootstrap.com/docs/angular/forms/input-fields/) - resolved the issue with displaying the value after setting it programmatically in all inputs with built-in placeholders (e.g., `datetime-local` or `time`).
+- [Datatable](https://mdbootstrap.com/docs/angular/data/datatables/) - resolved the issue with the `showAllEntries` input not working properly with the `entries` input.
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/) - resolved the issue with `ArrowUp` and `ArrowDown` key presses not working upon opening the timepicker.
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/):
+  - Resolved the issue with returned form control values for empty or invalid input values.
+  - Resolved the issue with closing the datepicker using the input toggle.
+- [Calendar](https://mdbootstrap.com/docs/angular/plugins/calendar/):
+  - Resolved the issue with unpreserved event IDs on edit.
+  - Resolved the issue with dragging in `readonly` mode.
+  - Resolved the issue with view selection when non-default captions are used.
+  - Resolved the issue with rendering the period in the correct format in Month view.
+
+### New features:
+
+- [Dropdown](https://mdbootstrap.com/docs/angular/components/dropdown/) - added `MdbDropdownPositionClass` type to the public API.
+- [Modal](https://mdbootstrap.com/docs/angular/components/modal/) - added `focusElementSelector` property to the `open` method's options for specifying the element to focus on when the modal opens.
+- [Calendar](https://mdbootstrap.com/docs/angular/plugins/calendar/):
+  - Added `addEventButtonCaption` property to the `options` input for setting a custom caption for the add event button.
+  - Added `MdbCalendarViews` Enum to the public API.
+
+---
+
 ## 6.1.0 (27.05.2024)
 
 ### Fixes and improvements:
