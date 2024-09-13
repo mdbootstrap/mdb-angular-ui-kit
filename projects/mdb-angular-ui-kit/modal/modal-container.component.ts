@@ -101,15 +101,26 @@ export class MdbModalContainerComponent implements OnInit, AfterViewInit, OnDest
       this._focusTrap = this._focusTrapFactory.create(this.host);
       this._previouslyFocusedElement = this._document.activeElement as HTMLElement;
     }
-
+    const focusElement =
+      this._config.focusElementSelector &&
+      (this.modalContent.nativeElement.querySelector(
+        this._config.focusElementSelector
+      ) as HTMLElement);
     if (this._config.animation) {
       setTimeout(() => {
         this._renderer.addClass(this.host, 'show');
-
-        setTimeout(() => {
-          this._focusTrap?.focusInitialElementWhenReady();
-        }, this.MODAL_TRANSITION);
+        if (focusElement) {
+          setTimeout(() => {
+            focusElement.focus();
+          }, this.MODAL_TRANSITION);
+        } else {
+          setTimeout(() => {
+            this._focusTrap?.focusInitialElementWhenReady();
+          }, this.MODAL_TRANSITION);
+        }
       }, this.BACKDROP_TRANSITION);
+    } else if (focusElement) {
+      focusElement.focus();
     } else {
       this._focusTrap?.focusInitialElementWhenReady();
     }

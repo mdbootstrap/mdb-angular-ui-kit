@@ -85,7 +85,7 @@
   &[type='checkbox'] {
     border-radius: $form-check-input-checkbox-border-radius;
     margin-top: 0.19em;
-    margin-right: 4px; // This should be changed to 6px in next major release 7.0.0
+    margin-right: 6px;
 
     &:focus {
       &:after {
@@ -177,7 +177,7 @@
 }
 
 .form-check-label {
-  // padding-left: 0.15rem; This should be added in next major release 7.0.0
+  padding-left: 0.15rem;
   &:hover {
     cursor: pointer;
   }
@@ -196,7 +196,7 @@
     height: $form-switch-form-check-input-height;
     background-color: $form-switch-form-check-input-background-color;
     margin-top: 0.3em;
-    margin-right: 4px; // This should be changed to 8px in next major release 7.0.0
+    margin-right: 8px;
 
     &:after {
       content: '';
