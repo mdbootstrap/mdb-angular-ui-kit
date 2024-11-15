@@ -91,6 +91,7 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
   private _isDropdownMenuEnd: boolean;
   private _xPosition: string;
   private _breakpoints: any;
+  private _mousedownTarget: HTMLElement | null = null;
 
   readonly _destroy$: Subject<void> = new Subject<void>();
 
@@ -273,6 +274,10 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     );
   }
 
+  private _listenToMousedown(overlayRef: OverlayRef): Observable<MouseEvent> {
+    return fromEvent<MouseEvent>(document, 'mousedown').pipe(takeUntil(overlayRef.detachments()));
+  }
+
   private _listenToClick(overlayRef: OverlayRef, origin: HTMLElement): Observable<MouseEvent> {
     return fromEvent(document, 'click').pipe(
       filter((event: MouseEvent) => {
@@ -292,6 +297,9 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     if (event.fromState === 'visible' && event.toState === 'hidden') {
       this._overlayRef.detach();
       this._open = false;
+
+      this._renderer.setAttribute(this._dropdownToggle.nativeElement, 'aria-expanded', 'false');
+
       this.dropdownHidden.emit(this);
     }
 
@@ -347,6 +355,9 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
     this.dropdownShow.emit(this);
 
     this._open = true;
+
+    this._renderer.setAttribute(this._dropdownToggle.nativeElement, 'aria-expanded', 'true');
+
     this._overlayRef.attach(this._portal);
 
     this._listenToEscKeyup(this._overlayRef).subscribe((isEsc) => {
@@ -362,15 +373,25 @@ export class MdbDropdownDirective implements OnDestroy, AfterContentInit {
         this._handleKeyboardNavigation(event);
       });
 
+    this._listenToMousedown(this._overlayRef).subscribe((event) => {
+      this._mousedownTarget = event.target as HTMLElement;
+    });
+
     this._listenToClick(this._overlayRef, this._dropdownToggle.nativeElement).subscribe((event) => {
       const target = event.target as HTMLElement;
       const isDropdownItem = target.classList && target.classList.contains('dropdown-item');
+
+      const isOnMousedownDropdownMenu = this._dropdownMenu.elementRef.nativeElement.contains(
+        this._mousedownTarget
+      );
+
+      this._mousedownTarget = null;
 
       if (this.closeOnItemClick && isDropdownItem) {
         this.hide();
         return;
       }
-      if (this.closeOnOutsideClick && !isDropdownItem) {
+      if (this.closeOnOutsideClick && !isDropdownItem && !isOnMousedownDropdownMenu) {
         this.hide();
         return;
       }

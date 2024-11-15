@@ -79,6 +79,7 @@ export class MdbRangeComponent implements ControlValueAccessor, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.thumbPositionUpdate();
+    this._cdRef.detectChanges();
   }
 
   focusRangeInput(): void {

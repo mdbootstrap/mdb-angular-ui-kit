@@ -91,6 +91,23 @@ describe('MDB Dropdown', () => {
     }));
   });
 
+  describe('Accessibility', () => {
+    it('should update aria-expanded attribute on dropdown open and close', fakeAsync(() => {
+      const buttonEl: HTMLButtonElement = fixture.nativeElement.querySelector('.dropdown-toggle');
+
+      buttonEl.click();
+      fixture.detectChanges();
+
+      expect(buttonEl.getAttribute('aria-expanded')).toBe('true');
+
+      buttonEl.click();
+      fixture.detectChanges();
+      flush();
+
+      expect(buttonEl.getAttribute('aria-expanded')).toContain('false');
+    }));
+  });
+
   describe('Keyboard navigation', () => {
     it('should correctly focus dropdown items when ArrowUp or ArrowDown key is used', () => {
       directive.show();

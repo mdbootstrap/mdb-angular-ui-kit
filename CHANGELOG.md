@@ -1,3 +1,47 @@
+## 7.1.0 (18.11.2024)
+
+### Fixes and improvements:
+
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/)
+  - Resolved problem with `close` method being called twice on component close
+  - Fixed dark theme styles in inline mode
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/)
+  - Added `aria-disabled` attributes to elements that display disabled dates
+  - Fixed `aria-label` attribute value in the element used to display day value
+  - Resolved problem with adding `aria-selected` attribute to the element that display day value
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/)
+  - Fixed disabled options styles in custom theme
+  - Resolved problem with opening dropdown on `space` key press
+  - Added `aria-label` and `aria-labelledby` attributes to the component
+  - Fixed value returned by `(deselect)` event
+- [Autocomplete](https://mdbootstrap.com/docs/angular/forms/autocomplete/)
+  - Fixed `aria-expended` attribute values for opened and closed menu
+  - Fixed problem where component menu was opening even when input was disbled
+- [Transfer](https://mdbootstrap.com/docs/angular/plugins/transfer/)
+  - Fixed events output for target container
+  - Fixed checkboxes styles
+- [Range](https://mdbootstrap.com/docs/angular/forms/range/) - fixed thumb position on component init
+- [Onboarding](https://mdbootstrap.com/docs/angular/plugins/onboarding/) - added fix to prevent memory leak after component destroy
+- [Input mask](https://mdbootstrap.com/docs/angular/plugins/input-mask/) - fixed a problem with value formatting when pasting all content into input at once
+- [Vector maps](https://mdbootstrap.com/docs/angular/plugins/vector-maps/) - fixed shadow styles in zoom buttons
+- [Transfer](https://mdbootstrap.com/docs/angular/plugins/wysiwyg-editor/) - fixed dropdown menu alignment
+- [Dropdown](https://mdbootstrap.com/docs/angular/component/dropdowns/) - fixed `aria-expended` attribute values for opened and closed menu
+- [Sidenav](https://mdbootstrap.com/docs/angular/navigation/sidenav/) - fixed problem with focus trap when the last focused element is inside the component content
+
+### New features:
+
+- [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/)
+  - Added new `showClearBtn` input
+  - Added new `(clear)` event that will be fired after using Clear button
+- [File upload](https://mdbootstrap.com/docs/angular/plugins/file-upload/)
+  - Added `svg` and `webp` extensions to the list of allowed file types for default preview
+  - Added new `datepickerOptions` that allow to define options for the date pickers used by the plugin
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/) - added new `(search)` event that will be fired after using search input
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/) - added new `(viewChanged)` event that will be fired on component view change
+- [Progress](https://mdbootstrap.com/docs/angular/components/progress/) - added new circular version of the component
+
+---
+
 ## 7.0.0 (16.09.2024)
 
 This version requires Angular v18. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 18.
