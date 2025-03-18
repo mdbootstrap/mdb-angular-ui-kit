@@ -5,9 +5,10 @@ export const MDB_ACCORDION_ITEM_BODY = new InjectionToken<MdbAccordionItemBodyDi
 );
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[mdbAccordionItemBody]',
-  providers: [{ provide: MDB_ACCORDION_ITEM_BODY, useExisting: MdbAccordionItemBodyDirective }],
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[mdbAccordionItemBody]',
+    providers: [{ provide: MDB_ACCORDION_ITEM_BODY, useExisting: MdbAccordionItemBodyDirective }],
+    standalone: false
 })
 export class MdbAccordionItemBodyDirective {
   constructor(public template: TemplateRef<any>) {}

@@ -20,9 +20,10 @@ export const MDB_RADIO_GROUP_VALUE_ACCESSOR: any = {
 };
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[mdbRadioGroup]',
-  providers: [MDB_RADIO_GROUP_VALUE_ACCESSOR],
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[mdbRadioGroup]',
+    providers: [MDB_RADIO_GROUP_VALUE_ACCESSOR],
+    standalone: false
 })
 export class MdbRadioGroupDirective implements ControlValueAccessor, AfterContentInit, OnDestroy {
   @ContentChildren(MdbRadioDirective, { descendants: true }) radios: QueryList<MdbRadioDirective>;

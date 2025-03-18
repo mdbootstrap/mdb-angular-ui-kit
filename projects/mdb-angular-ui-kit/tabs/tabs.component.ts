@@ -20,8 +20,9 @@ export class MdbTabChange {
 }
 
 @Component({
-  selector: 'mdb-tabs',
-  templateUrl: './tabs.component.html',
+    selector: 'mdb-tabs',
+    templateUrl: './tabs.component.html',
+    standalone: false
 })
 export class MdbTabsComponent implements AfterContentInit, OnDestroy {
   @ContentChildren(MdbTabComponent) tabs: QueryList<MdbTabComponent>;

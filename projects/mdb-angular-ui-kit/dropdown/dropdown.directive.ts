@@ -35,18 +35,19 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 export type MdbDropdownPositionClass = 'dropdown' | 'dropup' | 'dropstart' | 'dropend';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[mdbDropdown]',
-  templateUrl: 'dropdown.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('fade', [
-      state('visible', style({ opacity: 1 })),
-      state('hidden', style({ opacity: 0 })),
-      transition('visible => hidden', animate('150ms linear')),
-      transition('hidden => visible', [style({ opacity: 0 }), animate('150ms linear')]),
-    ]),
-  ],
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '[mdbDropdown]',
+    templateUrl: 'dropdown.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [
+        trigger('fade', [
+            state('visible', style({ opacity: 1 })),
+            state('hidden', style({ opacity: 0 })),
+            transition('visible => hidden', animate('150ms linear')),
+            transition('hidden => visible', [style({ opacity: 0 }), animate('150ms linear')]),
+        ]),
+    ],
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbDropdownDirective implements OnDestroy, AfterContentInit {

@@ -25,9 +25,10 @@ export enum Direction {
 }
 
 @Component({
-  selector: 'mdb-carousel',
-  templateUrl: './carousel.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mdb-carousel',
+    templateUrl: './carousel.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
   @ContentChildren(MdbCarouselItemComponent) _items: QueryList<MdbCarouselItemComponent>;

@@ -21,9 +21,10 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: '[mdbScrollspy]',
-  template: '<ng-content></ng-content>',
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: '[mdbScrollspy]',
+    template: '<ng-content></ng-content>',
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbScrollspyDirective implements OnInit, AfterContentInit, OnDestroy {

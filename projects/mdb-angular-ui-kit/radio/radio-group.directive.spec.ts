@@ -65,8 +65,9 @@ const basicTemplate = `
 `;
 
 @Component({
-  selector: 'mdb-radio-group-test',
-  template: basicTemplate,
+    selector: 'mdb-radio-group-test',
+    template: basicTemplate,
+    standalone: false
 })
 class BasicRadioGroupComponent {
   checked = false;

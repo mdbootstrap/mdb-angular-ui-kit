@@ -2,8 +2,9 @@ import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Directive, HostBinding, Input } from '@angular/core';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[mdbRadio]',
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[mdbRadio]',
+    standalone: false
 })
 export class MdbRadioDirective {
   @Input()

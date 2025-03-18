@@ -22,9 +22,10 @@ import { fromEvent, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[mdbTooltip]',
-  exportAs: 'mdbTooltip',
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[mdbTooltip]',
+    exportAs: 'mdbTooltip',
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbTooltipDirective implements OnInit, OnDestroy {

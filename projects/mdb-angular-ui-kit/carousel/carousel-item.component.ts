@@ -1,8 +1,9 @@
 import { Component, ElementRef, HostBinding, Input } from '@angular/core';
 
 @Component({
-  selector: 'mdb-carousel-item',
-  template: '<ng-content></ng-content>',
+    selector: 'mdb-carousel-item',
+    template: '<ng-content></ng-content>',
+    standalone: false
 })
 export class MdbCarouselItemComponent {
   @Input() interval: number | null = null;

@@ -23,9 +23,10 @@ export class MdbCheckboxChange {
 }
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[mdbCheckbox]',
-  providers: [MDB_CHECKBOX_VALUE_ACCESSOR],
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[mdbCheckbox]',
+    providers: [MDB_CHECKBOX_VALUE_ACCESSOR],
+    standalone: false
 })
 export class MdbCheckboxDirective {
   @Input('checked')

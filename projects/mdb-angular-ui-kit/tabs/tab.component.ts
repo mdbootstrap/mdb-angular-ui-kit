@@ -17,8 +17,9 @@ const SHOW_TRANSITION_DELAY = 150; // Time of transition taken from styles
 const TRANSITION_PADDING = 5; // Value from standard added via executeAfterTransition function
 
 @Component({
-  selector: 'mdb-tab',
-  templateUrl: './tab.component.html',
+    selector: 'mdb-tab',
+    templateUrl: './tab.component.html',
+    standalone: false
 })
 export class MdbTabComponent implements OnInit {
   @ContentChild(MDB_TAB_CONTENT, { read: TemplateRef, static: true })

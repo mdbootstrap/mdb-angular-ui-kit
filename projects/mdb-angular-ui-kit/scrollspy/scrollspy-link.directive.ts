@@ -10,8 +10,9 @@ import {
 import { DOCUMENT } from '@angular/common';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[mdbScrollspyLink]',
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[mdbScrollspyLink]',
+    standalone: false
 })
 export class MdbScrollspyLinkDirective implements OnInit {
   @Input()

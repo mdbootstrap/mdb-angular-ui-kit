@@ -156,7 +156,8 @@ const basicTemplate = `
 `;
 
 @Component({
-  template: basicTemplate,
+    template: basicTemplate,
+    standalone: false
 })
 class BasicCheckboxComponent {
   checked = false;
@@ -171,7 +172,8 @@ const ngModelTemplate = `
 `;
 
 @Component({
-  template: ngModelTemplate,
+    template: ngModelTemplate,
+    standalone: false
 })
 class CheckboxWithNgModelComponent {
   checked = false;
@@ -186,7 +188,8 @@ const formControlTemplate = `
 `;
 
 @Component({
-  template: formControlTemplate,
+    template: formControlTemplate,
+    standalone: false
 })
 class CheckboxWithFormControlComponent {
   control = new UntypedFormControl(false);

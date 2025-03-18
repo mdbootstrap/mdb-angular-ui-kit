@@ -14,8 +14,9 @@ import { takeUntil } from 'rxjs/operators';
 import { MdbTabComponent } from './tab.component';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[mdbTabPortalOutlet]',
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[mdbTabPortalOutlet]',
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class MdbTabPortalOutlet extends CdkPortalOutlet implements OnInit, OnDestroy {

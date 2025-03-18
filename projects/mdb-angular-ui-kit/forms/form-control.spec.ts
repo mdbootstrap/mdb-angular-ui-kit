@@ -72,7 +72,8 @@ const basicTemplate = `
 `;
 
 @Component({
-  template: basicTemplate,
+    template: basicTemplate,
+    standalone: false
 })
 class BasicFormControlComponent {}
 
@@ -83,6 +84,7 @@ const withoutLabelTemplate = `
 `;
 
 @Component({
-  template: withoutLabelTemplate,
+    template: withoutLabelTemplate,
+    standalone: false
 })
 class WithoutLabelComponent {}

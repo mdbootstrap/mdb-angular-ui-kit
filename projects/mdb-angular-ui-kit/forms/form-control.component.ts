@@ -17,9 +17,10 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'mdb-form-control',
-  templateUrl: './form-control.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'mdb-form-control',
+    templateUrl: './form-control.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
   @ViewChild('notchLeading', { static: true }) _notchLeading: ElementRef;

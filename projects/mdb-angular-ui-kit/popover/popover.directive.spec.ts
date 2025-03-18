@@ -182,8 +182,8 @@ describe('MDB Popover', () => {
 });
 
 @Component({
-  selector: 'mdb-test-tooltip',
-  template: ` <button
+    selector: 'mdb-test-tooltip',
+    template: ` <button
     [trigger]="testTrigger"
     [mdbPopover]="testMdbPopover"
     [mdbPopoverTitle]="testMdbPopoverTitle"
@@ -192,6 +192,7 @@ describe('MDB Popover', () => {
   >
     MDB Button
   </button>`,
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestPopoverComponent {
@@ -203,24 +204,26 @@ class TestPopoverComponent {
 }
 
 @Component({
-  selector: 'mdb-test-popover2',
-  template: ` <button mdbPopover="testMdbPopover" trigger="click">MDB Button</button>`,
+    selector: 'mdb-test-popover2',
+    template: ` <button mdbPopover="testMdbPopover" trigger="click">MDB Button</button>`,
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestPopoverComponent2 {}
 
 @Component({
-  selector: 'mdb-test-popover2',
-  template: ` <button mdbPopover="testMdbPopover" popoverDisabled="true" trigger="click">
+    selector: 'mdb-test-popover2',
+    template: ` <button mdbPopover="testMdbPopover" popoverDisabled="true" trigger="click">
     MDB Button
   </button>`,
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestPopoverComponent3 {}
 
 @Component({
-  selector: 'mdb-test-popover4',
-  template: `<button
+    selector: 'mdb-test-popover4',
+    template: `<button
       type="button"
       class="btn btn-lg btn-danger"
       [mdbPopover]="template"
@@ -232,6 +235,7 @@ class TestPopoverComponent3 {}
     <ng-template #template let-person="person"
       >Current user: {{ person.name }} {{ person.surname }}</ng-template
     >`,
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestPopoverComponent4 {}

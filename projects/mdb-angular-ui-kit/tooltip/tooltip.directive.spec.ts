@@ -152,8 +152,8 @@ describe('MDB Tooltip', () => {
 });
 
 @Component({
-  selector: 'mdb-test-tooltip',
-  template: ` <button
+    selector: 'mdb-test-tooltip',
+    template: ` <button
     [trigger]="testTrigger"
     [mdbTooltip]="testMdbTooltip"
     [placement]="testPlacement"
@@ -161,6 +161,7 @@ describe('MDB Tooltip', () => {
   >
     MDB Button
   </button>`,
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestTooltipComponent {
@@ -171,17 +172,19 @@ class TestTooltipComponent {
 }
 
 @Component({
-  selector: 'mdb-test-tooltip2',
-  template: ` <button mdbTooltip="testMdbTooltip" trigger="click">MDB Button</button>`,
+    selector: 'mdb-test-tooltip2',
+    template: ` <button mdbTooltip="testMdbTooltip" trigger="click">MDB Button</button>`,
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestTooltipComponent2 {}
 
 @Component({
-  selector: 'mdb-test-tooltip2',
-  template: ` <button mdbTooltip="testMdbTooltip" tooltipDisabled="true" trigger="click">
+    selector: 'mdb-test-tooltip2',
+    template: ` <button mdbTooltip="testMdbTooltip" tooltipDisabled="true" trigger="click">
     MDB Button
   </button>`,
+    standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 class TestTooltipComponent3 {}

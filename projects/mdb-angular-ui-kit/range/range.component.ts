@@ -21,10 +21,11 @@ export const RANGE_VALUE_ACCESOR: any = {
   multi: true,
 };
 @Component({
-  selector: 'mdb-range',
-  templateUrl: 'range.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [RANGE_VALUE_ACCESOR],
+    selector: 'mdb-range',
+    templateUrl: 'range.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [RANGE_VALUE_ACCESOR],
+    standalone: false
 })
 export class MdbRangeComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('input') input: ElementRef;
