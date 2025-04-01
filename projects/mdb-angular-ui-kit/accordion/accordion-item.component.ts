@@ -21,10 +21,10 @@ let uniqueHeaderId = 0;
 let uniqueId = 0;
 
 @Component({
-    selector: 'mdb-accordion-item',
-    templateUrl: './accordion-item.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mdb-accordion-item',
+  templateUrl: './accordion-item.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MdbAccordionItemComponent implements OnInit {
   @ContentChild(MDB_ACCORDION_ITEM_HEADER, { read: TemplateRef, static: true })

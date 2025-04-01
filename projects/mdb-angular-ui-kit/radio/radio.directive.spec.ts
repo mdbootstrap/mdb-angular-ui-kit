@@ -62,9 +62,9 @@ const basicTemplate = `
 `;
 
 @Component({
-    selector: 'mdb-radio-test',
-    template: basicTemplate,
-    standalone: false
+  selector: 'mdb-radio-test',
+  template: basicTemplate,
+  standalone: false,
 })
 class BasicRadioComponent {
   checked = false;

@@ -28,10 +28,10 @@ const NON_INVASIVE_CLASS = 'modal-non-invasive-open';
 const NON_INVASIVE_SHOW_CLASS = 'modal-non-invasive-show';
 
 @Component({
-    selector: 'mdb-modal-container',
-    templateUrl: 'modal-container.component.html',
-    changeDetection: ChangeDetectionStrategy.Default,
-    standalone: false
+  selector: 'mdb-modal-container',
+  templateUrl: 'modal-container.component.html',
+  changeDetection: ChangeDetectionStrategy.Default,
+  standalone: false,
 })
 export class MdbModalContainerComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(CdkPortalOutlet, { static: true }) _portalOutlet: CdkPortalOutlet;

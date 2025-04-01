@@ -19,11 +19,11 @@ import { MdbAbstractFormControl } from './form-control';
 import { AutofillEvent, AutofillMonitor } from '@angular/cdk/text-field';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[mdbInput]',
-    exportAs: 'mdbInput',
-    providers: [{ provide: MdbAbstractFormControl, useExisting: MdbInputDirective }],
-    standalone: false
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[mdbInput]',
+  exportAs: 'mdbInput',
+  providers: [{ provide: MdbAbstractFormControl, useExisting: MdbInputDirective }],
+  standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbInputDirective

@@ -13,6 +13,7 @@ const template = `
 @Component({
   selector: 'mdb-collapse-test',
   template,
+  standalone: false,
 })
 class TestCollapseComponent {
   @ViewChild('collapse') collapse: MdbCollapseDirective;

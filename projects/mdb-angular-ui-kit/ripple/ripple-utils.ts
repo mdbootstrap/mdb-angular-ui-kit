@@ -5,7 +5,6 @@ export function durationToMsNumber(time: string): number {
 }
 
 export function colorToRGB(color: any): number[] {
-  // eslint-disable-next-line no-shadow,@typescript-eslint/no-shadow
   function hexToRgb(color: any): any {
     const HEX_COLOR_LENGTH = 7;
     const IS_SHORT_HEX = color.length < HEX_COLOR_LENGTH;
@@ -19,7 +18,6 @@ export function colorToRGB(color: any): number[] {
     ];
   }
 
-  // eslint-disable-next-line no-shadow,@typescript-eslint/no-shadow
   function namedColorsToRgba(color: any): any {
     const tempElem = document.body.appendChild(document.createElement('fictum'));
     const flag = 'rgb(1, 2, 3)';
@@ -36,7 +34,6 @@ export function colorToRGB(color: any): number[] {
     return color;
   }
 
-  // eslint-disable-next-line no-shadow, @typescript-eslint/no-shadow
   function rgbaToRgb(color: any): any {
     color = color.match(/[.\d]+/g).map((a) => +Number(a));
     color.length = 3;

@@ -22,8 +22,8 @@ const tabsTemplate = `
 `;
 
 @Component({
-    template: tabsTemplate,
-    standalone: false
+  template: tabsTemplate,
+  standalone: false,
 })
 export class TabsTestComponent {
   pills = false;

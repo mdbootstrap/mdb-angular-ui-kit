@@ -8,6 +8,7 @@ import {
   Injector,
   StaticProvider,
   TemplateRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
@@ -63,6 +64,9 @@ export class MdbModalService {
     const portal = new ComponentPortal(MdbModalContainerComponent, null, this._injector, this._cfr);
     const containerRef = overlayRef.attach(portal);
     containerRef.instance._config = config;
+
+    containerRef.changeDetectorRef.detectChanges();
+
     return containerRef.instance;
   }
 

@@ -339,8 +339,8 @@ describe('MDB Dropdown', () => {
 });
 
 @Component({
-    selector: 'mdb-dropdown-test',
-    template: `
+  selector: 'mdb-dropdown-test',
+  template: `
     <div
       mdbDropdown
       class="dropdown"
@@ -361,7 +361,7 @@ describe('MDB Dropdown', () => {
       </ul>
     </div>
   `,
-    standalone: false
+  standalone: false,
 })
 class TestDropdownComponent {
   closeOnOutsideClick = true;

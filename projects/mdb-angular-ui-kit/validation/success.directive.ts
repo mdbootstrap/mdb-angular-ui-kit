@@ -13,9 +13,9 @@ import { takeUntil } from 'rxjs/operators';
 let defaultIdNumber = 0;
 
 @Component({
-    selector: 'mdb-success',
-    template: '<ng-content></ng-content>',
-    standalone: false
+  selector: 'mdb-success',
+  template: '<ng-content></ng-content>',
+  standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbSuccessDirective implements OnInit, OnDestroy {

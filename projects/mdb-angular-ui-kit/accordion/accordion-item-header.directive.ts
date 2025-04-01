@@ -5,10 +5,10 @@ export const MDB_ACCORDION_ITEM_HEADER = new InjectionToken<MdbAccordionItemHead
 );
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[mdbAccordionItemHeader]',
-    providers: [{ provide: MDB_ACCORDION_ITEM_HEADER, useExisting: MdbAccordionItemHeaderDirective }],
-    standalone: false
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[mdbAccordionItemHeader]',
+  providers: [{ provide: MDB_ACCORDION_ITEM_HEADER, useExisting: MdbAccordionItemHeaderDirective }],
+  standalone: false,
 })
 export class MdbAccordionItemHeaderDirective {
   constructor(public template: TemplateRef<any>) {}

@@ -39,8 +39,8 @@ const carouselTemplate = `
 `;
 
 @Component({
-    template: carouselTemplate,
-    standalone: false
+  template: carouselTemplate,
+  standalone: false,
 })
 export class CarouselTestComponent {
   @ViewChild(MdbCarouselComponent, { static: true }) carousel: MdbCarouselComponent;

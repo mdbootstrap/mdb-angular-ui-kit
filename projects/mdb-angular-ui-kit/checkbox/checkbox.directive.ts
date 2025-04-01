@@ -12,7 +12,6 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const MDB_CHECKBOX_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-use-before-define
   useExisting: forwardRef(() => MdbCheckboxDirective),
   multi: true,
 };
@@ -23,10 +22,10 @@ export class MdbCheckboxChange {
 }
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[mdbCheckbox]',
-    providers: [MDB_CHECKBOX_VALUE_ACCESSOR],
-    standalone: false
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[mdbCheckbox]',
+  providers: [MDB_CHECKBOX_VALUE_ACCESSOR],
+  standalone: false,
 })
 export class MdbCheckboxDirective {
   @Input('checked')

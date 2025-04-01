@@ -12,6 +12,7 @@ const template = `
 @Component({
   selector: 'mdb-range-test',
   template,
+  standalone: false,
 })
 class TestRangeComponent implements OnInit {
   @ViewChild(MdbRangeComponent) _range: MdbRangeComponent;

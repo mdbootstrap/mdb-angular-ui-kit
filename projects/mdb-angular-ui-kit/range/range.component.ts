@@ -16,16 +16,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const RANGE_VALUE_ACCESOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-use-before-define
   useExisting: forwardRef(() => MdbRangeComponent),
   multi: true,
 };
 @Component({
-    selector: 'mdb-range',
-    templateUrl: 'range.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [RANGE_VALUE_ACCESOR],
-    standalone: false
+  selector: 'mdb-range',
+  templateUrl: 'range.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [RANGE_VALUE_ACCESOR],
+  standalone: false,
 })
 export class MdbRangeComponent implements ControlValueAccessor, AfterViewInit {
   @ViewChild('input') input: ElementRef;

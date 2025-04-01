@@ -38,9 +38,9 @@ const basicTemplate = `
 `;
 
 @Component({
-    selector: 'mdb-input-test',
-    template: basicTemplate,
-    standalone: false
+  selector: 'mdb-input-test',
+  template: basicTemplate,
+  standalone: false,
 })
 class BasicInputComponent {
   disabled = false;

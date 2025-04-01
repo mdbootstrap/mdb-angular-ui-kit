@@ -3,10 +3,10 @@ import { Directive, ElementRef, EventEmitter, Input, Output, Renderer2 } from '@
 export type MdbDropdownMenuPositionClass = 'dropdown-menu-end';
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[mdbDropdownMenu]',
-    exportAs: 'mdbDropdownMenu',
-    standalone: false
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[mdbDropdownMenu]',
+  exportAs: 'mdbDropdownMenu',
+  standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbDropdownMenuDirective {

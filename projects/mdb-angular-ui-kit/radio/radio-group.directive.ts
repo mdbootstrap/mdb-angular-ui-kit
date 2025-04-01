@@ -14,16 +14,15 @@ import { MdbRadioDirective } from './radio-button.directive';
 
 export const MDB_RADIO_GROUP_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  // eslint-disable-next-line no-use-before-define, @typescript-eslint/no-use-before-define
   useExisting: forwardRef(() => MdbRadioGroupDirective),
   multi: true,
 };
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[mdbRadioGroup]',
-    providers: [MDB_RADIO_GROUP_VALUE_ACCESSOR],
-    standalone: false
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[mdbRadioGroup]',
+  providers: [MDB_RADIO_GROUP_VALUE_ACCESSOR],
+  standalone: false,
 })
 export class MdbRadioGroupDirective implements ControlValueAccessor, AfterContentInit, OnDestroy {
   @ContentChildren(MdbRadioDirective, { descendants: true }) radios: QueryList<MdbRadioDirective>;

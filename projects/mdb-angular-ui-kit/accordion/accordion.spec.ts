@@ -48,6 +48,7 @@ const template = `
 @Component({
   selector: 'mdb-accordion-test',
   template,
+  standalone: false,
 })
 class TestAccordionComponent {
   @ViewChildren(MdbAccordionItemComponent) _accordionItems: QueryList<MdbAccordionItemComponent>;

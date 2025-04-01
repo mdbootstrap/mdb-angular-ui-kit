@@ -7,7 +7,7 @@ import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
-    template: `
+  template: `
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
       <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
@@ -27,8 +27,8 @@ import { BrowserModule } from '@angular/platform-browser';
       <button type="button" class="btn btn-primary">Save changes</button>
     </div>
   `,
-    providers: [MdbModalService],
-    standalone: false
+  providers: [MdbModalService],
+  standalone: false,
 })
 class BasicModalComponent {
   constructor(public modal: MdbModalService) {}

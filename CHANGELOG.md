@@ -1,3 +1,40 @@
+## 8.0.0 (07.04.2025)
+
+This version requires Angular v19. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 19.
+
+### Breaking changes:
+
+- Updated Angular to v19, this version is required in MDB Angular v8
+- Older theming styles are no longer supported, use new [color modes](https://mdbootstrap.com/docs/angular/content-styles/theme/) instead
+- Slightly increased cell width in [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/)
+- The `.navbar-light` class is no longer used in [Navbar](https://mdbootstrap.com/docs/angular/navigation/navbar), use [color modes](https://mdbootstrap.com/docs/angular/content-styles/theme/) instead
+
+### Design updates:
+
+Introduced a new theming system that allows setting the theme for the entire page, its parts, or selected elements using data attributes.
+
+Read [Colors modes](https://mdbootstrap.com/docs/angular/content-styles/theme/) page to learn more about new theming.
+
+### Fixes and improvements:
+
+- [Modal](https://mdbootstrap.com/docs/angular/components/modal/) - resolved problem with opening animation
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/) - resolved problem with not hiding option groups labels when using filter
+- [Popconfirm](https://mdbootstrap.com/docs/angular/components/popconfirm/) - added default offset to the component
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/) - fixed date parsing bug for `yy` year format
+- [Stepper](https://mdbootstrap.com/docs/angular/components/stepper/) - added 'Optional' text to the steps that use `optional` input
+- [Onboarding](https://mdbootstrap.com/docs/angular/plugins/onboarding/) - added gap between the buttons and fixed border styles
+- Fixed [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/) and [Timepicker](https://mdbootstrap.com/docs/angular/forms/timepicker/) toggle button padding in Firefox browser
+- Removed unnecessary `BrowserAnimationsModule` imports from [Onboarding](https://mdbootstrap.com/docs/angular/plugins/onboarding/), [Ecommerce gallery](https://mdbootstrap.com/docs/angular/plugins/ecommerce-gallery/) and [Organization chart](https://mdbootstrap.com/docs/angular/plugins/organization-chart/) plugins
+
+### New features:
+
+- Added new SCSS and CSS variables for plugins styles
+- [File upload](https://mdbootstrap.com/docs/angular/plugins/file-upload/) - added new `mimeTypes` input that allow to define a list of mime types for supported file types
+- [Multi item carousel](https://mdbootstrap.com/docs/angular/plugins/multi-item-carousel/) - added new `(slideClick)` event
+- [Color picker](https://mdbootstrap.com/docs/angular/plugins/color-picker/) - added new `color-picker-next-format-button`, `color-picker-previous-format-button` and `color-picker-copy-button` classes for the buttons
+
+---
+
 ## 7.1.0 (18.11.2024)
 
 ### Fixes and improvements:

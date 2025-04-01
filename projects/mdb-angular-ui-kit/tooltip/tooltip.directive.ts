@@ -22,10 +22,10 @@ import { fromEvent, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[mdbTooltip]',
-    exportAs: 'mdbTooltip',
-    standalone: false
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[mdbTooltip]',
+  exportAs: 'mdbTooltip',
+  standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbTooltipDirective implements OnInit, OnDestroy {
@@ -37,7 +37,7 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
   @Input() trigger = 'hover focus';
   @Input() delayShow = 0;
   @Input() delayHide = 0;
-  @Input() offset = 0;
+  @Input() offset = 6;
 
   @Output() tooltipShow: EventEmitter<MdbTooltipDirective> = new EventEmitter();
   @Output() tooltipShown: EventEmitter<MdbTooltipDirective> = new EventEmitter();

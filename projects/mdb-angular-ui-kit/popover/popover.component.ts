@@ -9,18 +9,18 @@ import {
 import { trigger, style, animate, transition, state, AnimationEvent } from '@angular/animations';
 import { Subject } from 'rxjs';
 @Component({
-    selector: 'mdb-popover',
-    templateUrl: 'popover.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [
-        trigger('fade', [
-            state('visible', style({ opacity: 1 })),
-            state('hidden', style({ opacity: 0 })),
-            transition('visible <=> hidden', animate('150ms linear')),
-            transition(':enter', animate('150ms linear')),
-        ]),
-    ],
-    standalone: false
+  selector: 'mdb-popover',
+  templateUrl: 'popover.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('fade', [
+      state('visible', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('visible <=> hidden', animate('150ms linear')),
+      transition(':enter', animate('150ms linear')),
+    ]),
+  ],
+  standalone: false,
 })
 export class MdbPopoverComponent {
   @Input({ transform: booleanAttribute }) animation: boolean;

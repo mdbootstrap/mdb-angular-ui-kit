@@ -19,6 +19,7 @@ const template = `
 @Component({
   selector: 'mdb-ripple-test',
   template,
+  standalone: false,
 })
 class TestRippleComponent {
   rippleCentered = true;

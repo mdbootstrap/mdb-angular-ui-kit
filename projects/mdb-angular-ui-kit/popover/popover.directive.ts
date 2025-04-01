@@ -25,10 +25,10 @@ import { first, takeUntil } from 'rxjs/operators';
 import { MdbPopoverPosition } from './popover.types';
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: '[mdbPopover]',
-    exportAs: 'mdbPopover',
-    standalone: false
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[mdbPopover]',
+  exportAs: 'mdbPopover',
+  standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbPopoverDirective implements OnInit, OnDestroy {

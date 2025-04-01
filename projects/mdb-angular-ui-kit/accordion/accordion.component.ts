@@ -13,10 +13,10 @@ import { MdbAccordionItemComponent } from './accordion-item.component';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
-    selector: 'mdb-accordion',
-    templateUrl: './accordion.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'mdb-accordion',
+  templateUrl: './accordion.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MdbAccordionComponent implements AfterContentInit {
   @ContentChildren(MdbAccordionItemComponent) items: QueryList<MdbAccordionItemComponent>;

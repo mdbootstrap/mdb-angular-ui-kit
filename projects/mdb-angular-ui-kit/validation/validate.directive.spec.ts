@@ -9,6 +9,7 @@ const template = `
 @Component({
   selector: 'mdb-collapse-test',
   template,
+  standalone: false,
 })
 class TestValidateComponent {
   success = true;
