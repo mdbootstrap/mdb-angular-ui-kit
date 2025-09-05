@@ -1,5 +1,5 @@
 import { CdkPortalOutlet } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
+
 import {
   ComponentFactoryResolver,
   Directive,
@@ -8,6 +8,7 @@ import {
   OnDestroy,
   OnInit,
   ViewContainerRef,
+  DOCUMENT
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

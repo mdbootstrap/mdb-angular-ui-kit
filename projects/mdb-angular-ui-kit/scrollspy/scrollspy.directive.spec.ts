@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+
 import { MdbScrollspyLinkDirective } from './scrollspy-link.directive';
 import { MdbScrollspyDirective } from './scrollspy.directive';
 import { MdbScrollspyService } from './scrollspy.service';

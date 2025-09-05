@@ -7,8 +7,9 @@ import {
   NgZone,
   Input,
   AfterViewInit,
+  DOCUMENT
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+
 import { MdbScrollspyService } from './scrollspy.service';
 
 @Directive({

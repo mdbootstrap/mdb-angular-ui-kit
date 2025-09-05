@@ -1,6 +1,6 @@
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
-import { DOCUMENT } from '@angular/common';
+
 import {
   ComponentFactoryResolver,
   Inject,
@@ -9,6 +9,7 @@ import {
   StaticProvider,
   TemplateRef,
   ChangeDetectorRef,
+  DOCUMENT
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter, take } from 'rxjs/operators';

@@ -14,12 +14,13 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
+  DOCUMENT
 } from '@angular/core';
 import { MdbModalConfig } from './modal-config';
 import { ConfigurableFocusTrapFactory, ConfigurableFocusTrap } from '@angular/cdk/a11y';
 import { fromEvent, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { DOCUMENT } from '@angular/common';
+
 
 // width below which, according to css rules, modal position changes - modal gets position relative instead of absolute.
 const MODAL_CSS_BREAKPOINT = 992;

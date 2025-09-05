@@ -6,8 +6,9 @@ import {
   HostBinding,
   ChangeDetectorRef,
   Inject,
+  DOCUMENT
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
