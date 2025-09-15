@@ -9,6 +9,7 @@ import {
   Renderer2,
   OnDestroy,
   NgZone,
+  AfterContentChecked,
 } from '@angular/core';
 import { MdbAbstractFormControl } from './form-control';
 import { MdbLabelDirective } from './label.directive';
@@ -22,11 +23,11 @@ import { takeUntil } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
+export class MdbFormControlComponent implements AfterContentInit, AfterContentChecked, OnDestroy {
   @ViewChild('notchLeading', { static: true }) _notchLeading: ElementRef;
   @ViewChild('notchMiddle', { static: true }) _notchMiddle: ElementRef;
   @ContentChild(MdbAbstractFormControl, { static: true }) _formControl: MdbAbstractFormControl<any>;
-  @ContentChild(MdbLabelDirective, { static: true, read: ElementRef }) _label: ElementRef;
+  @ContentChild(MdbLabelDirective, { static: false, read: ElementRef }) _label: ElementRef;
 
   @HostBinding('class.form-outline') outline = true;
   @HostBinding('class.d-block') display = true;
@@ -50,17 +51,20 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
   private _labelScale = 0.8;
   private _recalculateGapWhenVisible = false;
 
+  private _previousLabel: ElementRef | null = null;
+
   ngAfterContentInit(): void {
-    if (this._label) {
+    if (this.hasLabel) {
       setTimeout(() => {
         this._updateBorderGap();
       }, 0);
+      this._previousLabel = this._label;
     } else {
       this._renderer.addClass(this.input, 'placeholder-active');
     }
     this._updateLabelActiveState();
 
-    if (this._label) {
+    if (this.hasLabel) {
       this._contentObserver
         .observe(this._label.nativeElement)
         .pipe(takeUntil(this._destroy$))
@@ -71,23 +75,34 @@ export class MdbFormControlComponent implements AfterContentInit, OnDestroy {
 
     this._formControl.stateChanges.pipe(takeUntil(this._destroy$)).subscribe(() => {
       this._updateLabelActiveState();
-      if (this._label) {
+      if (this.hasLabel) {
         this._updateBorderGap();
       }
     });
 
     this._ngZone.runOutsideAngular(() => {
       this._ngZone.onStable.pipe(takeUntil(this._destroy$)).subscribe(() => {
-        if (this._label && this._recalculateGapWhenVisible) {
+        if (this.hasLabel && this._recalculateGapWhenVisible) {
           this._updateBorderGap();
         }
       });
     });
   }
 
+  ngAfterContentChecked(): void {
+    if (!this._previousLabel && this.hasLabel) {
+      setTimeout(() => this._updateBorderGap());
+    }
+    this._previousLabel = this._label;
+  }
+
   ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.unsubscribe();
+  }
+
+  get hasLabel(): boolean {
+    return !!this._label;
   }
 
   private _getLabelWidth(): number {

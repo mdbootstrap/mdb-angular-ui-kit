@@ -1,4 +1,3 @@
-
 import { MdbScrollspyLinkDirective } from './scrollspy-link.directive';
 import { MdbScrollspyDirective } from './scrollspy.directive';
 import { MdbScrollspyService } from './scrollspy.service';

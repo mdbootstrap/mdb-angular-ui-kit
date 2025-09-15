@@ -2,14 +2,13 @@ import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal, ComponentType, TemplatePortal } from '@angular/cdk/portal';
 
 import {
-  ComponentFactoryResolver,
   Inject,
   Injectable,
   Injector,
   StaticProvider,
   TemplateRef,
   ChangeDetectorRef,
-  DOCUMENT
+  DOCUMENT,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
@@ -22,8 +21,7 @@ export class MdbModalService {
   constructor(
     @Inject(DOCUMENT) private _document,
     private _overlay: Overlay,
-    private _injector: Injector,
-    private _cfr: ComponentFactoryResolver
+    private _injector: Injector
   ) {}
 
   open<T, D = any>(
@@ -62,7 +60,7 @@ export class MdbModalService {
     overlayRef: OverlayRef,
     config: MdbModalConfig
   ): MdbModalContainerComponent {
-    const portal = new ComponentPortal(MdbModalContainerComponent, null, this._injector, this._cfr);
+    const portal = new ComponentPortal(MdbModalContainerComponent, null, this._injector);
     const containerRef = overlayRef.attach(portal);
     containerRef.instance._config = config;
 

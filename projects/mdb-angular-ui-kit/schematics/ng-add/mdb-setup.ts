@@ -166,6 +166,9 @@ function addChartsToScripts(options: Schema): any {
           ? options.project
           : Object.keys(angularJsonFileObject.projects)[0];
         const projectObject = angularJsonFileObject.projects[project];
+        if (!projectObject.architect.build.options.scripts) {
+          projectObject.architect.build.options.scripts = [];
+        }
         const scripts = projectObject.architect.build.options.scripts;
 
         scripts.push(chartsPath);
@@ -180,7 +183,7 @@ function addChartsToScripts(options: Schema): any {
 
 function updateAppComponentContent(): any {
   return async (host: Tree, context: SchematicContext) => {
-    const filePath = './src/app/app.component.html';
+    const filePath = './src/app/app.html';
     const logger = context.logger;
     const buffer = host.read(filePath);
 

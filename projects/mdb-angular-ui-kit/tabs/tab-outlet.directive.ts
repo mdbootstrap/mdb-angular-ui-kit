@@ -1,14 +1,13 @@
 import { CdkPortalOutlet } from '@angular/cdk/portal';
 
 import {
-  ComponentFactoryResolver,
   Directive,
   Inject,
   Input,
   OnDestroy,
   OnInit,
   ViewContainerRef,
-  DOCUMENT
+  DOCUMENT,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -25,12 +24,8 @@ export class MdbTabPortalOutlet extends CdkPortalOutlet implements OnInit, OnDes
 
   @Input() tab: MdbTabComponent;
 
-  constructor(
-    _cfr: ComponentFactoryResolver,
-    _vcr: ViewContainerRef,
-    @Inject(DOCUMENT) _document: any
-  ) {
-    super(_cfr, _vcr, _document);
+  constructor(_vcr: ViewContainerRef, @Inject(DOCUMENT) _document: any) {
+    super(_vcr, _document);
   }
 
   ngOnInit(): void {

@@ -1,3 +1,30 @@
+## 9.0.0 (21.09.2025)
+
+This version requires Angular v20. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 20.
+
+### Breaking changes:
+
+- Updated Angular to v20, this version is required in MDB Angular v9
+
+### Fixes and improvements:
+
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/)
+  - Improved blocking of months and years cells in some edge cases
+  - Resolved problems with errors when parsing invalid date formats
+- [File upload](https://mdbootstrap.com/docs/angular/plugins/file-upload/)
+  - Added error handling for `maxFileQuantity`
+  - Improved extensions validation logic to handle problems with uploading files with extensions defined in `mimeTypes` input
+- [Input fields](https://mdbootstrap.com/docs/angular/forms/input-fields/) - resolved problem with border gap updates for dynamically rendered label
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/) - resolved issue where clicking the arrow icon in one Select input would not close the dropdown of another Select component
+
+### New features:
+
+- Added new SCSS and CSS variables for plugins styles
+- [Autocomplete](https://mdbootstrap.com/docs/angular/forms/autocomplete/) - added new `dropdownWidth` input that allows to set custom width for the dropdown menu
+- [Datatables](https://mdbootstrap.com/docs/angular/data/datatables/) - added new `defaultSortDirection` input that allows to set default sort direction for the table header
+
+---
+
 ## 8.0.0 (07.04.2025)
 
 This version requires Angular v19. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 19.

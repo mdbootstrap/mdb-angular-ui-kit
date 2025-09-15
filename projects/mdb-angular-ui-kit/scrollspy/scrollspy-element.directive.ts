@@ -7,10 +7,9 @@ import {
   Input,
   AfterViewInit,
   Inject,
-  DOCUMENT
+  DOCUMENT,
 } from '@angular/core';
 import { MdbScrollspyService } from './scrollspy.service';
-
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector

@@ -13,7 +13,7 @@ describe('MDB Form Control', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BasicFormControlComponent, WithoutLabelComponent],
+      declarations: [BasicFormControlComponent, WithoutLabelComponent, DynamicLabelComponent],
       imports: [MdbFormsModule],
       teardown: { destroyAfterEach: false },
     });
@@ -62,7 +62,42 @@ describe('MDB Form Control', () => {
 
     expect(middleNotch.style.width).toEqual(expectedBorderGap);
   }));
+
+  it('should update border gap when label is dynamically rendered with *ngIf', fakeAsync(() => {
+    const fixture = TestBed.createComponent(DynamicLabelComponent);
+    fixture.detectChanges();
+
+    let label = fixture.nativeElement.querySelector('label');
+    let middleNotch = fixture.nativeElement.querySelector('.form-notch-middle');
+    expect(label).toBeNull();
+    expect(middleNotch.style.width).toBe('');
+
+    fixture.componentInstance.showLabel = true;
+    fixture.detectChanges();
+    flush();
+    fixture.detectChanges();
+
+    label = fixture.nativeElement.querySelector('label');
+    middleNotch = fixture.nativeElement.querySelector('.form-notch-middle');
+    expect(label).not.toBeNull();
+    const expectedBorderGap = label.clientWidth * labelScale + labelGapPadding + 'px';
+    expect(middleNotch.style.width).toEqual(expectedBorderGap);
+  }));
 });
+
+const dynamicLabelTemplate = `
+<mdb-form-control>
+  <input mdbInput class="form-control" />
+  <label *ngIf="showLabel" mdbLabel class="form-label">Example label</label>
+</mdb-form-control>
+`;
+@Component({
+  template: dynamicLabelTemplate,
+  standalone: false,
+})
+class DynamicLabelComponent {
+  showLabel = false;
+}
 
 const basicTemplate = `
 <mdb-form-control>
