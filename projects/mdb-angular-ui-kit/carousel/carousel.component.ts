@@ -1,3 +1,4 @@
+import { isPlatformBrowser } from '@angular/common';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
@@ -9,9 +10,11 @@ import {
   EventEmitter,
   HostBinding,
   HostListener,
+  Inject,
   Input,
   OnDestroy,
   Output,
+  PLATFORM_ID,
   QueryList,
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
@@ -128,19 +131,27 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
 
   @HostBinding('class.d-block') display = true;
 
-  constructor(private _elementRef: ElementRef, private _cdRef: ChangeDetectorRef) {}
+  private _isBrowser: boolean;
+
+  constructor(
+    private _elementRef: ElementRef,
+    private _cdRef: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) platformId: string
+  ) {
+    this._isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngAfterViewInit(): void {
     Promise.resolve().then(() => {
       this._setActiveSlide(this._activeSlide);
 
-      if (this.interval > 0 && this.ride) {
+      if (this._isBrowser && this.interval > 0 && this.ride) {
         this.play();
       }
       this._cdRef.markForCheck();
     });
 
-    if (this.keyboard) {
+    if (this._isBrowser && this.keyboard) {
       fromEvent(this._elementRef.nativeElement, 'keydown')
         .pipe(takeUntil(this._destroy$))
         .subscribe((event: KeyboardEvent) => {
@@ -168,6 +179,10 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   private _restartInterval(): void {
+    if (!this._isBrowser) {
+      return;
+    }
+
     this._resetInterval();
     const activeElement = this.items[this.activeSlide];
     const interval = activeElement.interval ? activeElement.interval : this.interval;

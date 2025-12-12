@@ -1,3 +1,17 @@
+## 9.1.0 (15.12.2025)
+
+### Fixes and improvements:
+
+- [Carousel](https://mdbootstrap.com/docs/angular/components/carousel/) - fixed problem with infinite page loading when using component in SSR mode
+
+### New features:
+
+- [Calendar](https://mdbootstrap.com/docs/angular/plugins/calendar/) - added new events and methods to enable creation of custom modals to handle adding or editing events
+- [Select](https://mdbootstrap.com/docs/angular/forms/select/) - added new `MDB_SELECT_SCROLL_STRATEGY` injection token that allows to change scrolling strategy
+- [Autocomplete](https://mdbootstrap.com/docs/angular/forms/autocomplete/) - added new `MDB_AUTOCOMPLETE_SCROLL_STRATEGY` injection token that allows to change scrolling strategy
+
+---
+
 ## 9.0.0 (21.09.2025)
 
 This version requires Angular v20. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 20.
