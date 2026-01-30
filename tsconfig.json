@@ -11,10 +11,6 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
     "paths": {
       "mdb-angular-ui-kit": [
         "projects/mdb-angular-ui-kit"

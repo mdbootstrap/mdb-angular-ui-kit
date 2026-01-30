@@ -13,20 +13,24 @@ import { BrowserModule } from '@angular/platform-browser';
       <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
     </div>
     <div class="modal-body">
-      <div id="main-view" *ngIf="mainView">
-        <button id="main-view-toggler" class="btn btn-primary" (click)="setView(false)"></button>
-        <p>main view</p>
-      </div>
-      <div id="not-main-view" *ngIf="!mainView">
-        <button id="not-main-view-toggler" class="btn btn-primary" (click)="setView(true)"></button>
-        <p>not main view</p>
-      </div>
+      @if (mainView) {
+        <div id="main-view">
+          <button id="main-view-toggler" class="btn btn-primary" (click)="setView(false)"></button>
+          <p>main view</p>
+        </div>
+      }
+      @if (!mainView) {
+        <div id="not-main-view">
+          <button id="not-main-view-toggler" class="btn btn-primary" (click)="setView(true)"></button>
+          <p>not main view</p>
+        </div>
+      }
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
       <button type="button" class="btn btn-primary">Save changes</button>
     </div>
-  `,
+    `,
   providers: [MdbModalService],
   standalone: false,
 })

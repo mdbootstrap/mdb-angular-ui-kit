@@ -6,44 +6,42 @@
     'nav-fill': fill,
     'nav-justified': justified,
     'flex-column': vertical,
-    'text-center': vertical
+    'text-center': vertical,
   }"
   role="tablist"
 >
-  <li
-    *ngFor="let tab of tabs; let i = index"
-    (click)="setActiveTab(i)"
-    class="nav-item"
-    role="presentation"
-  >
-    <a
-      href="javascript:void(0)"
-      class="nav-link"
-      [class.active]="tab.active"
-      [class.disabled]="tab.disabled"
-      role="tab"
-    >
-      <ng-template [ngIf]="tab.titleContent">
-        <ng-template [cdkPortalOutlet]="tab.titleContent"></ng-template>
-      </ng-template>
-
-      <ng-template [ngIf]="!tab.titleContent">{{ tab.title }}</ng-template>
-    </a>
-  </li>
+  @for (tab of tabs; track tab; let i = $index) {
+    <li (click)="setActiveTab(i)" class="nav-item" role="presentation">
+      <a
+        href="javascript:void(0)"
+        class="nav-link"
+        [class.active]="tab.active"
+        [class.disabled]="tab.disabled"
+        role="tab"
+      >
+        @if (tab.titleContent) {
+          <ng-template [cdkPortalOutlet]="tab.titleContent"></ng-template>
+        }
+        @if (!tab.titleContent) {
+          {{ tab.title }}
+        }
+      </a>
+    </li>
+  }
 </ul>
 
 <div class="tab-content {{ contentColClass }}">
   <!-- <ng-content select="mdb-tab"></ng-content> -->
-  <ng-container *ngFor="let tab of tabs">
+  @for (tab of tabs; track tab) {
     <div
       class="tab-pane"
       [ngClass]="{
         fade: tab.fade,
         active: tab.active,
-        show: tab.show
+        show: tab.show,
       }"
     >
       <ng-template mdbTabPortalOutlet [tab]="tab"></ng-template>
     </div>
-  </ng-container>
+  }
 </div>

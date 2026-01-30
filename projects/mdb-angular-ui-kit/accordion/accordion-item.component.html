@@ -9,7 +9,9 @@
     (click)="toggle()"
   >
     {{ header }}
-    <ng-template *ngIf="_headerTemplate" [ngTemplateOutlet]="_headerTemplate"></ng-template>
+    @if (_headerTemplate) {
+      <ng-template [ngTemplateOutlet]="_headerTemplate"></ng-template>
+    }
   </button>
 </h2>
 <div
@@ -22,6 +24,8 @@
   [attr.aria-labelledby]="_headerId"
 >
   <div class="accordion-body">
-    <ng-template *ngIf="_bodyTemplate" [ngTemplateOutlet]="_bodyTemplate"></ng-template>
+    @if (_bodyTemplate) {
+      <ng-template [ngTemplateOutlet]="_bodyTemplate"></ng-template>
+    }
   </div>
 </div>
