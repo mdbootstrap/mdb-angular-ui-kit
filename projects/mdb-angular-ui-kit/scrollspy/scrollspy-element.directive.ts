@@ -6,6 +6,7 @@ import {
   NgZone,
   Input,
   AfterViewInit,
+  OnDestroy,
   Inject,
   DOCUMENT,
 } from '@angular/core';
@@ -17,8 +18,10 @@ import { MdbScrollspyService } from './scrollspy.service';
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/directive-class-suffix
-export class MdbScrollspyElementDirective implements OnInit, AfterViewInit {
+export class MdbScrollspyElementDirective implements OnInit, AfterViewInit, OnDestroy {
   private id: string;
+  private _unlisten: (() => void) | null = null;
+  private _lastInView: boolean | null = null;
 
   get host(): HTMLElement {
     return this._elementRef.nativeElement;
@@ -48,6 +51,10 @@ export class MdbScrollspyElementDirective implements OnInit, AfterViewInit {
   ) {}
 
   isElementInViewport(): boolean {
+    if (!this.container) {
+      return false;
+    }
+
     const scrollTop = this.container.scrollTop;
     const elTop = this.host.offsetTop - this.offset;
     const elHeight = this.host.offsetHeight;
@@ -63,11 +70,25 @@ export class MdbScrollspyElementDirective implements OnInit, AfterViewInit {
   }
 
   onScroll(): void {
-    this.updateActiveState(this.scrollSpyId, this.id);
+    const inView = this.isElementInViewport();
+
+    if (this._lastInView === inView) {
+      return;
+    }
+
+    this._lastInView = inView;
+
+    this.ngZone.run(() => {
+      this.updateActiveState(this.scrollSpyId, this.id);
+    });
   }
 
   listenToScroll(): void {
-    this.renderer.listen(this.container, 'scroll', () => {
+    if (!this.container) {
+      return;
+    }
+
+    this._unlisten = this.renderer.listen(this.container, 'scroll', () => {
       this.onScroll();
     });
   }
@@ -79,15 +100,23 @@ export class MdbScrollspyElementDirective implements OnInit, AfterViewInit {
       this.container = this._getClosestEl(this.host, '.scrollspy-container');
     }
 
-    this.renderer.setStyle(this.container, 'position', 'relative');
-
-    this.ngZone.runOutsideAngular(this.listenToScroll.bind(this));
+    if (this.container) {
+      this.renderer.setStyle(this.container, 'position', 'relative');
+      this.ngZone.runOutsideAngular(this.listenToScroll.bind(this));
+    }
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.updateActiveState(this.scrollSpyId, this.id);
+      this._lastInView = this.isElementInViewport();
+      this.ngZone.run(() => {
+        this.updateActiveState(this.scrollSpyId, this.id);
+      });
     }, 0);
+  }
+
+  ngOnDestroy(): void {
+    this._unlisten?.();
   }
 
   private _getClosestEl(el: any, selector: string): HTMLElement | null {

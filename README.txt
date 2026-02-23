@@ -1,6 +1,6 @@
 MDB 5 Angular
 
-Version: FREE 9.1.0
+Version: FREE 10.0.0
 
 Documentation:
 https://mdbootstrap.com/docs/angular/

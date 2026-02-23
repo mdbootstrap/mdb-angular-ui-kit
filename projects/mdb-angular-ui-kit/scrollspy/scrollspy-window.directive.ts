@@ -7,6 +7,7 @@ import {
   NgZone,
   Input,
   AfterViewInit,
+  OnDestroy,
   DOCUMENT,
 } from '@angular/core';
 
@@ -17,8 +18,10 @@ import { MdbScrollspyService } from './scrollspy.service';
   selector: '[mdbScrollspyWindow]',
   standalone: false,
 })
-export class MdbScrollspyWindowDirective implements OnInit, AfterViewInit {
+export class MdbScrollspyWindowDirective implements OnInit, AfterViewInit, OnDestroy {
   private id: string;
+  private _unlisten: (() => void) | null = null;
+  private _lastInView: boolean | null = null;
 
   @Input('mdbScrollspyWindow')
   get scrollSpyId(): string {
@@ -59,11 +62,21 @@ export class MdbScrollspyWindowDirective implements OnInit, AfterViewInit {
   }
 
   onScroll(): void {
-    this.updateActiveState(this.scrollSpyId, this.id);
+    const inView = this.isElementInViewport();
+
+    if (this._lastInView === inView) {
+      return;
+    }
+
+    this._lastInView = inView;
+
+    this.ngZone.run(() => {
+      this.updateActiveState(this.scrollSpyId, this.id);
+    });
   }
 
   listenToScroll(): void {
-    this.renderer.listen(window, 'scroll', () => {
+    this._unlisten = this.renderer.listen(window, 'scroll', () => {
       this.onScroll();
     });
   }
@@ -76,7 +89,14 @@ export class MdbScrollspyWindowDirective implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.updateActiveState(this.scrollSpyId, this.id);
+      this._lastInView = this.isElementInViewport();
+      this.ngZone.run(() => {
+        this.updateActiveState(this.scrollSpyId, this.id);
+      });
     }, 0);
+  }
+
+  ngOnDestroy(): void {
+    this._unlisten?.();
   }
 }

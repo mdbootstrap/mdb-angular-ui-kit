@@ -28,6 +28,7 @@ describe('MDB Checkbox', () => {
 
   it('should be checked if checked input is set to true', () => {
     checkbox.checked = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(input.checked).toBe(true);
   });
@@ -40,6 +41,7 @@ describe('MDB Checkbox', () => {
 
   it('should be disabled if disabled input is set to true', () => {
     checkbox.disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     expect(input.disabled).toBe(true);
   });
@@ -65,6 +67,7 @@ describe('MDB Checkbox', () => {
   it('should not toggle checked state if element is disabled', () => {
     checkbox.checked = false;
     checkbox.disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(input.checked).toBe(false);
@@ -121,6 +124,7 @@ describe('MDB Checkbox', () => {
       expect(input.checked).toBe(false);
 
       checkbox.control.setValue(true);
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       expect(input.checked).toBe(true);

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdbCarouselComponent } from './carousel.component';
 import { MdbCarouselModule } from './carousel.module';
 
@@ -70,12 +70,25 @@ describe('MDB Carousel', () => {
     fixture.detectChanges();
   });
 
-  it('should set first slide as active by default', fakeAsync(() => {
-    flush();
+  it('should set first slide as active by default', async () => {
+    await fixture.whenStable();
     fixture.detectChanges();
     const items = fixture.nativeElement.querySelectorAll('.carousel-item');
     expect(items[0].classList.contains('active')).toBe(true);
-  }));
+  });
+
+  it('should apply transition classes on programmatic next without external detectChanges', async () => {
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const items = fixture.nativeElement.querySelectorAll('.carousel-item');
+    expect(items[0].classList.contains('active')).toBe(true);
+
+    carousel.next();
+    await Promise.resolve();
+
+    expect(items[1].classList.contains('carousel-item-next')).toBe(true);
+  });
 
   it('should show indicators if indicators input is set to true', () => {
     component.indicators = true;
@@ -107,15 +120,17 @@ describe('MDB Carousel', () => {
     expect(carouselEl.classList.contains('carousel-dark')).toBe(true);
   });
 
-  it('should set corresponding indicator as active', fakeAsync(() => {
+  it('should set corresponding indicator as active', async () => {
     component.indicators = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     const indicators = fixture.nativeElement.querySelectorAll('.carousel-indicators > button');
     expect(indicators[0].classList.contains('active')).toBe(true);
-  }));
+  });
 
-  it('should change active slide on indicator click', fakeAsync(() => {
+  it('should change active slide on indicator click', async () => {
     component.indicators = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     const items = fixture.nativeElement.querySelectorAll('.carousel-item');
     const indicators = fixture.nativeElement.querySelectorAll('.carousel-indicators > button');
@@ -123,96 +138,100 @@ describe('MDB Carousel', () => {
     expect(items[0].classList.contains('active')).toBe(true);
 
     indicators[1].click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(indicators[1].classList.contains('active')).toBe(true);
     expect(items[1].classList.contains('active')).toBe(true);
-  }));
+  });
 
-  it('should change slide on previous arrow click', fakeAsync(() => {
+  it('should change slide on previous arrow click', async () => {
     component.controls = true;
     component.wrap = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     const items = fixture.nativeElement.querySelectorAll('.carousel-item');
     const prevArrow = fixture.nativeElement.querySelector('.carousel-control-prev');
     expect(items[0].classList.contains('active')).toBe(true);
 
     prevArrow.click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(items[2].classList.contains('active')).toBe(true);
 
     prevArrow.click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(items[1].classList.contains('active')).toBe(true);
-  }));
+  });
 
-  it('should change slide on next arrow click', fakeAsync(() => {
+  it('should change slide on next arrow click', async () => {
     component.controls = true;
     component.wrap = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     const items = fixture.nativeElement.querySelectorAll('.carousel-item');
     const nextArrow = fixture.nativeElement.querySelector('.carousel-control-next');
     expect(items[0].classList.contains('active')).toBe(true);
 
     nextArrow.click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(items[1].classList.contains('active')).toBe(true);
 
     nextArrow.click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(items[2].classList.contains('active')).toBe(true);
-  }));
+  });
 
-  it('should not go to previous slide if first slide is active and wrap option is disabled', fakeAsync(() => {
+  it('should not go to previous slide if first slide is active and wrap option is disabled', async () => {
     component.controls = true;
     component.wrap = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     const items = fixture.nativeElement.querySelectorAll('.carousel-item');
     const prevArrow = fixture.nativeElement.querySelector('.carousel-control-prev');
     expect(items[0].classList.contains('active')).toBe(true);
 
     prevArrow.click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(items[0].classList.contains('active')).toBe(true);
     expect(items[2].classList.contains('active')).toBe(false);
-  }));
+  });
 
-  it('should not go to next slide if last slide is active and wrap option is disabled', fakeAsync(() => {
+  it('should not go to next slide if last slide is active and wrap option is disabled', async () => {
     component.controls = true;
     component.wrap = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
     const items = fixture.nativeElement.querySelectorAll('.carousel-item');
     const nextArrow = fixture.nativeElement.querySelector('.carousel-control-next');
     expect(items[0].classList.contains('active')).toBe(true);
 
     nextArrow.click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(items[1].classList.contains('active')).toBe(true);
 
     nextArrow.click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(items[2].classList.contains('active')).toBe(true);
 
     nextArrow.click();
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     fixture.detectChanges();
 
     expect(items[2].classList.contains('active')).toBe(true);
     expect(items[0].classList.contains('active')).toBe(false);
-  }));
+  });
 });

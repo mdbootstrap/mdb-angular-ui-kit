@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   ComponentRef,
   Directive,
   ElementRef,
@@ -7,6 +8,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  inject,
 } from '@angular/core';
 import {
   ConnectedPosition,
@@ -49,6 +51,8 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
   private _open = false;
   private _showTimeout: any = 0;
   private _hideTimeout: any = 0;
+
+  private _cdRef = inject(ChangeDetectorRef);
 
   readonly _destroy$: Subject<void> = new Subject<void>();
 
@@ -191,7 +195,8 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
         this._tooltipRef.instance.animation = this.animation;
         this._tooltipRef.instance.animationState = 'visible';
 
-        this._tooltipRef.instance.markForCheck();
+        this._tooltipRef.instance.detectChanges();
+        this._cdRef.markForCheck();
 
         this.tooltipShown.emit(this);
       }
@@ -220,7 +225,7 @@ export class MdbTooltipDirective implements OnInit, OnDestroy {
           this.tooltipHidden.emit(this);
         });
         this._tooltipRef.instance.animationState = 'hidden';
-        this._tooltipRef.instance.markForCheck();
+        this._tooltipRef.instance.detectChanges();
       }
     }, this.delayHide);
   }

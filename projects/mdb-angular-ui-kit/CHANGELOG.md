@@ -1,3 +1,18 @@
+## 10.0.0 (23.02.2026)
+
+This version requires Angular v21. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 21.
+
+### Breaking changes:
+
+- Updated Angular to v21, this version is required in MDB Angular v10
+
+### Fixes and improvements:
+
+- Improved components change detection to ensure support for Zoneless applications
+- [Sidenav](https://mdbootstrap.com/docs/angular/navigation/sidenav/) - fixed behavior of `slim` and `slimCollapsed` inputs
+
+---
+
 ## 9.1.0 (15.12.2025)
 
 ### Fixes and improvements:

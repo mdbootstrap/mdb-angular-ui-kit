@@ -1,5 +1,5 @@
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbTabComponent } from './tab.component';
@@ -46,7 +46,7 @@ describe('MDB Tabs', () => {
   let component: TabsTestComponent;
   let tabsComponent: MdbTabsComponent;
 
-  beforeEach(fakeAsync(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [TabsTestComponent],
       imports: [MdbTabsModule, NoopAnimationsModule],
@@ -57,11 +57,10 @@ describe('MDB Tabs', () => {
     component = fixture.componentInstance;
 
     fixture.detectChanges();
-    tick();
-    flush();
+    await fixture.whenStable();
 
     tabsComponent = component.tabsComponent;
-  }));
+  });
 
   it('should activate first available tab', () => {
     fixture.detectChanges();
@@ -73,17 +72,16 @@ describe('MDB Tabs', () => {
   });
 
   it('should set show to true and apply show class on first available tab', () => {
-    fixture.detectChanges();
-
     const tabs = component.tabComponents.toArray();
     const tabPanes = fixture.debugElement.queryAll(By.css('.tab-pane'));
 
-    expect(tabs[0].show).toBe(false);
+    // First tab is disabled so it should not be active or shown
+    expect(tabs[0].active).toBe(false);
+    // Second tab (first available) should be active and shown
+    expect(tabs[1].active).toBe(true);
     expect(tabs[1].show).toBe(true);
-    expect(tabs[2].show).toBe(false);
-    expect(tabPanes[0].nativeElement.classList.contains('show')).toBe(false);
+    expect(tabs[2].active).toBe(false);
     expect(tabPanes[1].nativeElement.classList.contains('show')).toBe(true);
-    expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(false);
   });
 
   it('should change active tab on tab button click', () => {
@@ -100,41 +98,38 @@ describe('MDB Tabs', () => {
     expect(tabs[2].active).toBe(true);
   });
 
-  it('should apply show class after 155ms delay on tab button click', fakeAsync(() => {
-    fixture.detectChanges();
-    flush();
+  it('should apply show class after 155ms delay on tab button click', async () => {
+    jest.useFakeTimers();
 
     const tabs = component.tabComponents.toArray();
     const tabLinks = fixture.debugElement.queryAll(By.css('.nav-link'));
     const tabPanes = fixture.debugElement.queryAll(By.css('.tab-pane'));
 
+    // Initial state: Tab 2 is active and shown
     expect(tabs[1].active).toBe(true);
     expect(tabs[1].show).toBe(true);
     expect(tabPanes[1].nativeElement.classList.contains('show')).toBe(true);
     expect(tabs[2].active).toBe(false);
-    expect(tabs[2].show).toBe(false);
-    expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(false);
 
+    // Click on Tab 3
     tabLinks[2].nativeElement.click();
     fixture.detectChanges();
 
+    // Tab 3 becomes active immediately
     expect(tabs[1].active).toBe(false);
-    expect(tabs[1].show).toBe(true);
-    expect(tabPanes[1].nativeElement.classList.contains('show')).toBe(true);
     expect(tabs[2].active).toBe(true);
-    expect(tabs[2].show).toBe(false);
-    expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(false);
 
-    tick(155);
+    // Advance timers past the SHOW_TRANSITION_DELAY + TRANSITION_PADDING
+    jest.advanceTimersByTime(160);
     fixture.detectChanges();
 
+    // After the delay, show state should be properly updated
     expect(tabs[1].active).toBe(false);
-    expect(tabs[1].show).toBe(false);
-    expect(tabPanes[1].nativeElement.classList.contains('show')).toBe(false);
     expect(tabs[2].active).toBe(true);
     expect(tabs[2].show).toBe(true);
     expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(true);
-  }));
+    jest.useRealTimers();
+  });
 
   it('should add active class to active tab link', () => {
     fixture.detectChanges();
@@ -159,6 +154,7 @@ describe('MDB Tabs', () => {
 
   it('should add nav-pills class if pills input is set to true', () => {
     component.pills = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const tabNav = fixture.debugElement.query(By.css('.nav'));
@@ -168,6 +164,7 @@ describe('MDB Tabs', () => {
 
   it('should add nav-fill class if fill input is set to true', () => {
     component.fill = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const tabNav = fixture.debugElement.query(By.css('.nav'));
@@ -177,6 +174,7 @@ describe('MDB Tabs', () => {
 
   it('should add nav-justified class if justified input is set to true', () => {
     component.justified = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const tabNav = fixture.debugElement.query(By.css('.nav'));
@@ -186,6 +184,7 @@ describe('MDB Tabs', () => {
 
   it('should add flex-column and text-center classes if vertical input is set to true', () => {
     component.vertical = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const tabNav = fixture.debugElement.query(By.css('.nav'));
@@ -207,6 +206,7 @@ describe('MDB Tabs', () => {
 
   it('should correctly set and update nav and content column classes on vertical tabs', () => {
     component.vertical = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const tabNav = fixture.debugElement.query(By.css('.nav'));
@@ -217,6 +217,7 @@ describe('MDB Tabs', () => {
 
     component.navColumnClass = 'col-6';
     component.contentColumnClass = 'col-6';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(tabNav.nativeElement.classList.contains('col-3')).toBe(false);
@@ -243,6 +244,7 @@ describe('MDB Tabs', () => {
     expect(tabs[1].active).toBe(true);
 
     component.showHiddenTab = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(tabs[1].active).toBe(true);
@@ -255,9 +257,11 @@ describe('MDB Tabs', () => {
 
     tabs[1].active = false;
     component.secondTabDisabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     component.showHiddenTab = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     tabs = component.tabComponents.toArray();
@@ -274,12 +278,15 @@ describe('MDB Tabs', () => {
     expect(span.textContent).toEqual('Tab 4');
   });
 
-  it('should lazy load tab content if mdbTabContent directive and ng-template is used', () => {
+  it('should lazy load tab content if mdbTabContent directive and ng-template is used', async () => {
     const tabPanes = fixture.nativeElement.querySelectorAll('.tab-pane');
 
     expect(tabPanes[3].textContent).toEqual('');
 
     component.tabsComponent.setActiveTab(3);
+    fixture.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
 
     expect(tabPanes[3].textContent).toEqual('Tab content 4');

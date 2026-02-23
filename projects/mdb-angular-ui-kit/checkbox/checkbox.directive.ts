@@ -1,5 +1,6 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
+  ChangeDetectorRef,
   EventEmitter,
   forwardRef,
   Input,
@@ -7,6 +8,7 @@ import {
   Directive,
   HostBinding,
   HostListener,
+  inject,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -77,7 +79,7 @@ export class MdbCheckboxDirective {
     this.onTouched();
   }
 
-  constructor() {}
+  private _cdRef = inject(ChangeDetectorRef);
 
   get changeEvent(): MdbCheckboxChange {
     const newChangeEvent = new MdbCheckboxChange();
@@ -93,6 +95,7 @@ export class MdbCheckboxDirective {
     this._checked = !this._checked;
     this.onChange(this.checked);
     this.onCheckboxChange();
+    this._cdRef.markForCheck();
   }
 
   onCheckboxChange(): void {
@@ -106,6 +109,7 @@ export class MdbCheckboxDirective {
   writeValue(value: any): void {
     this.value = value;
     this.checked = !!value;
+    this._cdRef.markForCheck();
   }
 
   registerOnChange(fn: (_: any) => void): void {
@@ -118,6 +122,7 @@ export class MdbCheckboxDirective {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this._cdRef.markForCheck();
   }
 
   static ngAcceptInputType_checked: BooleanInput;

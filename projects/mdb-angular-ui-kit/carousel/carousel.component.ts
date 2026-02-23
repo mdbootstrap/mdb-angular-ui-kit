@@ -165,6 +165,7 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this._resetInterval();
     this._destroy$.next();
     this._destroy$.complete();
   }
@@ -172,9 +173,11 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
   private _setActiveSlide(index: number): void {
     const currentSlide = this.items[this._activeSlide];
     currentSlide.active = false;
+    this._syncItemClasses(currentSlide);
 
     const newSlide = this.items[index];
     newSlide.active = true;
+    this._syncItemClasses(newSlide);
     this._activeSlide = index;
   }
 
@@ -282,11 +285,14 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
 
     if (direction === Direction.NEXT) {
       nextItem.next = true;
+      this._syncItemClasses(nextItem);
 
       setTimeout(() => {
         this._reflow(nextEl);
         currentItem.start = true;
         nextItem.start = true;
+        this._syncItemClasses(currentItem);
+        this._syncItemClasses(nextItem);
         this._cdRef.markForCheck();
       }, 0);
 
@@ -303,18 +309,25 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
           currentItem.start = false;
           currentItem.next = false;
 
+          this._syncItemClasses(currentItem);
+          this._syncItemClasses(nextItem);
+
           this.slideChange.emit();
           this._isSliding = false;
+          this._cdRef.markForCheck();
         });
 
       this._emulateTransitionEnd(currentEl, transitionDuration);
     } else if (direction === Direction.PREV) {
       nextItem.prev = true;
+      this._syncItemClasses(nextItem);
 
       setTimeout(() => {
         this._reflow(nextEl);
         currentItem.end = true;
         nextItem.end = true;
+        this._syncItemClasses(currentItem);
+        this._syncItemClasses(nextItem);
         this._cdRef.markForCheck();
       }, 0);
 
@@ -331,8 +344,12 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
           currentItem.end = false;
           currentItem.prev = false;
 
+          this._syncItemClasses(currentItem);
+          this._syncItemClasses(nextItem);
+
           this.slideChange.emit();
           this._isSliding = false;
+          this._cdRef.markForCheck();
         });
 
       this._emulateTransitionEnd(currentEl, transitionDuration);
@@ -401,6 +418,15 @@ export class MdbCarouselComponent implements AfterViewInit, OnDestroy {
     } else {
       return this._activeSlide;
     }
+  }
+
+  private _syncItemClasses(item: MdbCarouselItemComponent): void {
+    const itemHost = item.host;
+    itemHost.classList.toggle('active', item.active);
+    itemHost.classList.toggle('carousel-item-next', item.next);
+    itemHost.classList.toggle('carousel-item-prev', item.prev);
+    itemHost.classList.toggle('carousel-item-start', item.start);
+    itemHost.classList.toggle('carousel-item-end', item.end);
   }
 
   static ngAcceptInputType_controls: BooleanInput;

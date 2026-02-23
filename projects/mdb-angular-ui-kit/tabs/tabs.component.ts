@@ -1,6 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -9,6 +10,7 @@ import {
   OnDestroy,
   Output,
   QueryList,
+  inject,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -69,6 +71,8 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
   @Input() navColumnClass = 'col-3';
   @Input() contentColumnClass = 'col-9';
 
+  private _cdRef = inject(ChangeDetectorRef);
+
   get navColClass(): string {
     return this.vertical ? this.navColumnClass : '';
   }
@@ -80,8 +84,6 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
   private _selectedIndex: number;
 
   @Output() activeTabChange: EventEmitter<MdbTabChange> = new EventEmitter<MdbTabChange>();
-
-  constructor() {}
 
   ngAfterContentInit(): void {
     const firstActiveTabIndex = this.tabs.toArray().findIndex((tab) => !tab.disabled);
@@ -114,6 +116,7 @@ export class MdbTabsComponent implements AfterContentInit, OnDestroy {
 
     const tabChangeEvent = this._getTabChangeEvent(index, activeTab);
     this.activeTabChange.emit(tabChangeEvent);
+    this._cdRef.markForCheck();
   }
 
   private _getTabChangeEvent(index: number, tab: MdbTabComponent): MdbTabChange {

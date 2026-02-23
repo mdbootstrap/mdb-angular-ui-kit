@@ -56,7 +56,7 @@ export class MdbModalContainerComponent implements OnInit, AfterViewInit, OnDest
     return this._config.animation;
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize')
   onWindowResize() {
     this._ngZone.runOutsideAngular(() => {
       if (this._config.nonInvasive) {

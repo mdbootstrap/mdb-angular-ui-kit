@@ -5,21 +5,19 @@
   [@.disabled]="!animation"
 >
   @if (title) {
-    <h3 class="popover-header">
-      {{ title }}
-    </h3>
-  }
-  @if (isContentTemplate) {
-    <div class="popover-body">
-      <ng-container
-        [ngTemplateOutlet]="$any(content)"
-        [ngTemplateOutletContext]="context"
-      ></ng-container>
-    </div>
-  }
-  @if (!isContentTemplate) {
-    <div class="popover-body">
-      {{ content }}
-    </div>
+  <h3 class="popover-header">
+    {{ title }}
+  </h3>
+  } @if (isContentTemplate) {
+  <div class="popover-body">
+    <ng-container
+      [ngTemplateOutlet]="$any(content)"
+      [ngTemplateOutletContext]="context"
+    ></ng-container>
+  </div>
+  } @if (!isContentTemplate) {
+  <div class="popover-body">
+    {{ content }}
+  </div>
   }
 </div>

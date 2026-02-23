@@ -4,16 +4,16 @@
   [class.carousel-dark]="dark"
 >
   @if (indicators) {
-    <div class="carousel-indicators">
-      @for (item of items; track item; let i = $index) {
-        <button
-          type="button"
-          [class.active]="i === activeSlide"
-          [attr.aria-current]="i === activeSlide"
-          (click)="to(i)"
-        ></button>
-      }
-    </div>
+  <div class="carousel-indicators">
+    @for (item of items; track item; let i = $index) {
+    <button
+      type="button"
+      [class.active]="i === activeSlide"
+      [attr.aria-current]="i === activeSlide"
+      (click)="to(i)"
+    ></button>
+    }
+  </div>
   }
 
   <div class="carousel-inner">
@@ -21,15 +21,14 @@
   </div>
 
   @if (controls) {
-    <button class="carousel-control-prev" type="button" (click)="prev()">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-  }
-  @if (controls) {
-    <button class="carousel-control-next" type="button" (click)="next()">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+  <button class="carousel-control-prev" type="button" (click)="prev()">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  } @if (controls) {
+  <button class="carousel-control-next" type="button" (click)="next()">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
   }
 </div>

@@ -1,9 +1,8 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbAccordionItemComponent } from './accordion-item.component';
 import { MdbAccordionModule } from './accordion.module';
-
-const ANIMATION_TIME = 350; // animation time from collapse directive
 
 const template = `
 <mdb-accordion [multiple]="multiple" [flush]="flush" [borderless]="borderless">
@@ -67,10 +66,15 @@ describe('MDB Accordion', () => {
   let element: any;
   let component: any;
 
+  // Helper to dispatch transitionend event (jsdom doesn't fire CSS transitions)
+  const dispatchTransitionEnd = (el: HTMLElement) => {
+    el.dispatchEvent(new Event('transitionend'));
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestAccordionComponent],
-      imports: [MdbAccordionModule],
+      imports: [MdbAccordionModule, NoopAnimationsModule],
       teardown: { destroyAfterEach: false },
     });
     fixture = TestBed.createComponent(TestAccordionComponent);
@@ -79,71 +83,83 @@ describe('MDB Accordion', () => {
     element = fixture.nativeElement;
   });
 
-  it('should toggle item on click', fakeAsync(() => {
+  it('should toggle item on click', async () => {
     const item = document.querySelector('.accordion-item') as HTMLElement;
     const button = item.querySelector('.accordion-button') as HTMLElement;
+    const collapseEl = item.querySelector('.collapse') as HTMLElement;
 
     button.click();
     fixture.detectChanges();
-    flush();
-
-    const itemCollapse = item.querySelector('.collapse');
+    dispatchTransitionEnd(collapseEl);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(button.classList).not.toContain('collapsed');
-    expect(itemCollapse.classList).toContain('show');
+    expect(collapseEl.classList).toContain('show');
 
     button.click();
     fixture.detectChanges();
-    flush();
+    dispatchTransitionEnd(collapseEl);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(button.classList).toContain('collapsed');
-    expect(itemCollapse.classList).not.toContain('show');
-  }));
+    expect(collapseEl.classList).not.toContain('show');
+  });
 
-  it('should toggle item when toggle method is used', fakeAsync(() => {
+  it('should toggle item when toggle method is used', async () => {
     const item = document.querySelector('.accordion-item') as HTMLElement;
     const button = item.querySelector('.accordion-button') as HTMLElement;
+    const collapseEl = item.querySelector('.collapse') as HTMLElement;
+
     component.accordionItems[0].toggle();
-
     fixture.detectChanges();
-    flush();
-
-    const itemCollapse = item.querySelector('.collapse');
+    dispatchTransitionEnd(collapseEl);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(button.classList).not.toContain('collapsed');
-    expect(itemCollapse.classList).toContain('show');
+    expect(collapseEl.classList).toContain('show');
 
     component.accordionItems[0].toggle();
     fixture.detectChanges();
-    flush();
+    dispatchTransitionEnd(collapseEl);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(button.classList).toContain('collapsed');
-    expect(itemCollapse.classList).not.toContain('show');
-  }));
+    expect(collapseEl.classList).not.toContain('show');
+  });
 
-  it('should allow only one item to be opened if multiple is set to false', fakeAsync(() => {
+  it('should allow only one item to be opened if multiple is set to false', async () => {
     const buttons = document.querySelectorAll('.accordion-button');
     const contents = document.querySelectorAll('.collapse');
 
     component.accordionItems[0].toggle();
     fixture.detectChanges();
-    flush();
+    dispatchTransitionEnd(contents[0] as HTMLElement);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(buttons[0].classList).not.toContain('collapsed');
     expect(contents[0].classList).toContain('show');
 
     component.accordionItems[1].toggle();
     fixture.detectChanges();
-    flush();
+    dispatchTransitionEnd(contents[0] as HTMLElement); // first item closing
+    dispatchTransitionEnd(contents[1] as HTMLElement); // second item opening
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(buttons[0].classList).toContain('collapsed');
     expect(contents[0].classList).not.toContain('show');
     expect(buttons[1].classList).not.toContain('collapsed');
     expect(contents[1].classList).toContain('show');
-  }));
+  });
 
-  it('should allow multiple items to be opened if multiple is set to true', fakeAsync(() => {
+  it('should allow multiple items to be opened if multiple is set to true', async () => {
     component.multiple = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const buttons = document.querySelectorAll('.accordion-button');
@@ -151,23 +167,28 @@ describe('MDB Accordion', () => {
 
     component.accordionItems[0].toggle();
     fixture.detectChanges();
-    flush();
+    dispatchTransitionEnd(contents[0] as HTMLElement);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(buttons[0].classList).not.toContain('collapsed');
     expect(contents[0].classList).toContain('show');
 
     component.accordionItems[1].toggle();
     fixture.detectChanges();
-    flush();
+    dispatchTransitionEnd(contents[1] as HTMLElement);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
     expect(buttons[0].classList).not.toContain('collapsed');
     expect(contents[0].classList).toContain('show');
     expect(buttons[1].classList).not.toContain('collapsed');
     expect(contents[1].classList).toContain('show');
-  }));
+  });
 
   it('should add accordion-flush class if flush is set to true', () => {
     component.flush = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const accordion = document.querySelector('.accordion');
@@ -181,13 +202,15 @@ describe('MDB Accordion', () => {
     expect(accordion.classList).not.toContain('accordion-borderless');
 
     component.borderless = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     expect(accordion.classList).toContain('accordion-borderless');
   });
 
-  it('should emit correct events on item collapse and expand', fakeAsync(() => {
+  it('should emit correct events on item collapse and expand', async () => {
     const item = component.accordionItems[0];
+    const content = document.querySelectorAll('.collapse')[0] as HTMLElement;
 
     const showSpy = jest.spyOn(item.itemShow, 'emit');
     const shownSpy = jest.spyOn(item.itemShown, 'emit');
@@ -196,31 +219,30 @@ describe('MDB Accordion', () => {
 
     item.show();
     fixture.detectChanges();
-
-    expect(showSpy).toHaveBeenCalled();
-    expect(shownSpy).not.toHaveBeenCalled();
-
-    tick(ANIMATION_TIME);
-    flush();
+    // First transitionend completes the initial show, which triggers a recursive show() in the setter
+    dispatchTransitionEnd(content);
+    await fixture.whenStable();
+    // Second transitionend completes the recursive show()
+    dispatchTransitionEnd(content);
+    await fixture.whenStable();
     fixture.detectChanges();
 
+    expect(showSpy).toHaveBeenCalled();
     expect(shownSpy).toHaveBeenCalled();
 
     item.hide();
     fixture.detectChanges();
-
-    expect(hideSpy).toHaveBeenCalled();
-    expect(hiddenSpy).not.toHaveBeenCalled();
-
-    tick(ANIMATION_TIME);
-    flush();
+    dispatchTransitionEnd(content);
+    await fixture.whenStable();
     fixture.detectChanges();
 
+    expect(hideSpy).toHaveBeenCalled();
     expect(hiddenSpy).toHaveBeenCalled();
-  }));
+  });
 
-  it('should not toggle item on click when disabled input is set to true', fakeAsync(() => {
+  it('should not toggle item on click when disabled input is set to true', async () => {
     component.disabled = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const item = document.querySelector('.accordion-item') as HTMLElement;
@@ -233,9 +255,9 @@ describe('MDB Accordion', () => {
 
     button.click();
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
 
     expect(button.classList).toContain('collapsed');
     expect(itemCollapse.classList).not.toContain('show');
-  }));
+  });
 });

@@ -119,7 +119,10 @@ export class MdbRadioGroupDirective implements ControlValueAccessor, AfterConten
 
   setDisabledState(isDisabled: boolean): void {
     this._disabled = isDisabled;
-    this._updateDisabled();
+
+    if (this.radios) {
+      this._updateDisabled();
+    }
   }
 
   writeValue(value: any): void {

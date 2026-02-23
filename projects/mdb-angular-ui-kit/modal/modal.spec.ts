@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { MdbModalModule } from './modal.module';
@@ -14,23 +14,22 @@ import { BrowserModule } from '@angular/platform-browser';
     </div>
     <div class="modal-body">
       @if (mainView) {
-        <div id="main-view">
-          <button id="main-view-toggler" class="btn btn-primary" (click)="setView(false)"></button>
-          <p>main view</p>
-        </div>
-      }
-      @if (!mainView) {
-        <div id="not-main-view">
-          <button id="not-main-view-toggler" class="btn btn-primary" (click)="setView(true)"></button>
-          <p>not main view</p>
-        </div>
+      <div id="main-view">
+        <button id="main-view-toggler" class="btn btn-primary" (click)="setView(false)"></button>
+        <p>main view</p>
+      </div>
+      } @if (!mainView) {
+      <div id="not-main-view">
+        <button id="not-main-view-toggler" class="btn btn-primary" (click)="setView(true)"></button>
+        <p>not main view</p>
+      </div>
       }
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
       <button type="button" class="btn btn-primary">Save changes</button>
     </div>
-    `,
+  `,
   providers: [MdbModalService],
   standalone: false,
 })
@@ -56,7 +55,7 @@ describe('MDB Modal', () => {
   let overlayContainerElement: HTMLElement;
   let fixture: ComponentFixture<BasicModalComponent>;
 
-  beforeEach(fakeAsync(() => {
+  beforeEach(async () => {
     const module = TestBed.configureTestingModule({
       imports: [MdbModalModule, TestModalModule],
       teardown: { destroyAfterEach: false },
@@ -64,7 +63,7 @@ describe('MDB Modal', () => {
 
     TestBed.compileComponents();
     fixture = module.createComponent(BasicModalComponent);
-  }));
+  });
 
   beforeEach(inject(
     [MdbModalService, OverlayContainer],
@@ -88,36 +87,36 @@ describe('MDB Modal', () => {
     expect(modalContainer).not.toBe(null);
   });
 
-  it('should correctly add container classes', fakeAsync(() => {
+  it('should correctly add container classes', async () => {
     modal.open(BasicModalComponent, {
       containerClass: 'top',
     });
 
     fixture.detectChanges();
-    tick(350);
+    await new Promise((resolve) => setTimeout(resolve, 350));
 
     const modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
     expect(modalContainer.classList.contains('top')).toBe(true);
-  }));
+  });
 
-  it('should correctly add modal classes', fakeAsync(() => {
+  it('should correctly add modal classes', async () => {
     modal.open(BasicModalComponent, {
       modalClass: 'modal-top-right',
     });
 
     fixture.detectChanges();
-    tick(350);
+    await new Promise((resolve) => setTimeout(resolve, 350));
 
     const modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
     const modalDialog = modalContainer.querySelector('.modal-dialog');
     expect(modalDialog.classList.contains('modal-top-right')).toBe(true);
-  }));
+  });
 
-  it('should close the modal on backdrop click', fakeAsync(() => {
+  it('should close the modal on backdrop click', async () => {
     modal.open(BasicModalComponent);
 
     fixture.detectChanges();
-    tick(350);
+    await new Promise((resolve) => setTimeout(resolve, 350));
 
     let modalContainer = overlayContainerElement.querySelector(
       'mdb-modal-container'
@@ -128,18 +127,18 @@ describe('MDB Modal', () => {
     modalContainer.dispatchEvent(event);
 
     fixture.detectChanges();
-    tick(700);
+    await new Promise((resolve) => setTimeout(resolve, 700));
 
     modalContainer = overlayContainerElement.querySelector('mdb-modal-container') as HTMLElement;
 
     expect(modalContainer).toBe(null);
-  }));
+  });
 
-  it('should not close the modal on mousedown inside modal, move mouse outside modal and mouseup', fakeAsync(() => {
+  it('should not close the modal on mousedown inside modal, move mouse outside modal and mouseup', async () => {
     modal.open(BasicModalComponent);
 
     fixture.detectChanges();
-    tick(350);
+    await new Promise((resolve) => setTimeout(resolve, 350));
 
     let modalContainer = overlayContainerElement.querySelector(
       'mdb-modal-container'
@@ -156,22 +155,22 @@ describe('MDB Modal', () => {
     modalContainer.dispatchEvent(mouseupEvent);
 
     fixture.detectChanges();
-    tick(700);
+    await new Promise((resolve) => setTimeout(resolve, 700));
 
     modalContainer = overlayContainerElement.querySelector('mdb-modal-container') as HTMLElement;
     modalContent = overlayContainerElement.querySelector('.modal-content') as HTMLElement;
 
     expect(modalContent).not.toBe(null);
     expect(modalContainer).not.toBe(null);
-  }));
+  });
 
-  it('should not close the modal on backdrop click if ignoreBackdropClick is set to true', fakeAsync(() => {
+  it('should not close the modal on backdrop click if ignoreBackdropClick is set to true', async () => {
     modal.open(BasicModalComponent, {
       ignoreBackdropClick: true,
     });
 
     fixture.detectChanges();
-    tick(350);
+    await new Promise((resolve) => setTimeout(resolve, 350));
 
     let modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
     expect(modalContainer).not.toBe(null);
@@ -180,20 +179,20 @@ describe('MDB Modal', () => {
     modalContainer.dispatchEvent(event);
 
     fixture.detectChanges();
-    tick(700);
+    await new Promise((resolve) => setTimeout(resolve, 700));
 
     modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
 
     expect(modalContainer).not.toBe(null);
-  }));
+  });
 
-  it('should close on escape press if keyboard option is true', fakeAsync(() => {
+  it('should close on escape press if keyboard option is true', async () => {
     modal.open(BasicModalComponent, {
       keyboard: true,
     });
 
     fixture.detectChanges();
-    tick(350);
+    await new Promise((resolve) => setTimeout(resolve, 350));
 
     let modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
     expect(modalContainer).not.toBe(null);
@@ -202,14 +201,14 @@ describe('MDB Modal', () => {
     modalContainer.dispatchEvent(event);
 
     fixture.detectChanges();
-    tick(700);
+    await new Promise((resolve) => setTimeout(resolve, 700));
 
     modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
 
     expect(modalContainer).toBe(null);
-  }));
+  });
 
-  it('should not close on escape press if keyboard option is false', fakeAsync(() => {
+  it('should not close on escape press if keyboard option is false', async () => {
     modal.open(BasicModalComponent, {
       keyboard: false,
     });
@@ -221,18 +220,18 @@ describe('MDB Modal', () => {
     modalContainer.dispatchEvent(event);
 
     fixture.detectChanges();
-    tick(700);
+    await new Promise((resolve) => setTimeout(resolve, 700));
 
     modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
 
     expect(modalContainer).not.toBe(null);
-  }));
+  });
 
-  it('should not close when click on btn inside modal', fakeAsync(() => {
+  it('should not close when click on btn inside modal', async () => {
     modal.open(BasicModalComponent);
 
     fixture.detectChanges();
-    tick(700);
+    await new Promise((resolve) => setTimeout(resolve, 700));
 
     let modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
     let mainView = modalContainer.querySelector('#main-view');
@@ -249,7 +248,7 @@ describe('MDB Modal', () => {
     mainViewToggler.dispatchEvent(new MouseEvent('click'));
 
     fixture.detectChanges();
-    tick(700);
+    await new Promise((resolve) => setTimeout(resolve, 700));
 
     modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
     mainView = modalContainer.querySelector('#main-view');
@@ -262,7 +261,7 @@ describe('MDB Modal', () => {
     expect(notMainView).not.toBe(null);
     expect(mainViewToggler).toBe(null);
     expect(notMainViewToggler).not.toBe(null);
-  }));
+  });
 });
 
 describe('MDB Non-invasive Modal', () => {
@@ -271,7 +270,7 @@ describe('MDB Non-invasive Modal', () => {
   let overlayContainerElement: HTMLElement;
   let fixture: ComponentFixture<BasicModalComponent>;
 
-  beforeEach(fakeAsync(() => {
+  beforeEach(async () => {
     const module = TestBed.configureTestingModule({
       imports: [MdbModalModule, TestModalModule],
       teardown: { destroyAfterEach: false },
@@ -279,7 +278,7 @@ describe('MDB Non-invasive Modal', () => {
 
     TestBed.compileComponents();
     fixture = module.createComponent(BasicModalComponent);
-  }));
+  });
 
   beforeEach(inject(
     [MdbModalService, OverlayContainer],
@@ -294,35 +293,36 @@ describe('MDB Non-invasive Modal', () => {
     overlayContainer.ngOnDestroy();
   });
 
-  it('should add non-invasive class', fakeAsync(() => {
+  it('should add non-invasive class', async () => {
     modal.open(BasicModalComponent, {
       nonInvasive: true,
     });
 
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
 
     fixture.detectChanges();
-    tick(350);
+    // Wait for NON_INVASIVE_TRANSITION (450ms) + buffer
+    await new Promise((resolve) => setTimeout(resolve, 550));
 
     const body = document.body;
     const modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
     expect(body.classList.contains('modal-non-invasive-open')).toBe(true);
     expect(modalContainer.classList.contains('modal-non-invasive-show')).toBe(true);
-  }));
+  });
 
-  it('should not apply padding-right style to document body', fakeAsync(() => {
+  it('should not apply padding-right style to document body', async () => {
     modal.open(BasicModalComponent, {
       nonInvasive: true,
     });
 
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
 
     fixture.detectChanges();
-    tick(350);
+    await new Promise((resolve) => setTimeout(resolve, 350));
 
     const body = document.body;
     expect(body.style.paddingRight).toBe('0px');
-  }));
+  });
 });

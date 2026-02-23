@@ -38,6 +38,10 @@ export class MdbTooltipComponent {
     this._cdRef.markForCheck();
   }
 
+  detectChanges(): void {
+    this._cdRef.detectChanges();
+  }
+
   onAnimationEnd(event: AnimationEvent): void {
     if (event.toState === 'hidden') {
       this._hidden.next();

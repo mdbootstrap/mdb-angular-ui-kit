@@ -1,6 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   DestroyRef,
   Directive,
   DoCheck,
@@ -9,9 +10,11 @@ import {
   HostListener,
   Input,
   OnDestroy,
+  OnInit,
   Optional,
   Renderer2,
   Self,
+  inject,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -27,8 +30,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbInputDirective
-  implements MdbAbstractFormControl<any>, DoCheck, AfterViewInit, OnDestroy
+  implements MdbAbstractFormControl<any>, DoCheck, AfterViewInit, OnInit, OnDestroy
 {
+  private _cdRef = inject(ChangeDetectorRef);
+
   constructor(
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
@@ -42,6 +47,24 @@ export class MdbInputDirective
   private _focused = false;
   private _autofilled = false;
   private _color = '';
+
+  ngOnInit(): void {
+    if (this._ngControl?.control) {
+      this._ngControl.control.valueChanges
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe(() => {
+          this.stateChanges.next();
+          this._cdRef.markForCheck();
+        });
+
+      this._ngControl.control.statusChanges
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe(() => {
+          this.stateChanges.next();
+          this._cdRef.markForCheck();
+        });
+    }
+  }
 
   ngAfterViewInit() {
     if (typeof getComputedStyle === 'function') {
@@ -69,13 +92,14 @@ export class MdbInputDirective
   @HostBinding('disabled')
   @Input('disabled')
   get disabled(): boolean {
-    if (this._ngControl && this._ngControl.disabled !== null) {
-      return this._ngControl.disabled;
+    if (this._ngControl?.disabled !== null && this._ngControl?.disabled !== undefined) {
+      return this._ngControl.disabled || this._disabled;
     }
     return this._disabled;
   }
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
+    this.stateChanges.next();
   }
   private _disabled = false;
 

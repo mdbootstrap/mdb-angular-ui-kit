@@ -1,6 +1,7 @@
 import {
   Component,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   HostBinding,
   ViewChild,
   ContentChild,
@@ -8,8 +9,10 @@ import {
   AfterContentInit,
   Renderer2,
   OnDestroy,
-  NgZone,
   AfterContentChecked,
+  afterEveryRender,
+  Injector,
+  inject,
 } from '@angular/core';
 import { MdbAbstractFormControl } from './form-control';
 import { MdbLabelDirective } from './label.directive';
@@ -32,6 +35,8 @@ export class MdbFormControlComponent implements AfterContentInit, AfterContentCh
   @HostBinding('class.form-outline') outline = true;
   @HostBinding('class.d-block') display = true;
 
+  private _cdRef = inject(ChangeDetectorRef);
+
   get input(): HTMLInputElement {
     return this._formControl.input;
   }
@@ -40,8 +45,18 @@ export class MdbFormControlComponent implements AfterContentInit, AfterContentCh
     private _renderer: Renderer2,
     private _contentObserver: ContentObserver,
     private _elementRef: ElementRef,
-    private _ngZone: NgZone
-  ) {}
+    private _injector: Injector
+  ) {
+    // Use afterEveryRender instead of NgZone.onStable for zoneless compatibility
+    afterEveryRender(
+      () => {
+        if (this.hasLabel && this._recalculateGapWhenVisible) {
+          this._updateBorderGap();
+        }
+      },
+      { injector: this._injector }
+    );
+  }
 
   readonly _destroy$: Subject<void> = new Subject<void>();
 
@@ -78,14 +93,7 @@ export class MdbFormControlComponent implements AfterContentInit, AfterContentCh
       if (this.hasLabel) {
         this._updateBorderGap();
       }
-    });
-
-    this._ngZone.runOutsideAngular(() => {
-      this._ngZone.onStable.pipe(takeUntil(this._destroy$)).subscribe(() => {
-        if (this.hasLabel && this._recalculateGapWhenVisible) {
-          this._updateBorderGap();
-        }
-      });
+      this._cdRef.markForCheck();
     });
   }
 

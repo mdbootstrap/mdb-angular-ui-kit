@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdbRangeModule } from './range.module';
 import { MdbRangeComponent } from './range.component';
 import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
@@ -46,23 +46,23 @@ describe('MDB Range', () => {
     input = fixture.debugElement.query(By.css('input'));
   });
 
-  it('should show thumb on mousedown and hide on mauseup', fakeAsync(() => {
+  it('should show thumb on mousedown and hide on mauseup', async () => {
     expect(thumb.nativeElement.classList.contains('thumb-active')).toBe(false);
 
     input.nativeElement.dispatchEvent(new MouseEvent('mousedown'));
 
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
 
     expect(thumb.nativeElement.classList.contains('thumb-active')).toBe(true);
 
     input.nativeElement.dispatchEvent(new MouseEvent('mouseup'));
 
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
 
     expect(thumb.nativeElement.classList.contains('thumb-active')).toBe(false);
-  }));
+  });
 
   it('should show input value', () => {
     fixture.detectChanges();
@@ -79,23 +79,29 @@ describe('MDB Range', () => {
     expect(valueThumb.nativeElement.textContent).toBe('24');
   });
 
-  it('should update value after set new FormControl', () => {
+  it('should update value after set new FormControl', async () => {
     component.rangeControl = new UntypedFormControl(60);
+    fixture.changeDetectorRef.markForCheck();
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
 
     expect(valueThumb.nativeElement.textContent).toBe('60');
     expect(input.nativeElement.value).toBe('60');
   });
 
-  it('should update thumb position', fakeAsync(() => {
+  it('should update thumb position', async () => {
     const initialThumbStyle = { ...component._range.thumbStyle };
 
     component.rangeControl = new UntypedFormControl(70);
-
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
-    flush();
+    await fixture.whenStable();
+    // Wait for the setTimeout(0) in writeValue to execute
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    fixture.detectChanges();
     const newThumbStyle = { ...component._range.thumbStyle };
 
     expect(initialThumbStyle.left).not.toBe(newThumbStyle.left);
-  }));
+  });
 });

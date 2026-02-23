@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdbRippleModule } from './ripple.module';
 
 const template = `
@@ -68,7 +68,7 @@ describe('MDB Ripple', () => {
 
   it('should set class ripple-surface-unbound on wrapper if rippleUnbound option is true', () => {
     component.rippleUnbound = true;
-
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     button.click();
@@ -77,7 +77,7 @@ describe('MDB Ripple', () => {
     expect(button.classList.contains('ripple-surface-unbound')).toBe(true);
   });
 
-  it('should remove helper after duration', fakeAsync(() => {
+  it('should remove helper after duration', async () => {
     button.click();
 
     fixture.detectChanges();
@@ -86,15 +86,16 @@ describe('MDB Ripple', () => {
 
     expect(helper).not.toBe(null);
 
-    tick(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     helper = button.children[0];
 
     expect(helper).toBe(undefined);
-  }));
+  });
 
   it('should accept Bootstrap colors', () => {
     fixture.componentInstance.rippleColor = 'primary';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     button.click();
@@ -103,8 +104,9 @@ describe('MDB Ripple', () => {
     expect(button.classList).toContain('ripple-surface-primary');
   });
 
-  it('should add new colors class and remove previous color classes', fakeAsync(() => {
+  it('should add new colors class and remove previous color classes', async () => {
     fixture.componentInstance.rippleColor = 'primary';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     button.click();
@@ -113,21 +115,23 @@ describe('MDB Ripple', () => {
     expect(button.classList).toContain('ripple-surface-primary');
 
     fixture.componentInstance.rippleColor = 'secondary';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     button.click();
     fixture.detectChanges();
 
-    flush();
+    await fixture.whenStable();
 
     expect(button.classList).not.toContain('ripple-surface-primary');
     expect(button.classList).toContain('ripple-surface-secondary');
-  }));
+  });
 
   it('should add ripple-surface-color class only if Bootstrap color type is used', () => {
     const REGEXP_CLASS_COLOR = new RegExp(`${'ripple-surface'}-[a-z]+`, 'gi');
 
     fixture.componentInstance.rippleColor = '#c953d6';
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     button.click();

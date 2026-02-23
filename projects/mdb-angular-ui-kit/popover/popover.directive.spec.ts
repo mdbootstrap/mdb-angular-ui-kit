@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { MdbPopoverModule } from './index';
 import { MdbPopoverDirective } from './popover.directive';
@@ -170,14 +170,19 @@ describe('MDB Popover', () => {
       fixture.detectChanges();
     });
 
-    it('should set custom content with context data', fakeAsync(() => {
+    it('should set custom content with context data', async () => {
+      jest.useFakeTimers();
       const buttonEl = element.querySelector('button');
       buttonEl.click();
       fixture.detectChanges();
-      flush();
+      // Allow setTimeout in show() to execute
+      jest.runAllTimers();
+      fixture.detectChanges();
+      await fixture.whenStable();
       const popoverBody = document.querySelector('.popover-body');
       expect(popoverBody.textContent).toBe('Current user: John Doe');
-    }));
+      jest.useRealTimers();
+    });
   });
 });
 

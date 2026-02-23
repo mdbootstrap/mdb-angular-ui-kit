@@ -42,6 +42,7 @@ describe('MDB Collapse', () => {
   it('should only add validate-success class if validateError is set to false', () => {
     component.success = true;
     component.error = false;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const input = fixture.nativeElement.querySelector('.input');
@@ -53,6 +54,7 @@ describe('MDB Collapse', () => {
   it('should only add validate-error class if validateSuccess is set to false', () => {
     component.success = false;
     component.error = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
 
     const input = fixture.nativeElement.querySelector('.input');

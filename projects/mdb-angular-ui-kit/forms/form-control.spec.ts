@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MdbFormsModule } from './index';
@@ -35,9 +35,12 @@ describe('MDB Form Control', () => {
     expect(wrapper.nativeElement.classList.contains('form-outline')).toBe(true);
   });
 
-  it('should toggle input active class on value change', () => {
+  it('should toggle input active class on value change', async () => {
     input.nativeElement.value = 'Test';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
+    await fixture.whenStable();
     expect(input.nativeElement.classList.contains('active')).toBe(true);
   });
 
@@ -50,20 +53,26 @@ describe('MDB Form Control', () => {
     expect(input.classList).toContain('placeholder-active');
   });
 
-  it('should set top border gap on component init if label is defined', fakeAsync(() => {
+  it('should set top border gap on component init if label is defined', async () => {
+    jest.useFakeTimers();
     const fixture = TestBed.createComponent(BasicFormControlComponent);
     fixture.detectChanges();
 
-    flush();
+    // Allow setTimeout in _updateBorderGap to execute
+    jest.runAllTimers();
     fixture.detectChanges();
+    await fixture.whenStable();
+
     const labelWidth = fixture.nativeElement.querySelector('label').clientWidth;
     const middleNotch = fixture.nativeElement.querySelector('.form-notch-middle');
     const expectedBorderGap = labelWidth * labelScale + labelGapPadding + 'px';
 
     expect(middleNotch.style.width).toEqual(expectedBorderGap);
-  }));
+    jest.useRealTimers();
+  });
 
-  it('should update border gap when label is dynamically rendered with *ngIf', fakeAsync(() => {
+  it('should update border gap when label is dynamically rendered with *ngIf', async () => {
+    jest.useFakeTimers();
     const fixture = TestBed.createComponent(DynamicLabelComponent);
     fixture.detectChanges();
 
@@ -73,16 +82,21 @@ describe('MDB Form Control', () => {
     expect(middleNotch.style.width).toBe('');
 
     fixture.componentInstance.showLabel = true;
+    fixture.changeDetectorRef.markForCheck();
     fixture.detectChanges();
-    flush();
+
+    // Allow setTimeout in _updateBorderGap to execute
+    jest.runAllTimers();
     fixture.detectChanges();
+    await fixture.whenStable();
 
     label = fixture.nativeElement.querySelector('label');
     middleNotch = fixture.nativeElement.querySelector('.form-notch-middle');
     expect(label).not.toBeNull();
     const expectedBorderGap = label.clientWidth * labelScale + labelGapPadding + 'px';
     expect(middleNotch.style.width).toEqual(expectedBorderGap);
-  }));
+    jest.useRealTimers();
+  });
 });
 
 const dynamicLabelTemplate = `

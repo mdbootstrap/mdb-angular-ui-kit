@@ -114,6 +114,7 @@ export class MdbRangeComponent implements ControlValueAccessor, AfterViewInit {
 
     setTimeout(() => {
       this.thumbPositionUpdate();
+      this._cdRef.markForCheck();
     }, 0);
   }
 

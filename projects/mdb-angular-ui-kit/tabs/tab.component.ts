@@ -1,6 +1,7 @@
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { TemplatePortal } from '@angular/cdk/portal';
 import {
+  ChangeDetectorRef,
   Component,
   ContentChild,
   Input,
@@ -89,12 +90,13 @@ export class MdbTabComponent implements OnInit {
     // element styles
     setTimeout(() => {
       this._show = coerceBooleanProperty(value);
+      this._cdRef.markForCheck();
     }, SHOW_TRANSITION_DELAY + TRANSITION_PADDING);
   }
 
   private _show = true;
 
-  constructor(private _vcr: ViewContainerRef) {}
+  constructor(private _vcr: ViewContainerRef, private _cdRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this._createContentPortal();

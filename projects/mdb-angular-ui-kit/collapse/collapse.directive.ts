@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   EventEmitter,
@@ -6,6 +7,7 @@ import {
   Input,
   Output,
   Renderer2,
+  inject,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -20,6 +22,8 @@ const TRANSITION_TIME = 350;
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class MdbCollapseDirective {
+  private _cdRef = inject(ChangeDetectorRef);
+
   constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {}
 
   @HostBinding('class.collapse') collapseClass = true;
@@ -75,6 +79,7 @@ export class MdbCollapseDirective {
         this._renderer.removeStyle(this.host, 'height');
 
         this.collapseShown.emit(this);
+        this._cdRef.markForCheck();
       });
 
     this._emulateTransitionEnd(this.host, TRANSITION_TIME);
@@ -110,6 +115,7 @@ export class MdbCollapseDirective {
         this.collapsed = true;
 
         this.collapseHidden.emit(this);
+        this._cdRef.markForCheck();
       });
 
     this._renderer.removeStyle(this.host, 'height');

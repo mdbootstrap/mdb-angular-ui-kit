@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { MdbDropdownMenuDirective, MdbDropdownModule } from './index';
 import { MdbDropdownDirective } from './index';
@@ -40,7 +40,7 @@ describe('MDB Dropdown', () => {
   }));
 
   describe('Opening and closing', () => {
-    it('should open and close dropdown on click', fakeAsync(() => {
+    it('should open and close dropdown on click', async () => {
       jest.spyOn(directive, 'show');
       jest.spyOn(directive, 'hide');
 
@@ -55,27 +55,27 @@ describe('MDB Dropdown', () => {
       buttonEl.click();
       fixture.detectChanges();
 
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(directive.hide).toHaveBeenCalled();
       expect(overlayContainerElement.textContent).toEqual('');
-    }));
+    });
 
-    it('should close dropdown on outside click', fakeAsync(() => {
+    it('should close dropdown on outside click', async () => {
       directive.show();
       fixture.detectChanges();
 
       document.body.click();
       fixture.detectChanges();
 
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toEqual('');
-    }));
+    });
 
-    it('should close dropdown on dropdown item click', fakeAsync(() => {
+    it('should close dropdown on dropdown item click', async () => {
       directive.show();
       fixture.detectChanges();
 
@@ -84,15 +84,15 @@ describe('MDB Dropdown', () => {
       item.click();
       fixture.detectChanges();
 
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toEqual('');
-    }));
+    });
   });
 
   describe('Accessibility', () => {
-    it('should update aria-expanded attribute on dropdown open and close', fakeAsync(() => {
+    it('should update aria-expanded attribute on dropdown open and close', async () => {
       const buttonEl: HTMLButtonElement = fixture.nativeElement.querySelector('.dropdown-toggle');
 
       buttonEl.click();
@@ -102,10 +102,10 @@ describe('MDB Dropdown', () => {
 
       buttonEl.click();
       fixture.detectChanges();
-      flush();
+      await fixture.whenStable();
 
       expect(buttonEl.getAttribute('aria-expanded')).toContain('false');
-    }));
+    });
   });
 
   describe('Keyboard navigation', () => {
@@ -145,23 +145,24 @@ describe('MDB Dropdown', () => {
       expect(document.activeElement).toBe(items[items.length - 1]);
     });
 
-    it('should close dropdown on ESC keyup', fakeAsync(() => {
+    it('should close dropdown on ESC keyup', async () => {
       directive.show();
       fixture.detectChanges();
 
       document.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape' }));
       fixture.detectChanges();
 
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toEqual('');
-    }));
+    });
   });
 
   describe('Inputs', () => {
-    it('should not close dropdown on ESC keyup if closeOnEsc input is set to false', fakeAsync(() => {
+    it('should not close dropdown on ESC keyup if closeOnEsc input is set to false', async () => {
       testComponent.closeOnEsc = false;
+      fixture.changeDetectorRef.markForCheck();
       directive.show();
       fixture.detectChanges();
 
@@ -170,14 +171,15 @@ describe('MDB Dropdown', () => {
       document.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape' }));
       fixture.detectChanges();
 
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toContain('Action');
-    }));
+    });
 
-    it('should not close dropdown on dropdown item click if closeOnItemClick input is set to false', fakeAsync(() => {
+    it('should not close dropdown on dropdown item click if closeOnItemClick input is set to false', async () => {
       testComponent.closeOnItemClick = false;
+      fixture.changeDetectorRef.markForCheck();
       directive.show();
       fixture.detectChanges();
 
@@ -188,14 +190,15 @@ describe('MDB Dropdown', () => {
       item.click();
       fixture.detectChanges();
 
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toContain('Action');
-    }));
+    });
 
-    it('should not close dropdown on outside click if closeOnOutsideClick input is set to false', fakeAsync(() => {
+    it('should not close dropdown on outside click if closeOnOutsideClick input is set to false', async () => {
       testComponent.closeOnOutsideClick = false;
+      fixture.changeDetectorRef.markForCheck();
       directive.show();
       fixture.detectChanges();
 
@@ -204,14 +207,15 @@ describe('MDB Dropdown', () => {
       document.body.click();
       fixture.detectChanges();
 
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toContain('Action');
-    }));
+    });
 
     it('should apply appropriate transform style when offset input is set', () => {
       testComponent.offset = 43;
+      fixture.changeDetectorRef.markForCheck();
       fixture.detectChanges();
 
       directive.show();
@@ -252,7 +256,7 @@ describe('MDB Dropdown', () => {
   });
 
   describe('Outputs', () => {
-    it('should emit events on show and hide', fakeAsync(() => {
+    it('should emit events on show and hide', async () => {
       let showDropdown: MdbDropdownDirective | undefined;
       let shownDropdown: MdbDropdownDirective | undefined;
       let hideDropdown: MdbDropdownDirective | undefined;
@@ -274,7 +278,7 @@ describe('MDB Dropdown', () => {
       expect(showSpy).toHaveBeenCalledTimes(1);
       expect(showDropdown).toEqual(directive);
 
-      tick();
+      await new Promise((resolve) => setTimeout(resolve, 0));
 
       expect(shownSpy).toHaveBeenCalledTimes(1);
       expect(shownDropdown).toEqual(directive);
@@ -285,42 +289,42 @@ describe('MDB Dropdown', () => {
       expect(hideSpy).toHaveBeenCalledTimes(1);
       expect(hideDropdown).toEqual(directive);
 
-      tick();
+      await new Promise((resolve) => setTimeout(resolve, 0));
 
       expect(hiddenSpy).toHaveBeenCalledTimes(1);
       expect(hiddenDropdown).toEqual(directive);
-    }));
+    });
   });
 
   describe('Public methods', () => {
-    it('should show dropdown when show method is called', fakeAsync(() => {
+    it('should show dropdown when show method is called', async () => {
       expect(overlayContainerElement.textContent).not.toContain('Action');
 
       directive.show();
       fixture.detectChanges();
-      flush();
+      await fixture.whenStable();
 
       expect(overlayContainerElement.textContent).toContain('Action');
-    }));
+    });
 
-    it('should hide dropdown when hide method is called', fakeAsync(() => {
+    it('should hide dropdown when hide method is called', async () => {
       expect(overlayContainerElement.textContent).not.toContain('Action');
 
       directive.show();
       fixture.detectChanges();
-      flush();
+      await fixture.whenStable();
 
       expect(overlayContainerElement.textContent).toContain('Action');
 
       directive.hide();
       fixture.detectChanges();
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toEqual('');
-    }));
+    });
 
-    it('should toggle dropdown when toggle method is called', fakeAsync(() => {
+    it('should toggle dropdown when toggle method is called', async () => {
       expect(overlayContainerElement.textContent).not.toContain('Action');
 
       directive.toggle();
@@ -330,11 +334,11 @@ describe('MDB Dropdown', () => {
 
       directive.toggle();
       fixture.detectChanges();
-      flush();
+      await fixture.whenStable();
       fixture.detectChanges();
 
       expect(overlayContainerElement.textContent).toEqual('');
-    }));
+    });
   });
 });
 
