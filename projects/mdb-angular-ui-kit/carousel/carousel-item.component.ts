@@ -1,8 +1,9 @@
-import { Component, ElementRef, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'mdb-carousel-item',
   template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class MdbCarouselItemComponent {

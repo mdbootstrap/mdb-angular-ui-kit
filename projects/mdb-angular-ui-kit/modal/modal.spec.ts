@@ -3,7 +3,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { MdbModalModule } from './modal.module';
 import { MdbModalService } from './modal.service';
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
@@ -31,6 +31,7 @@ import { BrowserModule } from '@angular/platform-browser';
     </div>
   `,
   providers: [MdbModalService],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class BasicModalComponent {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdbRangeModule } from './range.module';
 import { MdbRangeComponent } from './range.component';
@@ -12,6 +12,7 @@ const template = `
 @Component({
   selector: 'mdb-range-test',
   template,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class TestRangeComponent implements OnInit {

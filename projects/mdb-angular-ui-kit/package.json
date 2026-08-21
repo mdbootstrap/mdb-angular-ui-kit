@@ -6,11 +6,11 @@
   "license": "MIT",
   "version": "10.0.0",
   "peerDependencies": {
-    "@angular/common": "^21.0.0",
-    "@angular/core": "^21.0.0",
-    "@angular/animations": "^21.0.0",
-    "@angular/forms": "^21.0.0",
-    "@angular/cdk": "^21.0.0"
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/animations": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "@angular/cdk": "^22.0.0"
   },
   "schematics": "./schematics/collection.json",
   "dependencies": {

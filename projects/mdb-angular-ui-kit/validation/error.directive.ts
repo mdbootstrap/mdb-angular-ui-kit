@@ -6,6 +6,7 @@ import {
   OnInit,
   OnDestroy,
   Component,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -15,6 +16,7 @@ let defaultIdNumber = 0;
 @Component({
   selector: 'mdb-error',
   template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix

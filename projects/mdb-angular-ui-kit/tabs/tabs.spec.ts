@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +23,7 @@ const tabsTemplate = `
 
 @Component({
   template: tabsTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TabsTestComponent {

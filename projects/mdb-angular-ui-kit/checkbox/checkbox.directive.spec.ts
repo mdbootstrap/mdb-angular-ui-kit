@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectionStrategy } from '@angular/core';
 import { MdbCheckboxModule } from './index';
 import { By } from '@angular/platform-browser';
 import { UntypedFormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -161,6 +161,7 @@ const basicTemplate = `
 
 @Component({
   template: basicTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class BasicCheckboxComponent {
@@ -177,6 +178,7 @@ const ngModelTemplate = `
 
 @Component({
   template: ngModelTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class CheckboxWithNgModelComponent {
@@ -193,6 +195,7 @@ const formControlTemplate = `
 
 @Component({
   template: formControlTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class CheckboxWithFormControlComponent {

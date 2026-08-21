@@ -11,6 +11,7 @@ import {
   Output,
   QueryList,
   inject,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -24,6 +25,7 @@ export class MdbTabChange {
 @Component({
   selector: 'mdb-tabs',
   templateUrl: './tabs.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class MdbTabsComponent implements AfterContentInit, OnDestroy {

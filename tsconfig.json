@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "strict": false,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "esModuleInterop": true,
@@ -13,10 +13,10 @@
     "module": "es2020",
     "paths": {
       "mdb-angular-ui-kit": [
-        "projects/mdb-angular-ui-kit"
+        "./projects/mdb-angular-ui-kit"
       ],
       "mdb-angular-ui-kit/*": [
-        "projects/mdb-angular-ui-kit/*"
+        "./projects/mdb-angular-ui-kit/*"
       ]
     },
     "useDefineForClassFields": false

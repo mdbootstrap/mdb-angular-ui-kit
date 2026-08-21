@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MdbFormsModule } from './index';
 import { MdbFormControlComponent } from './form-control.component';
@@ -107,6 +107,7 @@ const dynamicLabelTemplate = `
 `;
 @Component({
   template: dynamicLabelTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class DynamicLabelComponent {
@@ -122,6 +123,7 @@ const basicTemplate = `
 
 @Component({
   template: basicTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class BasicFormControlComponent {}
@@ -134,6 +136,7 @@ const withoutLabelTemplate = `
 
 @Component({
   template: withoutLabelTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class WithoutLabelComponent {}

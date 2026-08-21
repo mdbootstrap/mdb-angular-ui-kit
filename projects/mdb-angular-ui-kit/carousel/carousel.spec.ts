@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdbCarouselComponent } from './carousel.component';
 import { MdbCarouselModule } from './carousel.module';
@@ -40,6 +40,7 @@ const carouselTemplate = `
 
 @Component({
   template: carouselTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class CarouselTestComponent {

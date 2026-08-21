@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectionStrategy } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MdbFormsModule } from './index';
 
@@ -40,6 +40,7 @@ const basicTemplate = `
 @Component({
   selector: 'mdb-input-test',
   template: basicTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class BasicInputComponent {

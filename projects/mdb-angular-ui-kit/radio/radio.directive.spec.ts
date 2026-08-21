@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MdbRadioModule } from './index';
 
 describe('MDB Checkbox', () => {
@@ -64,6 +64,7 @@ const basicTemplate = `
 @Component({
   selector: 'mdb-radio-test',
   template: basicTemplate,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class BasicRadioComponent {

@@ -2,11 +2,12 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/spec",
-    "types": ["jest"],
-    "module": "commonjs",
-    "emitDecoratorMetadata": true,
+    "types": ["vitest/globals", "node"],
     "allowJs": true
   },
-  "files": [],
-  "include": ["**/*.spec.ts", "**/*.d.ts"]
+  "files": ["../../setup-vitest.ts"],
+  "include": ["**/*.spec.ts", "**/*.d.ts"],
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  }
 }

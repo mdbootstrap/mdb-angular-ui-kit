@@ -1,4 +1,10 @@
-import { SchematicContext, Tree, chain } from '@angular-devkit/schematics';
+import {
+  Rule,
+  SchematicContext,
+  SchematicsException,
+  Tree,
+  chain,
+} from '@angular-devkit/schematics';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 import {
@@ -11,24 +17,37 @@ import {
   isStandaloneApp,
 } from '@angular/cdk/schematics';
 import { addRootProvider } from '@schematics/angular/utility';
+import {
+  getDecoratorMetadata,
+  getMetadataField,
+  insertImport,
+} from '@schematics/angular/utility/ast-utils';
+import { InsertChange } from '@schematics/angular/utility/change';
+import {
+  applyChangesToFile,
+  findBootstrapApplicationCall,
+  getSourceFile,
+} from '@schematics/angular/utility/standalone/util';
+import path from 'node:path';
+import ts from 'typescript';
 import { Schema } from './schema';
 
 const mdbModules = [
-  { name: 'MdbAccordionModule', path: 'mdb-angular-ui-kit/accordion'},
-  { name: 'MdbCarouselModule', path: 'mdb-angular-ui-kit/carousel'},
-  { name: 'MdbCheckboxModule', path: 'mdb-angular-ui-kit/checkbox'},
-  { name: 'MdbCollapseModule', path: 'mdb-angular-ui-kit/collapse'},
-  { name: 'MdbDropdownModule', path: 'mdb-angular-ui-kit/dropdown'},
-  { name: 'MdbFormsModule', path: 'mdb-angular-ui-kit/forms'},
-  { name: 'MdbModalModule', path: 'mdb-angular-ui-kit/modal'},
-  { name: 'MdbPopoverModule', path: 'mdb-angular-ui-kit/popover'},
-  { name: 'MdbRadioModule', path: 'mdb-angular-ui-kit/radio'},
-  { name: 'MdbRangeModule', path: 'mdb-angular-ui-kit/range'},
-  { name: 'MdbRippleModule', path: 'mdb-angular-ui-kit/ripple'},
-  { name: 'MdbScrollspyModule', path: 'mdb-angular-ui-kit/scrollspy'},
-  { name: 'MdbTabsModule', path: 'mdb-angular-ui-kit/tabs'},
-  { name: 'MdbTooltipModule', path: 'mdb-angular-ui-kit/tooltip'},
-  { name: 'MdbValidationModule', path: 'mdb-angular-ui-kit/validation'},
+  { name: 'MdbAccordionModule', path: 'mdb-angular-ui-kit/accordion' },
+  { name: 'MdbCarouselModule', path: 'mdb-angular-ui-kit/carousel' },
+  { name: 'MdbCheckboxModule', path: 'mdb-angular-ui-kit/checkbox' },
+  { name: 'MdbCollapseModule', path: 'mdb-angular-ui-kit/collapse' },
+  { name: 'MdbDropdownModule', path: 'mdb-angular-ui-kit/dropdown' },
+  { name: 'MdbFormsModule', path: 'mdb-angular-ui-kit/forms' },
+  { name: 'MdbModalModule', path: 'mdb-angular-ui-kit/modal' },
+  { name: 'MdbPopoverModule', path: 'mdb-angular-ui-kit/popover' },
+  { name: 'MdbRadioModule', path: 'mdb-angular-ui-kit/radio' },
+  { name: 'MdbRangeModule', path: 'mdb-angular-ui-kit/range' },
+  { name: 'MdbRippleModule', path: 'mdb-angular-ui-kit/ripple' },
+  { name: 'MdbScrollspyModule', path: 'mdb-angular-ui-kit/scrollspy' },
+  { name: 'MdbTabsModule', path: 'mdb-angular-ui-kit/tabs' },
+  { name: 'MdbTooltipModule', path: 'mdb-angular-ui-kit/tooltip' },
+  { name: 'MdbValidationModule', path: 'mdb-angular-ui-kit/validation' },
 ];
 
 // eslint-disable-next-line space-before-function-paren
@@ -57,28 +76,126 @@ function addMdbModulesImports(options: Schema): any {
     const project = getProjectFromWorkspace(workspace, options.project);
     const mainFile = getProjectMainFile(project);
 
-    if (isStandaloneApp(tree, mainFile)) {
-      return;
-    }
-
     if (options.modules) {
-      mdbModules.forEach((module) => {
-        addModuleImportToRootModule(tree, module.name, module.path, project);
-      });
+      if (isStandaloneApp(tree, mainFile)) {
+        const rootComponentPath = getStandaloneRootComponentPath(tree, mainFile);
+
+        mdbModules.forEach((module) => {
+          addModuleImportToStandaloneComponent(tree, rootComponentPath, module.name, module.path);
+        });
+      } else {
+        mdbModules.forEach((module) => {
+          addModuleImportToRootModule(tree, module.name, module.path, project);
+        });
+      }
     }
 
     return tree;
   };
 }
 
-function addAngularAnimationsModule(options: Schema): any {
-  return () => {
-    return addRootProvider(options.project, ({ code, external }) => {
-      return code`${external('provideAnimations', '@angular/platform-browser/animations')}(${
-        options.animations ? '' : `'noop'`
-      })`;
-    });
-  };
+function addAngularAnimationsModule(options: Schema): Rule {
+  return addRootProvider(options.project, ({ code, external }) => {
+    return options.animations
+      ? code`${external('provideAnimations', '@angular/platform-browser/animations')}()`
+      : code`${external('provideNoopAnimations', '@angular/platform-browser/animations')}()`;
+  });
+}
+
+function getStandaloneRootComponentPath(tree: Tree, mainFile: string): string {
+  const source = getSourceFile(tree, mainFile);
+  const bootstrapCall = findBootstrapApplicationCall(tree, mainFile);
+  const rootComponent = bootstrapCall.arguments[0];
+
+  if (!ts.isIdentifier(rootComponent)) {
+    throw new SchematicsException('Could not resolve the standalone root component.');
+  }
+
+  const rootImport = source.statements.filter(ts.isImportDeclaration).find((statement) => {
+    const bindings = statement.importClause?.namedBindings;
+
+    return (
+      bindings &&
+      ts.isNamedImports(bindings) &&
+      bindings.elements.some((element) => element.name.text === rootComponent.text)
+    );
+  });
+
+  if (!rootImport || !ts.isStringLiteral(rootImport.moduleSpecifier)) {
+    throw new SchematicsException('Could not find the standalone root component import.');
+  }
+
+  const importPath = rootImport.moduleSpecifier.text;
+
+  if (!importPath.startsWith('.')) {
+    throw new SchematicsException('The standalone root component must use a relative import.');
+  }
+
+  const componentPath = path.posix.normalize(
+    path.posix.join(path.posix.dirname(mainFile), importPath)
+  );
+  const candidates = [
+    componentPath,
+    `${componentPath}.ts`,
+    path.posix.join(componentPath, 'index.ts'),
+  ];
+  const resolvedPath = candidates.find((candidate) => tree.exists(candidate));
+
+  if (!resolvedPath) {
+    throw new SchematicsException(
+      `Could not find the standalone root component at ${componentPath}.`
+    );
+  }
+
+  return resolvedPath;
+}
+
+function addModuleImportToStandaloneComponent(
+  tree: Tree,
+  componentPath: string,
+  moduleName: string,
+  modulePath: string
+): void {
+  const source = getSourceFile(tree, componentPath);
+  const componentMetadata = getDecoratorMetadata(source, 'Component', '@angular/core')[0];
+
+  if (!componentMetadata || !ts.isObjectLiteralExpression(componentMetadata)) {
+    throw new SchematicsException(`Could not find Component metadata in ${componentPath}.`);
+  }
+
+  const importsProperties = getMetadataField(componentMetadata, 'imports');
+  const changes = [insertImport(source, componentPath, moduleName, modulePath)];
+
+  if (importsProperties.length === 0) {
+    changes.push(
+      new InsertChange(
+        componentPath,
+        componentMetadata.getStart() + 1,
+        `\n  imports: [${moduleName}],`
+      )
+    );
+  } else {
+    const importsProperty = importsProperties[0];
+
+    if (!ts.isArrayLiteralExpression(importsProperty.initializer)) {
+      throw new SchematicsException(
+        `The standalone root component imports in ${componentPath} must be an array.`
+      );
+    }
+
+    const imports = importsProperty.initializer;
+
+    if (!imports.elements.some((element) => element.getText() === moduleName)) {
+      const insertionPosition = imports.elements.length
+        ? imports.elements[imports.elements.length - 1].getEnd()
+        : imports.getEnd() - 1;
+      const prefix = imports.elements.length ? ', ' : '';
+
+      changes.push(new InsertChange(componentPath, insertionPosition, `${prefix}${moduleName}`));
+    }
+  }
+
+  applyChangesToFile(tree, componentPath, changes);
 }
 
 function addRobotoFontToIndexHtml(options: Schema): any {

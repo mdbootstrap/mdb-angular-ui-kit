@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MdbAccordionItemComponent } from './accordion-item.component';
@@ -47,6 +47,7 @@ const template = `
 @Component({
   selector: 'mdb-accordion-test',
   template,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class TestAccordionComponent {

@@ -12,6 +12,7 @@ import {
   PLATFORM_ID,
   QueryList,
   Renderer2,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { MdbScrollspyLinkDirective } from './scrollspy-link.directive';
 import { MdbScrollspyService } from './scrollspy.service';
@@ -24,6 +25,7 @@ import { isPlatformBrowser } from '@angular/common';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbScrollspy]',
   template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix

@@ -30,7 +30,7 @@ const NON_INVASIVE_SHOW_CLASS = 'modal-non-invasive-show';
 @Component({
   selector: 'mdb-modal-container',
   templateUrl: 'modal-container.component.html',
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class MdbModalContainerComponent implements OnInit, AfterViewInit, OnDestroy {

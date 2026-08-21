@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdbRippleModule } from './ripple.module';
 
@@ -19,6 +19,7 @@ const template = `
 @Component({
   selector: 'mdb-ripple-test',
   template,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class TestRippleComponent {

@@ -1,14 +1,6 @@
 import { CdkPortalOutlet } from '@angular/cdk/portal';
 
-import {
-  Directive,
-  Inject,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewContainerRef,
-  DOCUMENT,
-} from '@angular/core';
+import { Directive, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MdbTabComponent } from './tab.component';
@@ -23,10 +15,6 @@ export class MdbTabPortalOutlet extends CdkPortalOutlet implements OnInit, OnDes
   readonly _destroy$: Subject<void> = new Subject<void>();
 
   @Input() tab: MdbTabComponent;
-
-  constructor(_vcr: ViewContainerRef, @Inject(DOCUMENT) _document: any) {
-    super(_vcr, _document);
-  }
 
   ngOnInit(): void {
     super.ngOnInit();

@@ -1,5 +1,5 @@
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MdbDropdownMenuDirective, MdbDropdownModule } from './index';
 import { MdbDropdownDirective } from './index';
 import { By } from '@angular/platform-browser';
@@ -365,6 +365,7 @@ describe('MDB Dropdown', () => {
       </ul>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class TestDropdownComponent {

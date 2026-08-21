@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MdbTooltipModule } from './index';
 import { MdbTooltipDirective } from './tooltip.directive';
 import { By } from '@angular/platform-browser';
@@ -161,6 +161,7 @@ describe('MDB Tooltip', () => {
   >
     MDB Button
   </button>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
@@ -174,6 +175,7 @@ class TestTooltipComponent {
 @Component({
   selector: 'mdb-test-tooltip2',
   template: ` <button mdbTooltip="testMdbTooltip" trigger="click">MDB Button</button>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
@@ -184,6 +186,7 @@ class TestTooltipComponent2 {}
   template: ` <button mdbTooltip="testMdbTooltip" tooltipDisabled="true" trigger="click">
     MDB Button
   </button>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix

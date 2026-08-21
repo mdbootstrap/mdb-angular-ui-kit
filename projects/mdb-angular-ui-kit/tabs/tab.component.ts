@@ -9,6 +9,7 @@ import {
   TemplateRef,
   ViewChild,
   ViewContainerRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MDB_TAB_CONTENT } from './tab-content.directive';
@@ -20,6 +21,7 @@ const TRANSITION_PADDING = 5; // Value from standard added via executeAfterTrans
 @Component({
   selector: 'mdb-tab',
   templateUrl: './tab.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class MdbTabComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MdbValidationModule } from './validation.module';
 
@@ -9,6 +9,7 @@ const template = `
 @Component({
   selector: 'mdb-collapse-test',
   template,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class TestValidateComponent {

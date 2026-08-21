@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MdbPopoverModule } from './index';
 import { MdbPopoverDirective } from './popover.directive';
 import { By } from '@angular/platform-browser';
@@ -197,6 +197,7 @@ describe('MDB Popover', () => {
   >
     MDB Button
   </button>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
@@ -211,6 +212,7 @@ class TestPopoverComponent {
 @Component({
   selector: 'mdb-test-popover2',
   template: ` <button mdbPopover="testMdbPopover" trigger="click">MDB Button</button>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
@@ -221,6 +223,7 @@ class TestPopoverComponent2 {}
   template: ` <button mdbPopover="testMdbPopover" popoverDisabled="true" trigger="click">
     MDB Button
   </button>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
@@ -240,6 +243,7 @@ class TestPopoverComponent3 {}
     <ng-template #template let-person="person"
       >Current user: {{ person.name }} {{ person.surname }}</ng-template
     >`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
