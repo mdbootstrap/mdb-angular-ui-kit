@@ -35,8 +35,8 @@ describe('MDB Tooltip', () => {
         .query(By.directive(MdbTooltipDirective))
         .injector.get(MdbTooltipDirective) as MdbTooltipDirective;
 
-      const onOpen = jest.spyOn(directive, 'show');
-      const onClose = jest.spyOn(directive, 'hide');
+      const onOpen = vi.spyOn(directive, 'show');
+      const onClose = vi.spyOn(directive, 'hide');
 
       const buttonEl = fixture.nativeElement.querySelector('button');
 
@@ -53,11 +53,11 @@ describe('MDB Tooltip', () => {
     });
 
     it('should set tooltip title', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const buttonEl = fixture.nativeElement.querySelector('button');
 
       buttonEl.dispatchEvent(new Event('mouseenter'));
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       fixture.detectChanges();
       const tooltip = document.querySelector('.tooltip-inner');
@@ -65,11 +65,11 @@ describe('MDB Tooltip', () => {
     });
 
     it('should set placement', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const buttonEl = fixture.nativeElement.querySelector('button');
 
       buttonEl.dispatchEvent(new Event('mouseenter'));
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       fixture.detectChanges();
       directive = fixture.debugElement
@@ -102,8 +102,8 @@ describe('MDB Tooltip', () => {
         .query(By.directive(MdbTooltipDirective))
         .injector.get(MdbTooltipDirective) as MdbTooltipDirective;
 
-      const onOpen = jest.spyOn(directive, 'show');
-      const onClose = jest.spyOn(directive, 'hide');
+      const onOpen = vi.spyOn(directive, 'show');
+      const onClose = vi.spyOn(directive, 'hide');
 
       const buttonEl = fixture.nativeElement.querySelector('button');
 
@@ -140,7 +140,7 @@ describe('MDB Tooltip', () => {
       .query(By.directive(MdbTooltipDirective))
       .injector.get(MdbTooltipDirective) as MdbTooltipDirective;
 
-    const onOpen = jest.spyOn(directive, 'show');
+    const onOpen = vi.spyOn(directive, 'show');
 
     const buttonEl = fixture.nativeElement.querySelector('button');
 
@@ -161,6 +161,7 @@ describe('MDB Tooltip', () => {
   >
     MDB Button
   </button>`,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -175,6 +176,7 @@ class TestTooltipComponent {
 @Component({
   selector: 'mdb-test-tooltip2',
   template: ` <button mdbTooltip="testMdbTooltip" trigger="click">MDB Button</button>`,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -186,6 +188,7 @@ class TestTooltipComponent2 {}
   template: ` <button mdbTooltip="testMdbTooltip" tooltipDisabled="true" trigger="click">
     MDB Button
   </button>`,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

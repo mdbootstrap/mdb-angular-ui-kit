@@ -1,3 +1,23 @@
+## 11.0.0 (30.08.2026)
+
+This version requires Angular v22. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 22.
+
+### Breaking changes:
+
+- Updated Angular to v22, this version is required in MDB Angular v11
+- [Touch](https://mdbootstrap.com/docs/angular/methods/touch/) - Angular 22 no longer provides the deprecated HammerJS integration used by the previous Touch examples. Applications based on those examples should replace Hammer-specific events with a custom gesture implementation. The Touch documentation now demonstrates dependency-free solutions using native Pointer Events
+- [Multi-item carousel](https://mdbootstrap.com/docs/angular/plugins/multi-item-carousel/) - moved the lightbox `zoomLevel` and `fontAwesome` configuration from individual `MdbMultiItemCarouselSlide` objects to the `mdb-multi-item-carousel` component. Remove these properties from slide objects and bind the new `[zoomLevel]` and `[fontAwesome]` inputs on the component instead
+
+### Fixes and improvements:
+
+- [Datepicker](https://mdbootstrap.com/docs/angular/forms/datepicker/) - fixed initialized form control values being lost when the datepicker input was initialized
+- [Radio](https://mdbootstrap.com/docs/angular/forms/radio/) - corrected success validation styles so checked radio buttons retain the expected border and inner indicator
+- [Treetable](https://mdbootstrap.com/docs/angular/plugins/treetable/) - removed the package declaration-order dependency that could prevent the directive from loading correctly
+- [Treeview](https://mdbootstrap.com/docs/angular/plugins/tree-view/) - kept `aria-expanded` synchronized with the rendered disclosure state for assistive technologies
+- [Installation](https://mdbootstrap.com/docs/angular/getting-started/installation/) - updated `ng add` for Angular 22. In standalone applications, the schematic now adds the selected MDB modules to the root standalone component and configures the appropriate animations provider
+
+---
+
 ## 10.0.0 (23.02.2026)
 
 This version requires Angular v21. Follow the [Angular Update Guide](https://angular.dev/update-guide) to migrate your project to Angular 21.

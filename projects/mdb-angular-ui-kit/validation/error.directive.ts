@@ -6,7 +6,7 @@ import {
   OnInit,
   OnDestroy,
   Component,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -16,6 +16,7 @@ let defaultIdNumber = 0;
 @Component({
   selector: 'mdb-error',
   template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

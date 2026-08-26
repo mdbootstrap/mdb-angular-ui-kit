@@ -1,4 +1,10 @@
-import { Component, QueryList, ViewChild, ViewChildren, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +29,7 @@ const tabsTemplate = `
 
 @Component({
   template: tabsTemplate,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -100,7 +107,7 @@ describe('MDB Tabs', () => {
   });
 
   it('should apply show class after 155ms delay on tab button click', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     const tabs = component.tabComponents.toArray();
     const tabLinks = fixture.debugElement.queryAll(By.css('.nav-link'));
@@ -121,7 +128,7 @@ describe('MDB Tabs', () => {
     expect(tabs[2].active).toBe(true);
 
     // Advance timers past the SHOW_TRANSITION_DELAY + TRANSITION_PADDING
-    jest.advanceTimersByTime(160);
+    vi.advanceTimersByTime(160);
     fixture.detectChanges();
 
     // After the delay, show state should be properly updated
@@ -129,7 +136,7 @@ describe('MDB Tabs', () => {
     expect(tabs[2].active).toBe(true);
     expect(tabs[2].show).toBe(true);
     expect(tabPanes[2].nativeElement.classList.contains('show')).toBe(true);
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('should add active class to active tab link', () => {

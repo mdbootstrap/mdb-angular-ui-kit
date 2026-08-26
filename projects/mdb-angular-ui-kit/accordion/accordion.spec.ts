@@ -47,6 +47,7 @@ const template = `
 @Component({
   selector: 'mdb-accordion-test',
   template,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -213,10 +214,10 @@ describe('MDB Accordion', () => {
     const item = component.accordionItems[0];
     const content = document.querySelectorAll('.collapse')[0] as HTMLElement;
 
-    const showSpy = jest.spyOn(item.itemShow, 'emit');
-    const shownSpy = jest.spyOn(item.itemShown, 'emit');
-    const hideSpy = jest.spyOn(item.itemHide, 'emit');
-    const hiddenSpy = jest.spyOn(item.itemHidden, 'emit');
+    const showSpy = vi.spyOn(item.itemShow, 'emit');
+    const shownSpy = vi.spyOn(item.itemShown, 'emit');
+    const hideSpy = vi.spyOn(item.itemHide, 'emit');
+    const hiddenSpy = vi.spyOn(item.itemHidden, 'emit');
 
     item.show();
     fixture.detectChanges();

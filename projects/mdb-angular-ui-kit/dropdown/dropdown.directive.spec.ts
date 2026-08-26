@@ -41,8 +41,8 @@ describe('MDB Dropdown', () => {
 
   describe('Opening and closing', () => {
     it('should open and close dropdown on click', async () => {
-      jest.spyOn(directive, 'show');
-      jest.spyOn(directive, 'hide');
+      vi.spyOn(directive, 'show');
+      vi.spyOn(directive, 'hide');
 
       const buttonEl: HTMLButtonElement = fixture.nativeElement.querySelector('.dropdown-toggle');
 
@@ -262,10 +262,10 @@ describe('MDB Dropdown', () => {
       let hideDropdown: MdbDropdownDirective | undefined;
       let hiddenDropdown: MdbDropdownDirective | undefined;
 
-      const showSpy = jest.spyOn(directive.dropdownShow, 'emit');
-      const shownSpy = jest.spyOn(directive.dropdownShown, 'emit');
-      const hideSpy = jest.spyOn(directive.dropdownHide, 'emit');
-      const hiddenSpy = jest.spyOn(directive.dropdownHidden, 'emit');
+      const showSpy = vi.spyOn(directive.dropdownShow, 'emit');
+      const shownSpy = vi.spyOn(directive.dropdownShown, 'emit');
+      const hideSpy = vi.spyOn(directive.dropdownHide, 'emit');
+      const hiddenSpy = vi.spyOn(directive.dropdownHidden, 'emit');
 
       directive.dropdownShow.pipe(first()).subscribe((event) => (showDropdown = event));
       directive.dropdownShown.pipe(first()).subscribe((event) => (shownDropdown = event));
@@ -365,6 +365,7 @@ describe('MDB Dropdown', () => {
       </ul>
     </div>
   `,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

@@ -9,7 +9,7 @@ import {
   TemplateRef,
   ViewChild,
   ViewContainerRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MDB_TAB_CONTENT } from './tab-content.directive';
@@ -21,6 +21,7 @@ const TRANSITION_PADDING = 5; // Value from standard added via executeAfterTrans
 @Component({
   selector: 'mdb-tab',
   templateUrl: './tab.component.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

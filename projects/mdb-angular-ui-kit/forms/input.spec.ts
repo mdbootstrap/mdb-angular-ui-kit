@@ -40,6 +40,7 @@ const basicTemplate = `
 @Component({
   selector: 'mdb-input-test',
   template: basicTemplate,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

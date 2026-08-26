@@ -6,7 +6,7 @@ describe('ScrollspyDirective', () => {
   let scrollspy: MdbScrollspyDirective;
   let scrollspyService: MdbScrollspyService;
   const cdRefMock = {
-    detectChanges: jest.fn(),
+    detectChanges: vi.fn(),
   };
 
   beforeEach(() => {
@@ -15,19 +15,19 @@ describe('ScrollspyDirective', () => {
   });
 
   it('should add new scrollspy to service after content init', () => {
-    // const spy = jest.spyOn(scrollspyService, 'addScrollspy');
+    // const spy = vi.spyOn(scrollspyService, 'addScrollspy');
     // scrollspy.ngAfterContentInit();
     // expect(spy).toHaveBeenCalled();
   });
 
   it('should remove scrollspy from service on destroy', () => {
-    // const spy = jest.spyOn(scrollspyService, 'removeScrollspy');
+    // const spy = vi.spyOn(scrollspyService, 'removeScrollspy');
     // scrollspy.ngOnDestroy();
     // expect(spy).toHaveBeenCalled();
   });
 
   it('should emit activeLinkChange event when active link change', () => {
-    // const spy = jest.spyOn(scrollspy.activeLinkChange, 'emit');
+    // const spy = vi.spyOn(scrollspy.activeLinkChange, 'emit');
     // const document = DOCUMENT;
     // const link = new MdbScrollspyLinkDirective(cdRefMock as any, document);
     // scrollspy.ngOnInit();

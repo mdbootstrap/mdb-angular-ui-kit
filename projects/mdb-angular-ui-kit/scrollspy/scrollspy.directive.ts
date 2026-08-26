@@ -12,7 +12,7 @@ import {
   PLATFORM_ID,
   QueryList,
   Renderer2,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { MdbScrollspyLinkDirective } from './scrollspy-link.directive';
 import { MdbScrollspyService } from './scrollspy.service';
@@ -25,6 +25,7 @@ import { isPlatformBrowser } from '@angular/common';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[mdbScrollspy]',
   template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

@@ -40,6 +40,7 @@ const carouselTemplate = `
 
 @Component({
   template: carouselTemplate,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

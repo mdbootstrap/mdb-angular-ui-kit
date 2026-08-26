@@ -130,7 +130,12 @@ textarea ~ .success-message {
 .form-check .validate-success.ng-valid.ng-touched {
   border-color: $success;
 
-  &:checked {
+  &[type='checkbox']:checked {
+    background-color: $success;
+  }
+
+  &[type='radio']:checked::after {
+    border-color: $success;
     background-color: $success;
   }
 

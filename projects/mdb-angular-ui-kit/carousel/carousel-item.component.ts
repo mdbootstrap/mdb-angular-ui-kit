@@ -3,6 +3,7 @@ import { Component, ElementRef, HostBinding, Input, ChangeDetectionStrategy } fr
 @Component({
   selector: 'mdb-carousel-item',
   template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ApplicationRef, Component, ChangeDetectionStrategy } from '@angular/core';
 import { MdbPopoverModule } from './index';
 import { MdbPopoverDirective } from './popover.directive';
 import { By } from '@angular/platform-browser';
@@ -35,8 +35,8 @@ describe('MDB Popover', () => {
         .query(By.directive(MdbPopoverDirective))
         .injector.get(MdbPopoverDirective) as MdbPopoverDirective;
 
-      const onOpen = jest.spyOn(directive, 'show');
-      const onClose = jest.spyOn(directive, 'hide');
+      const onOpen = vi.spyOn(directive, 'show');
+      const onClose = vi.spyOn(directive, 'hide');
 
       const buttonEl = element.querySelector('button');
 
@@ -53,11 +53,11 @@ describe('MDB Popover', () => {
     });
 
     it('should set popover header and title', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const buttonEl = fixture.nativeElement.querySelector('button');
 
       buttonEl.dispatchEvent(new Event('mouseenter'));
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       fixture.detectChanges();
       const popoverContent = document.querySelector('.popover-body').textContent;
@@ -68,11 +68,11 @@ describe('MDB Popover', () => {
     });
 
     it('should set placement', () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const buttonEl = fixture.nativeElement.querySelector('button');
 
       buttonEl.dispatchEvent(new Event('mouseenter'));
-      jest.runAllTimers();
+      vi.runAllTimers();
 
       fixture.detectChanges();
       directive = fixture.debugElement
@@ -105,8 +105,8 @@ describe('MDB Popover', () => {
         .query(By.directive(MdbPopoverDirective))
         .injector.get(MdbPopoverDirective) as MdbPopoverDirective;
 
-      const onOpen = jest.spyOn(directive, 'show');
-      const onClose = jest.spyOn(directive, 'hide');
+      const onOpen = vi.spyOn(directive, 'show');
+      const onClose = vi.spyOn(directive, 'hide');
 
       const buttonEl = fixture.nativeElement.querySelector('button');
 
@@ -142,7 +142,7 @@ describe('MDB Popover', () => {
         .query(By.directive(MdbPopoverDirective))
         .injector.get(MdbPopoverDirective) as MdbPopoverDirective;
 
-      const onOpen = jest.spyOn(directive, 'show');
+      const onOpen = vi.spyOn(directive, 'show');
 
       const buttonEl = fixture.nativeElement.querySelector('button');
 
@@ -171,17 +171,20 @@ describe('MDB Popover', () => {
     });
 
     it('should set custom content with context data', async () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const buttonEl = element.querySelector('button');
       buttonEl.click();
       fixture.detectChanges();
       // Allow setTimeout in show() to execute
-      jest.runAllTimers();
+      await vi.runAllTimersAsync();
       fixture.detectChanges();
-      await fixture.whenStable();
-      const popoverBody = document.querySelector('.popover-body');
+      const applicationRef = TestBed.inject(ApplicationRef);
+      applicationRef.tick();
+      await applicationRef.whenStable();
+      const popoverBodies = document.querySelectorAll('.popover-body');
+      const popoverBody = popoverBodies.item(popoverBodies.length - 1);
       expect(popoverBody.textContent).toBe('Current user: John Doe');
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
   });
 });
@@ -197,6 +200,7 @@ describe('MDB Popover', () => {
   >
     MDB Button
   </button>`,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -212,6 +216,7 @@ class TestPopoverComponent {
 @Component({
   selector: 'mdb-test-popover2',
   template: ` <button mdbPopover="testMdbPopover" trigger="click">MDB Button</button>`,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -223,6 +228,7 @@ class TestPopoverComponent2 {}
   template: ` <button mdbPopover="testMdbPopover" popoverDisabled="true" trigger="click">
     MDB Button
   </button>`,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -243,6 +249,7 @@ class TestPopoverComponent3 {}
     <ng-template #template let-person="person"
       >Current user: {{ person.name }} {{ person.surname }}</ng-template
     >`,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

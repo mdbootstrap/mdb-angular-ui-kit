@@ -13,6 +13,7 @@ const template = `
 @Component({
   selector: 'mdb-collapse-test',
   template,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -84,10 +85,10 @@ describe('MDB Collapse', () => {
 
   it('should emit events on collapse and expand', async () => {
     const button = fixture.nativeElement.querySelector('button');
-    const showSpy = jest.spyOn(component.collapse.collapseShow, 'emit');
-    const shownSpy = jest.spyOn(component.collapse.collapseShown, 'emit');
-    const hideSpy = jest.spyOn(component.collapse.collapseHide, 'emit');
-    const hiddenSpy = jest.spyOn(component.collapse.collapseHidden, 'emit');
+    const showSpy = vi.spyOn(component.collapse.collapseShow, 'emit');
+    const shownSpy = vi.spyOn(component.collapse.collapseShown, 'emit');
+    const hideSpy = vi.spyOn(component.collapse.collapseHide, 'emit');
+    const hiddenSpy = vi.spyOn(component.collapse.collapseHidden, 'emit');
 
     button.click();
     fixture.detectChanges();

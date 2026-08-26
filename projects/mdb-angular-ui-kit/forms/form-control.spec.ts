@@ -54,12 +54,12 @@ describe('MDB Form Control', () => {
   });
 
   it('should set top border gap on component init if label is defined', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const fixture = TestBed.createComponent(BasicFormControlComponent);
     fixture.detectChanges();
 
     // Allow setTimeout in _updateBorderGap to execute
-    jest.runAllTimers();
+    vi.runAllTimers();
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -68,11 +68,11 @@ describe('MDB Form Control', () => {
     const expectedBorderGap = labelWidth * labelScale + labelGapPadding + 'px';
 
     expect(middleNotch.style.width).toEqual(expectedBorderGap);
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('should update border gap when label is dynamically rendered with *ngIf', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const fixture = TestBed.createComponent(DynamicLabelComponent);
     fixture.detectChanges();
 
@@ -86,7 +86,7 @@ describe('MDB Form Control', () => {
     fixture.detectChanges();
 
     // Allow setTimeout in _updateBorderGap to execute
-    jest.runAllTimers();
+    vi.runAllTimers();
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -95,7 +95,7 @@ describe('MDB Form Control', () => {
     expect(label).not.toBeNull();
     const expectedBorderGap = label.clientWidth * labelScale + labelGapPadding + 'px';
     expect(middleNotch.style.width).toEqual(expectedBorderGap);
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 });
 
@@ -107,6 +107,7 @@ const dynamicLabelTemplate = `
 `;
 @Component({
   template: dynamicLabelTemplate,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -123,6 +124,7 @@ const basicTemplate = `
 
 @Component({
   template: basicTemplate,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
@@ -136,6 +138,7 @@ const withoutLabelTemplate = `
 
 @Component({
   template: withoutLabelTemplate,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

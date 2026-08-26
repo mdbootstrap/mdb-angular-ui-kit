@@ -3,7 +3,7 @@ import { MdbScrollspyLinkDirective } from './scrollspy-link.directive';
 describe('ScrollspyDirective', () => {
   let scrollspyLink: MdbScrollspyLinkDirective;
   const cdRefMock = {
-    detectChanges: jest.fn(),
+    detectChanges: vi.fn(),
   };
 
   beforeEach(() => {

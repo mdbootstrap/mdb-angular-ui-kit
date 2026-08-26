@@ -3,7 +3,13 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { MdbModalModule } from './modal.module';
 import { MdbModalService } from './modal.service';
-import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
+import {
+  ApplicationRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  NgModule,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
@@ -31,11 +37,12 @@ import { BrowserModule } from '@angular/platform-browser';
     </div>
   `,
   providers: [MdbModalService],
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 class BasicModalComponent {
-  constructor(public modal: MdbModalService) {}
+  constructor(public modal: MdbModalService, public changeDetectorRef: ChangeDetectorRef) {}
 
   mainView = true;
 
@@ -229,16 +236,22 @@ describe('MDB Modal', () => {
   });
 
   it('should not close when click on btn inside modal', async () => {
-    modal.open(BasicModalComponent);
+    const modalRef = modal.open(BasicModalComponent);
+    const getModalElement = (container: Element, id: string) =>
+      Array.from(container.getElementsByTagName('*')).find((element) => element.id === id) ?? null;
 
     fixture.detectChanges();
     await new Promise((resolve) => setTimeout(resolve, 700));
+    const applicationRef = TestBed.inject(ApplicationRef);
+    applicationRef.tick();
+    await applicationRef.whenStable();
+    modalRef.component.changeDetectorRef.detectChanges();
 
     let modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
-    let mainView = modalContainer.querySelector('#main-view');
-    let notMainView = modalContainer.querySelector('#not-main-view');
-    let mainViewToggler = modalContainer.querySelector('#main-view-toggler');
-    let notMainViewToggler = modalContainer.querySelector('#not-main-view-toggler');
+    let mainView = getModalElement(modalContainer, 'main-view');
+    let notMainView = getModalElement(modalContainer, 'not-main-view');
+    let mainViewToggler = getModalElement(modalContainer, 'main-view-toggler') as HTMLElement;
+    let notMainViewToggler = getModalElement(modalContainer, 'not-main-view-toggler');
 
     expect(modalContainer).not.toBe(null);
     expect(mainView).not.toBe(null);
@@ -246,16 +259,17 @@ describe('MDB Modal', () => {
     expect(mainViewToggler).not.toBe(null);
     expect(notMainViewToggler).toBe(null);
 
-    mainViewToggler.dispatchEvent(new MouseEvent('click'));
+    mainViewToggler.click();
 
     fixture.detectChanges();
+    modalRef.component.changeDetectorRef.detectChanges();
     await new Promise((resolve) => setTimeout(resolve, 700));
 
     modalContainer = overlayContainerElement.querySelector('mdb-modal-container');
-    mainView = modalContainer.querySelector('#main-view');
-    notMainView = modalContainer.querySelector('#not-main-view');
-    mainViewToggler = modalContainer.querySelector('#main-view-toggler');
-    notMainViewToggler = modalContainer.querySelector('#not-main-view-toggler');
+    mainView = getModalElement(modalContainer, 'main-view');
+    notMainView = getModalElement(modalContainer, 'not-main-view');
+    mainViewToggler = getModalElement(modalContainer, 'main-view-toggler') as HTMLElement;
+    notMainViewToggler = getModalElement(modalContainer, 'not-main-view-toggler');
 
     expect(modalContainer).not.toBe(null);
     expect(mainView).toBe(null);

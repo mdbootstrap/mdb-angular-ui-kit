@@ -30,6 +30,7 @@ const NON_INVASIVE_SHOW_CLASS = 'modal-non-invasive-show';
 @Component({
   selector: 'mdb-modal-container',
   templateUrl: 'modal-container.component.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection -- Preserve Angular 21 behavior.
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
